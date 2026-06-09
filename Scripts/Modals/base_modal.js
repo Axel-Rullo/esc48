@@ -34,15 +34,18 @@ class BaseModal {
     
     registerCloseListeners() {
 
+        // Cierre por click fuera: solo en desktop (pointer = mouse/trackpad, no touch)
+        const isDesktop = () => window.matchMedia('(pointer: fine)').matches;
+
         // 1. Backdrop
         this.modal.addEventListener('click', (e) => {
-            if (e.target === this.modal) this.close();
+            if (e.target === this.modal && isDesktop()) this.close();
         });
 
         // 2. Overlay compartido
         if (this.overlay) {
             this.overlay.addEventListener('click', () => {
-                if (this.isOpen()) this.close();
+                if (this.isOpen() && isDesktop()) this.close();
             });
         }
 

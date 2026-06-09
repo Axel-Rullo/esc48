@@ -63,6 +63,12 @@
     --modal-spinner-color: #ffffff;
     --modal-success-bg: #22c55e;
     --modal-success-shadow: rgba(34, 197, 94, 0.4);
+    --modal-close-btn-bg: rgba(255, 255, 255, 0.2);
+    --modal-close-btn-hover-bg: rgba(255, 255, 255, 0.3);
+    --modal-alert-shadow: rgba(0, 0, 0, 0.3);
+    --form-block-bg: #eef0f7;
+    --form-input-bg: #ffffff;
+    --form-input-text: #111827;
 
     /* ===============================
         SECCION 2.5: HERO CARRUSEL

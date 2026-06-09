@@ -115,7 +115,7 @@ body.modal-open {
     flex-direction: column;
     gap: 0.7rem;
     padding: 0.75rem;
-    background: var(--content-bg);
+    background: var(--form-block-bg);
     border-radius: 10px;
     border: 1px solid var(--content-border);
 }
@@ -194,8 +194,8 @@ body.modal-open {
     padding: 0.5rem 0.65rem;
     border: 2px solid var(--content-border);
     border-radius: 6px;
-    background-color: var(--content-input-bg);
-    color: var(--content-text-input);
+    background-color: var(--form-input-bg);
+    color: var(--form-input-text);
     font-family: inherit;
     font-size: 0.8rem;
     font-weight: 500;
