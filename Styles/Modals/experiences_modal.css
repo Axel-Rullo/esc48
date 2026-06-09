@@ -140,6 +140,7 @@
     width: 100%;
     text-align: left;
     flex-shrink: 0;
+    min-height: 44px;
 }
 
 .experiences-form-toggle:hover {
@@ -301,6 +302,7 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
+    min-height: 44px;
 }
 
 .experiences-btn-submit {
@@ -527,7 +529,7 @@
 }
 
 .experiences-star-display.experiences-star-full {
-    color: var(--color-gold);
+    color: #fbbf24;
     text-shadow: 0 0 8px var(--content-shadow-accent);
 }
 
@@ -563,11 +565,8 @@
     }
 }
 
-/* (starPulse eliminado: conflictúa con transform:scale(1.15) del mismo estado hover) */
-
-
 /* ================================================================
-   RESPONSIVE - LAPTOP / TABLET LANDSCAPE (1024px)
+    RESPONSIVE - LAPTOP / TABLET LANDSCAPE
    ================================================================ */
 @media (max-width: 1024px) {
     .experiences-modal-content {
@@ -677,7 +676,6 @@
     .experiences-form-toggle {
         padding: 10px 12px;
         font-size: 0.76rem;
-        min-height: 40px;
     }
 
     .experiences-form-section {
@@ -726,7 +724,6 @@
     .experiences-btn-cancel {
         padding: 10px 13px;
         font-size: 0.76rem;
-        min-height: 40px;
     }
 
     .experiences-textarea-tip {
@@ -752,134 +749,6 @@
 
     .experiences-star {
         font-size: 1.3rem;
-    }
-}
-
-/* ================================================================
-   RESPONSIVE - MÓVIL PEQUEÑO (380px)
-   ================================================================ */
-@media (max-width: 380px) {
-    .experiences-modal-content {
-        width: 100%;
-        max-height: 100vh;
-        border-radius: 0;
-        border: none;
-    }
-
-    .experiences-modal-header {
-        padding: 10px;
-        gap: 8px;
-    }
-
-    .experiences-modal-header h2 {
-        font-size: 0.75rem;
-        gap: 6px;
-    }
-
-    .experiences-modal-header h2 i {
-        font-size: 0.9rem;
-    }
-
-    .experiences-modal-close {
-        width: 30px;
-        height: 30px;
-        font-size: 1.1rem;
-    }
-
-    .experiences-form-toggle {
-        padding: 9px 10px;
-        font-size: 0.72rem;
-        gap: 8px;
-        min-height: 40px;
-    }
-
-    .experiences-form-section {
-        padding: 8px 10px;
-    }
-
-    .experiences-list-section {
-        padding: 8px 10px;
-    }
-
-    .experiences-list-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-    }
-
-    .experiences-list-header h3 {
-        font-size: 0.78rem;
-    }
-
-    .experiences-average-rating {
-        width: 100%;
-        padding: 0.3rem 0.5rem;
-    }
-
-    .experiences-average-text {
-        font-size: 0.72rem;
-    }
-
-    .experiences-form-group label {
-        font-size: 0.7rem;
-        line-height: 1.2;
-    }
-
-    .experiences-form-group input,
-    .experiences-form-group textarea {
-        padding: 9px;
-        font-size: 0.8rem;
-        min-height: 36px;
-    }
-
-    .experiences-form-group textarea {
-        min-height: 65px;
-    }
-
-    .experiences-form-buttons {
-        flex-direction: column;
-    }
-
-    .experiences-btn-submit,
-    .experiences-btn-cancel {
-        width: 100%;
-        justify-content: center;
-        padding: 10px;
-        font-size: 0.72rem;
-    }
-
-    /* Apilar nombre y apellido en mobile pequeño */
-    /* (grid-template-columns: 1fr ya heredado desde 768px) */
-
-    .experience-card {
-        padding: 7px 8px;
-    }
-
-    .experience-card-name {
-        font-size: 0.72rem;
-    }
-
-    .experience-card-text {
-        font-size: 0.65rem;
-        line-height: 1.4;
-    }
-
-    .experience-card-meta {
-        font-size: 0.6rem;
-        gap: 4px;
-    }
-
-    .experiences-star {
-        font-size: 1.15rem;
-    }
-
-    .experiences-star-display {
-        font-size: 0.8rem;
-    }
-
-    .experience-card-rating-text {
-        font-size: 0.65rem;
-        min-width: 20px;
     }
 }
 
