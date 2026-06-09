@@ -40,8 +40,9 @@
     --nav-submenu-hover-bg: #3a3a55;
 
     /* ===============================
-        SECCION 2: CONTENIDO (Modo claro)
+        SECCION 2: CONTENIDO
        =============================== */
+    --star-gold: #f59e0b;
     --content-bg: #ffffff;
     --content-bg-card: #f9fafb;
     --content-bg-light: #cbcfe2;
