@@ -17,14 +17,17 @@ class BaseModal {
     open() {
         this.modal.classList.add('active');
         this.overlay?.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-open');
     }
 
-    // Quita 'active' y restaura el scroll
+    // Quita 'active' y restaura el scroll solo si no hay otros modales abiertos
     close() {
         this.modal.classList.remove('active');
         this.overlay?.classList.remove('active');
-        document.body.style.overflow = '';
+        const anyOpen = document.querySelector('.modal-open ~ * .active, [class*="modal"].active');
+        if (!anyOpen) {
+            document.body.classList.remove('modal-open');
+        }
     }
 
     // Devuelve true si el modal está visible
