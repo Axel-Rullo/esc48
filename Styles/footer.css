@@ -1,0 +1,416 @@
+/* ================================================================
+    FOOTER
+   ================================================================ */
+
+.footer {
+    background-color: var(--footer-bg);
+    color: var(--color-accent);
+    margin-top: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.7rem;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1.275rem 1.7rem;
+
+    border-top: 4px solid var(--footer-gold);
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-socials {
+    flex: 0 0 auto;
+}
+
+.footer-logos-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-socials h3 {
+    font-size: 0.85rem;
+    margin-bottom: 0.85rem;
+    font-weight: bold;
+    color: var(--footer-text);
+}
+
+.socials-container {
+    display: flex;
+    gap: 1.275rem;
+}
+
+.social-icon {
+    width: 51px;
+    height: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--footer-bg-dark);
+    border-radius: 50%;
+    color: var(--footer-text-light);
+
+    /* El color de la red queda disponible como --social-color
+       pero NO se aplica en reposo: el ícono es neutro por defecto */
+    border: 2px solid transparent;
+    font-size: 1.35rem;
+    text-decoration: none;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+/* ── HOVER: usa el color propio de cada red social ──────────────
+   --social-color se inyecta por JS con style.setProperty()       */
+.social-icon:hover {
+    border-color: var(--social-color);
+    color: var(--social-color);
+
+    transform: translateY(-5px) scale(1.08);
+
+    /* Sombra genérica oscura + sombra coloreada con la red */
+    box-shadow:
+        0 7px 17px var(--footer-shadow),
+        0 7px 17px color-mix(in srgb, var(--social-color) 40%, transparent);
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    flex: 0 0 auto;
+}
+
+.footer-contact h3 {
+    font-size: 0.85rem;
+    margin: 0;
+    font-weight: bold;
+    color: var(--footer-text);
+}
+
+.contact-icons-group {
+    display: flex;
+    gap: 0.85rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon-btn {
+    width: 51px;
+    height: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--footer-bg-dark);
+    border-radius: 50%;
+    color: var(--footer-text-light);
+
+    border: 2px solid var(--footer-accent-subtle);
+    font-size: 1.35rem;
+    cursor: pointer;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.contact-icon-btn:hover {
+    background: var(--footer-bg-light);
+    border-color: var(--footer-gold);
+
+    transform: translateY(-5px) scale(1.08);
+
+    box-shadow: 0 7px 17px var(--footer-shadow-accent);
+
+    color: var(--footer-gold);
+}
+
+/* ================================================================
+    LINKS
+   ================================================================ */
+
+.footer-links {
+    display: flex;
+    gap: 1.7rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.footer-link {
+    color: var(--footer-text-light);
+    text-decoration: none;
+    font-weight: bold;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease;
+
+    border-bottom: 2px solid transparent;
+    font-size: 0.85rem;
+}
+
+.footer-link:hover {
+    border-bottom-color: var(--footer-gold);
+    color: var(--footer-accent);
+}
+
+.footer-bottom {
+    display: none;
+}
+
+/* ================================================================
+    LOGOS
+   ================================================================ */
+
+.logos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.7rem;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.institutional-logo {
+    height: 170px;
+    width: 170px;
+
+    object-fit: contain;
+
+    opacity: 1;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease;
+
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    background: none;
+}
+
+.institutional-logo:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 5px 8px var(--footer-gold));
+}
+
+.powered-link {
+    color: var(--footer-text-light);
+    text-decoration: none;
+    font-weight: bold;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease;
+
+    border-bottom: 2px solid transparent;
+    font-size: 0.85rem;
+}
+
+.powered-link:hover {
+    color: var(--footer-accent);
+    border-bottom-color: var(--footer-gold);
+}
+
+/* ================================================================
+    MEDIA QUERYS - FOOTER
+   ================================================================ */
+
+/* 768px */
+@media (max-width: 768px) {
+
+    .footer-top {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        gap: 1.7rem;
+        padding: 1.7rem 1.275rem;
+    }
+
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-contact {
+        flex: 0 1 auto;
+        order: 1;
+    }
+
+    .footer-socials {
+        flex: 0 0 100%;
+        order: 2;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 0.85rem;
+    }
+
+    .social-icon,
+    .contact-icon-btn {
+        width: 58px;
+        height: 58px;
+        font-size: 1.5rem;
+    }
+
+    .socials-container,
+    .contact-icons-group {
+        gap: 1rem;
+    }
+
+    .footer-socials h3,
+    .footer-contact h3 {
+        font-size: 0.82rem;
+    }
+
+    .logos-container {
+        padding: 1.275rem 0;
+    }
+
+    .footer-links {
+        justify-content: center;
+        margin-top: 1.275rem;
+    }
+}
+
+/* 480px */
+@media (max-width: 480px) {
+
+    .footer-top {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        gap: 1.275rem;
+        padding: 1.275rem 0.85rem;
+
+        border-top: 2px solid var(--footer-gold);
+    }
+
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-contact {
+        flex: 0 1 auto;
+        order: 1;
+    }
+
+    .footer-socials {
+        flex: 0 0 100%;
+        order: 2;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 0.5rem;
+    }
+
+    .social-icon,
+    .contact-icon-btn {
+        width: 54px;
+        height: 54px;
+        font-size: 1.4rem;
+    }
+
+    .socials-container,
+    .contact-icons-group {
+        gap: 0.85rem;
+    }
+
+    .footer-socials h3,
+    .footer-contact h3 {
+        font-size: 0.76rem;
+    }
+
+    .institutional-logo {
+        height: 128px;
+        width: 128px;
+    }
+
+    .footer-links {
+        gap: 1.275rem;
+        font-size: 0.72rem;
+        justify-content: center;
+    }
+}
+
+/* 360px */
+@media (max-width: 360px) {
+
+    .footer-top {
+        gap: 1rem;
+        padding: 1rem 0.7rem;
+    }
+
+    .social-icon,
+    .contact-icon-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+
+    .socials-container,
+    .contact-icons-group {
+        gap: 0.7rem;
+    }
+
+    .footer-socials h3,
+    .footer-contact h3 {
+        font-size: 0.72rem;
+    }
+
+    .institutional-logo {
+        height: 110px;
+        width: 110px;
+    }
+
+    .footer-links {
+        gap: 0.85rem;
+    }
+}

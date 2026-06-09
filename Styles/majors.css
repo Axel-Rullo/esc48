@@ -1,0 +1,406 @@
+/* ================================================================
+    MAJORS + MILESTONE
+    ================================================================ */
+
+/* ================================================================
+    SECCIÓN DE CARRERAS
+   ================================================================ */
+
+.majors-section {
+    padding: 51px 17px;
+    background: var(--content-bg);
+    width: 100%;
+}
+
+.majors-container {
+    max-width: 1020px;
+    margin: 0 auto;
+}
+
+/* TÍTULO PRINCIPAL */
+.majors-title {
+    font-size: 2.1rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 51px;
+    color: var(--content-text);
+    text-transform: uppercase;
+    letter-spacing: 0.85px;
+}
+
+/* CATEGORÍAS */
+.majors-category {
+    margin-bottom: 68px;
+}
+
+.category-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 34px;
+    color: var(--content-text);
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--content-accent-border);
+    display: inline-block;
+}
+
+/* ================================================================
+    GRID Y TARJETAS
+   ================================================================ */
+
+.majors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+.major-card {
+    background: var(--content-bg-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 7px 20px var(--content-shadow);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 2px solid var(--content-border);
+    will-change: transform;
+}
+
+.major-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px var(--content-shadow-accent),
+                0 8px 16px var(--content-shadow);
+    border-color: var(--content-accent-border);
+}
+
+/* IMAGEN */
+.major-card-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.major-card:hover .major-card-image {
+    transform: scale(1.04);
+}
+
+/* CONTENIDO */
+.major-card-content {
+    padding: 21px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.major-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--content-text);
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.major-card-description {
+    font-size: 0.8rem;
+    color: var(--content-text-light);
+    line-height: 1.5;
+    flex-grow: 1;
+    margin-bottom: 17px;
+}
+
+/* ================================================================
+    BOTONES DE TARJETA
+   ================================================================ */
+
+.major-card-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Estilos base compartidos entre ambos botones */
+.major-card-button,
+.major-card-experiences-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 17px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    border-width: 2px;
+    border-style: solid;
+}
+
+/* Botón "Más Info" */
+.major-card-button {
+    background: var(--content-accent-border);
+    color: white;
+    border-color: var(--content-accent-border);
+    text-decoration: none;
+}
+
+.major-card-button:hover {
+    background: transparent;
+    color: var(--content-accent-border);
+    transform: translateX(3px);
+    box-shadow: 0 7px 17px rgba(0, 0, 0, 0.3);
+}
+
+/* Botón "Experiencias" */
+.major-card-experiences-btn {
+    background: #6b7280;
+    color: white;
+    border-color: #6b7280;
+}
+
+.major-card-experiences-btn:hover {
+    background: #1f1f32;
+    border-color: #1f1f32;
+    transform: translateX(-3px);
+    box-shadow: 0 7px 17px rgba(0, 0, 0, 0.3);
+}
+
+/* ================================================================
+    BADGE DE TRAYECTORIA INSTITUCIONAL
+   ================================================================ */
+
+.milestone-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin: -0.9rem 0 2.2rem 0;
+    width: 100%;
+    box-sizing: border-box;
+    animation: milestoneFade 0.8s ease;
+}
+
+
+
+.milestone-icon {
+    font-size: 1.65rem;
+    color: var(--content-accent-border);
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 10px var(--content-shadow-accent));
+    animation: milestoneFloat 3s ease-in-out infinite;
+}
+
+.milestone-text {
+    margin: 0;
+    font-size: 1.24rem;
+    font-weight: 800;
+    color: var(--content-text);
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.milestone-text strong {
+    font-size: 1.24rem;
+    font-weight: 800;
+    color: var(--content-accent-border);
+    text-shadow: 0 0 14px var(--content-shadow-accent);
+}
+
+/* Tema claro — sobreescribe colores del badge */
+[data-theme="light"] .milestone-icon,
+[data-theme="light"] .milestone-text strong {
+    color: #6b7280;
+    text-shadow: 0 0 10px rgba(107, 114, 128, 0.18);
+}
+
+/* ================================================================
+    ANIMACIONES
+   ================================================================ */
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.major-card              { animation: slideInUp 0.6s ease-out; }
+.major-card:nth-child(1) { animation-delay: 0.1s; }
+.major-card:nth-child(2) { animation-delay: 0.2s; }
+.major-card:nth-child(3) { animation-delay: 0.3s; }
+.major-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes milestoneFloat {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-3px); }
+}
+
+@keyframes milestoneFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================================================
+    TYPEWRITER — Palabra dinámica del badge
+   ================================================================ */
+
+.milestone-word {
+    color: var(--content-accent-border);
+    font-weight: 800;
+    text-shadow: 0 0 14px var(--content-shadow-accent);
+}
+
+.milestone-word::after {
+    content: '|';
+    color: var(--content-accent-border);
+    font-weight: 400;
+    animation: blink 0.7s step-end infinite;
+}
+
+[data-theme="light"] .milestone-word {
+    color: #6b7280;
+    text-shadow: 0 0 10px rgba(107, 114, 128, 0.18);
+}
+
+[data-theme="light"] .milestone-word::after {
+    color: #6b7280;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* ================================================================
+    RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 1024px) {
+    .majors-section    { padding: 42px 17px; }
+    .majors-title      { font-size: 1.9rem; margin-bottom: 42px; }
+    .category-subtitle { font-size: 1.35rem; margin-bottom: 30px; }
+    .majors-grid       { gap: 21px; grid-template-columns: repeat(auto-fit, minmax(238px, 1fr)); }
+    .major-card-image  { height: 200px; }
+
+    .milestone-text,
+    .milestone-text strong { font-size: 1.08rem; }
+    .milestone-icon        { font-size: 1.45rem; }
+}
+
+@media (max-width: 768px) {
+    .majors-section   { padding: 38px 17px; }
+    .majors-container { max-width: 100%; }
+    .majors-title     { font-size: 1.5rem; margin-bottom: 34px; text-align: center; }
+
+    .majors-category {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .category-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 42px;
+        text-align: center;
+        display: inline-block;
+        border-bottom: 2px solid var(--content-accent-border);
+        padding-bottom: 12px;
+        width: auto;
+    }
+
+    .majors-grid      { gap: 17px; grid-template-columns: 1fr; max-width: 425px; margin: 0 auto; }
+    .major-card-image { height: 180px; }
+    .major-card-content { padding: 17px; }
+    .major-card-title { font-size: 1rem; }
+    .major-card-description { font-size: 0.76rem; }
+
+    .milestone-badge  { gap: 0.6rem; margin: -0.7rem 0 1.8rem 0; flex-wrap: wrap; }
+    .milestone-text,
+    .milestone-text strong { font-size: 0.96rem; white-space: normal; }
+    .milestone-icon   { font-size: 1.25rem; }
+}
+
+@media (max-width: 480px) {
+    .majors-section   { padding: 25px 12px; }
+    .majors-container { max-width: 100%; }
+    .majors-title     { font-size: 1.3rem; margin-bottom: 21px; text-align: center; }
+
+    .majors-category {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .category-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 17px;
+        text-align: center;
+        display: inline-block;
+        border-bottom: 2px solid var(--content-accent-border);
+        padding-bottom: 8px;
+        width: auto;
+    }
+
+    .majors-grid        { gap: 12px; grid-template-columns: 1fr; max-width: 100%; margin: 0 auto; padding: 0 8px; box-sizing: border-box; }
+    .major-card-image   { height: 180px; }
+    .major-card-content { padding: 12px; }
+    .major-card-title   { font-size: 0.85rem; }
+    .major-card-description { font-size: 0.72rem; }
+
+    .major-card-button,
+    .major-card-experiences-btn { padding: 8px 12px; font-size: 0.76rem; }
+
+    .milestone-badge  { margin: -0.45rem 0 1.5rem 0; gap: 0.45rem; padding: 0 0.4rem; }
+    .milestone-text,
+    .milestone-text strong { font-size: 0.82rem; }
+    .milestone-icon   { font-size: 1.05rem; }
+}
+
+@media (max-width: 380px) {
+    .majors-section   { padding: 20px 10px; }
+    .majors-container { max-width: 100%; }
+    .majors-title     { font-size: 1.15rem; margin-bottom: 16px; text-align: center; }
+
+    .majors-category {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .category-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 14px;
+        text-align: center;
+        display: inline-block;
+        border-bottom: 2px solid var(--content-accent-border);
+        padding-bottom: 6px;
+        width: auto;
+    }
+
+    .majors-grid        { gap: 10px; grid-template-columns: 1fr; max-width: 100%; margin: 0 auto; padding: 0 6px; box-sizing: border-box; }
+    .major-card-image   { height: 150px; }
+    .major-card-content { padding: 10px; }
+    .major-card-title   { font-size: 0.76rem; }
+    .major-card-description { font-size: 0.65rem; }
+
+    .major-card-button,
+    .major-card-experiences-btn { padding: 6px 10px; font-size: 0.68rem; }
+
+    .milestone-badge  { margin: -0.25rem 0 1rem 0; gap: 0.25rem; padding: 0 0.2rem; }
+    .milestone-text,
+    .milestone-text strong { font-size: 0.62rem; letter-spacing: 0.4px; line-height: 1.15; }
+    .milestone-icon   { font-size: 0.78rem; }
+}

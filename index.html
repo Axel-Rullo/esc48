@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Instituto de Educación Superior Nº48 'Gral. José de San Martín' - Totoras, Santa Fe. Carreras de nivel superior: Tecnicaturas y Profesorados.">
+    <!-- Iconos para redes sociales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Leaflet para el minimapa -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Styles/body.css">
+    <link rel="stylesheet" href="Styles/Header-Nav/header.css">
+    <link rel="stylesheet" href="Styles/Header-Nav/nav.css">
+    <link rel="stylesheet" href="Styles/Header-Nav/burguer_menu.css">
+    <link rel="stylesheet" href="Styles/hero_news.css">
+    <link rel="stylesheet" href="Styles/majors.css">
+    <link rel="stylesheet" href="Styles/Modals/experiences_modal.css">
+    <link rel="stylesheet" href="Styles/Modals/contact_modal.css">
+    <link rel="stylesheet" href="Styles/Modals/phones_modal.css">
+    <link rel="stylesheet" href="Styles/footer.css">
+    <link rel="stylesheet" href="Styles/location_section.css">
+    <link rel="stylesheet" href="Styles/Modals/alert_modal.css">
+
+    <!-- TEMAS -->
+    <link id="light-theme" rel="stylesheet" href="Themes/light_theme.css">
+    <link id="dark-theme" rel="stylesheet" href="Themes/dark_theme.css" disabled>
+
+    <!-- LOGO -->
+    <link rel="icon" type="image/svg+xml" href="Images/Escudo.svg">
+
+    <title>Instituto de Educación Superior Nº48 "Gral. José de San Martín"</title>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-logo-container">
+            <img src="Images/Logo/Escudo.svg" alt="Logo" class="header-logo">
+        </div>
+        <h1>
+            <a href="#">Instituto de Educación Superior Nº 48 <br class="break-mobile">"Gral. José de San Martín"</a>
+        </h1>
+        <div class="header-actions">
+            <button id="theme-toggle" class="theme-toggle">
+                <i class="fas fa-sun"></i>
+            </button>
+            <button class="hamburger" id="hamburger-btn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <aside class="left-menu">
+            <button class="sidebar-toggle-btn" id="sidebar-toggle">
+                <i class="fas fa-chevron-down"></i>
+                <span class="btn-text">Menús</span>
+            </button>
+            <ul class="menu-list">
+                <!-- Se genera dinámicamente con JS -->
+            </ul>
+        </aside>
+    </header>
+
+    <!-- NAVEGACION PRINCIPAL -->
+    <div id="nav-original">
+        <nav class="nav">
+            <ul></ul>
+        </nav>
+    </div>
+
+    <!-- HERO CARRUSEL - NOTICIAS PRINCIPALES -->
+    <section class="hero-news-section">
+        <div class="hero-carousel" id="heroCarousel">
+            <!-- Se genera dinámicamente con JS -->
+        </div>
+        <div class="hero-indicators" id="heroIndicators">
+            <!-- Se genera dinámicamente con JS -->
+        </div>
+        <div class="hero-progress">
+            <div class="hero-progress-bar"></div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CARRERAS -->
+    <section class="majors-section">
+        <div class="majors-container">
+            <h2 class="majors-title">Nuestras Carreras</h2>
+
+            <!-- BADGE DE TRAYECTORIA -->
+            <div class="milestone-badge">
+                <div class="milestone-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <p class="milestone-text">
+                    <strong id="yearsCounter"></strong> años capacitando tecnólogos y docentes
+                </p>
+            </div>
+
+            <div class="majors-category">
+                <h3 class="category-subtitle">TECNICATURAS</h3>
+                <div class="majors-grid" id="technicalMajors">
+                    <!-- Se genera dinámicamente con JS -->
+                </div>
+            </div>
+
+            <div class="majors-category">
+                <h3 class="category-subtitle">PROFESORADOS</h3>
+                <div class="majors-grid" id="professionalMajors">
+                    <!-- Se genera dinámicamente con JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE UBICACIÓN -->
+    <section class="location-section">
+        <div class="location-container">
+            <h2 class="location-title">¿DÓNDE ENCONTRARNOS?</h2>
+
+            <div class="location-main">
+                <!-- TARJETA DEL MAPA -->
+                <div class="location-map-card">
+                    <div class="location-map-header">
+                        <button class="location-map-toggle" id="locationToggle">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </button>
+                        <h3 class="location-map-name" id="locationMapName">
+                            Instituto de Educación Superior Nº48 "Gral. José de San Martín"
+                        </h3>
+                    </div>
+                    <div id="map-container" class="map-container"></div>
+                </div>
+
+                <!-- CONTENIDO LATERAL -->
+                <div class="location-info">
+                    <h3 class="location-info-title">VISÍTANOS</h3>
+
+                    <div class="location-info-item">
+                        <div class="location-info-icon">
+                            <i class="fas fa-map-pin"></i>
+                        </div>
+                        <div class="location-info-text">
+                            <span class="location-info-label">Dirección</span>
+                            <p class="location-info-value">Totoras, Santa Fe, Argentina - 
+                                <br class="break-location">Pueyrredón M 91, S2144</p>
+                        </div>
+                    </div>
+
+                    <div class="location-info-item">
+                        <div class="location-info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="location-info-text">
+                            <span class="location-info-label">Turno</span>
+                            <p class="location-info-value">Tarde - Noche</p>
+                        </div>
+                    </div>
+
+                    <button class="location-google-btn" id="locationGoogleBtn">
+                        <i class="fas fa-directions"></i>
+                        GOOGLE MAPS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <!-- Redes Sociales y Contacto -->
+        <div class="footer-top">
+            <!-- Redes Sociales -->
+            <div class="footer-section footer-socials">
+                <h3>REDES</h3>
+                <div class="socials-container">
+                    <!-- Se genera dinámicamente con JS -->
+                </div>
+            </div>
+            
+            <!-- Contacto -->
+            <div class="footer-section footer-contact">
+                <h3>CONTACTO</h3>
+                <div class="contact-icons-group">
+                    <button id="phoneBtn" class="contact-icon-btn phone-icon">
+                        <i class="fas fa-phone"></i>
+                    </button>
+                    <button id="contactBtn" class="contact-icon-btn email-icon">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- OVERLAY -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- MODAL CONTACTO -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Formulario de Contacto</h2>
+                <button id="closeModal" class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="contactForm" class="contact-form">
+                    <!-- BLOQUE 1: CAMPOS -->
+                    <div class="form-block">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre <span class="required">*</span></label>
+                                <input type="text" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="apellidos">Apellido <span class="required">*</span></label>
+                                <input type="text" id="apellidos" name="apellidos" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ciudad">Ciudad / Localidad <span class="required">*</span></label>
+                                <input type="text" id="ciudad" name="ciudad" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 2: ASUNTO -->
+                    <div class="form-block">
+                        <div class="form-group">
+                            <label for="asunto">Asunto <span class="required">*</span></label>
+                            <span class="textarea-tip">Shift + Enter = salto de línea</span>
+                            <textarea id="asunto" name="asunto" rows="3" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- BLOQUE 3: BOTONES -->
+                    <div class="form-block form-block-actions">
+                        <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                        <button type="reset" class="btn-reset">Limpiar Formulario</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TELÉFONO -->
+    <div id="phoneModal" class="modal">
+        <div class="phone-modal-content">
+            <div class="phone-modal-header">
+                <h2>Teléfonos Institucionales</h2>
+                <button id="closePhoneModal" class="phone-modal-close">&times;</button>
+            </div>
+            <div class="phone-modal-body">
+                <ul class="phone-list" id="phoneList">
+                    <!-- Se genera dinámicamente con JS -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENU HAMBURGUESA -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <button class="close-menu" id="close-menu">✕</button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <!-- NAV -->
+            <nav class="mobile-nav">
+                <ul></ul>
+            </nav>
+            <!-- MENU LATERAL -->
+            <div class="mobile-left-menu">
+                <ul class="menu-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ALERTA PERSONALIZADA -->
+    <div id="customAlert" class="alert-modal">
+        <div class="alert-modal__overlay"></div>
+        
+        <div class="alert-modal__box">
+            <div class="alert-modal__icon" id="customAlertIcon">✓</div>
+            <h3 class="alert-modal__title" id="customAlertTitle">Éxito</h3>
+            <p class="alert-modal__message" id="customAlertMessage">Operación completada correctamente</p>
+        </div>
+    </div>
+
+    <!-- ================================================================
+        SCRIPTS
+        ================================================================= -->
+    
+    <!-- #region -->
+
+    <!-- 1. CARGAR DATOS PRIMERO -->
+    <script src="Scripts/General-Renders/data-loader.js"></script>
+
+    <!-- 2. RENDERIZADORES -->
+    <script src="Scripts/social_networks.js"></script>
+    <script src="Scripts/General-Renders/dynamic_renderer.js"></script>
+    <script src="Scripts/hero_carousel.js"></script>
+    <script src="Scripts/majors.js"></script>
+    <script src="Scripts/Modals/base_modal.js"></script>
+    <script src="Scripts/Modals/phone_modal.js"></script>
+    <script src="Scripts/Modals/experiences_modal.js"></script>
+
+    <!-- 3. OTROS SCRIPTS -->
+    <script src="Scripts/Header/sidebar-toggle.js"></script>
+    <script src="Scripts/Header/dropdown_menu.js"></script>
+    <script src="Scripts/Modals/alert_modal.js"></script>
+    <script src="Scripts/Modals/contact_modal.js"></script>
+
+    <!-- Script especial para el minimapa -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="Scripts/location_section.js"></script>
+
+    <!-- 4. INICIALIZACIÓN FINAL -->
+    <script src="Scripts/General-Renders/inicio.js"></script>
+    
+    <!-- #endregion -->
+</body>
+</html>

@@ -1,0 +1,61 @@
+/* ================================================================
+    RESET GLOBAL
+   ================================================================ */
+
+* {
+    margin: 0; /* Elimina márgenes externos */
+    padding: 0; /* Elimina espacios internos */
+    box-sizing: border-box; /* Incluye padding y border dentro del tamaño total */
+}
+
+html {
+    scroll-behavior: smooth; /* Scroll suave entre secciones */
+    overflow-x: hidden; /* Evita scroll horizontal */
+    transition: background-color 0.4s ease, color 0.4s ease; /* Animación suave al cambiar colores */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente principal del sitio */
+    background-color: var(--color-bg); /* Color de fondo */
+    color: var(--color-text); /* Color principal del texto */
+    line-height: 1.6; /* Espaciado vertical entre líneas */
+    overflow-x: hidden; /* Evita scroll horizontal */
+    min-height: 100vh; /* Altura mínima igual al alto de pantalla */
+    transition: background-color 0.4s ease, color 0.4s ease; /* Transición suave de colores */
+}
+
+/* TRANSICIÓN SUAVE PARA CAMBIO DE TEMA */
+
+.header,
+.nav,
+.left-menu,
+.modal-content,
+.mobile-menu {
+    transition:
+        background-color 0.4s ease, /* Animación suave del fondo */
+        color 0.4s ease, /* Animación suave del texto */
+        border-color 0.4s ease; /* Animación suave de bordes */
+}
+
+.background {
+    min-height: auto; /* Altura automática */
+    padding: 0; /* Sin espacio interno */
+    margin: 0; /* Sin margen externo */
+    padding-bottom: var(--spacing-lg); /* Espacio inferior interno */
+}
+
+a {
+    text-decoration: none; /* Quita subrayado de enlaces */
+}
+
+.overlay {
+    position: fixed; /* Posición fija sobre toda la pantalla */
+    inset: 0; /* Ocupa arriba, abajo, izquierda y derecha */
+    background: transparent; /* Fondo transparente */
+    display: none; /* Oculto por defecto */
+    z-index: 999; /* Capa alta para superponerse */
+}
+
+.overlay.active {
+    display: block; /* Muestra el overlay al activarse */
+}

@@ -1,0 +1,305 @@
+{
+    "nav": [
+        {
+        "label": "Aula Virtual",
+        "link": "https://esc48-sfe.infd.edu.ar/aula/"
+        },
+        {
+        "label": "Biblioteca Virtual",
+        "link": "https://esc48-sfe.infd.edu.ar/sitio/biblioteca-virtual/"
+        },
+        {
+        "label": "Ingresantes 1ro",
+        "link": "./PDFs/Apuntes-Curso-Desarrollo-IA-Clase-1.pdf"
+        },
+        {
+        "label": "Calendario Anual",
+        "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2025/12/2026.pdf",
+        "target": "_blank"
+        },
+        {
+        "label": "Convocatoria Anual",
+        "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/02/CONVOCATORIA-A-CONCURSO-EDI_EAI_IES48.pdf",
+        "target": "_blank"
+        }
+    ],
+    "phones": [
+        {
+        "label": "Dirección",
+        "number": "+54 (3482) 123-4567"
+        },
+        {
+        "label": "Secretaría Académica",
+        "number": "+54 (3482) 123-4568"
+        },
+        {
+        "label": "Secretaría Administrativa",
+        "number": "+54 (3482) 123-4569"
+        },
+        {
+        "label": "Biblioteca",
+        "number": "+54 (3482) 123-4570"
+        },
+        {
+        "label": "Informática",
+        "number": "+54 (3482) 123-4571"
+        }
+    ],
+    "sidebar": [
+        {
+        "label": "Carreras",
+        "id": "menu-carreras",
+        "items": [
+            {
+            "label": "Técnico Superior en Desarrollo de Software",
+            "id": "menu-software",
+            "items": [
+                {
+                "label": "Diseño Curricular",
+                "link": "#"
+                },
+                {
+                "label": "Plan de Estudio",
+                "link": "#"
+                },
+                {
+                "label": "Correlatividades",
+                "link": "#"
+                }
+            ]
+            },
+            {
+            "label": "Técnico Superior en Gestión de las Organizaciones",
+            "id": "menu-gestion",
+            "items": [
+                {
+                "label": "Diseño Curricular",
+                "link": "#"
+                },
+                {
+                "label": "Plan de Estudio",
+                "link": "#"
+                },
+                {
+                "label": "Correlatividades",
+                "link": "#"
+                }
+            ]
+            },
+            {
+            "label": "Profesorado de Educación Inicial",
+            "id": "menu-inicial",
+            "items": [
+                {
+                "label": "Diseño Curricular",
+                "link": "#"
+                },
+                {
+                "label": "Plan de Estudio",
+                "link": "#"
+                },
+                {
+                "label": "Correlatividades",
+                "link": "#"
+                }
+            ]
+            },
+            {
+            "label": "Profesorado de Educación Primaria",
+            "id": "menu-primaria",
+            "items": [
+                {
+                "label": "Diseño Curricular",
+                "link": "#"
+                },
+                {
+                "label": "Plan de Estudio",
+                "link": "#"
+                },
+                {
+                "label": "Correlatividades",
+                "link": "#"
+                }
+            ]
+            }
+        ]
+        },
+        {
+        "label": "Horarios",
+        "id": "menu-horarios",
+        "items": [
+            {
+            "label": "Técnico Superior en Desarrollo de Software",
+            "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIO-2026-TSDS.pdf",
+            "target": "_blank"
+            },
+            {
+            "label": "Técnico Superior en Gestión de las Organizaciones",
+            "link": "HORARIO-2026-TSDS.pdf",
+            "target": "_blank"
+            },
+            {
+            "label": "Profesorado de Educación Inicial",
+            "link": "#"
+            },
+            {
+            "label": "Profesorado de Educación Primaria",
+            "link": "#"
+            }
+        ]
+        },
+        {
+        "label": "Información para Estudiantes",
+        "id": "menu-estudiantes",
+        "items": [
+            {
+            "label": "Requisitos de Ingreso",
+            "link": "#"
+            },
+            {
+            "label": "Proceso de Inscripción",
+            "link": "#"
+            },
+            {
+            "label": "Becas y Ayudas",
+            "link": "#"
+            }
+        ]
+        },
+        {
+        "label": "Información para Egresados",
+        "id": "menu-egresados",
+        "items": [
+            {
+            "label": "Bolsa de Trabajo",
+            "link": "#"
+            },
+            {
+            "label": "Eventos de Egresados",
+            "link": "#"
+            },
+            {
+            "label": "Red de Contactos",
+            "link": "#"
+            }
+        ]
+        },
+        {
+        "label": "Información para Docentes",
+        "id": "menu-docentes",
+        "items": [
+            {
+            "label": "Recursos Pedagógicos",
+            "link": "#"
+            },
+            {
+            "label": "Plataformas Educativas",
+            "link": "#"
+            },
+            {
+            "label": "Capacitaciones",
+            "link": "#"
+            }
+        ]
+        },
+        {
+        "label": "Datos Institucionales",
+        "id": "menu-datos",
+        "items": [
+            {
+            "label": "Historia",
+            "link": "#"
+            }
+        ]
+        }
+    ],
+    "heroNews": [
+        {
+        "title": "Inscripciones primer año 2026",
+        "imageUrl": "Images/News_School/noticia_2.png",
+        "description": "Toda la información y requisitos para nuevos estudiantes. Consulta nuestro proceso de inscripción detallado.",
+        "link": "#",
+        "type": "primicia"
+        },
+        {
+        "title": "Convocatoria abierta (EDI)",
+        "imageUrl": "Images/News_School/noticia_1.webp",
+        "description": "Se abre la convocatoria para nuevos ingresantes en \"Educación Ambiental Integral\". Las inscripciones estaran abiertas entre el 1 y 31 de marzo. ¡No te pierdas esta oportunidad!",
+        "link": "#",
+        "type": null
+        },
+        {
+        "title": "Ceremonia de Egresados 2025",
+        "imageUrl": "Images/News_School/noticia_3.jpg",
+        "description": "Celebración de nuestros egresados 2025. Revive los momentos más destacados de la ceremonia.",
+        "link": "#",
+        "type": "destacado"
+        },
+        {
+        "title": "Nuevos laboratorios inaugurados",
+        "imageUrl": "Images/News_School/noticia_4.jpg",
+        "description": "Contamos con equipamiento de última tecnología para nuestras carreras. Visita nuestras nuevas instalaciones.",
+        "link": "#",
+        "type": null
+        },
+        {
+        "title": "Becas Progresar",
+        "imageUrl": "Images/News_School/noticia_5.png",
+        "description": "Accede a becas para estudiantes de nivel superior. Consulta requisitos y realiza tu solicitud en línea.",
+        "link": "#",
+        "type": "destacado"
+        }
+    ],
+    "majors": [
+        {
+        "type": "technical",
+        "title": "Técnico Superior en Desarrollo de Software",
+        "description": "Formación en desarrollo de aplicaciones, programación web y sistemas. Aprende las tecnologías más demandadas del mercado laboral actual.",
+        "imageUrl": "Images/Majors/software.jfif",
+        "link": "#"
+        },
+        {
+        "type": "technical",
+        "title": "Técnico Superior en Gestión de las Organizaciones",
+        "description": "Especialización en administración, recursos humanos y gestión empresarial. Preparate para liderar equipos y proyectos en diferentes áreas organizacionales.",
+        "imageUrl": "Images/Majors/gestion.jpg",
+        "link": "#"
+        },
+        {
+        "type": "professional",
+        "title": "Profesorado en Educación Inicial",
+        "description": "Formación integral para la enseñanza en nivel inicial. Desarrolla competencias pedagógicas y emocionales para educar a los más pequeños.",
+        "imageUrl": "Images/Majors/inicial.jpg",
+        "link": "#"
+        },
+        {
+        "type": "professional",
+        "title": "Profesorado en Educación Primaria",
+        "description": "Preparación docente para educación primaria con enfoque en metodologías activas. Forma educadores comprometidos con la calidad educativa.",
+        "imageUrl": "Images/Majors/primaria.gif",
+        "link": "#"
+        }
+    ],
+    "socials": [
+        {
+        "network": "facebook",
+        "link": "#"
+        },
+        {
+        "network": "instagram",
+        "link": "#"
+        },
+        {
+        "network": "youtube",
+        "link": "#"
+        },
+        {
+        "network": "whatsapp",
+        "link": "#"
+        },
+        {
+        "network": "twitter",
+        "link": "#"
+        }
+    ]
+}

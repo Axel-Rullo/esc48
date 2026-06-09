@@ -1,0 +1,921 @@
+/* ================================================================
+    SECCIÓN DE UBICACIÓN
+   ================================================================ */
+
+.location-section {
+    width: 100%;
+    background: var(--content-bg);
+    padding: 3rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.location-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ===============================
+    MODAL UBICACIÓN
+   =============================== */
+
+#locationModal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 2500;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-md);
+    box-sizing: border-box;
+}
+
+#locationModal.active {
+    display: flex;
+}
+
+.location-modal-content {
+    position: relative;
+    background: var(--content-bg-card);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px var(--content-shadow);
+    width: 100%;
+    max-width: 900px;
+    max-height: 95vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================================================================
+    HEADER DEL MODAL
+   ================================================================ */
+
+.location-modal-header {
+    background: linear-gradient(
+        135deg,
+        var(--content-bg-light),
+        var(--content-bg-card)
+    );
+    padding: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--content-accent-border);
+    flex-shrink: 0;
+    gap: 0.5rem;
+}
+
+.location-modal-header h2 {
+    margin: 0;
+    color: var(--content-text);
+    font-size: 1.1rem;
+    flex: 1;
+    text-align: center;
+}
+
+.location-modal-close {
+    background: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--content-accent-border);
+    transition: var(--transition);
+    padding: 0;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: none;
+}
+
+.location-modal-close:hover {
+    background: var(--content-accent-border);
+    color: var(--content-bg);
+    transform: rotate(90deg);
+}
+
+/* ================================================================
+    BODY DEL MODAL
+   ================================================================ */
+
+.location-modal-body {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    flex: 1;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* ================================================================
+    MAPA
+   ================================================================ */
+
+#modal-map-container {
+    width: 100%;
+    flex: 0 0 240px;
+    min-height: 240px;
+    max-height: 240px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px var(--content-shadow);
+    border: 2px solid var(--content-border);
+}
+
+.map-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* ================================================================
+    ESTILOS LEAFLET
+   ================================================================ */
+
+.leaflet-container {
+    background: var(--content-bg);
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.leaflet-tile-pane {
+    opacity: 1;
+}
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* ================================================================
+    ÍCONO DEL MARCADOR
+   ================================================================ */
+
+.school-icon-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.school-marker-icon {
+    background: var(--content-accent-border);
+    color: var(--content-bg-card);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+                0 0 0 3px var(--content-shadow-accent);
+    border: 2px solid var(--content-bg-card);
+    animation: markerPulse 2s ease-in-out infinite;
+}
+
+@keyframes markerPulse {
+    0%, 100% {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+                    0 0 0 3px var(--content-shadow-accent);
+    }
+    50% {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+                    0 0 0 8px rgba(251, 191, 36, 0.1);
+    }
+}
+
+.school-marker-icon i {
+    color: inherit;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ================================================================
+    POPUP
+   ================================================================ */
+
+.leaflet-popup-content-wrapper {
+    background: var(--content-bg-card);
+    color: var(--content-text);
+    border-radius: 8px;
+    border: 2px solid var(--content-accent-border);
+    box-shadow: 0 4px 12px var(--content-shadow);
+    padding: 0;
+}
+
+.leaflet-popup-tip {
+    background: var(--content-bg-card);
+    border-color: var(--content-accent-border);
+}
+
+.leaflet-popup-close-button {
+    color: var(--content-text);
+    font-weight: bold;
+    width: 28px;
+    height: 28px;
+    top: 4px;
+    right: 4px;
+    font-size: 1.2rem;
+}
+
+.leaflet-popup-close-button:hover {
+    color: var(--content-accent-border);
+}
+
+.location-popup-custom {
+    padding: 0 !important;
+}
+
+.location-popup-custom .leaflet-popup-content {
+    margin: 0;
+    padding: 0;
+}
+
+.location-popup-content {
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: center;
+}
+
+.location-popup-content h3 {
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: 1rem;
+    color: var(--content-text);
+    font-weight: bold;
+}
+
+.location-popup-content p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--content-text-light);
+}
+
+/* ================================================================
+    INFO Y BOTÓN
+   ================================================================ */
+
+.location-info {
+    background: var(--content-bg-light);
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    text-align: left;
+    flex-shrink: 0;
+    min-height: auto;
+    border: 2px solid var(--content-border);
+}
+
+.location-info h3 {
+    text-align: center;
+}
+
+.location-info p {
+    margin: 0;
+    color: var(--content-text);
+    font-weight: 500;
+    line-height: 1.4;
+    font-size: 0.85rem;
+}
+
+/* ================================================================
+    BOTÓN GOOGLE MAPS
+   ================================================================ */
+
+.maps-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    background: var(--content-accent-border);
+    color: var(--content-bg-card);
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    transition: var(--transition);
+    border: 2px solid var(--content-accent-border);
+    cursor: pointer;
+    gap: 5px;
+}
+
+.maps-button:hover {
+    background: transparent;
+    color: var(--content-accent-border);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--content-shadow-accent);
+}
+
+.maps-button i {
+    font-size: 1rem;
+}
+
+/* ================================================================
+    OVERLAY - ESTILOS ESPECÍFICOS PARA LOCATION MODAL
+   ================================================================ */
+
+.overlay[data-active-modal="location"] {
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2499;
+    cursor: pointer;
+}
+
+/* ================================================================
+    CONTROLES LEAFLET
+   ================================================================ */
+
+.leaflet-control-zoom {
+    border: 2px solid var(--content-border);
+    border-radius: 6px;
+    background: var(--content-bg-card) !important;
+}
+
+.leaflet-control-zoom a {
+    background: var(--content-bg-card) !important;
+    color: var(--content-text) !important;
+    border-color: var(--content-border) !important;
+    font-size: 0.9rem !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background: var(--content-bg-light) !important;
+    color: var(--content-accent-border) !important;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+    font-weight: bold !important;
+}
+
+/* ===============================
+    TÍTULO PRINCIPAL
+   =============================== */
+
+.location-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--content-text);
+    text-align: center;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+/* ===============================
+    CONTENEDOR PRINCIPAL
+   =============================== */
+
+.location-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+/* ===============================
+    TARJETA DEL MAPA
+   =============================== */
+
+.location-map-card {
+    width: 100%;
+    height: 350px;
+    background: var(--content-bg-card);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px var(--content-shadow);
+    border: 1px solid var(--content-border);
+    position: relative;
+}
+
+.map-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.map-container .leaflet-control {
+    display: none !important;
+}
+
+.map-container .leaflet-top,
+.map-container .leaflet-bottom {
+    display: none !important;
+}
+
+/* ===============================
+    HEADER DEL MAPA (MEJORADO)
+   =============================== */
+
+.location-map-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.2),
+        transparent
+    );
+
+    padding: 1rem 1.1rem;
+
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* ===============================
+    LOGO / BOTÓN
+   =============================== */
+
+.location-map-toggle {
+    width: 52px;
+    height: 52px;
+
+    background: var(--content-accent-border);
+
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+
+    color: var(--content-button-text);
+
+    font-size: 1.35rem;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: var(--transition);
+
+    flex-shrink: 0;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.28),
+        0 0 0 4px rgba(251, 191, 36, 0.08);
+}
+
+.location-map-toggle:hover {
+    transform: translateY(-2px) scale(1.04);
+
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.35),
+        0 0 0 6px rgba(251, 191, 36, 0.12);
+}
+
+.location-map-toggle i {
+    color: inherit;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* ===============================
+    TÍTULO DEL MAPA
+   =============================== */
+
+.location-map-name {
+    color: white;
+
+    font-weight: 800;
+    font-size: 1.08rem;
+    line-height: 1.35;
+
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.7),
+        0 0 10px rgba(0, 0, 0, 0.35);
+
+    margin: 0;
+
+    flex: 1;
+
+    transition: var(--transition);
+
+    opacity: 1;
+    max-height: 120px;
+
+    overflow: hidden;
+
+    letter-spacing: 0.2px;
+}
+
+.location-map-name.hidden {
+    opacity: 0;
+    max-height: 0;
+}
+
+/* ===============================
+    CONTENIDO LATERAL
+   =============================== */
+
+.location-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.location-info-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--content-text);
+    margin: 0;
+}
+
+/* ===============================
+    ITEMS DE INFORMACIÓN
+   =============================== */
+
+.location-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.2rem;
+    background: var(--content-bg-light);
+    border-radius: 12px;
+    border-left: 4px solid var(--content-accent-border);
+    transition: var(--transition);
+}
+
+.location-info-item:hover {
+    background: var(--content-bg-card);
+    transform: translateX(4px);
+}
+
+.location-info-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--content-accent-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--content-button-text);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.location-info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.location-info-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--content-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.location-info-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--content-text);
+    line-height: 1.5;
+}
+
+.location-info-value a {
+    color: var(--content-accent);
+    text-decoration: none;
+    transition: var(--transition);
+    border-bottom: 1px solid transparent;
+}
+
+.location-info-value a:hover {
+    color: var(--content-accent-border);
+    border-bottom-color: var(--content-accent-border);
+}
+
+.break-location {
+        display: none;
+    }
+
+/* ===============================
+    BOTÓN GOOGLE MAPS
+   =============================== */
+
+.location-google-btn {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    background: var(--content-accent-border);
+    color: var(--content-button-text);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.location-google-btn:hover {
+    background: transparent;
+    color: var(--content-accent-border);
+    border: 2px solid var(--content-accent-border);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--content-shadow-accent);
+}
+
+/* ================================================================
+    MEDIA QUERIES
+   ================================================================ */
+
+@media (max-width: 1024px) {
+    .location-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .location-title {
+        font-size: 1.6rem;
+    }
+
+    .location-main {
+        gap: 2rem;
+    }
+
+    .location-map-card {
+        height: 340px;
+    }
+
+    .location-map-name {
+        font-size: 0.95rem;
+        line-height: 1.25;
+    }
+
+    .location-info-item {
+        padding: 1rem;
+    }
+
+    .location-info-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .break-location {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .location-section {
+        padding: 2rem 0.8rem;
+    }
+
+    .location-container {
+        gap: 1.5rem;
+    }
+
+    .location-title {
+        font-size: 1.4rem;
+    }
+
+    .location-main {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .location-map-card {
+        height: 300px;
+    }
+
+    .location-map-header {
+        padding: 0.95rem;
+        gap: 0.8rem;
+    }
+
+    .location-map-toggle {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        font-size: 1.2rem;
+    }
+
+    .location-map-name {
+        font-size: 0.85rem;
+        line-height: 1.2;
+    }
+
+    .location-info-title {
+        font-size: 1.2rem;
+    }
+
+    .location-info-item {
+        padding: 0.9rem;
+    }
+
+    .location-info-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .location-info-value {
+        font-size: 0.9rem;
+    }
+
+    .location-google-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .break-location {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .location-section {
+        padding: 1.5rem 0.6rem;
+        border-top: none;
+    }
+
+    .location-container {
+        gap: 1.2rem;
+    }
+
+    .location-title {
+        font-size: 1.2rem;
+    }
+
+    .location-main {
+        gap: 1.2rem;
+    }
+
+    .location-map-card {
+        height: 280px;
+        border-radius: 12px;
+    }
+
+    .location-map-header {
+        padding: 0.8rem;
+        gap: 0.7rem;
+    }
+
+    .location-map-toggle {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        font-size: 1.05rem;
+    }
+
+    .location-map-name {
+        font-size: 0.75rem;
+        line-height: 1.15;
+    }
+
+    .location-info {
+        gap: 1rem;
+    }
+
+    .location-info-title {
+        font-size: 1.1rem;
+    }
+
+    .location-info-item {
+        padding: 0.8rem;
+        border-left-width: 3px;
+    }
+
+    .location-info-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .location-info-value {
+        font-size: 0.85rem;
+    }
+
+    .location-google-btn {
+        padding: 0.65rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .location-info-item:hover {
+        transform: translateX(2px);
+    }
+
+    /* Ícono del marcador en modal para 480px */
+    #modal-map-container .school-marker-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .location-popup-content h3 {
+        font-size: 0.9rem;
+    }
+
+    .break-location {
+        display: flex;
+    }
+}
+
+@media (max-width: 380px) {
+    .location-section {
+        padding: 1.2rem 0.5rem;
+    }
+
+    .location-container {
+        gap: 1rem;
+    }
+
+    .location-title {
+        font-size: 1.05rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .location-main {
+        gap: 1rem;
+    }
+
+    .location-map-card {
+        height: 230px;
+        border-radius: 10px;
+    }
+
+    .location-map-header {
+        padding: 0.65rem;
+        gap: 0.6rem;
+    }
+
+    .location-map-toggle {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .location-map-toggle:hover {
+        transform: translateY(-1px) scale(1.02);
+    }
+
+    .location-map-name {
+        font-size: 0.65rem;
+        line-height: 1.1;
+    }
+
+    .location-info {
+        gap: 0.8rem;
+    }
+
+    .location-info-title {
+        font-size: 0.95rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .location-info-item {
+        padding: 0.65rem;
+        gap: 0.5rem;
+        border-left-width: 2px;
+    }
+
+    .location-info-item:hover {
+        transform: translateX(1px);
+    }
+
+    .location-info-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+    }
+
+    .location-info-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.3px;
+    }
+
+    .location-info-value {
+        font-size: 0.75rem;
+    }
+
+    .location-info-value a {
+        font-size: 0.75rem;
+    }
+
+    .location-google-btn {
+        padding: 0.55rem 0.8rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+}

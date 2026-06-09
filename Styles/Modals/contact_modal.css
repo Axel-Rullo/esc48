@@ -1,0 +1,497 @@
+/* ================================================================
+    MODAL Y FORMULARIO CONTACTO
+   ================================================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-overlay-bg);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    box-sizing: border-box;
+}
+
+.modal.active {
+    display: flex;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* ===============================
+    CONTENEDOR
+   =============================== */
+.modal-content {
+    background: var(--content-bg-card);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px var(--content-shadow);
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===============================
+    HEADER
+   =============================== */
+.modal-header {
+    background: linear-gradient(
+        135deg,
+        var(--content-bg-light),
+        var(--content-bg-card)
+    );
+    padding: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--content-accent-border);
+    flex-shrink: 0;
+    gap: 0.5rem;
+}
+
+.modal-header h2 {
+    color: var(--content-text);
+    font-size: 1.2rem;
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+/* ===============================
+    BOTÓN CERRAR
+   =============================== */
+.modal-close {
+    width: 36px;
+    height: 36px;
+    background-color: transparent;
+    color: var(--content-accent-border);
+    font-size: 1.4rem;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.modal-close:hover {
+    background: var(--content-accent-border);
+    color: var(--content-bg);
+    transform: rotate(90deg);
+}
+
+/* ===============================
+    BODY
+   =============================== */
+.modal-body {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* ===============================
+    FORMULARIO
+   =============================== */
+.contact-form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-sizing: border-box;
+}
+
+.form-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0.75rem;
+    background: var(--content-bg);
+    border-radius: 10px;
+    border: 1px solid var(--content-border);
+}
+
+.form-block-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: transparent;
+    border: none;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.form-row .form-group {
+    width: 100%;
+    min-width: 0;
+}
+
+/* ===============================
+    CAMPOS
+   =============================== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.form-group label {
+    color: var(--content-text);
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+/* ===============================
+    HEADER TEXTAREA
+   =============================== */
+
+.textarea-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    margin-bottom: 0.2rem;
+}
+
+.textarea-header label {
+    margin-bottom: 0;
+}
+
+.textarea-tip {
+    font-size: 0.72rem;
+    color: var(--content-text-light);
+
+    opacity: 0.8;
+
+    user-select: none;
+    white-space: nowrap;
+}
+
+.required {
+    color: var(--content-danger);
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.5rem 0.65rem;
+    border: 2px solid var(--content-border);
+    border-radius: 6px;
+    background-color: var(--content-input-bg);
+    color: var(--content-text-input);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: var(--transition);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--content-text-light);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--content-accent-border);
+    box-shadow: 0 0 0 3px var(--content-shadow-accent);
+}
+
+/* ===============================
+    BOTONES
+   =============================== */
+.btn-submit,
+.btn-reset {
+    padding: 0.55rem 0.8rem;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-submit {
+    background: var(--content-accent-border);
+    color: var(--content-button-text);
+    border-color: var(--content-accent-border);
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    color: var(--content-accent-border);
+    background: transparent;
+    box-shadow: 0 8px 20px var(--content-shadow-accent);
+}
+
+.btn-reset {
+    background: transparent;
+    color: var(--content-text);
+    border-color: var(--content-border);
+}
+
+.btn-reset:hover {
+    background: var(--content-danger);
+    border-color: var(--content-danger);
+    color: var(--content-button-text);
+    transform: translateY(-2px);
+}
+
+.btn-reset:active {
+    transform: translateY(0);
+}
+
+/* ================================================================
+    MEDIA QUERIES
+   ================================================================ */
+
+@media (max-width: 1024px) {
+
+    .textarea-tip {
+        display: none;
+    }
+
+    .contact-form {
+        padding: 0.9rem;
+        gap: 0.9rem;
+    }
+
+    .form-block {
+        padding: 0.7rem;
+        gap: 0.6rem;
+    }
+
+    .form-row {
+        gap: 0.65rem;
+    }
+
+    .modal-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .form-group label {
+        font-size: 0.75rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.75rem;
+        padding: 0.45rem 0.6rem;
+    }
+
+    .btn-submit,
+    .btn-reset {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .modal-content {
+        max-width: 95%;
+        max-height: 85vh;
+    }
+
+    .contact-form {
+        padding: 0.8rem;
+        gap: 0.8rem;
+    }
+
+    .form-block {
+        padding: 0.6rem;
+        gap: 0.5rem;
+    }
+
+    .form-block-actions {
+        gap: 0.7rem;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+    }
+
+    .modal-header {
+        padding: 0.8rem;
+    }
+
+    .modal-header h2 {
+        font-size: 1rem;
+    }
+
+    .form-group label {
+        font-size: 0.75rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.75rem;
+        padding: 0.45rem 0.6rem;
+    }
+
+    .btn-submit,
+    .btn-reset {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.75rem;
+    }
+
+    .required {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .modal {
+        padding: 0.5rem;
+    }
+
+    .modal-content {
+        max-width: 100%;
+        max-height: 80vh;
+        border-radius: 10px;
+    }
+
+    .modal-header {
+        padding: 0.7rem;
+        gap: 0.3rem;
+    }
+
+    .modal-header h2 {
+        font-size: 0.9rem;
+    }
+
+    .modal-close {
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
+    }
+
+    .contact-form {
+        padding: 0.7rem;
+        gap: 0.7rem;
+    }
+
+    .form-block {
+        padding: 0.6rem;
+        gap: 0.5rem;
+    }
+
+    .form-block-actions {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .form-group {
+        gap: 0.3rem;
+    }
+
+    .form-group label {
+        font-size: 0.7rem;
+        line-height: 1.2;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.55rem;
+        min-height: 36px;
+    }
+
+    .btn-submit,
+    .btn-reset {
+        padding: 0.55rem 0.6rem;
+        font-size: 0.7rem;
+        width: 100%;
+        min-height: 40px;
+    }
+
+    .required {
+        font-size: 0.7rem;
+    }
+}
+
+/* ================================================================
+    ESTADOS DEL BOTÓN DE ENVÍO
+   ================================================================ */
+
+.btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Spinner giratorio */
+.btn-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2.5px solid var(--modal-spinner-track);
+    border-top-color: var(--modal-spinner-color);
+    border-radius: 50%;
+    animation: btnSpin 0.6s linear infinite;
+}
+
+@keyframes btnSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* Checkmark de éxito */
+.btn-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    animation: btnCheckIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes btnCheckIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Estado: Cargando */
+.btn-submit.btn-loading {
+    opacity: 0.85;
+    cursor: wait;
+    pointer-events: none;
+}
+
+/* Estado: Éxito */
+.btn-submit.btn-success {
+    background: var(--modal-success-bg) !important;
+    border-color: var(--modal-success-bg) !important;
+    transform: scale(1.03);
+    box-shadow: 0 4px 15px var(--modal-success-shadow);
+    cursor: default;
+    pointer-events: none;
+}

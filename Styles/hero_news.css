@@ -1,0 +1,442 @@
+/* ================================================================
+    HERO CARRUSEL - NOTICIAS PRINCIPAL (OPTIMIZADO)
+   ================================================================ */
+
+.hero-news-section {
+    width: 100%;
+    height: 69vh;
+    margin-bottom: calc(var(--spacing-xl) * 0.85);
+    position: relative;
+    overflow: hidden;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 7px 20px var(--color-shadow);
+}
+
+.hero-carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+}
+
+.hero-item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-item.active {
+    opacity: 1;
+    position: relative;
+}
+
+/* Overlay oscuro para legibilidad del texto */
+.hero-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.5) 40%,
+        rgba(0, 0, 0, 0.2) 100%
+    );
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: calc(var(--spacing-xl) * 0.85);
+    color: white;
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-md) * 0.85);
+}
+
+/* Propiedades base compartidas entre badges destacado y primicia */
+.hero-item.destacado::after,
+.hero-item.primicia::after {
+    position: absolute;
+    top: calc(var(--spacing-xl) * 0.85);
+    right: calc(var(--spacing-xl) * 0.85);
+    z-index: 3;
+    color: rgba(255, 255, 255, 0.95);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    animation: floatPulse 2.5s ease-in-out infinite;
+}
+
+/* Badge para publicaciones destacadas */
+.hero-item.destacado::after {
+    content: '⭐ DESTACADO';
+    background: linear-gradient(135deg, var(--hero-badge-destacado) 0%, var(--hero-badge-destacado-dark) 100%);
+    box-shadow: 0 4px 12px var(--hero-badge-destacado-glow);
+}
+
+/* Badge para publicaciones primicia */
+.hero-item.primicia::after {
+    content: '🌟 PRIMICIA';
+    background: linear-gradient(135deg, var(--hero-badge-primicia) 0%, var(--hero-badge-primicia-dark) 100%);
+    box-shadow: 0 4px 12px var(--hero-badge-primicia-glow);
+}
+
+.hero-title {
+    font-size: 2.1rem;
+    font-weight: bold;
+    line-height: 1.15;
+    color: #ffffff;
+    text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.6);
+}
+
+.hero-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #f0f0f0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    max-height: 4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hero-link-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--hero-btn-bg);
+    color: var(--hero-btn-text);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border: 2px solid var(--hero-btn-border);
+    transition: all 0.3s ease;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.hero-link-button:hover {
+    background: transparent;
+    color: var(--hero-btn-hover-text);
+    transform: translateX(3px);
+}
+
+/* INDICADORES (PUNTITOS) */
+.hero-indicators {
+    position: absolute;
+    bottom: calc(var(--spacing-lg) * 0.85);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.hero-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px);
+    position: relative;
+}
+
+.hero-indicator:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(1.15);
+}
+
+/* Indicador activo - Blanco normal */
+.hero-indicator.active {
+    background: var(--hero-indicator-active);
+    border-color: var(--hero-indicator-active);
+    width: 28px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    animation: activePulse 2s ease-in-out infinite;
+}
+
+/* Indicador primicia activo - Rojo */
+.hero-indicator.primicia.active {
+    background: var(--hero-badge-primicia);
+    border-color: var(--hero-badge-primicia);
+    box-shadow: 0 0 20px var(--hero-badge-primicia-glow-strong);
+}
+
+/* Indicador destacado activo - Dorado */
+.hero-indicator.destacado.active {
+    background: var(--hero-badge-destacado);
+    border-color: var(--hero-badge-destacado);
+    box-shadow: 0 0 20px var(--hero-badge-destacado-dot-glow);
+}
+
+/* Indicador destacado - PUNTITO DE NOTIFICACIÓN */
+.hero-indicator.destacado:not([data-visited="true"])::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--hero-badge-destacado);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--hero-badge-destacado-dot-glow);
+    animation: starGlow 1.5s ease-in-out infinite;
+}
+
+/* Animaciones */
+@keyframes floatPulse {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes starGlow {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 8px var(--hero-badge-destacado-dot-glow);
+    }
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 12px var(--hero-badge-destacado-dot-glow-strong);
+    }
+}
+
+@keyframes activePulse {
+    0%, 100% { box-shadow: 0 0 20px var(--hero-indicator-active-glow); }
+    50%       { box-shadow: 0 0 30px var(--hero-indicator-active-glow-strong); }
+}
+
+/* BARRA DE AUTOPLAY */
+.hero-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--nav-submenu-text);
+    overflow: hidden;
+    z-index: 35;
+}
+
+.hero-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--nav-bg);
+}
+
+/* ================================================================
+    MEDIA QUERIES
+   =============================================================== */
+
+@media (max-width: 1024px) {
+    .hero-news-section {
+        height: 63vh;
+    }
+
+    .hero-title {
+        font-size: 1.9rem;
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+    }
+
+    .hero-link-button {
+        padding: 9px 18px;
+        font-size: 0.8rem;
+    }
+
+    .hero-content {
+        max-width: 640px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-news-section {
+        height: 49vh;
+        margin-bottom: calc(var(--spacing-lg) * 0.85);
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero-description {
+        font-size: 0.8rem;
+        line-height: 1.4;
+        max-height: 3em;
+    }
+
+    .hero-link-button {
+        padding: 8px 17px;
+        font-size: 0.76rem;
+    }
+
+    .hero-content {
+        padding: calc(var(--spacing-lg) * 0.85);
+        max-width: 100%;
+        gap: calc(var(--spacing-sm) * 0.85);
+    }
+
+    .hero-indicators {
+        bottom: calc(var(--spacing-lg) * 0.85);
+        gap: 8px;
+    }
+
+    .hero-indicator {
+        width: 8px;
+        height: 8px;
+    }
+
+    .hero-indicator.active {
+        width: 24px;
+        border-radius: 5px;
+    }
+
+    .hero-indicator:hover {
+        background: rgba(255, 255, 255, 0.8);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-news-section {
+        height: 44vh;
+        margin-bottom: calc(var(--spacing-md) * 0.85);
+    }
+
+    .hero-title {
+        font-size: 1.2rem;
+        line-height: 1.2;
+    }
+
+    .hero-description {
+        font-size: 0.72rem;
+        line-height: 1.3;
+        max-height: 2.5em;
+    }
+
+    .hero-link-button {
+        padding: 7px 14px;
+        font-size: 0.68rem;
+        gap: 5px;
+    }
+
+    .hero-link-button i {
+        font-size: 0.68rem;
+    }
+
+    .hero-content {
+        padding: calc(var(--spacing-md) * 0.85);
+        max-width: 100%;
+        gap: calc(var(--spacing-sm) * 0.85);
+    }
+
+    .hero-indicators {
+        bottom: calc(var(--spacing-md) * 0.85);
+        gap: 7px;
+    }
+
+    .hero-indicator {
+        width: 7px;
+        height: 7px;
+    }
+
+    .hero-indicator.active {
+        width: 20px;
+        border-radius: 4px;
+    }
+
+    .hero-item::before {
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.55) 40%,
+            rgba(0, 0, 0, 0.15) 100%
+        );
+    }
+}
+
+@media (max-width: 380px) {
+    .hero-news-section {
+        height: 40vh;
+        margin-bottom: calc(var(--spacing-md) * 0.7);
+    }
+
+    .hero-title {
+        font-size: 1.05rem;
+        line-height: 1.15;
+    }
+
+    .hero-description {
+        font-size: 0.65rem;
+        line-height: 1.25;
+        max-height: 2.2em;
+    }
+
+    .hero-link-button {
+        padding: 6px 12px;
+        font-size: 0.62rem;
+        gap: 4px;
+    }
+
+    .hero-link-button i {
+        font-size: 0.62rem;
+    }
+
+    .hero-content {
+        padding: calc(var(--spacing-md) * 0.7);
+        max-width: 100%;
+        gap: calc(var(--spacing-sm) * 0.7);
+    }
+
+    .hero-indicators {
+        bottom: calc(var(--spacing-md) * 0.7);
+        gap: 6px;
+    }
+
+    .hero-indicator {
+        width: 6px;
+        height: 6px;
+    }
+
+    .hero-indicator.active {
+        width: 18px;
+        border-radius: 3px;
+    }
+
+    .hero-item::before {
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.6) 40%,
+            rgba(0, 0, 0, 0.2) 100%
+        );
+    }
+}

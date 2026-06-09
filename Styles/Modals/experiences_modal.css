@@ -1,0 +1,990 @@
+/* ================================================================
+    MODAL DE EXPERIENCIAS
+   ================================================================ */
+
+/* MODAL CONTENEDOR */
+.experiences-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    touch-action: none;
+}
+
+.experiences-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CONTENIDO DEL MODAL */
+.experiences-modal-content {
+    background: var(--content-bg);
+    border-radius: 10px;
+    box-shadow: 0 20px 60px var(--content-shadow);
+    width: 92%;
+    max-width: 560px;
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideDown 0.3s ease;
+    border: 2px solid var(--content-accent-border);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+/* HEADER DEL MODAL */
+.experiences-modal-header {
+    padding: 21px;
+    background: linear-gradient(
+        135deg,
+        var(--content-accent-border),
+        var(--content-accent)
+    );
+    color: var(--content-button-text);
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.experiences-modal-header h2 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--content-button-text);
+}
+
+.experiences-modal-header h2 i {
+    font-size: 1.25rem;
+}
+
+.experiences-modal-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: var(--content-button-text);
+    font-size: 1.7rem;
+    cursor: pointer;
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.experiences-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* BODY DEL MODAL */
+.experiences-modal-body {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    overscroll-behavior: contain;
+    background: var(--content-bg);
+    transition: var(--transition);
+}
+
+.experiences-modal-body::-webkit-scrollbar {
+    width: 7px;
+}
+
+.experiences-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.experiences-modal-body::-webkit-scrollbar-thumb {
+    background: var(--content-accent-border);
+    border-radius: 8px;
+}
+
+.experiences-modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--content-accent);
+}
+
+/* BOTÓN TOGGLE */
+.experiences-form-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 21px;
+    background: var(--content-bg-light);
+    border: none;
+    border-bottom: 2px solid var(--content-accent-border);
+    color: var(--content-text);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition);
+    width: 100%;
+    text-align: left;
+    flex-shrink: 0;
+}
+
+.experiences-form-toggle:hover {
+    background: var(--content-bg);
+    color: var(--content-accent-border);
+}
+
+.experiences-form-toggle i {
+    font-size: 1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: var(--content-accent-border);
+}
+
+.experiences-form-toggle.active i {
+    transform: rotate(180deg);
+}
+
+/* SECCIÓN DE FORMULARIO */
+.experiences-form-section {
+    padding: 14px 18px;
+    background: var(--content-bg-light);
+    border-bottom: 2px solid var(--content-border);
+    flex-shrink: 0;
+    animation: slideDown 0.3s ease;
+    transition: var(--transition);
+}
+
+/* FORMULARIO */
+.experiences-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* FILA DE FORMULARIO */
+.experiences-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+}
+
+.experiences-form-row .experiences-form-group {
+    width: 100%;
+    min-width: 0;
+}
+
+.experiences-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.experiences-form-group label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--content-text);
+    transition: var(--transition);
+}
+
+/* HEADER TEXTAREA */
+.experiences-textarea-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.experiences-textarea-header label {
+    margin-bottom: 0;
+}
+
+.experiences-textarea-tip {
+    font-size: 0.72rem;
+    color: var(--content-text-light);
+    opacity: 0.8;
+    user-select: none;
+    white-space: nowrap;
+}
+
+/* Icono de requerimiento (*) */
+.experiences-form-group label .required {
+    color: red;
+}
+
+.experiences-form-group input,
+.experiences-form-group textarea {
+    padding: 8px 9px;
+    border: 2px solid var(--content-border);
+    border-radius: 5px;
+    font-size: 0.78rem;
+    background: white;
+    color: black;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.experiences-form-group input::placeholder,
+.experiences-form-group textarea::placeholder {
+    color: black;
+    opacity: 0.7;
+}
+
+.experiences-form-group input:focus,
+.experiences-form-group textarea:focus {
+    outline: none;
+    border-color: var(--content-accent-border);
+    box-shadow: 0 0 0 3px var(--content-shadow-accent);
+}
+
+.experiences-form-group textarea {
+    resize: vertical;
+    min-height: 60px;
+    font-family: inherit;
+}
+
+/* ESTRELLAS EN FORMULARIO */
+.experiences-star-rating {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    margin: 0.5rem 0;
+    flex-wrap: wrap;
+}
+
+.experiences-star {
+    position: relative;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.experiences-star:hover,
+.experiences-star.experiences-star-full {
+    color: #fbbf24;
+    transform: scale(1.15);
+    text-shadow: 0 0 10px var(--content-shadow-accent);
+}
+
+/* BOTONES DEL FORMULARIO */
+.experiences-form-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.experiences-btn-submit,
+.experiences-btn-cancel {
+    padding: 8px 14px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 0.77rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.experiences-btn-submit {
+    background: var(--content-accent-border);
+    color: var(--content-button-text);
+}
+
+.experiences-btn-submit:hover {
+    background: transparent;
+    color: var(--content-accent-border);
+    border: 2px solid var(--content-accent-border);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--content-shadow-accent);
+}
+
+.experiences-btn-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+}
+
+.experiences-btn-cancel {
+    background: var(--content-border);
+    color: var(--content-text);
+}
+
+.experiences-btn-cancel:hover {
+    background: var(--content-text-light);
+    color: var(--content-button-text);
+    transform: translateY(-2px);
+}
+
+/* SECCIÓN DE EXPERIENCIAS */
+.experiences-list-section {
+    padding: 17px 21px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.experiences-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--content-border);
+    flex-wrap: wrap;
+    gap: 10px;
+    transition: var(--transition);
+}
+
+.experiences-list-header h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--content-text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.experiences-list-header h3 i {
+    color: var(--content-accent-border);
+    font-size: 0.85rem;
+}
+
+/* PROMEDIO DE RATINGS */
+.experiences-average-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--content-shadow-accent);
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--content-accent-border);
+    transition: var(--transition);
+}
+
+.experiences-average-stars {
+    display: flex;
+    gap: 0.15rem;
+}
+
+.experiences-average-text {
+    font-weight: 600;
+    color: var(--content-text);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+/* LISTA DE EXPERIENCIAS */
+.experiences-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    padding-right: 6px;
+}
+
+.experiences-list::-webkit-scrollbar {
+    width: 7px;
+}
+
+.experiences-list::-webkit-scrollbar-track {
+    background: var(--content-border);
+    border-radius: 8px;
+    margin-right: 4px;
+}
+
+.experiences-list::-webkit-scrollbar-thumb {
+    background: var(--content-accent-border);
+    border-radius: 8px;
+}
+
+.experiences-list::-webkit-scrollbar-thumb:hover {
+    background: var(--content-accent);
+}
+
+.experiences-list-empty {
+    text-align: center;
+    padding: 25px 8px;
+    color: var(--content-text-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.experiences-list-empty i {
+    font-size: 2.1rem;
+    margin-bottom: 8px;
+    opacity: 0.5;
+}
+
+.experiences-list-empty p {
+    margin: 0;
+    font-size: 0.76rem;
+}
+
+/* TARJETA DE EXPERIENCIA */
+.experience-card {
+    background: var(--content-bg);
+    padding: 10px 12px;
+    border-radius: 6px;
+    border-left: 3px solid var(--content-accent-border);
+    box-shadow: 0 2px 8px var(--content-shadow);
+    animation: slideInLeft 0.3s ease;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.experience-card:hover {
+    box-shadow: 0 4px 12px var(--content-shadow);
+    transform: translateY(-2px);
+}
+
+.experience-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.experience-card-name {
+    font-weight: 600;
+    color: var(--content-text);
+    font-size: 0.8rem;
+    flex: 1;
+    transition: var(--transition);
+}
+
+.experience-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    justify-self: end;
+}
+
+.experience-card-rating-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--content-text);
+    min-width: 25px;
+    text-align: right;
+    transition: var(--transition);
+}
+
+.experience-card-text {
+    color: var(--content-text-light);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    margin: 6px 0;
+    transition: var(--transition);
+}
+
+.experience-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    color: var(--content-text-light);
+    margin-top: 6px;
+    flex-wrap: wrap;
+    transition: var(--transition);
+}
+
+/* ESTRELLAS EN TARJETAS*/
+.experiences-star-display {
+    display: inline-flex;
+    font-size: 0.9rem;
+    color: var(--content-border);
+    margin-right: 0.1rem;
+    transition: all 0.2s ease;
+}
+
+.experiences-star-display.experiences-star-full {
+    color: #fbbf24;
+    text-shadow: 0 0 8px var(--content-shadow-accent);
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes starPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.experiences-star:hover {
+    animation: starPulse 0.4s ease-in-out;
+}
+
+/* ================================================================
+   RESPONSIVE - LAPTOP / TABLET LANDSCAPE (1024px)
+   ================================================================ */
+@media (max-width: 1024px) {
+    .experiences-modal-content {
+        width: 94%;
+        max-width: 560px;
+        max-height: 90vh;
+    }
+
+    .experiences-modal-header {
+        padding: 18px;
+    }
+
+    .experiences-modal-header h2 {
+        font-size: 0.9rem;
+    }
+
+    .experiences-form-toggle {
+        padding: 13px 18px;
+        font-size: 0.83rem;
+    }
+
+    .experiences-form-section {
+        padding: 15px 18px;
+    }
+
+    .experiences-list-section {
+        padding: 15px 18px;
+    }
+}
+
+/* ================================================================
+   RESPONSIVE - TABLET (768px)
+   ================================================================ */
+@media (max-width: 768px) {
+    .experiences-modal-content {
+        width: 95%;
+        max-height: 88vh;
+    }
+
+    .experiences-modal-header h2 {
+        font-size: 0.8rem;
+    }
+
+    .experiences-form-toggle {
+        padding: 12px 17px;
+        font-size: 0.8rem;
+    }
+
+    .experiences-form-section {
+        padding: 12px 17px;
+    }
+
+    .experiences-list-section {
+        padding: 12px 17px;
+    }
+
+    .experiences-form-buttons {
+        flex-wrap: wrap;
+    }
+
+    .experiences-btn-submit,
+    .experiences-btn-cancel {
+        flex: 1;
+        justify-content: center;
+        min-width: 100px;
+    }
+
+    /* Apilar nombre y apellido en tablets */
+    .experiences-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .experiences-textarea-tip {
+        display: none;
+    }
+}
+
+/* ================================================================
+   RESPONSIVE - MÓVIL (480px)
+   ================================================================ */
+@media (max-width: 480px) {
+    .experiences-modal-content {
+        width: 98%;
+        max-height: 85vh;
+        border-radius: 7px;
+    }
+
+    .experiences-modal-header {
+        padding: 12px;
+    }
+
+    .experiences-modal-header h2 {
+        font-size: 0.85rem;
+    }
+
+    .experiences-modal-header h2 i {
+        font-size: 1rem;
+    }
+
+    .experiences-modal-close {
+        width: 34px;
+        height: 34px;
+        font-size: 1.25rem;
+    }
+
+    .experiences-form-toggle {
+        padding: 10px 12px;
+        font-size: 0.76rem;
+    }
+
+    .experiences-form-section {
+        padding: 10px 12px;
+    }
+
+    .experiences-list-section {
+        padding: 10px 12px;
+    }
+
+    .experiences-list-header {
+        margin-bottom: 10px;
+        padding-bottom: 6px;
+    }
+
+    .experiences-list-header h3 {
+        font-size: 0.85rem;
+    }
+
+    .experiences-average-rating {
+        width: 100%;
+        padding: 0.35rem 0.6rem;
+    }
+
+    .experiences-form-group {
+        gap: 8px;
+    }
+
+    .experiences-form-group label {
+        font-size: 0.76rem;
+        line-height: 1.2;
+    }
+
+    .experiences-form-group input,
+    .experiences-form-group textarea {
+        font-size: 0.85rem;
+        padding: 10px;
+        min-height: 38px;
+    }
+
+    .experiences-form-group textarea {
+        min-height: 70px;
+    }
+
+    .experiences-btn-submit,
+    .experiences-btn-cancel {
+        padding: 10px 13px;
+        font-size: 0.76rem;
+        min-height: 40px;
+    }
+
+    /* Apilar nombre y apellido en tablet/mobile medio */
+    .experiences-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .experiences-textarea-tip {
+        display: none;
+    }
+
+    .experience-card {
+        padding: 8px 10px;
+    }
+
+    .experience-card-text {
+        font-size: 0.7rem;
+    }
+
+    .experience-card-meta {
+        font-size: 0.65rem;
+        gap: 6px;
+    }
+
+    .experiences-star-rating {
+        gap: 0.3rem;
+    }
+
+    .experiences-star {
+        font-size: 1.3rem;
+    }
+}
+
+/* ================================================================
+   RESPONSIVE - MÓVIL PEQUEÑO (380px)
+   ================================================================ */
+@media (max-width: 380px) {
+    .experiences-modal-content {
+        width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+        border: none;
+    }
+
+    .experiences-modal-header {
+        padding: 10px;
+        border-radius: 0;
+        gap: 8px;
+    }
+
+    .experiences-modal-header h2 {
+        font-size: 0.75rem;
+        gap: 6px;
+    }
+
+    .experiences-modal-header h2 i {
+        font-size: 0.9rem;
+    }
+
+    .experiences-modal-close {
+        width: 30px;
+        height: 30px;
+        font-size: 1.1rem;
+    }
+
+    .experiences-form-toggle {
+        padding: 9px 10px;
+        font-size: 0.72rem;
+        gap: 8px;
+    }
+
+    .experiences-form-section {
+        padding: 8px 10px;
+    }
+
+    .experiences-list-section {
+        padding: 8px 10px;
+    }
+
+    .experiences-list-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .experiences-list-header h3 {
+        font-size: 0.78rem;
+    }
+
+    .experiences-average-rating {
+        width: 100%;
+        padding: 0.3rem 0.5rem;
+    }
+
+    .experiences-average-text {
+        font-size: 0.72rem;
+    }
+
+    .experiences-form-group label {
+        font-size: 0.7rem;
+        line-height: 1.2;
+    }
+
+    .experiences-form-group input,
+    .experiences-form-group textarea {
+        padding: 9px;
+        font-size: 0.8rem;
+        min-height: 36px;
+    }
+
+    .experiences-form-group textarea {
+        min-height: 65px;
+    }
+
+    .experiences-form-buttons {
+        flex-direction: column;
+    }
+
+    .experiences-btn-submit,
+    .experiences-btn-cancel {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 10px;
+        font-size: 0.72rem;
+        min-height: 40px;
+    }
+
+    /* Apilar nombre y apellido en mobile pequeño */
+    .experiences-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .experiences-textarea-tip {
+        display: none;
+    }
+
+    .experience-card {
+        padding: 7px 8px;
+    }
+
+    .experience-card-name {
+        font-size: 0.72rem;
+    }
+
+    .experience-card-text {
+        font-size: 0.65rem;
+        line-height: 1.4;
+    }
+
+    .experience-card-meta {
+        font-size: 0.6rem;
+        gap: 4px;
+    }
+
+    .experiences-star {
+        font-size: 1.15rem;
+    }
+
+    .experiences-star-display {
+        font-size: 0.8rem;
+    }
+
+    .experiences-rating-text {
+        margin-left: 0.3rem;
+        min-width: 100px;
+        font-size: 0.7rem;
+    }
+
+    .experience-card-rating-text {
+        font-size: 0.65rem;
+        min-width: 20px;
+    }
+}
+
+/* ================================================================
+    ALERTA FLOTANTE DE CALIFICACIÓN
+   ================================================================ */
+
+.experiences-rating-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    z-index: 3000;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.experiences-rating-alert.experiences-alert-show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.experiences-alert-content {
+    background: var(--content-accent-border);
+    color: white;
+    padding: 18px 28px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+}
+
+.experiences-alert-content i {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.experiences-alert-content p {
+    margin: 0;
+}
+
+/* RESPONSIVE - TABLET (768px) */
+@media (max-width: 768px) {
+    .experiences-alert-content {
+        padding: 16px 24px;
+        font-size: 0.9rem;
+        gap: 12px;
+    }
+
+    .experiences-alert-content i {
+        font-size: 1.2rem;
+    }
+}
+
+/* RESPONSIVE - MOBILE (480px) */
+@media (max-width: 480px) {
+    .experiences-alert-content {
+        padding: 14px 20px;
+        font-size: 0.85rem;
+        gap: 10px;
+        max-width: 90vw;
+    }
+
+    .experiences-alert-content i {
+        font-size: 1.1rem;
+    }
+
+    .experiences-alert-content p {
+        word-break: break-word;
+    }
+}

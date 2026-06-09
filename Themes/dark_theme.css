@@ -1,0 +1,138 @@
+:root {
+    /* ===============================
+        SECCION 1: HEADER / NAV / BURGER
+       =============================== */
+    --header-nav-bg: #2a2a40;
+    --header-nav-bg-dark: #1f1f32;
+    --header-nav-bg-light: #3a3a55;
+    --header-nav-text: #ffffff;
+    --header-nav-text-light: #c7c9ff;
+    --header-nav-accent: #fbbf24;
+    --header-nav-border: #3a3a55;
+    --header-nav-shadow: rgba(0, 0, 0, 0.4);
+    --header-nav-divider-mobile: #4a4a66;
+
+    /* ===============================
+        SECCION 1.5: NAV / BURGER — MENU LATERAL
+       =============================== */
+    --menu-btn-hover-bg: #2f2f46;
+    --menu-shadow: rgba(0, 0, 0, 0.45);
+    --menu-divider: rgba(255, 255, 255, 0.06);
+    --menu-hover-bg: rgba(255, 255, 255, 0.04);
+    --menu-submenu-bg: #1c1c2b;
+    --menu-submenu-bg-2: #24243a;
+    --menu-submenu-overlay: rgba(0, 0, 0, 0.3);
+    --menu-submenu-active-bg: rgba(124, 124, 255, 0.10);
+
+    /* ===============================
+        SECCION 1.5: NAV / BURGER
+       =============================== */
+    --nav-bg: #ffffff;
+    --nav-text: #111827;
+    --nav-text-hover: #2563eb;
+    --nav-accent: #2563eb;
+
+    --nav-border: #e5e7eb;
+    --nav-shadow: rgba(0,0,0,0.08);
+
+    --nav-submenu-bg: #ffffff;
+    --nav-submenu-text: #4b5563;
+    --nav-submenu-hover-bg: #f3f4f6;
+
+    /* ===============================
+        SECCION 2: CONTENIDO
+       =============================== */
+    --content-bg: #393941;
+    --content-bg-card: #2a2a40;
+    --content-bg-light: #3a3a55;
+    --content-text: #ffffff;
+    --content-text-light: #c7c9ff;
+    --content-text-input: #ffffff;
+    --content-button-text: #ffffff;
+    --content-input-bg: #1f1f32;
+    --content-border: #3a3a55;
+    --content-shadow: rgba(0, 0, 0, 0.4);
+    --content-accent: #7c7cff;
+    --content-accent-border: #fbbf24;
+    --content-secondary: #5b5bd6;
+    --content-shadow-accent: rgba(251, 191, 36, 0.3);
+    --content-danger: #ff6b6b;
+    --content-danger-hover: #ff5252;
+    --modal-overlay-bg: rgba(0, 0, 0, 0.6);
+    --modal-spinner-track: rgba(255, 255, 255, 0.3);
+    --modal-spinner-color: #ffffff;
+    --modal-success-bg: #22c55e;
+    --modal-success-shadow: rgba(34, 197, 94, 0.4);
+
+    /* ===============================
+        SECCION 2.5: HERO CARRUSEL
+       =============================== */
+    --hero-btn-bg: #fbbf24;
+    --hero-btn-text: #2a2a40;
+    --hero-btn-border: #fbbf24;
+    --hero-btn-hover-text: #fbbf24;
+    --hero-indicator-active: #ffffff;
+    --hero-indicator-active-glow: rgba(255, 184, 71, 0.5);
+    --hero-indicator-active-glow-strong: rgba(255, 184, 71, 0.8);
+    --hero-badge-destacado: #d4a11e;
+    --hero-badge-destacado-dark: #c9941a;
+    --hero-badge-destacado-glow: rgba(212, 161, 30, 0.3);
+    --hero-badge-destacado-dot-glow: rgba(212, 161, 30, 0.4);
+    --hero-badge-destacado-dot-glow-strong: rgba(212, 161, 30, 0.5);
+    --hero-badge-primicia: #e63946;
+    --hero-badge-primicia-dark: #d62828;
+    --hero-badge-primicia-glow: rgba(230, 57, 70, 0.3);
+    --hero-badge-primicia-glow-strong: rgba(230, 57, 70, 0.4);
+
+    /* ===============================
+        SECCION 3: FOOTER
+       =============================== */
+    --footer-bg: #2a2a40;
+    --footer-bg-dark: #1f1f32;
+    --footer-bg-light: #3a3a55;
+    --footer-text: #ffffff;
+    --footer-text-light: #c7c9ff;
+    --footer-accent: #7c7cff;
+    --footer-accent-border: #fbbf24;
+    --footer-accent-subtle: rgba(124, 124, 255, 0.2);
+    --footer-gold: #fbbf24;
+    --footer-shadow: rgba(0, 0, 0, 0.4);
+    --footer-shadow-accent: rgba(251, 191, 36, 0.3);
+    --footer-border: #3a3a55;
+    --footer-divider-mobile: #4a4a66;
+
+    /* ===============================
+        VARIABLES LEGACY (compatibilidad)
+       =============================== */
+    --color-primary: #2a2a40;
+    --color-primary-dark: #1f1f32;
+    --color-primary-light: #3a3a55;
+    --color-divider-accent: #fbbf24;
+    --color-accent-border: #fbbf24;
+    --color-secondary: #5b5bd6;
+    --color-accent: #7c7cff;
+    --color-text: #ffffff;
+    --color-text-light: #c7c9ff;
+    --color-input-bg: #1f1f32;
+    --color-input-text: #ffffff;
+    --color-bg: #393941;
+    --color-bg-card: #2a2a40;
+    --color-border: #3a3a55;
+    --color-shadow: rgba(0, 0, 0, 0.4);
+    --color-divider-mobile: #4a4a66;
+    --color-shadow-accent: rgba(251, 191, 36, 0.3);
+    --color-gold: #fbbf24;
+    --color-scrollbar: #fbbf24;
+    --color-header-bg: #2a2a40;
+    --color-header-text: #ffffff;
+    --color-header-accent: #fbbf24;
+
+    /* =============================== */
+    --transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+}
