@@ -1,11 +1,6 @@
 /* ================================================================
     MODAL DE EXPERIENCIAS
    ================================================================ */
-/*
-   VARIABLE REQUERIDA EN AMBOS THEMES (light y dark):
-   --star-gold: #f59e0b;
-   Usada para todas las estrellas del modal, sin importar el theme.
-*/
 
 /* MODAL CONTENEDOR */
 .experiences-modal {
@@ -283,7 +278,8 @@
 }
 
 .experiences-star:hover,
-.experiences-star.experiences-star-full {
+.experiences-star.experiences-star-full,
+.experiences-star.experiences-star-hover {
     color: var(--star-gold);
     -webkit-text-stroke: 0px;
     transform: scale(1.15);

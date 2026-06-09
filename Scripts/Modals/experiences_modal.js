@@ -219,6 +219,28 @@ class ExperiencesModal extends BaseModal {
                 this.updateFormStars(parseFloat(star.getAttribute('data-value')));
             }
         });
+
+        // Hover en estrellas — iluminar todas las anteriores
+        document.addEventListener('mouseover', (e) => {
+            const star = e.target.closest('#formStarRating .experiences-star');
+            if (!star) return;
+            const hoverValue = parseFloat(star.getAttribute('data-value'));
+            document.querySelectorAll('#formStarRating .experiences-star').forEach(s => {
+                const v = parseFloat(s.getAttribute('data-value'));
+                s.classList.toggle('experiences-star-hover', v <= hoverValue);
+            });
+        });
+
+        // Al salir del contenedor — restaurar estado real
+        document.addEventListener('mouseover', (e) => {
+            const container = document.getElementById('formStarRating');
+            if (!container) return;
+            if (!e.target.closest('#formStarRating')) {
+                container.querySelectorAll('.experiences-star').forEach(s => {
+                    s.classList.remove('experiences-star-hover');
+                });
+            }
+        });
     }
 
     // =============================================================
