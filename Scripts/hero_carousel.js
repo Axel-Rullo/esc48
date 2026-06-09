@@ -87,6 +87,7 @@ class HeroCarousel {
             const indicator = document.createElement('button');
             indicator.className = `hero-indicator${index === 0 ? ' active' : ''}${item.type ? ` ${item.type}` : ''}`;
             indicator.setAttribute('data-index', index);
+            if (index === 0) indicator.setAttribute('data-visited', 'true');
             indicator.addEventListener('click', () => this.goToSlide(index));
             this.heroIndicators.appendChild(indicator);
 
