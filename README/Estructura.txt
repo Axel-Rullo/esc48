@@ -1,0 +1,250 @@
+================================================================================
+                    ESTRUCTURA DEL FRONTEND - PROYECTO PAG.48
+================================================================================
+
+================================================================================
+                               HTML PRINCIPAL
+================================================================================
+
+📄 index.html
+  └─ Estructura base de la página. Contiene:
+     • Header con logo, título, tema toggle y menú hamburguesa
+     • Navegación principal (nav)
+     • Secciones: hero carousel (noticias), carreras y experiencias, mapa y footer
+     • Carga todos los CSS y Scripts
+     • Contenido completamente dinámico
+
+================================================================================
+                         SCRIPTS - LÓGICA PRINCIPAL
+================================================================================
+
+CARGA DE DATOS:
+─────────────────────────────────────────────────────────────────────────────
+
+  📜 data-loader.js
+    └─ Clase: DataLoader
+    └─ Función: Cargar JSONs
+       • loadAppData() → Carga appdata.json (noticias, carreras, nav)
+       • loadExperiencesData() → Carga experiencies.json (experiencias)
+       • Guarda datos en window.AppData y window.ExperiencesData
+       • Dispara eventos personalizados cuando termina
+
+RENDERIZADO DINÁMICO:
+─────────────────────────────────────────────────────────────────────────────
+
+  📜 dynamic_renderer.js
+    └─ Clase: DynamicRenderer
+    └─ Función: Generar HTML dinámicamente desde datos
+       • renderNavigation() → Genera nav y menú lateral
+       • renderHeroCarousel() → Genera carrusel de noticias
+       • renderMajors() → Genera tarjetas de carreras
+       • Utiliza datos de window.AppData
+
+MODALES DE INTERACCIÓN:
+─────────────────────────────────────────────────────────────────────────────
+
+  📜 experiences_modal.js
+    └─ Clase: ExperiencesModal
+    └─ Función: Modal para ver/agregar experiencias
+       • Crea el modal en el DOM
+       • Lee experiencias desde window.ExperiencesData
+       • Agrupa experiencias por carrera (key = major-id)
+       • Muestra estrellas de calificación (1-5)
+       • Formulario colapsable (listo para backend)
+       • Listeners para guardar nuevas experiencias (guardadas en memoria, no en backend)
+
+  📜 contact_modal.js
+    └─ Función: Modal de contacto
+       • Formulario para contacto
+       • Maneja validación de campos
+       • Prepara datos para enviar el mismo
+
+  📜 alert_modal.js
+    └─ Función: Modal genérico para alertas/confirmaciones
+       • Muestra mensajes de éxito/error
+       • Reutilizable desde otros módulos
+       • Solo muestra la confirmacion de envio en el formulario de contacto
+
+CARRUSEL Y NAVEGACIÓN:
+─────────────────────────────────────────────────────────────────────────────
+
+  📜 hero_carousel.js
+    └─ Función: Carrusel automático de noticias
+       • Cambia automaticamente cada 15 segundos
+       • Botones de navegación manual
+       • Indicadores (dots) de posición
+       • Sincroniza con barra de progreso
+
+  📜 dropdown_menu.js
+    └─ Función: Menú desplegable lateral
+       • Abre/cierra menú hamburguesa
+       • Manejo de submenús anidados
+       • Cierre en click fuera
+
+  📜 sidebar-toggle.js
+    └─ Función: Toggle del menú lateral colapsable "Menús"
+       • Expande/colapsa secciones de categorías
+
+UTILIDADES:
+─────────────────────────────────────────────────────────────────────────────
+
+  📜 majors.js
+    └─ Función: Manejo de carreras
+       • Listeners para click en tarjetas de carrera
+       • Abre modal de experiencias con datos de esa carrera
+    └─ Función: Renderiza badge de trayectoria
+
+  📜 location_section.js
+    └─ Función: Renderiza mini mapa con Leaflet
+       • Muestra ubicación del instituto
+
+  📜 phone_modal.js
+    └─ Función: Modal para ver teléfono de contacto
+
+PUNTO DE ENTRADA:
+─────────────────────────────────────────────────────────────────────────────
+
+  📜 inicio.js
+    └─ Función: Script de inicialización
+       • Carga datos con DataLoader
+       • Espera evento 'appdataLoaded'
+       • Inicializa todos los módulos en orden
+       • Configura event listeners globales
+
+================================================================================
+                         ESTILOS - ORGANIZACIÓN CSS
+================================================================================
+
+GLOBAL:
+─────────────────────────────────────────────────────────────────────────────
+
+  🎨 body.css
+    └─ Estilos generales del body, fuentes, scroll
+
+LAYOUT:
+─────────────────────────────────────────────────────────────────────────────
+
+  🎨 header.css        → Header, logo, título
+  🎨 nav.css           → Navegación principal
+  🎨 burguer_menu.css  → Menú hamburguesa responsivo
+  🎨 footer.css        → Pie de página
+
+SECCIONES:
+─────────────────────────────────────────────────────────────────────────────
+
+  🎨 hero_news.css        → Carrusel de noticias principales
+  🎨 majors.css           → Tarjetas de carreras, badge de trayectoria
+  🎨 location_section.css → Sección de mapa y ubicación
+
+MODALES E INTERACCIÓN:
+─────────────────────────────────────────────────────────────────────────────
+
+  🎨 experiences_modal.css  → Modal de experiencias (incl. media query 380px+)
+  🎨 contact_form.css       → Formulario de contacto
+  🎨 phones.css             → Modal de teléfono
+  🎨 alert_modal.css        → Modal genérico de alertas
+
+================================================================================
+                           TEMAS - PERSONALIZACIÓN
+================================================================================
+
+  🎨 light_theme.css  → Variables CSS para tema claro (por defecto)
+  🎨 dark_theme.css   → Variables CSS para tema oscuro
+  
+  └─ Lógica: header.js maneja toggle entre temas
+  └─ Las variables (colores, fuentes) se redefinen en cada tema
+
+================================================================================
+                        FLUJO DE DATOS - COMUNICACIÓN
+================================================================================
+
+INICIALIZACIÓN:
+  1. HTML carga index.html
+  2. CSS se carga (light_theme por defecto)
+  3. Scripts se cargan (ultimo: inicio.js)
+  4. inicio.js llama DataLoader.loadAppData() y .loadExperiencesData()
+  5. Datos se guardan en window.AppData y window.ExperiencesData
+  6. Se disparan eventos personalizados (appdataLoaded, experiencesDataLoaded)
+
+RENDERIZADO:
+  7. DynamicRenderer escucha eventos
+  8. Renderiza nav, hero carousel, majors, etc.
+  9. ExperiencesModal escucha eventos
+ 10. Prepara experiencias agrupadas por carrera
+
+INTERACCIÓN:
+ 11. Usuario hace click en carrera → Se abre modal de experiencias
+ 12. Modal lee experiencias de window.ExperiencesData para esa carrera
+ 13. Muestra comentarios, calificaciones, fechas
+ 14. Si usuario agrega experiencia: se guarda en window (no en servidor)
+
+COMUNICACIÓN BACKEND (FUTURA):
+  └─ contact_modal.js → Enviará POST /api/contact
+  └─ experiences_modal.js → Enviará POST /api/experiences (crear)
+  └─ data-loader.js → Podría cambiar a GET /api/data en lugar de fetch JSON
+
+================================================================================
+                            ARCHIVOS JSON
+================================================================================
+
+  📊 appdata.json
+     └─ Contiene:
+        • news[] - Array de noticias para hero carousel
+        • majors[] - Array de carreras con descripción, imagen, etc.
+        • nav[] - Estructura de navegación (puede ser anidada)
+
+  📊 experiencies.json
+     └─ Estructura:
+        • experiences {} - Objeto con keys = major-id
+          └─ Cada major contiene array de experiencias
+             • id, name, lastname, email, comment, date, rating
+
+================================================================================
+                          MEDIA QUERIES & RESPONSIVE
+================================================================================
+
+  • Todos los CSS tienen media queries para tablet (1024px) hasta mobiles (380px o menos)
+  • burger_menu.css se activa en pantallas menores
+
+================================================================================
+                            NOTAS IMPORTANTES
+================================================================================
+
+1. DATOS:
+   • Todos los datos vienen de JSONs cargados en memoria
+   • Sin persistencia en servidor actualmente
+   • Backend puede reemplazar JSONs con APIs REST
+
+2. MODAL DE EXPERIENCIAS:
+   • Muestra solo lectura de experiencias del JSON
+   • Formulario está listo pero no guarda en servidor
+   • Campo de calificación: estrellas (1-5) interactivas
+
+3. ESTRELLAS DE CALIFICACIÓN:
+   • En experiences_modal.js: renderiza <i class="fas fa-star"></i>
+   • Stars llenas según rating del JSON
+   • No es interactivo en lectura (solo muestra)
+   • En formulario será interactivo para nueva experiencia
+
+4. TEMAS:
+   • Alternan con button #theme-toggle en header
+   • Guarda preferencia en localStorage (si está implementado)
+
+5. RUTAS Y PATHS:
+   • Jsons/ debe estar en raíz del Frontend
+   • Scripts/ debe estar en raíz del Frontend
+   • Styles/ debe estar en raíz del Frontend
+   • Themes/ debe estar en raíz del Frontend
+
+================================================================================
+                         PRÓXIMAS IMPLEMENTACIONES
+================================================================================
+
+  ✓ Guardar nuevas experiencias en base de datos
+  ✓ Autenticación de usuarios para publicar experiencias
+  ✓ Paginación de experiencias si son muchas
+  (Que no vengan todas de golpe, que tengan un limite de cantidad y 
+  que al ir bajando se carguen sin la necesitdad de un boton de "Ver mas"
+  Para eso se puede detectar cuanto has recorrido el scroll -> 80% -> cargar X mas automaticamente)
+
+================================================================================
