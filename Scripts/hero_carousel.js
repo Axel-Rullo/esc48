@@ -87,7 +87,6 @@ class HeroCarousel {
             const indicator = document.createElement('button');
             indicator.className = `hero-indicator${index === 0 ? ' active' : ''}${item.type ? ` ${item.type}` : ''}`;
             indicator.setAttribute('data-index', index);
-            if (index === 0) indicator.setAttribute('data-visited', 'true');
             indicator.addEventListener('click', () => this.goToSlide(index));
             this.heroIndicators.appendChild(indicator);
 
@@ -96,6 +95,17 @@ class HeroCarousel {
         // Cachear referencias para no repetir querySelectorAll en cada slide
         this.items      = this.heroCarousel.querySelectorAll('.hero-item');
         this.indicators = this.heroIndicators.querySelectorAll('.hero-indicator');
+
+        // Marcar como visto el primer slide (ya está visible al cargar)
+        const firstNews = news[0];
+        if (firstNews) this.markAsVisited(firstNews.link);
+
+        // Sincronizar data-visited con lo guardado en localStorage
+        news.forEach((item, index) => {
+            if (this.wasVisited(item.link)) {
+                this.indicators[index]?.setAttribute('data-visited', 'true');
+            }
+        });
     }
 
     // =============================================================
@@ -116,7 +126,6 @@ class HeroCarousel {
             this.startAutoPlay();
         }, false);
 
-        // Teclado — ignorar si el foco está en un campo de texto
         document.addEventListener('keydown', (e) => {
             const tag = document.activeElement.tagName;
             if (tag === 'INPUT' || tag === 'TEXTAREA') return;
@@ -158,6 +167,9 @@ class HeroCarousel {
         if (activeIndicator) {
             activeIndicator.classList.add('active');
             activeIndicator.setAttribute('data-visited', 'true');
+
+            const newsItem = window.AppData?.heroNews?.[this.currentIndex];
+            if (newsItem) this.markAsVisited(newsItem.link);
         }
     }
 
@@ -172,6 +184,22 @@ class HeroCarousel {
     }
 
     // =============================================================
+    // PERSISTENCIA
+    // =============================================================
+
+    _storageKey(link) {
+        return `heroVisited:${link}`;
+    }
+
+    wasVisited(link) {
+        return localStorage.getItem(this._storageKey(link)) === 'true';
+    }
+
+    markAsVisited(link) {
+        localStorage.setItem(this._storageKey(link), 'true');
+    }
+
+    // =============================================================
     // AUTOPLAY Y BARRA DE PROGRESO
     // =============================================================
 
@@ -181,7 +209,6 @@ class HeroCarousel {
         this.progressBar.style.transition = 'none';
         this.progressBar.style.width      = '0%';
 
-        // Forzar reflow para que la transición se reinicie desde cero
         void this.progressBar.offsetHeight;
 
         this.progressBar.style.transition = `width ${this.autoPlayDuration}ms linear`;
