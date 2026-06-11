@@ -11,11 +11,22 @@ class HeroCarousel {
 
         this.currentIndex     = 0;
         this.autoPlayInterval = null;
-        this.autoPlayDuration = 15000; // ms
+        this.autoPlayDuration = 15000;
 
         // Referencias DOM cacheadas (se llenan en renderCarousel)
         this.items      = [];
         this.indicators = [];
+
+        // Array ordenado — fuente de verdad para openModal
+        this.sortedNews = [];
+
+        // Elementos del modal (fijos en el DOM)
+        this.modal      = document.getElementById('heroNewsModal');
+        this.modalBadge = document.getElementById('heroModalBadge');
+        this.modalTitle = document.getElementById('heroModalTitle');
+        this.modalDesc  = document.getElementById('heroModalDesc');
+        this.modalLink  = document.getElementById('heroModalLink');
+        this.overlay    = document.getElementById('overlay');
 
         // Swipe táctil
         this.touchStartX      = 0;
@@ -48,37 +59,36 @@ class HeroCarousel {
             return;
         }
 
-        let news = window.AppData.heroNews;
+        const raw = window.AppData.heroNews;
 
-        if (!news.length) {
+        if (!raw.length) {
             this.heroCarousel.innerHTML = '<p>No hay noticias disponibles.</p>';
             return;
         }
 
-        // Ordenar: 'primicia' primero, 'destacado' segundo, el resto al final
-        news = [...news].sort((a, b) => {
-            const order = { primicia: 0, destacado: 1 };
-            return (order[a.type] ?? 2) - (order[b.type] ?? 2);
-        });
+        // Ya vienen ordenadas del JSON
+        this.sortedNews = [...raw];
 
         this.heroCarousel.innerHTML   = '';
         this.heroIndicators.innerHTML = '';
 
-        news.forEach((item, index) => {
+        this.sortedNews.forEach((item, index) => {
 
-            // ITEM — usando innerHTML en lugar de createElement × 7
+            // ITEM
             const heroItem = document.createElement('div');
             heroItem.className = `hero-item${index === 0 ? ' active' : ''}${item.type ? ` ${item.type}` : ''}`;
             heroItem.style.backgroundImage = `url('${item.imageUrl}')`;
             heroItem.innerHTML = `
                 <div class="hero-content">
-                    <a href="${item.link}" class="hero-title">${item.title}</a>
-                    <a href="${item.link}" style="text-decoration:none; color:inherit">
+                    <span class="hero-title">${item.title}</span>
+                    <div class="hero-text">
                         <p class="hero-description">${item.description}</p>
-                    </a>
-                    <a href="${item.link}" class="hero-link-button">
-                        Saber Más <i class="fas fa-arrow-right"></i>
-                    </a>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="hero-link-button" data-index="${index}">
+                            Saber Más <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             `;
             this.heroCarousel.appendChild(heroItem);
@@ -97,11 +107,11 @@ class HeroCarousel {
         this.indicators = this.heroIndicators.querySelectorAll('.hero-indicator');
 
         // Marcar como visto el primer slide (ya está visible al cargar)
-        const firstNews = news[0];
+        const firstNews = this.sortedNews[0];
         if (firstNews) this.markAsVisited(firstNews.link);
 
         // Sincronizar data-visited con lo guardado en localStorage
-        news.forEach((item, index) => {
+        this.sortedNews.forEach((item, index) => {
             if (this.wasVisited(item.link)) {
                 this.indicators[index]?.setAttribute('data-visited', 'true');
             }
@@ -130,6 +140,11 @@ class HeroCarousel {
             const tag = document.activeElement.tagName;
             if (tag === 'INPUT' || tag === 'TEXTAREA') return;
 
+            if (e.key === 'Escape') {
+                this.closeModal();
+                return;
+            }
+
             if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') {
                 this.nextSlide();
                 this.restartAutoPlay();
@@ -138,6 +153,20 @@ class HeroCarousel {
                 this.restartAutoPlay();
             }
         });
+
+        // Abrir modal al hacer click en "Saber Más" (delegación de eventos)
+        this.heroCarousel.addEventListener('click', (e) => {
+            const btn = e.target.closest('.hero-link-button');
+            if (!btn) return;
+            const idx = parseInt(btn.dataset.index, 10);
+            this.openModal(idx);
+        });
+
+        // Cerrar modal con el overlay general y el botón de cierre
+        const closeBtn = document.getElementById('closeHeroModal');
+
+        this.overlay?.addEventListener('click', () => this.closeModal());
+        closeBtn?.addEventListener('click',     () => this.closeModal());
 
     }
 
@@ -168,7 +197,8 @@ class HeroCarousel {
             activeIndicator.classList.add('active');
             activeIndicator.setAttribute('data-visited', 'true');
 
-            const newsItem = window.AppData?.heroNews?.[this.currentIndex];
+            // Usa sortedNews — el mismo orden que el carrusel
+            const newsItem = this.sortedNews[this.currentIndex];
             if (newsItem) this.markAsVisited(newsItem.link);
         }
     }
@@ -197,6 +227,41 @@ class HeroCarousel {
 
     markAsVisited(link) {
         localStorage.setItem(this._storageKey(link), 'true');
+    }
+
+    // =============================================================
+    // MODAL — TÍTULO Y DESCRIPCIÓN COMPLETAS
+    // =============================================================
+
+    openModal(index) {
+        const item = this.sortedNews[index];
+        if (!item || !this.modal) return;
+
+        // Badge
+        const badgeLabels = { primicia: '🌟 Primicia', destacado: '⭐ Destacado' };
+        this.modalBadge.textContent = badgeLabels[item.type] || 'Noticia';
+        this.modalBadge.className   = `hero-modal-badge ${item.type || ''}`;
+
+        // Contenido completo (sin recorte)
+        this.modalTitle.textContent = item.title;
+        this.modalDesc.textContent  = item.description;
+
+        // Botón "Ir a la nota" solo si el JSON tiene link real
+        const hasLink = item.link && item.link !== '#' && item.link !== '';
+        this.modalLink.href = hasLink ? item.link : '#';
+        this.modalLink.toggleAttribute('hidden', !hasLink);
+
+        this.modal.classList.add('active');
+        this.overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        this.stopAutoPlay();
+    }
+
+    closeModal() {
+        this.modal?.classList.remove('active');
+        this.overlay?.classList.remove('active');
+        document.body.style.overflow = '';
+        this.startAutoPlay();
     }
 
     // =============================================================

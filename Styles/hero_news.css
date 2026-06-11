@@ -1,5 +1,5 @@
 /* ================================================================
-    HERO CARRUSEL - NOTICIAS PRINCIPAL (OPTIMIZADO)
+    HERO CARRUSEL - NOTICIAS PRINCIPAL
    ================================================================ */
 
 .hero-news-section {
@@ -67,6 +67,17 @@
     display: flex;
     flex-direction: column;
     gap: calc(var(--spacing-md) * 0.85);
+    max-height: 100%;
+}
+
+/* Zona scrolleable — solo la descripción */
+.hero-text {
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.hero-text::-webkit-scrollbar {
+    display: none;
 }
 
 /* Propiedades base compartidas entre badges destacado y primicia */
@@ -101,12 +112,18 @@
     box-shadow: 0 4px 12px var(--hero-badge-primicia-glow);
 }
 
+/* Límite de 1 línea en el carrusel */
 .hero-title {
     font-size: 2.1rem;
     font-weight: bold;
     line-height: 1.15;
     color: #ffffff;
     text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.6);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    overflow: hidden;
 }
 
 .hero-description {
@@ -114,12 +131,174 @@
     line-height: 1.5;
     color: #f0f0f0;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-    max-height: 4em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     overflow: hidden;
-    text-overflow: ellipsis;
+}
+
+/* Fila de botones */
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .hero-link-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--hero-btn-bg);
+    color: var(--hero-btn-text);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border: 2px solid var(--hero-btn-border);
+    transition: all 0.3s ease;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.hero-link-button:hover {
+    background: transparent;
+    color: var(--hero-btn-hover-text);
+    transform: translateX(3px);
+}
+
+/* ================================================================
+    MODAL HERO — TÍTULO Y DESCRIPCIÓN COMPLETAS
+   ================================================================ */
+
+.hero-news-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.hero-news-modal.active {
+    display: flex;
+}
+
+.hero-news-modal__box {
+    background: var(--color-bg-card);
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 600px;
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: heroModalIn 0.25s ease-out;
+}
+
+@keyframes heroModalIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes heroModalInMobile {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Header del modal con el badge */
+.hero-news-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px 16px;
+    border-bottom: 1px solid var(--color-border);
+    flex-shrink: 0;
+}
+
+/* Badge Primicia / Destacado */
+.hero-modal-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    border-radius: 20px;
+    color: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hero-modal-badge.primicia {
+    background: linear-gradient(135deg, var(--hero-badge-primicia) 0%, var(--hero-badge-primicia-dark) 100%);
+    box-shadow: 0 3px 10px var(--hero-badge-primicia-glow);
+}
+
+.hero-modal-badge.destacado {
+    background: linear-gradient(135deg, var(--hero-badge-destacado) 0%, var(--hero-badge-destacado-dark) 100%);
+    box-shadow: 0 3px 10px var(--hero-badge-destacado-glow);
+}
+
+/* Badge genérico para noticias sin tipo */
+.hero-modal-badge:not(.primicia):not(.destacado) {
+    background: rgba(100, 100, 100, 0.2);
+    color: var(--color-text);
+    border-color: rgba(100, 100, 100, 0.25);
+}
+
+.hero-news-modal__close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--color-text-light);
+    padding: 4px 8px;
+    border-radius: 5px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.hero-news-modal__close:hover {
+    background: rgba(128, 128, 128, 0.12);
+    color: var(--color-text);
+}
+
+/* Cuerpo del modal */
+.hero-news-modal__body {
+    padding: 22px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow: hidden;
+}
+
+.hero-news-modal__title {
+    font-size: 1.35rem;
+    font-weight: bold;
+    line-height: 1.3;
+    color: var(--color-text);
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Solo la descripción hace scroll */
+.hero-news-modal__desc {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--color-text-light);
+    margin: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.hero-news-modal__desc::-webkit-scrollbar {
+    display: none;
+}
+
+/* Botón "Ir a la nota" — solo aparece si hay link real */
+.hero-news-modal__link {
     display: inline-flex;
     align-items: center;
     gap: 7px;
@@ -133,13 +312,18 @@
     border: 2px solid var(--hero-btn-border);
     transition: all 0.3s ease;
     width: fit-content;
-    cursor: pointer;
+    margin-top: 6px;
+    flex-shrink: 0;
 }
 
-.hero-link-button:hover {
+.hero-news-modal__link:hover {
     background: transparent;
     color: var(--hero-btn-hover-text);
     transform: translateX(3px);
+}
+
+.hero-news-modal__link[hidden] {
+    display: none;
 }
 
 /* INDICADORES (PUNTITOS) */
@@ -213,18 +397,12 @@
 /* Animaciones */
 @keyframes floatPulse {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-5px); }
+    50%       { transform: translateY(-5px); }
 }
 
 @keyframes starGlow {
-    0%, 100% {
-        opacity: 1;
-        box-shadow: 0 0 8px var(--hero-badge-destacado-dot-glow);
-    }
-    50% {
-        opacity: 0.7;
-        box-shadow: 0 0 12px var(--hero-badge-destacado-dot-glow-strong);
-    }
+    0%, 100% { opacity: 1;   box-shadow: 0 0 8px  var(--hero-badge-destacado-dot-glow); }
+    50%       { opacity: 0.7; box-shadow: 0 0 12px var(--hero-badge-destacado-dot-glow-strong); }
 }
 
 @keyframes activePulse {
@@ -252,191 +430,81 @@
 
 /* ================================================================
     MEDIA QUERIES
-   =============================================================== */
+   ================================================================ */
 
 @media (max-width: 1024px) {
-    .hero-news-section {
-        height: 63vh;
-    }
+    .hero-news-section { height: 63vh; }
 
-    .hero-title {
-        font-size: 1.9rem;
-    }
-
-    .hero-description {
-        font-size: 0.85rem;
-    }
-
-    .hero-link-button {
-        padding: 9px 18px;
-        font-size: 0.8rem;
-    }
-
-    .hero-content {
-        max-width: 640px;
-    }
+    .hero-title       { font-size: 1.9rem; }
+    .hero-description { font-size: 0.85rem; -webkit-line-clamp: 2; line-clamp: 2; }
+    .hero-link-button { padding: 9px 18px; font-size: 0.8rem; }
+    .hero-content     { max-width: 640px; }
 }
 
 @media (max-width: 768px) {
-    .hero-news-section {
-        height: 49vh;
-        margin-bottom: calc(var(--spacing-lg) * 0.85);
-    }
+    .hero-news-section { height: 49vh; margin-bottom: calc(var(--spacing-lg) * 0.85); }
 
-    .hero-title {
-        font-size: 1.5rem;
-        line-height: 1.2;
-    }
+    .hero-title       { font-size: 1.5rem; line-height: 1.2; }
+    .hero-description { font-size: 0.8rem; line-height: 1.4; -webkit-line-clamp: 2; line-clamp: 2; }
+    .hero-link-button { padding: 8px 17px; font-size: 0.76rem; }
 
-    .hero-description {
-        font-size: 0.8rem;
-        line-height: 1.4;
-        max-height: 3em;
-    }
+    .hero-content    { padding: calc(var(--spacing-lg) * 0.85); max-width: 100%; gap: calc(var(--spacing-sm) * 0.85); }
+    .hero-indicators { bottom: calc(var(--spacing-lg) * 0.85); gap: 8px; }
 
-    .hero-link-button {
-        padding: 8px 17px;
-        font-size: 0.76rem;
-    }
+    .hero-indicator        { width: 8px; height: 8px; }
+    .hero-indicator.active { width: 24px; border-radius: 5px; }
+    .hero-indicator:hover  { background: rgba(255, 255, 255, 0.8); }
 
-    .hero-content {
-        padding: calc(var(--spacing-lg) * 0.85);
-        max-width: 100%;
-        gap: calc(var(--spacing-sm) * 0.85);
-    }
-
-    .hero-indicators {
-        bottom: calc(var(--spacing-lg) * 0.85);
-        gap: 8px;
-    }
-
-    .hero-indicator {
-        width: 8px;
-        height: 8px;
-    }
-
-    .hero-indicator.active {
-        width: 24px;
-        border-radius: 5px;
-    }
-
-    .hero-indicator:hover {
-        background: rgba(255, 255, 255, 0.8);
-    }
+    /* Modal como bottom sheet en móvil */
+    .hero-news-modal       { padding: 16px; align-items: flex-end; }
+    .hero-news-modal__box  { max-width: 100%; max-height: 80vh; border-bottom-left-radius: 0; border-bottom-right-radius: 0; animation: heroModalInMobile 0.25s ease-out; }
+    .hero-news-modal__title { font-size: 1.15rem; }
+    .hero-news-modal__desc  { font-size: 0.88rem; }
 }
 
 @media (max-width: 480px) {
-    .hero-news-section {
-        height: 44vh;
-        margin-bottom: calc(var(--spacing-md) * 0.85);
-    }
+    .hero-news-section { height: 44vh; margin-bottom: calc(var(--spacing-md) * 0.85); }
 
-    .hero-title {
-        font-size: 1.2rem;
-        line-height: 1.2;
-    }
+    .hero-title       { font-size: 1.2rem; line-height: 1.2; }
+    .hero-description { font-size: 0.72rem; line-height: 1.3; -webkit-line-clamp: 2; line-clamp: 2; }
+    .hero-link-button { padding: 7px 14px; font-size: 0.68rem; gap: 5px; }
+    .hero-link-button i { font-size: 0.68rem; }
 
-    .hero-description {
-        font-size: 0.72rem;
-        line-height: 1.3;
-        max-height: 2.5em;
-    }
+    .hero-content    { padding: calc(var(--spacing-md) * 0.85); max-width: 100%; gap: calc(var(--spacing-sm) * 0.85); }
+    .hero-indicators { bottom: calc(var(--spacing-md) * 0.85); gap: 7px; }
 
-    .hero-link-button {
-        padding: 7px 14px;
-        font-size: 0.68rem;
-        gap: 5px;
-    }
-
-    .hero-link-button i {
-        font-size: 0.68rem;
-    }
-
-    .hero-content {
-        padding: calc(var(--spacing-md) * 0.85);
-        max-width: 100%;
-        gap: calc(var(--spacing-sm) * 0.85);
-    }
-
-    .hero-indicators {
-        bottom: calc(var(--spacing-md) * 0.85);
-        gap: 7px;
-    }
-
-    .hero-indicator {
-        width: 7px;
-        height: 7px;
-    }
-
-    .hero-indicator.active {
-        width: 20px;
-        border-radius: 4px;
-    }
+    .hero-indicator        { width: 7px; height: 7px; }
+    .hero-indicator.active { width: 20px; border-radius: 4px; }
 
     .hero-item::before {
-        background: linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.85) 0%,
-            rgba(0, 0, 0, 0.55) 40%,
-            rgba(0, 0, 0, 0.15) 100%
-        );
+        background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.15) 100%);
     }
+
+    /* Modal */
+    .hero-news-modal       { padding: 0; }
+    .hero-news-modal__box  { max-height: 75vh; border-radius: 14px 14px 0 0; }
+    .hero-news-modal__header { padding: 14px 18px 12px; }
+    .hero-news-modal__body   { padding: 18px 18px 22px; gap: 12px; }
+    .hero-news-modal__title  { font-size: 1.05rem; }
+    .hero-news-modal__desc   { font-size: 0.82rem; line-height: 1.55; }
+    .hero-news-modal__link   { padding: 9px 16px; font-size: 0.78rem; }
 }
 
 @media (max-width: 380px) {
-    .hero-news-section {
-        height: 40vh;
-        margin-bottom: calc(var(--spacing-md) * 0.7);
-    }
+    .hero-news-section { height: 40vh; margin-bottom: calc(var(--spacing-md) * 0.7); }
 
-    .hero-title {
-        font-size: 1.05rem;
-        line-height: 1.15;
-    }
+    .hero-title       { font-size: 1.05rem; line-height: 1.15; }
+    .hero-description { font-size: 0.65rem; line-height: 1.25; -webkit-line-clamp: 2; line-clamp: 2; }
+    .hero-link-button { padding: 6px 12px; font-size: 0.62rem; gap: 4px; }
+    .hero-link-button i { font-size: 0.62rem; }
 
-    .hero-description {
-        font-size: 0.65rem;
-        line-height: 1.25;
-        max-height: 2.2em;
-    }
+    .hero-content    { padding: calc(var(--spacing-md) * 0.7); max-width: 100%; gap: calc(var(--spacing-sm) * 0.7); }
+    .hero-indicators { bottom: calc(var(--spacing-md) * 0.7); gap: 6px; }
 
-    .hero-link-button {
-        padding: 6px 12px;
-        font-size: 0.62rem;
-        gap: 4px;
-    }
-
-    .hero-link-button i {
-        font-size: 0.62rem;
-    }
-
-    .hero-content {
-        padding: calc(var(--spacing-md) * 0.7);
-        max-width: 100%;
-        gap: calc(var(--spacing-sm) * 0.7);
-    }
-
-    .hero-indicators {
-        bottom: calc(var(--spacing-md) * 0.7);
-        gap: 6px;
-    }
-
-    .hero-indicator {
-        width: 6px;
-        height: 6px;
-    }
-
-    .hero-indicator.active {
-        width: 18px;
-        border-radius: 3px;
-    }
+    .hero-indicator        { width: 6px; height: 6px; }
+    .hero-indicator.active { width: 18px; border-radius: 3px; }
 
     .hero-item::before {
-        background: linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.9) 0%,
-            rgba(0, 0, 0, 0.6) 40%,
-            rgba(0, 0, 0, 0.2) 100%
-        );
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.2) 100%);
     }
 }

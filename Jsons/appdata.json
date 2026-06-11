@@ -217,16 +217,9 @@
         {
         "title": "Inscripciones primer año 2026",
         "imageUrl": "Images/News_School/noticia_2.png",
-        "description": "Toda la información y requisitos para nuevos estudiantes. Consulta nuestro proceso de inscripción detallado.",
-        "link": "#",
+        "description": "En esta sección encontrarás toda la información necesaria para comenzar tu trayectoria académica en nuestra institución. Aquí podrás conocer los requisitos de inscripción, la documentación obligatoria, los plazos de presentación y los pasos a seguir para completar el proceso correctamente. Además, se detallan las condiciones de ingreso para cada carrera, los criterios de admisión vigentes y las modalidades disponibles para los nuevos estudiantes. También encontrarás orientación sobre la entrega de certificados, validación de estudios previos y trámites administrativos relacionados con tu incorporación. Nuestro objetivo es brindarte una guía clara y completa para que puedas realizar tu inscripción de manera sencilla y sin inconvenientes. Te recomendamos leer atentamente cada apartado antes de iniciar el trámite, ya que algunos requisitos pueden variar según la carrera elegida. Ante cualquier duda, podrás consultar los canales de contacto institucional disponibles para recibir asesoramiento personalizado. Comienza hoy mismo tu camino hacia una formación de calidad y descubre todas las oportunidades académicas que tenemos para ofrecerte.",
+        "link": "./PDFs/Apuntes-Curso-Desarrollo-IA-Clase-1.pdf",
         "type": "primicia"
-        },
-        {
-        "title": "Convocatoria abierta (EDI)",
-        "imageUrl": "Images/News_School/noticia_1.webp",
-        "description": "Se abre la convocatoria para nuevos ingresantes en \"Educación Ambiental Integral\". Las inscripciones estaran abiertas entre el 1 y 31 de marzo. ¡No te pierdas esta oportunidad!",
-        "link": "#",
-        "type": null
         },
         {
         "title": "Ceremonia de Egresados 2025",
@@ -236,18 +229,25 @@
         "type": "destacado"
         },
         {
-        "title": "Nuevos laboratorios inaugurados",
-        "imageUrl": "Images/News_School/noticia_4.jpg",
-        "description": "Contamos con equipamiento de última tecnología para nuestras carreras. Visita nuestras nuevas instalaciones.",
-        "link": "#",
-        "type": null
-        },
-        {
         "title": "Becas Progresar",
         "imageUrl": "Images/News_School/noticia_5.png",
         "description": "Accede a becas para estudiantes de nivel superior. Consulta requisitos y realiza tu solicitud en línea.",
         "link": "#",
         "type": "destacado"
+        },
+        {
+        "title": "Convocatoria abierta (EDI)",
+        "imageUrl": "Images/News_School/noticia_1.webp",
+        "description": "Se abre la convocatoria para nuevos ingresantes en \"Educación Ambiental Integral\". Las inscripciones estaran abiertas entre el 1 y 31 de marzo. ¡No te pierdas esta oportunidad!",
+        "link": "#",
+        "type": null
+        },
+        {
+        "title": "Nuevos laboratorios inaugurados",
+        "imageUrl": "Images/News_School/noticia_4.jpg",
+        "description": "Contamos con equipamiento de última tecnología para nuestras carreras. Visita nuestras nuevas instalaciones.",
+        "link": "#",
+        "type": null
         }
     ],
     "majors": [

@@ -1,11 +1,5 @@
 /* ================================================================
     MODAL DE EXPERIENCIAS
-    ================================================================
-    Extiende BaseModal, que provee: open(), close(), isOpen()
-    y registerCloseListeners() (Escape + backdrop + overlay).
-    
-    Este modal NO usa overlay compartido (maneja su propio cierre
-    por backdrop) pero sí hereda open()/close() y el listener ESC.
     ================================================================ */
 
 class ExperiencesModal extends BaseModal {

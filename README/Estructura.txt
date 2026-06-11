@@ -99,7 +99,7 @@ UTILIDADES:
        • Muestra ubicación del instituto
 
   📜 phone_modal.js
-    └─ Función: Modal para ver teléfono de contacto
+    └─ Función: Modal para ver los teléfonos de contacto
 
 PUNTO DE ENTRADA:
 ─────────────────────────────────────────────────────────────────────────────
