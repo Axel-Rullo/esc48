@@ -11,7 +11,7 @@ class HeroCarousel {
 
         this.currentIndex     = 0;
         this.autoPlayInterval = null;
-        this.autoPlayDuration = 15000;
+        this.autoPlayDuration = 15000; // ms
 
         // Referencias DOM cacheadas (se llenan en renderCarousel)
         this.items      = [];
@@ -21,12 +21,16 @@ class HeroCarousel {
         this.sortedNews = [];
 
         // Elementos del modal (fijos en el DOM)
-        this.modal      = document.getElementById('heroNewsModal');
         this.modalBadge = document.getElementById('heroModalBadge');
         this.modalTitle = document.getElementById('heroModalTitle');
         this.modalDesc  = document.getElementById('heroModalDesc');
         this.modalLink  = document.getElementById('heroModalLink');
-        this.overlay    = document.getElementById('overlay');
+
+        // BaseModal maneja open/close, overlay, scroll y Escape
+        this.baseModal  = new BaseModal(
+            document.getElementById('heroNewsModal'),
+            document.getElementById('overlay')
+        );
 
         // Swipe táctil
         this.touchStartX      = 0;
@@ -140,11 +144,6 @@ class HeroCarousel {
             const tag = document.activeElement.tagName;
             if (tag === 'INPUT' || tag === 'TEXTAREA') return;
 
-            if (e.key === 'Escape') {
-                this.closeModal();
-                return;
-            }
-
             if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') {
                 this.nextSlide();
                 this.restartAutoPlay();
@@ -162,11 +161,14 @@ class HeroCarousel {
             this.openModal(idx);
         });
 
-        // Cerrar modal con el overlay general y el botón de cierre
-        const closeBtn = document.getElementById('closeHeroModal');
+        // Registrar cierre por overlay, Escape y backdrop via BaseModal
+        this.baseModal.registerCloseListeners();
 
-        this.overlay?.addEventListener('click', () => this.closeModal());
-        closeBtn?.addEventListener('click',     () => this.closeModal());
+        // Al cerrar el modal también reanudar el autoplay
+        document.getElementById('closeHeroModal')?.addEventListener('click', () => {
+            this.baseModal.close();
+            this.startAutoPlay();
+        });
 
     }
 
@@ -235,7 +237,7 @@ class HeroCarousel {
 
     openModal(index) {
         const item = this.sortedNews[index];
-        if (!item || !this.modal) return;
+        if (!item || !this.baseModal.modal) return;
 
         // Badge
         const badgeLabels = { primicia: '🌟 Primicia', destacado: '⭐ Destacado' };
@@ -251,16 +253,12 @@ class HeroCarousel {
         this.modalLink.href = hasLink ? item.link : '#';
         this.modalLink.toggleAttribute('hidden', !hasLink);
 
-        this.modal.classList.add('active');
-        this.overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        this.baseModal.open();
         this.stopAutoPlay();
     }
 
     closeModal() {
-        this.modal?.classList.remove('active');
-        this.overlay?.classList.remove('active');
-        document.body.style.overflow = '';
+        this.baseModal.close();
         this.startAutoPlay();
     }
 

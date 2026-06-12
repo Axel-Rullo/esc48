@@ -9,6 +9,8 @@
 
     Los mismos se cargan desde "data-loader.js", de ahi van a donde tienen que ir.
 
+    Las Imagenes estan en Images, para mover al menos lo del major al backend.
+
 /* ================================================================
     RENDERIZACIÓN
    ================================================================ */
