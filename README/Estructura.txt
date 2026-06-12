@@ -10,9 +10,11 @@
   └─ Estructura base de la página. Contiene:
      • Header con logo, título, tema toggle y menú hamburguesa
      • Navegación principal (nav)
-     • Secciones: hero carousel (noticias), carreras y experiencias, mapa y footer
+     • Secciones: hero carousel (noticias), carreras, mapa y footer
+     • Modales: hero news, contacto, teléfono, alerta personalizada
+     • Overlay compartido entre modales
      • Carga todos los CSS y Scripts
-     • Contenido completamente dinámico
+     • Contenido completamente dinámico (generado por JS)
 
 ================================================================================
                          SCRIPTS - LÓGICA PRINCIPAL
@@ -24,10 +26,12 @@ CARGA DE DATOS:
   📜 data-loader.js
     └─ Clase: DataLoader
     └─ Función: Cargar JSONs
-       • loadAppData() → Carga appdata.json (noticias, carreras, nav)
+       • loadAppData() → Carga appdata.json (noticias, carreras, nav, teléfonos)
        • loadExperiencesData() → Carga experiencies.json (experiencias)
        • Guarda datos en window.AppData y window.ExperiencesData
-       • Dispara eventos personalizados cuando termina
+       • Dispara eventos personalizados al terminar:
+         - 'appdataLoaded'
+         - 'experiencesDataLoaded'
 
 RENDERIZADO DINÁMICO:
 ─────────────────────────────────────────────────────────────────────────────
@@ -35,81 +39,111 @@ RENDERIZADO DINÁMICO:
   📜 dynamic_renderer.js
     └─ Clase: DynamicRenderer
     └─ Función: Generar HTML dinámicamente desde datos
-       • renderNavigation() → Genera nav y menú lateral
-       • renderHeroCarousel() → Genera carrusel de noticias
+       • renderNavigation() → Genera nav principal y menú lateral (aside)
        • renderMajors() → Genera tarjetas de carreras
        • Utiliza datos de window.AppData
+
+  📜 social_networks.js
+    └─ Función: Renderiza íconos de redes sociales en el footer
+       • Lee datos de window.AppData
+       • Genera links con íconos de Font Awesome
 
 MODALES DE INTERACCIÓN:
 ─────────────────────────────────────────────────────────────────────────────
 
+  📜 base_modal.js
+    └─ Clase: BaseModal
+    └─ Función: Clase base reutilizable para todos los modales
+       • open()  → Agrega 'active' al modal + overlay, bloquea scroll del body
+       • close() → Quita 'active', restaura scroll si no hay otros modales abiertos
+       • isOpen() → Devuelve true si el modal está visible
+       • registerCloseListeners() → Registra cierre por Escape, backdrop y overlay
+         - Cierre por click fuera solo en desktop (pointer: fine)
+
   📜 experiences_modal.js
-    └─ Clase: ExperiencesModal
-    └─ Función: Modal para ver/agregar experiencias
-       • Crea el modal en el DOM
+    └─ Clase: ExperiencesModal extends BaseModal
+    └─ Función: Modal para ver experiencias de cada carrera
+       • Crea el modal en el DOM dinámicamente
        • Lee experiencias desde window.ExperiencesData
        • Agrupa experiencias por carrera (key = major-id)
        • Muestra estrellas de calificación (1-5)
-       • Formulario colapsable (listo para backend)
-       • Listeners para guardar nuevas experiencias (guardadas en memoria, no en backend)
+       • Formulario colapsable (listo para backend, guarda en memoria)
 
   📜 contact_modal.js
-    └─ Función: Modal de contacto
-       • Formulario para contacto
-       • Maneja validación de campos
-       • Prepara datos para enviar el mismo
+    └─ Clase: ContactModal extends BaseModal
+    └─ Función: Modal de contacto con formulario
+       • Campos: nombre, apellido, email, ciudad, asunto
+       • Estados visuales del botón: idle → loading → success
+       • Simulación de envío (setTimeout) — reemplazar con fetch()
+       • Enter en desktop envía (Shift+Enter = salto de línea en textarea)
+       • Al enviar muestra alerta via window.customAlert
+
+  📜 phone_modal.js
+    └─ Clase: PhoneModal extends BaseModal
+    └─ Función: Modal con teléfonos institucionales
+       • Lee teléfonos desde window.AppData.phones
+       • Renderiza lista con label y número clickeable (tel:)
+       • Espera evento 'appdataLoaded' si los datos aún no están listos
 
   📜 alert_modal.js
-    └─ Función: Modal genérico para alertas/confirmaciones
-       • Muestra mensajes de éxito/error
-       • Reutilizable desde otros módulos
-       • Solo muestra la confirmacion de envio en el formulario de contacto
+    └─ Clase: AlertModal
+    └─ Función: Alerta visual no bloqueante (NO extiende BaseModal)
+       • No bloquea scroll ni usa overlay
+       • Se cierra automáticamente con timeout
+       • Tipos: 'success' | 'error' | 'warning' | 'info'
+       • Instancia global: window.customAlert
+       • Uso: window.customAlert.show(título, mensaje, tipo, duración)
 
-CARRUSEL Y NAVEGACIÓN:
+CARRUSEL:
 ─────────────────────────────────────────────────────────────────────────────
 
   📜 hero_carousel.js
-    └─ Función: Carrusel automático de noticias
-       • Cambia automaticamente cada 15 segundos
-       • Botones de navegación manual
-       • Indicadores (dots) de posición
-       • Sincroniza con barra de progreso
+    └─ Clase: HeroCarousel
+    └─ Función: Carrusel automático de noticias en el hero
+       • Autoplay cada 15 segundos con barra de progreso animada
+       • Navegación por indicadores (dots) clickeables
+       • Swipe táctil (izquierda/derecha)
+       • Teclas: ArrowLeft/ArrowRight y A/D
+       • Badges visuales por tipo: 'primicia' y 'destacado'
+       • Indicadores marcan noticias vistas (persiste en localStorage)
+       • Modal interno via BaseModal para ver título y descripción completa
+       • Botón "Ir al material adjunto" solo aparece si el JSON tiene link real
+
+NAVEGACIÓN Y MENÚS:
+─────────────────────────────────────────────────────────────────────────────
 
   📜 dropdown_menu.js
-    └─ Función: Menú desplegable lateral
-       • Abre/cierra menú hamburguesa
+    └─ Función: Menú hamburguesa y desplegables
+       • Abre/cierra el menú móvil
        • Manejo de submenús anidados
-       • Cierre en click fuera
+       • Cierre al hacer click fuera
 
   📜 sidebar-toggle.js
-    └─ Función: Toggle del menú lateral colapsable "Menús"
-       • Expande/colapsa secciones de categorías
+    └─ Función: Toggle del aside "Menús" en desktop
+       • Expande/colapsa el menú lateral del header
 
 UTILIDADES:
 ─────────────────────────────────────────────────────────────────────────────
 
   📜 majors.js
-    └─ Función: Manejo de carreras
-       • Listeners para click en tarjetas de carrera
-       • Abre modal de experiencias con datos de esa carrera
-    └─ Función: Renderiza badge de trayectoria
+    └─ Función: Interacción con tarjetas de carreras
+       • Listeners para click en tarjetas → abre ExperiencesModal
+       • Renderiza el badge de trayectoria con años calculados
 
   📜 location_section.js
-    └─ Función: Renderiza mini mapa con Leaflet
-       • Muestra ubicación del instituto
-
-  📜 phone_modal.js
-    └─ Función: Modal para ver los teléfonos de contacto
+    └─ Función: Mapa interactivo con Leaflet
+       • Muestra la ubicación del instituto
+       • Botón para abrir Google Maps con dirección
 
 PUNTO DE ENTRADA:
 ─────────────────────────────────────────────────────────────────────────────
 
   📜 inicio.js
-    └─ Función: Script de inicialización
-       • Carga datos con DataLoader
-       • Espera evento 'appdataLoaded'
-       • Inicializa todos los módulos en orden
-       • Configura event listeners globales
+    └─ Función: Script de inicialización (carga último)
+       • Instancia DataLoader y dispara la carga de datos
+       • Espera 'appdataLoaded' para inicializar módulos en orden
+       • Maneja el toggle de tema claro/oscuro (#theme-toggle)
+       • Guarda preferencia de tema en localStorage
 
 ================================================================================
                          ESTILOS - ORGANIZACIÓN CSS
@@ -119,69 +153,75 @@ GLOBAL:
 ─────────────────────────────────────────────────────────────────────────────
 
   🎨 body.css
-    └─ Estilos generales del body, fuentes, scroll
+    └─ Reset global, fuentes, scroll, overlay, modal-open
+       • body.modal-open + html:has(body.modal-open) → overflow: hidden
+       • .overlay → capa fija compartida entre modales
 
 LAYOUT:
 ─────────────────────────────────────────────────────────────────────────────
 
-  🎨 header.css        → Header, logo, título
-  🎨 nav.css           → Navegación principal
-  🎨 burguer_menu.css  → Menú hamburguesa responsivo
-  🎨 footer.css        → Pie de página
+  🎨 header.css        → Header, logo, título, botones de acción
+  🎨 nav.css           → Navegación principal y menú lateral (aside)
+  🎨 burguer_menu.css  → Menú hamburguesa responsivo (mobile)
+  🎨 footer.css        → Pie de página, redes sociales, botones de contacto
 
 SECCIONES:
 ─────────────────────────────────────────────────────────────────────────────
 
-  🎨 hero_news.css        → Carrusel de noticias principales
-  🎨 majors.css           → Tarjetas de carreras, badge de trayectoria
-  🎨 location_section.css → Sección de mapa y ubicación
+  🎨 hero_news.css        → Carrusel hero: items, badges, indicadores,
+                            barra de progreso y modal de detalle
+  🎨 majors.css           → Tarjetas de carreras y badge de trayectoria
+  🎨 location_section.css → Sección de mapa y datos de ubicación
 
 MODALES E INTERACCIÓN:
 ─────────────────────────────────────────────────────────────────────────────
 
-  🎨 experiences_modal.css  → Modal de experiencias (incl. media query 380px+)
-  🎨 contact_form.css       → Formulario de contacto
-  🎨 phones.css             → Modal de teléfono
-  🎨 alert_modal.css        → Modal genérico de alertas
+  🎨 experiences_modal.css → Modal de experiencias por carrera
+  🎨 contact_modal.css     → Modal y formulario de contacto
+  🎨 phones_modal.css      → Modal de teléfonos institucionales
+  🎨 alert_modal.css       → Alerta visual no bloqueante
 
 ================================================================================
                            TEMAS - PERSONALIZACIÓN
 ================================================================================
 
-  🎨 light_theme.css  → Variables CSS para tema claro (por defecto)
-  🎨 dark_theme.css   → Variables CSS para tema oscuro
-  
-  └─ Lógica: header.js maneja toggle entre temas
-  └─ Las variables (colores, fuentes) se redefinen en cada tema
+  🎨 light_theme.css  → Variables CSS para tema claro (activo por defecto)
+  🎨 dark_theme.css   → Variables CSS para tema oscuro (disabled por defecto)
+
+  └─ El toggle lo maneja inicio.js con el botón #theme-toggle
+  └─ Alterna el atributo 'disabled' entre ambos <link>
+  └─ Guarda preferencia en localStorage
 
 ================================================================================
                         FLUJO DE DATOS - COMUNICACIÓN
 ================================================================================
 
 INICIALIZACIÓN:
-  1. HTML carga index.html
-  2. CSS se carga (light_theme por defecto)
-  3. Scripts se cargan (ultimo: inicio.js)
-  4. inicio.js llama DataLoader.loadAppData() y .loadExperiencesData()
+  1. index.html carga en el navegador
+  2. CSS y temas se aplican (light_theme por defecto)
+  3. Scripts se cargan en orden (último: inicio.js)
+  4. inicio.js instancia DataLoader y llama loadAppData() / loadExperiencesData()
   5. Datos se guardan en window.AppData y window.ExperiencesData
-  6. Se disparan eventos personalizados (appdataLoaded, experiencesDataLoaded)
+  6. Se disparan eventos: 'appdataLoaded' y 'experiencesDataLoaded'
 
 RENDERIZADO:
-  7. DynamicRenderer escucha eventos
-  8. Renderiza nav, hero carousel, majors, etc.
-  9. ExperiencesModal escucha eventos
- 10. Prepara experiencias agrupadas por carrera
+  7. dynamic_renderer.js escucha 'appdataLoaded' → renderiza nav y carreras
+  8. social_networks.js escucha 'appdataLoaded' → renderiza redes en footer
+  9. hero_carousel.js escucha 'appdataLoaded' → renderiza carrusel y dots
+ 10. phone_modal.js escucha 'appdataLoaded' → renderiza lista de teléfonos
+ 11. experiences_modal.js escucha 'experiencesDataLoaded' → agrupa por carrera
 
 INTERACCIÓN:
- 11. Usuario hace click en carrera → Se abre modal de experiencias
- 12. Modal lee experiencias de window.ExperiencesData para esa carrera
- 13. Muestra comentarios, calificaciones, fechas
- 14. Si usuario agrega experiencia: se guarda en window (no en servidor)
+ 12. Usuario hace click en carrera → majors.js abre ExperiencesModal
+ 13. Modal muestra experiencias del JSON para esa carrera
+ 14. Usuario navega el carrusel → hero_carousel.js actualiza slides y dots
+ 15. Usuario abre "Saber Más" → BaseModal muestra detalle de la noticia
+ 16. Usuario envía contacto → ContactModal simula envío y muestra AlertModal
 
 COMUNICACIÓN BACKEND (FUTURA):
   └─ contact_modal.js → Enviará POST /api/contact
-  └─ experiences_modal.js → Enviará POST /api/experiences (crear)
-  └─ data-loader.js → Podría cambiar a GET /api/data en lugar de fetch JSON
+  └─ experiences_modal.js → Enviará POST /api/experiences
+  └─ data-loader.js → Reemplazará fetch de JSON por GET /api/data
 
 ================================================================================
                             ARCHIVOS JSON
@@ -189,62 +229,71 @@ COMUNICACIÓN BACKEND (FUTURA):
 
   📊 appdata.json
      └─ Contiene:
-        • news[] - Array de noticias para hero carousel
-        • majors[] - Array de carreras con descripción, imagen, etc.
-        • nav[] - Estructura de navegación (puede ser anidada)
+        • heroNews[]  - Noticias para el carrusel hero (title, description,
+                        imageUrl, type, link)
+        • majors[]    - Carreras con id, nombre, descripción, imagen, tipo
+        • nav[]       - Estructura de navegación (puede ser anidada)
+        • phones[]    - Teléfonos institucionales (label, number)
+        • socials[]   - Redes sociales (nombre, url, ícono FA)
 
   📊 experiencies.json
      └─ Estructura:
-        • experiences {} - Objeto con keys = major-id
-          └─ Cada major contiene array de experiencias
-             • id, name, lastname, email, comment, date, rating
+        • experiences{} - Objeto con keys = major-id
+          └─ Cada key contiene array de experiencias:
+             • id, name, lastname, email, comment, date, rating (1-5)
 
 ================================================================================
                           MEDIA QUERIES & RESPONSIVE
 ================================================================================
 
-  • Todos los CSS tienen media queries para tablet (1024px) hasta mobiles (380px o menos)
-  • burger_menu.css se activa en pantallas menores
+  • Breakpoints usados en todos los CSS:
+    - 1024px → Tablet landscape
+    -  768px → Tablet portrait
+    -  480px → Mobile
+    -  380px → Mobile pequeño
+
+  • burguer_menu.css se activa en pantallas ≤ 1024px
+  • Los modales tienen layout adaptado desde 768px hacia abajo
 
 ================================================================================
                             NOTAS IMPORTANTES
 ================================================================================
 
-1. DATOS:
-   • Todos los datos vienen de JSONs cargados en memoria
+1. BASE MODAL:
+   • Todos los modales reales extienden BaseModal (excepto AlertModal)
+   • El scroll se bloquea en body Y en html (necesario para todos los browsers)
+   • El overlay es compartido entre modales — solo uno puede estar activo
+
+2. DATOS:
+   • Todos los datos vienen de JSONs cargados en memoria (window.AppData)
    • Sin persistencia en servidor actualmente
-   • Backend puede reemplazar JSONs con APIs REST
+   • El backend puede reemplazar los JSONs con APIs REST sin cambiar los módulos
 
-2. MODAL DE EXPERIENCIAS:
-   • Muestra solo lectura de experiencias del JSON
-   • Formulario está listo pero no guarda en servidor
-   • Campo de calificación: estrellas (1-5) interactivas
+3. MODAL DE EXPERIENCIAS:
+   • Vista de solo lectura desde el JSON
+   • Formulario listo para backend (guarda en memoria por ahora)
+   • Estrellas de calificación: solo lectura en vista, interactivas en formulario
 
-3. ESTRELLAS DE CALIFICACIÓN:
-   • En experiences_modal.js: renderiza <i class="fas fa-star"></i>
-   • Stars llenas según rating del JSON
-   • No es interactivo en lectura (solo muestra)
-   • En formulario será interactivo para nueva experiencia
-
-4. TEMAS:
-   • Alternan con button #theme-toggle en header
-   • Guarda preferencia en localStorage (si está implementado)
+4. HERO CAROUSEL:
+   • Las noticias vistas quedan marcadas en localStorage por URL (heroVisited:link)
+   • El modal interno pausa el autoplay y lo reanuda al cerrar
+   • Si una noticia no tiene link real, el botón "Ir al material" se oculta
 
 5. RUTAS Y PATHS:
-   • Jsons/ debe estar en raíz del Frontend
-   • Scripts/ debe estar en raíz del Frontend
-   • Styles/ debe estar en raíz del Frontend
-   • Themes/ debe estar en raíz del Frontend
+   • Jsons/    debe estar en la raíz del frontend
+   • Scripts/  debe estar en la raíz del frontend
+   • Styles/   debe estar en la raíz del frontend
+   • Themes/   debe estar en la raíz del frontend
+   • Images/   debe estar en la raíz del frontend
 
 ================================================================================
                          PRÓXIMAS IMPLEMENTACIONES
 ================================================================================
 
-  ✓ Guardar nuevas experiencias en base de datos
-  ✓ Autenticación de usuarios para publicar experiencias
-  ✓ Paginación de experiencias si son muchas
-  (Que no vengan todas de golpe, que tengan un limite de cantidad y 
-  que al ir bajando se carguen sin la necesitdad de un boton de "Ver mas"
-  Para eso se puede detectar cuanto has recorrido el scroll -> 80% -> cargar X mas automaticamente)
+  • Guardar nuevas experiencias en base de datos
+  • Autenticación de usuarios para publicar experiencias
+  • Infinite scroll en experiencias:
+    Cargar un límite inicial y detectar cuando el usuario llega al 80%
+    del scroll para cargar más automáticamente (sin botón "Ver más")
 
 ================================================================================

@@ -90,7 +90,7 @@ class HeroCarousel {
                     </div>
                     <div class="hero-actions">
                         <button class="hero-link-button" data-index="${index}">
-                            Saber Más <i class="fas fa-arrow-right"></i>
+                            Ampliar <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
