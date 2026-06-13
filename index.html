@@ -191,7 +191,7 @@
         </div>
     </footer>
 
-    <!-- MODAL HERO — TÍTULO Y DESCRIPCIÓN COMPLETAS -->
+    <!-- MODAL HERO CAROUSEL -->
     <div id="heroNewsModal" class="hero-news-modal">
         <div class="hero-news-modal__box">
             <div class="hero-news-modal__header">
@@ -206,6 +206,98 @@
                 <a id="heroModalLink" class="hero-news-modal__link" href="#" target="_blank" hidden>
                     Ir al material adjunto <i class="fas fa-arrow-right"></i>
                 </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EXPERIENCIAS -->
+    <div class="experiences-modal" id="experiencesModal">
+        <div class="experiences-modal-content">
+            <div class="experiences-modal-header">
+                <h2>
+                    <i class="fas fa-comments"></i>
+                    Experiencias
+                </h2>
+                <button class="experiences-modal-close" id="closeExperiencesModal">&times;</button>
+            </div>
+
+            <div class="experiences-modal-body">
+
+                <!-- FORMULARIO COLAPSABLE -->
+                <button class="experiences-form-toggle" id="formToggle">
+                    <i class="fas fa-chevron-down"></i>
+                    <span>Compartir tu Experiencia</span>
+                </button>
+
+                <div class="experiences-form-section" id="formSection" style="display: none;">
+                    <form class="experiences-form" id="experiencesForm">
+                        <div class="experiences-form-row">
+                            <div class="experiences-form-group">
+                                <label for="expName">Nombre <span class="required">*</span></label>
+                                <input type="text" id="expName" name="name" placeholder="Ej: Juan" required>
+                            </div>
+                            <div class="experiences-form-group">
+                                <label for="expLastname">Apellido <span class="required">*</span></label>
+                                <input type="text" id="expLastname" name="lastname" placeholder="Ej: Pérez" required>
+                            </div>
+                        </div>
+
+                        <div class="experiences-form-group">
+                            <label for="expUser">Usuario <span class="required">*</span></label>
+                            <input type="text" id="expUser" name="user" placeholder="Ej: juanperez" required>
+                        </div>
+
+                        <div class="experiences-form-group">
+                            <div class="experiences-textarea-header">
+                                <label for="expComment">Tu Experiencia <span class="required">*</span></label>
+                                <span class="experiences-textarea-tip">Enter = publicar, Shift + Enter = salto de línea</span>
+                            </div>
+                            <textarea id="expComment" name="comment" placeholder="Cuéntanos sobre tu experiencia en esta carrera..." required></textarea>
+                        </div>
+
+                        <div class="experiences-form-group">
+                            <label>Tu Calificación <span class="required">*</span></label>
+                            <div class="experiences-star-rating" id="formStarRating">
+                                <!-- Las estrellas se generan por JS al abrir el modal -->
+                            </div>
+                            <input type="hidden" id="ratingInput" name="rating">
+                        </div>
+
+                        <div class="experiences-form-buttons">
+                            <button type="button" class="experiences-btn-cancel" id="cancelExperience">
+                                <i class="fas fa-times"></i>
+                                Cancelar
+                            </button>
+                            <button type="submit" class="experiences-btn-submit">
+                                <i class="fas fa-paper-plane"></i>
+                                Publicar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- LISTA DE EXPERIENCIAS -->
+                <div class="experiences-list-section">
+                    <div class="experiences-list-header">
+                        <div>
+                            <h3>
+                                <i class="fas fa-star"></i>
+                                Experiencias de Estudiantes
+                            </h3>
+                        </div>
+                        <div class="experiences-average-rating">
+                            <div class="experiences-average-stars" id="averageStars"></div>
+                            <span class="experiences-average-text" id="averageText">--</span>
+                        </div>
+                    </div>
+                    <div class="experiences-list" id="experiencesList">
+                        <div class="experiences-list-empty">
+                            <i class="fas fa-inbox"></i>
+                            <p>Cargando experiencias...</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

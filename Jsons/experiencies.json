@@ -1,192 +1,208 @@
 {
-"experiences": {
-    "major-0-técnico-superior-en-desarrollo-de-software": [
-    {
-        "id": 1,
-        "name": "María",
-        "lastname": "García",
-        "email": "maria.garcia@example.com",
-        "comment": "Excelente carrera, muy demandada en el mercado laboral. Los profesores son excelentes y el plan de estudios es muy actualizado. Tuve muchas prácticas y proyectos reales que me prepararon bien.",
-        "date": "15/11/2024",
-        "rating": 5
-    },
-    {
-        "id": 2,
-        "name": "Carlos",
-        "lastname": "López",
-        "email": "carlos.lopez@example.com",
-        "comment": "Me encantó. Mucha práctica y proyectos reales. Salí con muy buenas bases para trabajar. Las materias están bien organizadas y el nivel de dificultad es coherente.",
-        "date": "12/11/2024",
-        "rating": 5
-    },
-    {
-        "id": 3,
-        "name": "Ana",
-        "lastname": "Rodríguez",
-        "email": "ana.rodriguez@example.com",
-        "comment": "Desafiante pero muy gratificante. Recomendada al 100%. Te prepara para el mundo laboral actual con tecnologías vigentes. La comunidad de estudiantes es muy sólida.",
-        "date": "10/11/2024",
-        "rating": 4
-    },
-    {
-        "id": 4,
-        "name": "Diego",
-        "lastname": "Martínez",
-        "email": "diego.martinez@example.com",
-        "comment": "Muy buena formación. Aprendí no solo programación sino también a pensar como ingeniero. Los profesores tienen experiencia en la industria. Conseguí trabajo antes de egresar.",
-        "date": "08/11/2024",
-        "rating": 5
-    },
-    {
-        "id": 5,
-        "name": "Luciana",
-        "lastname": "Fernández",
-        "email": "luciana.fernandez@example.com",
-        "comment": "La carrera me abrió muchas puertas. Aprendí desarrollo web, bases de datos y metodologías ágiles. Los proyectos integradores son muy completos y te preparan para la vida profesional.",
-        "date": "05/11/2024",
-        "rating": 4
+    "experiences": {
+        "major-0-técnico-superior-en-desarrollo-de-software": {
+            "averageRating": 4.6,
+            "totalReviews": 5,
+            "reviews": [
+                {
+                    "id": 1,
+                    "name": "María",
+                    "lastname": "García",
+                    "email": "maria.garcia@example.com",
+                    "comment": "Excelente carrera, muy demandada en el mercado laboral. Los profesores son excelentes y el plan de estudios es muy actualizado. Tuve muchas prácticas y proyectos reales que me prepararon bien.",
+                    "date": "15/11/2024",
+                    "rating": 5
+                },
+                {
+                    "id": 2,
+                    "name": "Carlos",
+                    "lastname": "López",
+                    "email": "carlos.lopez@example.com",
+                    "comment": "Me encantó. Mucha práctica y proyectos reales. Salí con muy buenas bases para trabajar. Las materias están bien organizadas y el nivel de dificultad es coherente.",
+                    "date": "12/11/2024",
+                    "rating": 5
+                },
+                {
+                    "id": 3,
+                    "name": "Ana",
+                    "lastname": "Rodríguez",
+                    "email": "ana.rodriguez@example.com",
+                    "comment": "Desafiante pero muy gratificante. Recomendada al 100%. Te prepara para el mundo laboral actual con tecnologías vigentes. La comunidad de estudiantes es muy sólida.",
+                    "date": "10/11/2024",
+                    "rating": 4
+                },
+                {
+                    "id": 4,
+                    "name": "Diego",
+                    "lastname": "Martínez",
+                    "email": "diego.martinez@example.com",
+                    "comment": "Muy buena formación. Aprendí no solo programación sino también a pensar como ingeniero. Los profesores tienen experiencia en la industria. Conseguí trabajo antes de egresar.",
+                    "date": "08/11/2024",
+                    "rating": 5
+                },
+                {
+                    "id": 5,
+                    "name": "Luciana",
+                    "lastname": "Fernández",
+                    "email": "luciana.fernandez@example.com",
+                    "comment": "La carrera me abrió muchas puertas. Aprendí desarrollo web, bases de datos y metodologías ágiles. Los proyectos integradores son muy completos y te preparan para la vida profesional.",
+                    "date": "05/11/2024",
+                    "rating": 4
+                }
+            ]
+        },
+        "major-1-técnico-superior-en-gestión-de-las-organizaciones": {
+            "averageRating": 4.6,
+            "totalReviews": 5,
+            "reviews": [
+                {
+                    "id": 6,
+                    "name": "Juan",
+                    "lastname": "Martínez",
+                    "email": "juan.martinez@example.com",
+                    "comment": "Formación sólida en administración, recursos humanos y gestión financiera. Los docentes tienen mucha experiencia en el sector. Las prácticas me prepararon bien para ejercer.",
+                    "date": "08/11/2024",
+                    "rating": 5
+                },
+                {
+                    "id": 7,
+                    "name": "Lucía",
+                    "lastname": "Peralta",
+                    "email": "lucia.peralta@example.com",
+                    "comment": "Carrera muy completa. Aprendí gestión empresarial, contabilidad y liderazgo organizacional. La carga horaria es intensa pero necesaria para dominar la profesión. Muy recomendada.",
+                    "date": "05/11/2024",
+                    "rating": 4
+                },
+                {
+                    "id": 8,
+                    "name": "Roberto",
+                    "lastname": "González",
+                    "email": "roberto.gonzalez@example.com",
+                    "comment": "Excelentes profesores y buenas instalaciones. Las asignaturas están bien secuenciadas. La carrera me dio todas las herramientas necesarias para gestionar equipos y proyectos.",
+                    "date": "01/11/2024",
+                    "rating": 5
+                },
+                {
+                    "id": 9,
+                    "name": "Valentina",
+                    "lastname": "Pérez",
+                    "email": "valentina.perez@example.com",
+                    "comment": "Carrera desafiante pero con muy buen retorno. El estudio de gestión estratégica y recursos humanos es completo. Los docentes conocen bien el ámbito profesional actual.",
+                    "date": "28/10/2024",
+                    "rating": 4
+                },
+                {
+                    "id": 10,
+                    "name": "Matías",
+                    "lastname": "Romero",
+                    "email": "matias.romero@example.com",
+                    "comment": "Muy buena experiencia. La carrera combina teoría con práctica de manera equilibrada. Las pasantías en empresas locales me permitieron aplicar lo aprendido desde el primer año.",
+                    "date": "25/10/2024",
+                    "rating": 5
+                }
+            ]
+        },
+        "major-0-profesorado-en-educación-inicial": {
+            "averageRating": 4.6,
+            "totalReviews": 5,
+            "reviews": [
+                {
+                    "id": 11,
+                    "name": "Fernando",
+                    "lastname": "Silva",
+                    "email": "fernando.silva@example.com",
+                    "comment": "Carrera hermosa que forma profesionales comprometidos con la educación de los más pequeños. El plan de estudios es integral y los profesores son muy dedicados.",
+                    "date": "20/10/2024",
+                    "rating": 5
+                },
+                {
+                    "id": 12,
+                    "name": "Camila",
+                    "lastname": "Torres",
+                    "email": "camila.torres@example.com",
+                    "comment": "Excelente formación pedagógica. Las prácticas en jardines son fundamentales y te preparan para el aula. Aprendí mucho sobre desarrollo infantil y didáctica creativa.",
+                    "date": "18/10/2024",
+                    "rating": 5
+                },
+                {
+                    "id": 13,
+                    "name": "Pablo",
+                    "lastname": "Rodríguez",
+                    "email": "pablo.rodriguez@example.com",
+                    "comment": "Una carrera con mucha vocación. Los docentes transmiten pasión por la enseñanza. Las prácticas en instituciones educativas son muy enriquecedoras y formativas.",
+                    "date": "15/10/2024",
+                    "rating": 4
+                },
+                {
+                    "id": 14,
+                    "name": "Sofía",
+                    "lastname": "Gómez",
+                    "email": "sofia.gomez@example.com",
+                    "comment": "Muy buena formación en pedagogía y psicología del desarrollo. Los trabajos prácticos son desafiantes pero enseñan mucho. La carrera prepara bien para la práctica docente.",
+                    "date": "12/10/2024",
+                    "rating": 5
+                },
+                {
+                    "id": 15,
+                    "name": "Agustina",
+                    "lastname": "Méndez",
+                    "email": "agustina.mendez@example.com",
+                    "comment": "Me encantó la carrera. El enfoque en la creatividad y el juego como herramienta pedagógica es excelente. Los profesores son muy cercanos y siempre dispuestos a ayudar.",
+                    "date": "08/10/2024",
+                    "rating": 4
+                }
+            ]
+        },
+        "major-1-profesorado-en-educación-primaria": {
+            "averageRating": 1.8,
+            "totalReviews": 5,
+            "reviews": [
+                {
+                    "id": 16,
+                    "name": "Andrés",
+                    "lastname": "Vega",
+                    "email": "andres.vega@example.com",
+                    "comment": "Carrera muy completa que forma docentes preparados. Aprendí didáctica, planificación y evaluación educativa. Los docentes traen experiencia directa del aula.",
+                    "date": "10/10/2024",
+                    "rating": 2
+                },
+                {
+                    "id": 17,
+                    "name": "Martina",
+                    "lastname": "López",
+                    "email": "martina.lopez@example.com",
+                    "comment": "Muy buena preparación para trabajar en escuelas primarias. El énfasis en metodologías activas es muy útil. Las prácticas en escuelas me dieron mucha confianza.",
+                    "date": "08/10/2024",
+                    "rating": 3
+                },
+                {
+                    "id": 18,
+                    "name": "Ricardo",
+                    "lastname": "Hernández",
+                    "email": "ricardo.hernandez@example.com",
+                    "comment": "Carrera con mucho compromiso social. Los profesores entienden la realidad educativa actual. Me preparó para trabajar con diversidad de estudiantes y contextos escolares.",
+                    "date": "05/10/2024",
+                    "rating": 2
+                },
+                {
+                    "id": 19,
+                    "name": "Isabel",
+                    "lastname": "Castro",
+                    "email": "isabel.castro@example.com",
+                    "comment": "Excelente formación en didáctica y gestión del aula. El plan de estudios es actualizado y los proyectos interdisciplinarios preparan bien para el ámbito educativo.",
+                    "date": "02/10/2024",
+                    "rating": 1
+                },
+                {
+                    "id": 20,
+                    "name": "Tomás",
+                    "lastname": "Acosta",
+                    "email": "tomas.acosta@example.com",
+                    "comment": "La carrera superó mis expectativas. Las prácticas docentes desde segundo año son un gran acierto. Me siento muy preparado para ejercer la docencia en primaria.",
+                    "date": "28/09/2024",
+                    "rating": 1
+                }
+            ]
+        }
     }
-    ],
-    "major-1-técnico-superior-en-gestión-de-las-organizaciones": [
-    {
-        "id": 6,
-        "name": "Juan",
-        "lastname": "Martínez",
-        "email": "juan.martinez@example.com",
-        "comment": "Formación sólida en administración, recursos humanos y gestión financiera. Los docentes tienen mucha experiencia en el sector. Las prácticas me prepararon bien para ejercer.",
-        "date": "08/11/2024",
-        "rating": 5
-    },
-    {
-        "id": 7,
-        "name": "Lucía",
-        "lastname": "Peralta",
-        "email": "lucia.peralta@example.com",
-        "comment": "Carrera muy completa. Aprendí gestión empresarial, contabilidad y liderazgo organizacional. La carga horaria es intensa pero necesaria para dominar la profesión. Muy recomendada.",
-        "date": "05/11/2024",
-        "rating": 4
-    },
-    {
-        "id": 8,
-        "name": "Roberto",
-        "lastname": "González",
-        "email": "roberto.gonzalez@example.com",
-        "comment": "Excelentes profesores y buenas instalaciones. Las asignaturas están bien secuenciadas. La carrera me dio todas las herramientas necesarias para gestionar equipos y proyectos.",
-        "date": "01/11/2024",
-        "rating": 5
-    },
-    {
-        "id": 9,
-        "name": "Valentina",
-        "lastname": "Pérez",
-        "email": "valentina.perez@example.com",
-        "comment": "Carrera desafiante pero con muy buen retorno. El estudio de gestión estratégica y recursos humanos es completo. Los docentes conocen bien el ámbito profesional actual.",
-        "date": "28/10/2024",
-        "rating": 4
-    },
-    {
-        "id": 10,
-        "name": "Matías",
-        "lastname": "Romero",
-        "email": "matias.romero@example.com",
-        "comment": "Muy buena experiencia. La carrera combina teoría con práctica de manera equilibrada. Las pasantías en empresas locales me permitieron aplicar lo aprendido desde el primer año.",
-        "date": "25/10/2024",
-        "rating": 5
-    }
-    ],
-    "major-0-profesorado-en-educación-inicial": [
-    {
-        "id": 11,
-        "name": "Fernando",
-        "lastname": "Silva",
-        "email": "fernando.silva@example.com",
-        "comment": "Carrera hermosa que forma profesionales comprometidos con la educación de los más pequeños. El plan de estudios es integral y los profesores son muy dedicados.",
-        "date": "20/10/2024",
-        "rating": 5
-    },
-    {
-        "id": 12,
-        "name": "Camila",
-        "lastname": "Torres",
-        "email": "camila.torres@example.com",
-        "comment": "Excelente formación pedagógica. Las prácticas en jardines son fundamentales y te preparan para el aula. Aprendí mucho sobre desarrollo infantil y didáctica creativa.",
-        "date": "18/10/2024",
-        "rating": 5
-    },
-    {
-        "id": 13,
-        "name": "Pablo",
-        "lastname": "Rodríguez",
-        "email": "pablo.rodriguez@example.com",
-        "comment": "Una carrera con mucha vocación. Los docentes transmiten pasión por la enseñanza. Las prácticas en instituciones educativas son muy enriquecedoras y formativas.",
-        "date": "15/10/2024",
-        "rating": 4
-    },
-    {
-        "id": 14,
-        "name": "Sofía",
-        "lastname": "Gómez",
-        "email": "sofia.gomez@example.com",
-        "comment": "Muy buena formación en pedagogía y psicología del desarrollo. Los trabajos prácticos son desafiantes pero enseñan mucho. La carrera prepara bien para la práctica docente.",
-        "date": "12/10/2024",
-        "rating": 5
-    },
-    {
-        "id": 15,
-        "name": "Agustina",
-        "lastname": "Méndez",
-        "email": "agustina.mendez@example.com",
-        "comment": "Me encantó la carrera. El enfoque en la creatividad y el juego como herramienta pedagógica es excelente. Los profesores son muy cercanos y siempre dispuestos a ayudar.",
-        "date": "08/10/2024",
-        "rating": 4
-    }
-    ],
-    "major-1-profesorado-en-educación-primaria": [
-    {
-        "id": 16,
-        "name": "Andrés",
-        "lastname": "Vega",
-        "email": "andres.vega@example.com",
-        "comment": "Carrera muy completa que forma docentes preparados. Aprendí didáctica, planificación y evaluación educativa. Los docentes traen experiencia directa del aula.",
-        "date": "10/10/2024",
-        "rating": 2
-    },
-    {
-        "id": 17,
-        "name": "Martina",
-        "lastname": "López",
-        "email": "martina.lopez@example.com",
-        "comment": "Muy buena preparación para trabajar en escuelas primarias. El énfasis en metodologías activas es muy útil. Las prácticas en escuelas me dieron mucha confianza.",
-        "date": "08/10/2024",
-        "rating": 3
-    },
-    {
-        "id": 18,
-        "name": "Ricardo",
-        "lastname": "Hernández",
-        "email": "ricardo.hernandez@example.com",
-        "comment": "Carrera con mucho compromiso social. Los profesores entienden la realidad educativa actual. Me preparó para trabajar con diversidad de estudiantes y contextos escolares.",
-        "date": "05/10/2024",
-        "rating": 2
-    },
-    {
-        "id": 19,
-        "name": "Isabel",
-        "lastname": "Castro",
-        "email": "isabel.castro@example.com",
-        "comment": "Excelente formación en didáctica y gestión del aula. El plan de estudios es actualizado y los proyectos interdisciplinarios preparan bien para el ámbito educativo.",
-        "date": "02/10/2024",
-        "rating": 1
-    },
-    {
-        "id": 20,
-        "name": "Tomás",
-        "lastname": "Acosta",
-        "email": "tomas.acosta@example.com",
-        "comment": "La carrera superó mis expectativas. Las prácticas docentes desde segundo año son un gran acierto. Me siento muy preparado para ejercer la docencia en primaria.",
-        "date": "28/09/2024",
-        "rating": 1
-    }
-    ]
-}
 }

@@ -525,9 +525,10 @@
     transition: var(--transition);
 }
 
-/* ESTRELLAS EN TARJETAS*/
+/* ESTRELLAS EN TARJETAS Y PROMEDIO */
 .experiences-star-display {
     display: inline-flex;
+    position: relative;
     font-size: 0.9rem;
     color: #ffffff;
     -webkit-text-stroke: 1.2px #555555;
@@ -539,6 +540,35 @@
     color: var(--star-gold);
     -webkit-text-stroke: 0px;
     text-shadow: 0 0 8px rgba(245, 158, 11, 0.45);
+}
+
+/* Estrella parcial: dos íconos superpuestos dentro del mismo span.
+   .star-bg  = estrella vacía (base gris)
+   .star-fg  = estrella dorada recortada al % exacto con clip-path  */
+.experiences-star-display.experiences-star-partial {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.experiences-star-display.experiences-star-partial .star-bg {
+    color: #ffffff;
+    -webkit-text-stroke: 1.2px #555555;
+}
+
+.experiences-star-display.experiences-star-partial .star-fg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--star-fill, 0%);
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    color: var(--star-gold);
+    -webkit-text-stroke: 0px;
+    text-shadow: 0 0 8px rgba(245, 158, 11, 0.45);
+    white-space: nowrap;
 }
 
 /* ANIMACIONES */

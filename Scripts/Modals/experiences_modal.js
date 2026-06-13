@@ -5,127 +5,28 @@
 class ExperiencesModal extends BaseModal {
 
     constructor() {
-        // Sin overlay compartido (null) — el backdrop lo maneja BaseModal
         super(null, null);
 
-        this.experiences    = new Map();
-        this.newExperiences = new Map();
-        this.currentMajor   = null;
-        this.currentRating  = 0;
+        this.experiences   = new Map();
+        this.currentMajor  = null;
+        this.currentRating = 0;
 
         this.init();
     }
 
     // =============================================================
     // INICIALIZAR
+    // El modal ya existe en el DOM (index.html); solo se referencia
+    // y se generan las estrellas vacías del formulario.
     // =============================================================
 
     init() {
-        this.createModal();
-
-        // Ahora que el modal existe en el DOM, asignarlo a la clase base
         this.modal = document.getElementById('experiencesModal');
 
+        const starContainer = document.getElementById('formStarRating');
+        if (starContainer) starContainer.innerHTML = this.generateStarHTML(0);
+
         this.attachListeners();
-    }
-
-    // =============================================================
-    // CREAR MODAL EN EL DOM
-    // =============================================================
-
-    createModal() {
-        const modalHTML = `
-            <div class="experiences-modal" id="experiencesModal">
-                <div class="experiences-modal-content">
-                    <div class="experiences-modal-header">
-                        <h2>
-                            <i class="fas fa-comments"></i>
-                            Experiencias
-                        </h2>
-                        <button class="experiences-modal-close" id="closeExperiencesModal">&times;</button>
-                    </div>
-
-                    <div class="experiences-modal-body">
-                        <!-- FORMULARIO COLAPSABLE -->
-                        <button class="experiences-form-toggle" id="formToggle">
-                            <i class="fas fa-chevron-down"></i>
-                            <span>Compartir tu Experiencia</span>
-                        </button>
-
-                        <div class="experiences-form-section" id="formSection" style="display: none;">
-                            <form class="experiences-form" id="experiencesForm">
-                                <div class="experiences-form-row">
-                                    <div class="experiences-form-group">
-                                        <label for="expName">Nombre <span class="required">*</span></label>
-                                        <input type="text" id="expName" name="name" placeholder="Ej: Juan" required>
-                                    </div>
-                                    <div class="experiences-form-group">
-                                        <label for="expLastname">Apellido <span class="required">*</span></label>
-                                        <input type="text" id="expLastname" name="lastname" placeholder="Ej: Pérez" required>
-                                    </div>
-                                </div>
-
-                                <div class="experiences-form-group">
-                                    <label for="expUser">Usuario <span class="required">*</span></label>
-                                    <input type="text" id="expUser" name="user" placeholder="Ej: juanperez" required>
-                                </div>
-
-                                <div class="experiences-form-group">
-                                    <div class="experiences-textarea-header">
-                                        <label for="expComment">Tu Experiencia <span class="required">*</span></label>
-                                        <span class="experiences-textarea-tip">Enter = publicar, Shift + Enter = salto de línea</span>
-                                    </div>
-                                    <textarea id="expComment" name="comment" placeholder="Cuéntanos sobre tu experiencia en esta carrera..." required></textarea>
-                                </div>
-
-                                <div class="experiences-form-group">
-                                    <label>Tu Calificación <span class="required">*</span></label>
-                                    <div class="experiences-star-rating" id="formStarRating">
-                                        ${this.generateStarHTML(0)}
-                                    </div>
-                                    <input type="hidden" id="ratingInput" name="rating">
-                                </div>
-
-                                <div class="experiences-form-buttons">
-                                    <button type="button" class="experiences-btn-cancel" id="cancelExperience">
-                                        <i class="fas fa-times"></i>
-                                        Cancelar
-                                    </button>
-                                    <button type="submit" class="experiences-btn-submit">
-                                        <i class="fas fa-paper-plane"></i>
-                                        Publicar
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <!-- LISTA DE EXPERIENCIAS -->
-                        <div class="experiences-list-section">
-                            <div class="experiences-list-header">
-                                <div>
-                                    <h3>
-                                        <i class="fas fa-star"></i>
-                                        Experiencias de Estudiantes
-                                    </h3>
-                                </div>
-                                <div class="experiences-average-rating">
-                                    <div class="experiences-average-stars" id="averageStars"></div>
-                                    <span class="experiences-average-text" id="averageText">--</span>
-                                </div>
-                            </div>
-                            <div class="experiences-list" id="experiencesList">
-                                <div class="experiences-list-empty">
-                                    <i class="fas fa-inbox"></i>
-                                    <p>Cargando experiencias...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
 
     // =============================================================
@@ -137,10 +38,10 @@ class ExperiencesModal extends BaseModal {
         const formToggle  = document.getElementById('formToggle');
         const formSection = document.getElementById('formSection');
 
-        // Listeners estándar heredados: Escape + backdrop (desde BaseModal)
+        // Escape + backdrop (heredados de BaseModal)
         this.registerCloseListeners();
 
-        // Botón X del modal
+        // Botón X
         document.getElementById('closeExperiencesModal')
             .addEventListener('click', () => this.closeModal());
 
@@ -151,39 +52,36 @@ class ExperiencesModal extends BaseModal {
             formToggle.classList.toggle('active', !abierto);
         });
 
-        // Cancelar: cierra el formulario colapsable
+        // Cancelar: cierra el formulario y limpia los campos
         document.getElementById('cancelExperience').addEventListener('click', () => {
+            document.getElementById('experiencesForm').reset();
+            this.updateFormStars(0);
             formSection.style.display = 'none';
             formToggle.classList.remove('active');
         });
 
-        // Bloquear touchmove fuera del cuerpo del modal (mobile)
+        // Bloquear scroll externo en mobile cuando el modal está abierto
         document.addEventListener('touchmove', (e) => {
-            if (this.isOpen()) {
-                const modalBody = this.modal.querySelector('.experiences-modal-body');
-                if (!modalBody.contains(e.target)) e.preventDefault();
-            }
+            if (!this.isOpen()) return;
+            const modalBody = this.modal.querySelector('.experiences-modal-body');
+            if (!modalBody.contains(e.target)) e.preventDefault();
         }, { passive: false });
 
         // Ajustar altura en resize
         window.addEventListener('resize', () => this.adjustModalHeight());
         this.adjustModalHeight();
 
-        // Submit del formulario de experiencias
+        // Submit del formulario
         document.getElementById('experiencesForm').addEventListener('submit', (e) => {
             e.preventDefault();
             if (this.currentRating === 0) {
                 this.showRatingAlert();
                 return;
             }
-            this.showBackendPendingMessage();
+            submitExperience();
         });
 
-        // =========================================================
-        // ENTER en desktop envía el formulario
-        // SHIFT + ENTER en textarea = salto de línea
-        // =========================================================
-
+        // Enter en desktop envía el formulario; Shift+Enter = salto de línea en textarea
         document.addEventListener('keydown', (e) => {
 
             const isDesktop     = window.innerWidth > 1024;
@@ -194,54 +92,43 @@ class ExperiencesModal extends BaseModal {
             const expCommentField = document.getElementById('expComment');
             const isInTextarea    = e.target === expCommentField;
 
-            if (isInTextarea) {
-                // Shift+Enter = salto de línea (comportamiento nativo)
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    document.getElementById('experiencesForm').requestSubmit();
-                }
-            } else if (e.key === 'Enter') {
+            if (isInTextarea && e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById('experiencesForm').requestSubmit();
+            } else if (!isInTextarea && e.key === 'Enter') {
                 e.preventDefault();
                 document.getElementById('experiencesForm').requestSubmit();
             }
         });
 
-        // Clic en estrellas (event delegation)
+        // Clic en estrellas del formulario (event delegation)
         document.addEventListener('click', (e) => {
             const star = e.target.closest('#formStarRating .experiences-star');
-            if (star) {
-                this.updateFormStars(parseFloat(star.getAttribute('data-value')));
-            }
+            if (star) this.updateFormStars(parseFloat(star.getAttribute('data-value')));
         });
 
-        // Hover en estrellas — iluminar todas las anteriores
+        // Hover: iluminar estrellas hasta el cursor
         document.addEventListener('mouseover', (e) => {
             const star = e.target.closest('#formStarRating .experiences-star');
             if (!star) return;
             const hoverValue = parseFloat(star.getAttribute('data-value'));
             document.querySelectorAll('#formStarRating .experiences-star').forEach(s => {
-                const v = parseFloat(s.getAttribute('data-value'));
-                s.classList.toggle('experiences-star-hover', v <= hoverValue);
+                s.classList.toggle('experiences-star-hover', parseFloat(s.getAttribute('data-value')) <= hoverValue);
             });
         });
 
-        // Al salir del contenedor — restaurar estado real
+        // Al salir del contenedor de estrellas, restaurar estado real
         document.addEventListener('mouseover', (e) => {
-            const container = document.getElementById('formStarRating');
-            if (!container) return;
-            if (!e.target.closest('#formStarRating')) {
-                container.querySelectorAll('.experiences-star').forEach(s => {
-                    s.classList.remove('experiences-star-hover');
-                });
-            }
+            if (e.target.closest('#formStarRating')) return;
+            document.querySelectorAll('#formStarRating .experiences-star')
+                .forEach(s => s.classList.remove('experiences-star-hover'));
         });
     }
 
     // =============================================================
-    // ABRIR / CERRAR (sobreescriben los de BaseModal)
-    // open() de BaseModal no se usa aquí porque openModal() recibe
-    // parámetros adicionales (título de la carrera). closeModal()
-    // además limpia el estado interno.
+    // ABRIR / CERRAR
+    // openModal() recibe el título y el id de la carrera pulsada.
+    // closeModal() limpia el estado interno además de cerrar.
     // =============================================================
 
     openModal(majorTitle, majorId) {
@@ -249,7 +136,14 @@ class ExperiencesModal extends BaseModal {
         this.currentMajor  = { title: majorTitle, id: majorId };
         this.currentRating = 0;
 
-        // Actualizar título del modal
+        // Guardar carrera activa para el backend (ver sección Backend al final)
+        window.selectedMajor = {
+            title: majorTitle,
+            id:    majorId,
+            key:   this.majorTitleToKey(majorTitle)
+        };
+
+        // Título del modal
         this.modal.querySelector('h2').innerHTML = `
             <i class="fas fa-comments"></i>
             Experiencias: ${majorTitle}
@@ -259,29 +153,41 @@ class ExperiencesModal extends BaseModal {
         this.updateFormStars(0);
         this.loadExperiences();
 
-        // Reusar el open() de BaseModal
         this.open();
         this.adjustModalHeight();
     }
 
     closeModal() {
-        // Reusar el close() de BaseModal y limpiar estado
         this.close();
         this.currentMajor = null;
     }
 
     // =============================================================
-    // ESTRELLAS — GENERAR HTML
+    // CONVERTIR TÍTULO DE CARRERA A CLAVE CORTA
+    // Permite mapear el título completo al id usado en el JSON
+    // y enviado al backend.
+    // =============================================================
+
+    majorTitleToKey(title) {
+        const map = {
+            'técnico superior en desarrollo de software':        'software',
+            'técnico superior en gestión de las organizaciones': 'gestion',
+            'profesorado en educación inicial':                  'inicial',
+            'profesorado en educación primaria':                 'primaria',
+        };
+        return map[title.toLowerCase()] ?? title.toLowerCase().replace(/\s+/g, '-');
+    }
+
+    // =============================================================
+    // ESTRELLAS — GENERAR HTML (interactivas, para el formulario)
     // =============================================================
 
     generateStarHTML(rating) {
         const roundedRating = Math.round(rating);
         let html = '';
-
         for (let i = 1; i <= 5; i++) {
-            const isFull = roundedRating >= i;
             html += `
-                <span class="experiences-star${isFull ? ' experiences-star-full' : ''}" data-value="${i}">
+                <span class="experiences-star${roundedRating >= i ? ' experiences-star-full' : ''}" data-value="${i}">
                     <i class="fas fa-star"></i>
                 </span>
             `;
@@ -290,26 +196,40 @@ class ExperiencesModal extends BaseModal {
     }
 
     // =============================================================
-    // ESTRELLAS — RENDERIZAR (solo display, sin interacción)
+    // ESTRELLAS — RENDERIZAR (solo display, admite fracciones)
+    // Usa --star-fill para pintar exactamente el % de estrella
+    // parcial (ej. 4.6 → estrella 5 tiene --star-fill: 60%).
     // =============================================================
 
     renderStars(rating) {
-        const roundedRating = Math.round(rating);
+        const value = parseFloat(rating) || 0;
         let html = '';
 
-        for (let i = 0; i < 5; i++) {
-            const isFull = i < roundedRating;
-            html += `<span class="experiences-star-display${isFull ? ' experiences-star-full' : ''}"><i class="fas fa-star"></i></span>`;
+        for (let i = 1; i <= 5; i++) {
+            if (value >= i) {
+                // Estrella completa
+                html += `<span class="experiences-star-display experiences-star-full"><i class="fas fa-star"></i></span>`;
+            } else if (value > i - 1) {
+                // Estrella parcial: dos íconos superpuestos.
+                // .star-bg = base gris; .star-fg = capa dorada recortada por width
+                const fill = Math.round((value - (i - 1)) * 100);
+                html += `<span class="experiences-star-display experiences-star-partial" style="--star-fill:${fill}%">
+                    <i class="fas fa-star star-bg"></i>
+                    <span class="star-fg"><i class="fas fa-star"></i></span>
+                </span>`;
+            } else {
+                // Estrella vacía
+                html += `<span class="experiences-star-display"><i class="fas fa-star"></i></span>`;
+            }
         }
         return html;
     }
 
     // =============================================================
-    // ESTRELLAS — ACTUALIZAR FORMULARIO
+    // ESTRELLAS — ACTUALIZAR FORMULARIO (al hacer clic)
     // =============================================================
 
     updateFormStars(rating) {
-
         this.currentRating = rating;
 
         document.querySelectorAll('#formStarRating .experiences-star').forEach(star => {
@@ -318,12 +238,12 @@ class ExperiencesModal extends BaseModal {
             star.classList.remove('experiences-star-half');
         });
 
-        // Actualizar input hidden para validación
         document.getElementById('ratingInput').value = rating > 0 ? rating : '';
     }
 
     // =============================================================
     // CARGAR EXPERIENCIAS DESDE window.ExperiencesData
+    // Normaliza la estructura del JSON al Map interno.
     // =============================================================
 
     loadExperiencesFromData() {
@@ -336,10 +256,18 @@ class ExperiencesModal extends BaseModal {
             }
 
             Object.keys(data.experiences).forEach(majorId => {
-                this.experiences.set(majorId, data.experiences[majorId] || []);
+                const entry = data.experiences[majorId];
+
+                // Soporta tanto array directo como { averageRating, totalReviews, reviews[] }
+                this.experiences.set(majorId, Array.isArray(entry)
+                    ? { averageRating: null, totalReviews: entry.length, reviews: entry }
+                    : { averageRating: entry.averageRating ?? null,
+                        totalReviews:  entry.totalReviews  ?? entry.reviews?.length ?? 0,
+                        reviews:       entry.reviews       ?? [] }
+                );
             });
 
-            console.log('✓ Experiencias cargadas desde window.ExperiencesData', this.experiences);
+            console.log('✓ Experiencias cargadas', this.experiences);
 
         } catch (error) {
             console.error('✗ Error al cargar experiencias:', error);
@@ -347,29 +275,31 @@ class ExperiencesModal extends BaseModal {
     }
 
     // =============================================================
-    // RENDERIZAR LISTA
+    // RENDERIZAR LISTA DE EXPERIENCIAS
     // =============================================================
 
     loadExperiences() {
 
-        const list           = document.getElementById('experiencesList');
-        const jsonExperiences = this.experiences.get(this.currentMajor.id) || [];
-        const allExperiences  = [...jsonExperiences];
+        const list   = document.getElementById('experiencesList');
+        const entry  = this.experiences.get(this.currentMajor.id)
+                    ?? { averageRating: null, totalReviews: 0, reviews: [] };
 
-        // Promedio
-        const average     = this.calculateAverageRating(allExperiences);
+        const { averageRating, totalReviews, reviews } = entry;
+
+        // Promedio — siempre viene del backend; si no hay datos queda sin calificaciones
         const averageStars = document.getElementById('averageStars');
         const averageText  = document.getElementById('averageText');
 
-        if (allExperiences.length > 0) {
-            averageStars.innerHTML = this.renderStars(average);
-            averageText.textContent = `${average} (${allExperiences.length})`;
+        if (averageRating !== null && totalReviews > 0) {
+            averageStars.innerHTML  = this.renderStars(parseFloat(averageRating));
+            averageText.textContent = `${averageRating} (${totalReviews})`;
         } else {
             averageStars.innerHTML  = '';
             averageText.textContent = 'Sin calificaciones';
         }
 
-        if (allExperiences.length === 0) {
+        // Lista de reseñas
+        if (reviews.length === 0) {
             list.innerHTML = `
                 <div class="experiences-list-empty">
                     <i class="fas fa-inbox"></i>
@@ -379,7 +309,7 @@ class ExperiencesModal extends BaseModal {
             return;
         }
 
-        list.innerHTML = allExperiences.map(exp => `
+        list.innerHTML = reviews.map(exp => `
             <div class="experience-card">
                 <div class="experience-card-header">
                     <span class="experience-card-name">${this.escapeHTML(exp.name)} ${this.escapeHTML(exp.lastname)}</span>
@@ -395,17 +325,7 @@ class ExperiencesModal extends BaseModal {
     }
 
     // =============================================================
-    // CALCULAR PROMEDIO
-    // =============================================================
-
-    calculateAverageRating(experiences) {
-        if (experiences.length === 0) return 0;
-        const sum = experiences.reduce((acc, exp) => acc + (exp.rating || 0), 0);
-        return (sum / experiences.length).toFixed(1);
-    }
-
-    // =============================================================
-    // ALERTA DE CALIFICACIÓN PENDIENTE
+    // ALERTA — SIN CALIFICACIÓN AL INTENTAR PUBLICAR
     // =============================================================
 
     showRatingAlert() {
@@ -421,13 +341,9 @@ class ExperiencesModal extends BaseModal {
                 <p>Por favor selecciona una calificación</p>
             </div>
         `;
-
         document.body.appendChild(alert);
 
-        // Animar entrada
         setTimeout(() => alert.classList.add('experiences-alert-show'), 10);
-
-        // Animar salida y remover
         setTimeout(() => {
             alert.classList.remove('experiences-alert-show');
             setTimeout(() => alert.remove(), 300);
@@ -435,27 +351,7 @@ class ExperiencesModal extends BaseModal {
     }
 
     // =============================================================
-    // MENSAJE BACKEND PENDIENTE
-    // =============================================================
-
-    showBackendPendingMessage() {
-
-        const submitBtn  = document.querySelector('#experiencesForm .experiences-btn-submit');
-        const originalHTML = submitBtn.innerHTML;
-
-        submitBtn.innerHTML         = '<i class="fas fa-clock"></i> Próximamente';
-        submitBtn.style.background  = 'var(--content-text-light)';
-        submitBtn.disabled          = true;
-
-        setTimeout(() => {
-            submitBtn.innerHTML        = originalHTML;
-            submitBtn.style.background = '';
-            submitBtn.disabled         = false;
-        }, 2500);
-    }
-
-    // =============================================================
-    // ESCAPE DE HTML (seguridad contra XSS)
+    // ESCAPE DE HTML — Seguridad contra XSS
     // =============================================================
 
     escapeHTML(text) {
@@ -470,21 +366,18 @@ class ExperiencesModal extends BaseModal {
     adjustModalHeight() {
         const modalContent = this.modal?.querySelector('.experiences-modal-content');
         if (!modalContent) return;
-
-        const maxHeight = Math.min(window.innerHeight - 20, window.innerHeight * 0.92);
-        modalContent.style.maxHeight = `${maxHeight}px`;
+        modalContent.style.maxHeight = `${Math.min(window.innerHeight - 20, window.innerHeight * 0.92)}px`;
     }
 }
 
-/* =================================================================
+/* ================================================================
     INICIALIZACIÓN
-================================================================ */
+    ================================================================ */
 
 onReady(() => {
 
     window.experiencesModal = new ExperiencesModal();
 
-    // Cargar datos (pueden ya estar disponibles o llegar después)
     if (window.ExperiencesData) {
         window.experiencesModal.loadExperiencesFromData();
     } else {
@@ -493,15 +386,52 @@ onReady(() => {
         }, { once: true });
     }
 
-    // Listener de estrellas del formulario (el modal ya existe en DOM)
     setTimeout(() => {
         document.getElementById('formStarRating')?.addEventListener('click', (e) => {
             const star = e.target.closest('.experiences-star');
-            if (star) {
-                window.experiencesModal.updateFormStars(
-                    parseFloat(star.getAttribute('data-value'))
-                );
-            }
+            if (star) window.experiencesModal.updateFormStars(parseFloat(star.getAttribute('data-value')));
         });
     }, 100);
 });
+
+/* ================================================================
+    BACKEND — Todo lo que se envía al servidor queda aquí abajo.
+    ================================================================ */
+
+// -------------------------------------------------------------
+// SUBMIT — Publicar experiencia nueva
+// Recolecta los campos del formulario y los empaqueta en un
+// objeto listo para enviarse al backend.
+// -------------------------------------------------------------
+
+function submitExperience() {
+
+    const payload = {
+        major:   window.selectedMajor?.key   ?? null,   // clave corta: 'software', 'gestion', etc.
+        name:    document.getElementById('expName').value.trim(),
+        lastname:document.getElementById('expLastname').value.trim(),
+        user:    document.getElementById('expUser').value.trim(),
+        comment: document.getElementById('expComment').value.trim(),
+        rating:  window.experiencesModal?.currentRating ?? 0,
+    };
+
+    console.log('📦 Payload listo para el backend:', payload);
+
+    // TODO: reemplazar con la llamada real al backend
+    // fetch('/api/experiences', {
+    //     method:  'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body:    JSON.stringify(payload),
+    // });
+}
+
+// -------------------------------------------------------------
+// Carrera activa seleccionada por el usuario.
+// Se actualiza cada vez que se abre el modal de una carrera.
+//
+//   window.selectedMajor = {
+//       title: "Técnico Superior en Desarrollo de Software",
+//       id:    "major-0-técnico-superior-en-desarrollo-de-software",
+//       key:   "software"
+//   }
+// -------------------------------------------------------------
