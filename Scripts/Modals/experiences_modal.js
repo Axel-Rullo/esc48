@@ -133,7 +133,7 @@ class ExperiencesModal extends BaseModal {
 
     openModal(majorTitle, majorId) {
 
-        this.currentMajor  = { title: majorTitle, id: majorId };
+        this.currentMajor  = { title: majorTitle, id: majorId, key: this.majorTitleToKey(majorTitle) };
         this.currentRating = 0;
 
         // Guardar carrera activa para el backend (ver sección Backend al final)
@@ -258,7 +258,8 @@ class ExperiencesModal extends BaseModal {
             Object.keys(data.experiences).forEach(majorId => {
                 const entry = data.experiences[majorId];
 
-                // Soporta tanto array directo como { averageRating, totalReviews, reviews[] }
+                // La clave del JSON ya es corta (software, gestion, etc.)
+                // Se guarda tal cual para que el backend la reciba igual
                 this.experiences.set(majorId, Array.isArray(entry)
                     ? { averageRating: null, totalReviews: entry.length, reviews: entry }
                     : { averageRating: entry.averageRating ?? null,
@@ -281,7 +282,7 @@ class ExperiencesModal extends BaseModal {
     loadExperiences() {
 
         const list   = document.getElementById('experiencesList');
-        const entry  = this.experiences.get(this.currentMajor.id)
+        const entry  = this.experiences.get(this.currentMajor.key)
                     ?? { averageRating: null, totalReviews: 0, reviews: [] };
 
         const { averageRating, totalReviews, reviews } = entry;
@@ -394,8 +395,8 @@ onReady(() => {
     }, 100);
 });
 
-/* ================================================================
-    BACKEND — Todo lo que se envía al servidor queda aquí abajo.
+/* ===============================================================
+    BACKEND — Todo lo que se debe trabajar esta abajo
     ================================================================ */
 
 // -------------------------------------------------------------

@@ -1,6 +1,6 @@
 {
     "experiences": {
-        "major-0-técnico-superior-en-desarrollo-de-software": {
+        "software": {
             "averageRating": 4.6,
             "totalReviews": 5,
             "reviews": [
@@ -51,7 +51,7 @@
                 }
             ]
         },
-        "major-1-técnico-superior-en-gestión-de-las-organizaciones": {
+        "gestion": {
             "averageRating": 4.6,
             "totalReviews": 5,
             "reviews": [
@@ -102,7 +102,7 @@
                 }
             ]
         },
-        "major-0-profesorado-en-educación-inicial": {
+        "inicial": {
             "averageRating": 4.6,
             "totalReviews": 5,
             "reviews": [
@@ -153,7 +153,7 @@
                 }
             ]
         },
-        "major-1-profesorado-en-educación-primaria": {
+        "primaria": {
             "averageRating": 1.8,
             "totalReviews": 5,
             "reviews": [
