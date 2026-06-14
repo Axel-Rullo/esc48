@@ -204,6 +204,13 @@
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@media (min-width: 1025px) {
+    .hero-news-modal__box {
+        width: 60%;
+        max-width: 60%;
+    }
+}
+
 @keyframes heroModalInMobile {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -295,12 +302,15 @@
     padding: 16px 24px;
     border-top: 1px solid var(--color-border);
     flex-shrink: 0;
+    display: flex;
+    justify-content: center;
 }
 
 /* Botón "Ir a la nota" — solo aparece si hay link real */
 .hero-news-modal__link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 7px;
     background: var(--hero-btn-bg);
     color: var(--hero-btn-text);
@@ -311,7 +321,7 @@
     font-size: 0.85rem;
     border: 2px solid var(--hero-btn-border);
     transition: all 0.3s ease;
-    width: fit-content;
+    width: 50%;
 }
 
 .hero-news-modal__link:hover {

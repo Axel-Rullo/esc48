@@ -79,16 +79,17 @@ class ContactModal extends BaseModal {
             this.setLoadingState('success');
 
             setTimeout(() => {
+                this.contactForm.reset();
+                this.setLoadingState('idle');
+                this.isSubmitting = false;
+                this.close();
+
                 window.customAlert?.show(
                     '¡Gracias por tu mensaje!',
                     'Nos pondremos en contacto pronto.',
                     'success',
                     3000
                 );
-                this.contactForm.reset();
-                this.setLoadingState('idle');
-                this.isSubmitting = false;
-                this.close();
             }, 1200);
 
         }, 800);

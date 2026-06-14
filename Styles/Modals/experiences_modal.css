@@ -143,7 +143,6 @@
     padding: 13px 21px;
     background: var(--content-bg-light);
     border: none;
-    border-bottom: none;
     color: var(--content-text);
     cursor: pointer;
     font-size: 0.88rem;
@@ -156,19 +155,25 @@
     box-sizing: border-box;
 }
 
-.experiences-form-toggle:hover,
-.experiences-form-toggle.active {
-    background: var(--content-accent-border);
-    color: var(--content-button-text);
-}
-
 .experiences-form-toggle i {
     font-size: 1rem;
     transition: transform 0.3s ease, color 0.3s ease;
     color: var(--content-accent-border);
 }
 
+.experiences-form-toggle:hover,
+.experiences-form-toggle.active {
+    background: var(--content-accent-border);
+    color: var(--content-toggle-active-text);
+}
+
+.experiences-form-toggle:hover i,
 .experiences-form-toggle.active i {
+    color: var(--content-toggle-active-text);
+}
+
+.experiences-form-toggle.active i {
+    color: var(--content-toggle-active-text);
     transform: rotate(180deg);
 }
 

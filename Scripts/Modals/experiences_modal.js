@@ -10,7 +10,7 @@ class ExperiencesModal extends BaseModal {
         this.experiences   = new Map();
         this.currentMajor  = null;
         this.currentRating = 0;
-        this.myExperience  = null;   // Experiencia propia del usuario logueado
+        this.myExperience  = null;   // Experiencia propia del usuario
         this.isEditing     = false;  // true cuando se está editando la experiencia propia
 
         this.init();
@@ -18,12 +18,14 @@ class ExperiencesModal extends BaseModal {
 
     // =============================================================
     // INICIALIZAR
-    // El modal ya existe en el DOM (index.html); solo se referencia
-    // y se generan las estrellas vacías del formulario.
     // =============================================================
 
     init() {
-        this.modal = document.getElementById('experiencesModal');
+        this.modal       = document.getElementById('experiencesModal');
+        this.formSection = document.getElementById('formSection');
+        this.formToggle  = document.getElementById('formToggle');
+        this.myExpPanel  = document.getElementById('myExperiencePanel');
+        this.myExpToggle = document.getElementById('myExperienceToggle');
 
         const starContainer = document.getElementById('formStarRating');
         if (starContainer) starContainer.innerHTML = this.generateStarHTML(0);
@@ -37,9 +39,6 @@ class ExperiencesModal extends BaseModal {
 
     attachListeners() {
 
-        const formToggle  = document.getElementById('formToggle');
-        const formSection = document.getElementById('formSection');
-
         // Escape + backdrop (heredados de BaseModal)
         this.registerCloseListeners();
 
@@ -47,40 +46,37 @@ class ExperiencesModal extends BaseModal {
         document.getElementById('closeExperiencesModal')
             .addEventListener('click', () => this.closeModal());
 
-        const myExpToggle = document.getElementById('myExperienceToggle');
-        const myExpPanel  = document.getElementById('myExperiencePanel');
-
         // Función auxiliar para el acordeón
         const togglePanel = (btnToOpen, panelToOpen, btnToClose, panelToClose) => {
             const isOpening = panelToOpen.style.display === 'none';
-            
+
             // Si abrimos este, cerramos el otro
             if (isOpening) {
                 panelToClose.style.display = 'none';
                 btnToClose?.classList.remove('active');
             }
-            
+
             // Alternamos el estado del actual
             panelToOpen.style.display = isOpening ? 'block' : 'none';
             btnToOpen?.classList.toggle('active', isOpening);
         };
 
         // Toggle del formulario colapsable (Compartir)
-        formToggle?.addEventListener('click', () => {
-            togglePanel(formToggle, formSection, myExpToggle, myExpPanel);
+        this.formToggle?.addEventListener('click', () => {
+            togglePanel(this.formToggle, this.formSection, this.myExpToggle, this.myExpPanel);
         });
 
         // Toggle de Mi Experiencia
-        myExpToggle?.addEventListener('click', () => {
-            togglePanel(myExpToggle, myExpPanel, formToggle, formSection);
+        this.myExpToggle?.addEventListener('click', () => {
+            togglePanel(this.myExpToggle, this.myExpPanel, this.formToggle, this.formSection);
         });
 
         // Cancelar: cierra el formulario y limpia los campos
         document.getElementById('cancelExperience')?.addEventListener('click', () => {
             document.getElementById('experiencesForm').reset();
             this.updateFormStars(0);
-            formSection.style.display = 'none';
-            formToggle.classList.remove('active');
+            this.formSection.style.display = 'none';
+            this.formToggle.classList.remove('active');
         });
 
         // Bloquear scroll externo en mobile cuando el modal está abierto
@@ -150,21 +146,16 @@ class ExperiencesModal extends BaseModal {
 
     // =============================================================
     // ABRIR / CERRAR
-    // openModal() recibe el título y el id de la carrera pulsada.
-    // closeModal() limpia el estado interno además de cerrar.
     // =============================================================
 
     openModal(majorTitle, majorId) {
 
-        this.currentMajor  = { title: majorTitle, id: majorId, key: this.majorTitleToKey(majorTitle) };
+        const majorKey     = this.majorTitleToKey(majorTitle);
+        this.currentMajor  = { title: majorTitle, id: majorId, key: majorKey };
         this.currentRating = 0;
 
         // Guardar carrera activa para el backend (ver sección Backend al final)
-        window.selectedMajor = {
-            title: majorTitle,
-            id:    majorId,
-            key:   this.majorTitleToKey(majorTitle)
-        };
+        window.selectedMajor = { title: majorTitle, id: majorId, key: majorKey };
 
         // Título del modal
         this.modal.querySelector('h2').innerHTML = `
@@ -185,21 +176,14 @@ class ExperiencesModal extends BaseModal {
         this.currentMajor = null;
 
         // Cerrar paneles abiertos al salir
-        const formSection = document.getElementById('formSection');
-        const formToggle  = document.getElementById('formToggle');
-        const myExpPanel  = document.getElementById('myExperiencePanel');
-        const myExpToggle = document.getElementById('myExperienceToggle');
-        
-        if (formSection) formSection.style.display = 'none';
-        if (formToggle) formToggle.classList.remove('active');
-        if (myExpPanel) myExpPanel.style.display = 'none';
-        if (myExpToggle) myExpToggle.classList.remove('active');
+        if (this.formSection) this.formSection.style.display = 'none';
+        if (this.formToggle)  this.formToggle.classList.remove('active');
+        if (this.myExpPanel)  this.myExpPanel.style.display = 'none';
+        if (this.myExpToggle) this.myExpToggle.classList.remove('active');
     }
 
     // =============================================================
     // CONVERTIR TÍTULO DE CARRERA A CLAVE CORTA
-    // Permite mapear el título completo al id usado en el JSON
-    // y enviado al backend.
     // =============================================================
 
     majorTitleToKey(title) {
@@ -230,9 +214,7 @@ class ExperiencesModal extends BaseModal {
     }
 
     // =============================================================
-    // ESTRELLAS — RENDERIZAR (solo display, admite fracciones)
-    // Usa --star-fill para pintar exactamente el % de estrella
-    // parcial (ej. 4.6 → estrella 5 tiene --star-fill: 60%).
+    // ESTRELLAS — RENDERIZAR
     // =============================================================
 
     renderStars(rating) {
@@ -269,7 +251,6 @@ class ExperiencesModal extends BaseModal {
         document.querySelectorAll('#formStarRating .experiences-star').forEach(star => {
             const value = parseFloat(star.getAttribute('data-value'));
             star.classList.toggle('experiences-star-full', value <= rating);
-            star.classList.remove('experiences-star-half');
         });
 
         document.getElementById('ratingInput').value = rating > 0 ? rating : '';
@@ -369,8 +350,6 @@ class ExperiencesModal extends BaseModal {
 
     // =============================================================
     // RENDERIZAR EXPERIENCIA PROPIA
-    // Muestra la card de "Mi experiencia" en el panel derecho.
-    // Si no hay experiencia propia, muestra un placeholder.
     // =============================================================
 
     renderMyExperience() {
@@ -607,8 +586,9 @@ class ExperiencesModal extends BaseModal {
     // =============================================================
 
     escapeHTML(text) {
+        if (text == null) return '';
         const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
-        return text.replace(/[&<>"']/g, m => map[m]);
+        return String(text).replace(/[&<>"']/g, m => map[m]);
     }
 
     // =============================================================
@@ -638,22 +618,20 @@ onReady(() => {
         }, { once: true });
     }
 
-    setTimeout(() => {
-        document.getElementById('formStarRating')?.addEventListener('click', (e) => {
-            const star = e.target.closest('.experiences-star');
-            if (star) window.experiencesModal.updateFormStars(parseFloat(star.getAttribute('data-value')));
-        });
-    }, 100);
 });
 
 /* ===============================================================
     BACKEND — Todo lo que se debe trabajar esta abajo
     ================================================================ */
 
+// -------------------------------------------------------------
+// SUBMIT — Guardar la experiencia propia
+// -------------------------------------------------------------
+
 function submitExperience() {
 
     const payload = {
-        major:    window.selectedMajor?.key ?? null,   // clave corta: 'software', 'gestion', etc.
+        major:    window.selectedMajor?.key ?? null,   // clave corta: 'software', 'gestion', 'primaria' y 'inicial'.
         name:     document.getElementById('expName').value.trim(),
         lastname: document.getElementById('expLastname').value.trim(),
         comment:  document.getElementById('expComment').value.trim(),
