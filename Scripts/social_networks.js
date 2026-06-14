@@ -19,18 +19,8 @@ const SOCIAL_NETWORKS = {
     linkedin:   { label: "LinkedIn",           icon: "fab fa-linkedin-in",         color: "#0a66c2" },
     github:     { label: "GitHub",             icon: "fab fa-github",              color: "#24292e" },
 
-    // ── COMUNICACIÓN ─────────────────────────────────────────────
-    telegram:   { label: "Telegram",           icon: "fab fa-telegram",            color: "#26a5e4" },
-    discord:    { label: "Discord",            icon: "fab fa-discord",             color: "#5865f2" },
-
     // ── CONTENIDO / DIFUSIÓN ─────────────────────────────────────
     tiktok:     { label: "TikTok",             icon: "fab fa-tiktok",              color: "#010101" },
-    spotify:    { label: "Spotify",            icon: "fab fa-spotify",             color: "#1db954" },
-    soundcloud: { label: "SoundCloud",         icon: "fab fa-soundcloud",          color: "#ff5500" },
-
-    // ── PLATAFORMAS EDUCATIVAS ────────────────────────────────────
-    moodle:     { label: "Moodle / Aula",      icon: "fas fa-graduation-cap",      color: "#f98012" },
-    meet:       { label: "Google Meet",        icon: "fas fa-video",               color: "#00897b" },
 
     // ── CONTACTO INSTITUCIONAL ────────────────────────────────────
     email:      { label: "Correo Electrónico", icon: "fas fa-envelope",            color: "#ea4335" },

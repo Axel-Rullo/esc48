@@ -10,6 +10,8 @@ class ExperiencesModal extends BaseModal {
         this.experiences   = new Map();
         this.currentMajor  = null;
         this.currentRating = 0;
+        this.myExperience  = null;   // Experiencia propia del usuario logueado
+        this.isEditing     = false;  // true cuando se está editando la experiencia propia
 
         this.init();
     }
@@ -45,15 +47,36 @@ class ExperiencesModal extends BaseModal {
         document.getElementById('closeExperiencesModal')
             .addEventListener('click', () => this.closeModal());
 
-        // Toggle del formulario colapsable
-        formToggle.addEventListener('click', () => {
-            const abierto = formSection.style.display !== 'none';
-            formSection.style.display = abierto ? 'none' : 'block';
-            formToggle.classList.toggle('active', !abierto);
+        const myExpToggle = document.getElementById('myExperienceToggle');
+        const myExpPanel  = document.getElementById('myExperiencePanel');
+
+        // Función auxiliar para el acordeón
+        const togglePanel = (btnToOpen, panelToOpen, btnToClose, panelToClose) => {
+            const isOpening = panelToOpen.style.display === 'none';
+            
+            // Si abrimos este, cerramos el otro
+            if (isOpening) {
+                panelToClose.style.display = 'none';
+                btnToClose?.classList.remove('active');
+            }
+            
+            // Alternamos el estado del actual
+            panelToOpen.style.display = isOpening ? 'block' : 'none';
+            btnToOpen?.classList.toggle('active', isOpening);
+        };
+
+        // Toggle del formulario colapsable (Compartir)
+        formToggle?.addEventListener('click', () => {
+            togglePanel(formToggle, formSection, myExpToggle, myExpPanel);
+        });
+
+        // Toggle de Mi Experiencia
+        myExpToggle?.addEventListener('click', () => {
+            togglePanel(myExpToggle, myExpPanel, formToggle, formSection);
         });
 
         // Cancelar: cierra el formulario y limpia los campos
-        document.getElementById('cancelExperience').addEventListener('click', () => {
+        document.getElementById('cancelExperience')?.addEventListener('click', () => {
             document.getElementById('experiencesForm').reset();
             this.updateFormStars(0);
             formSection.style.display = 'none';
@@ -160,6 +183,17 @@ class ExperiencesModal extends BaseModal {
     closeModal() {
         this.close();
         this.currentMajor = null;
+
+        // Cerrar paneles abiertos al salir
+        const formSection = document.getElementById('formSection');
+        const formToggle  = document.getElementById('formToggle');
+        const myExpPanel  = document.getElementById('myExperiencePanel');
+        const myExpToggle = document.getElementById('myExperienceToggle');
+        
+        if (formSection) formSection.style.display = 'none';
+        if (formToggle) formToggle.classList.remove('active');
+        if (myExpPanel) myExpPanel.style.display = 'none';
+        if (myExpToggle) myExpToggle.classList.remove('active');
     }
 
     // =============================================================
@@ -255,6 +289,12 @@ class ExperiencesModal extends BaseModal {
                 return;
             }
 
+            // Cargar experiencia propia si viene en el JSON
+            if (data.myExperience) {
+                this.myExperience = data.myExperience;
+                console.log('✓ Experiencia propia cargada', this.myExperience);
+            }
+
             Object.keys(data.experiences).forEach(majorId => {
                 const entry = data.experiences[majorId];
 
@@ -299,6 +339,9 @@ class ExperiencesModal extends BaseModal {
             averageText.textContent = 'Sin calificaciones';
         }
 
+        // Renderizar la experiencia propia (si la hay y es de esta carrera)
+        this.renderMyExperience();
+
         // Lista de reseñas
         if (reviews.length === 0) {
             list.innerHTML = `
@@ -313,16 +356,224 @@ class ExperiencesModal extends BaseModal {
         list.innerHTML = reviews.map(exp => `
             <div class="experience-card">
                 <div class="experience-card-header">
-                    <span class="experience-card-name">${this.escapeHTML(exp.name)} ${this.escapeHTML(exp.lastname)}</span>
+                    <span class="experience-card-name">${this.escapeHTML(exp.name)}</span>
                     <div class="experience-card-rating">
                         ${this.renderStars(exp.rating || 0)}
-                        <span class="experience-card-rating-text">${Math.round(exp.rating || 0)}</span>
                     </div>
                 </div>
                 <p class="experience-card-text">${this.escapeHTML(exp.comment)}</p>
                 <div class="experience-card-meta">📅 ${exp.date}</div>
             </div>
         `).join('');
+    }
+
+    // =============================================================
+    // RENDERIZAR EXPERIENCIA PROPIA
+    // Muestra la card de "Mi experiencia" en el panel derecho.
+    // Si no hay experiencia propia, muestra un placeholder.
+    // =============================================================
+
+    renderMyExperience() {
+
+        const panel = document.getElementById('myExperiencePanel');
+        if (!panel) return;
+
+        // Solo mostrar si la experiencia es de la carrera actual
+        const mine = (this.myExperience?.major === this.currentMajor.key)
+            ? this.myExperience
+            : null;
+
+        // Salir del modo edición al cambiar de carrera
+        this.isEditing = false;
+
+        if (!mine) {
+            panel.innerHTML = `
+                <div class="my-experience-empty">
+                    <i class="fas fa-user-circle"></i>
+                    <p>Aún no publicaste tu experiencia en esta carrera.</p>
+                </div>
+            `;
+            return;
+        }
+
+        const nameParts = (mine.name || '').split(' ');
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ');
+
+        panel.innerHTML = `
+            <div class="my-experience-card" id="myExperienceCard">
+                <div class="my-experience-view" id="myExperienceView">
+                    <div class="my-experience-card-header">
+                        <span class="experience-card-name">${this.escapeHTML(mine.name)}</span>
+                        <div class="my-experience-card-rating">
+                            ${this.renderStars(mine.rating || 0)}
+                        </div>
+                    </div>
+                    <p class="experience-card-text">${this.escapeHTML(mine.comment)}</p>
+                    <div class="experience-card-meta">📅 ${mine.date}</div>
+                    <div class="my-experience-actions">
+                        <button class="my-exp-btn my-exp-btn-edit" id="myExpEditBtn">
+                            <i class="fas fa-pen"></i> Editar
+                        </button>
+                        <button class="my-exp-btn my-exp-btn-delete" id="myExpDeleteBtn">
+                            <i class="fas fa-trash"></i> Borrar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="my-experience-edit" id="myExperienceEdit" style="display:none;">
+                    <div class="experiences-form-row">
+                        <div class="experiences-form-group">
+                            <label>Nombre <span class="required">*</span></label>
+                            <input type="text" id="myExpName" value="${this.escapeHTML(firstName)}" maxlength="40" required>
+                        </div>
+                        <div class="experiences-form-group">
+                            <label>Apellido <span class="required">*</span></label>
+                            <input type="text" id="myExpLastname" value="${this.escapeHTML(lastName)}" maxlength="40" required>
+                        </div>
+                    </div>
+                    <div class="experiences-form-group">
+                        <label>Descripción <span class="required">*</span></label>
+                        <textarea id="myExpComment" rows="3" maxlength="500">${this.escapeHTML(mine.comment)}</textarea>
+                    </div>
+                    <div class="experiences-form-group">
+                        <label>Calificación <span class="required">*</span></label>
+                        <div class="experiences-star-rating" id="myExpStarRating">
+                            ${this.generateStarHTML(mine.rating || 0)}
+                        </div>
+                    </div>
+                    <div class="my-experience-actions">
+                        <button class="my-exp-btn my-exp-btn-edit" id="myExpSaveBtn">
+                            <i class="fas fa-check"></i> Aplicar
+                        </button>
+                        <button class="my-exp-btn my-exp-btn-delete" id="myExpCancelBtn">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Listeners de la card propia (solo se registran si la card existe)
+        this.attachMyExperienceListeners(mine);
+    }
+
+    // =============================================================
+    // LISTENERS DE LA EXPERIENCIA PROPIA
+    // Se registran cada vez que renderMyExperience() vuelve a pintar.
+    // =============================================================
+
+    attachMyExperienceListeners(mine) {
+
+        const view   = document.getElementById('myExperienceView');
+        const edit   = document.getElementById('myExperienceEdit');
+        const stars  = document.getElementById('myExpStarRating');
+
+        // Guardar el rating de edición por separado para no pisar currentRating
+        this.editRating = mine.rating || 0;
+
+        // Estrellas del panel de edición
+        stars?.addEventListener('click', (e) => {
+            const star = e.target.closest('.experiences-star');
+            if (!star) return;
+            this.editRating = parseFloat(star.getAttribute('data-value'));
+            stars.querySelectorAll('.experiences-star').forEach(s => {
+                s.classList.toggle('experiences-star-full', parseFloat(s.getAttribute('data-value')) <= this.editRating);
+            });
+        });
+
+        // Hover en estrellas de edición
+        stars?.addEventListener('mouseover', (e) => {
+            const star = e.target.closest('.experiences-star');
+            if (!star) return;
+            const val = parseFloat(star.getAttribute('data-value'));
+            stars.querySelectorAll('.experiences-star').forEach(s => {
+                s.classList.toggle('experiences-star-hover', parseFloat(s.getAttribute('data-value')) <= val);
+            });
+        });
+
+        stars?.addEventListener('mouseleave', () => {
+            stars.querySelectorAll('.experiences-star').forEach(s => s.classList.remove('experiences-star-hover'));
+        });
+
+        // Botón Editar → muestra el formulario de edición
+        document.getElementById('myExpEditBtn')?.addEventListener('click', () => {
+            view.style.display = 'none';
+            edit.style.display = 'block';
+            this.isEditing = true;
+        });
+
+        // Botón Cancelar → vuelve a la vista
+        document.getElementById('myExpCancelBtn')?.addEventListener('click', () => {
+            edit.style.display = 'none';
+            view.style.display = 'block';
+            this.isEditing = false;
+            // Restaurar estrellas al valor original
+            this.editRating = mine.rating || 0;
+            stars?.querySelectorAll('.experiences-star').forEach(s => {
+                s.classList.toggle('experiences-star-full', parseFloat(s.getAttribute('data-value')) <= this.editRating);
+            });
+        });
+
+        // Botón Guardar
+        document.getElementById('myExpSaveBtn')?.addEventListener('click', () => {
+            updateExperience(mine.id, this.editRating);
+        });
+
+        // Botón Borrar → abre la alerta de confirmación
+        document.getElementById('myExpDeleteBtn')?.addEventListener('click', () => {
+            this.showDeleteConfirm(mine.id);
+        });
+    }
+
+    // =============================================================
+    // ALERTA DE CONFIRMACIÓN — Borrar experiencia
+    // =============================================================
+
+    showDeleteConfirm(id) {
+
+        document.getElementById('experiencesDeleteConfirm')?.remove();
+
+        const overlay = document.createElement('div');
+        overlay.id        = 'experiencesDeleteConfirm';
+        overlay.className = 'experiences-delete-overlay';
+        overlay.innerHTML = `
+            <div class="experiences-delete-dialog">
+                <div class="experiences-delete-icon">
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+                <p class="experiences-delete-title">¿Querés borrar tu experiencia?</p>
+                <p class="experiences-delete-subtitle">Esta acción no se puede deshacer.</p>
+                <div class="experiences-delete-buttons">
+                    <button class="experiences-btn-submit experiences-delete-confirm" id="deleteConfirmYes">
+                        <i class="fas fa-check"></i> Sí, borrar
+                    </button>
+                    <button class="experiences-btn-cancel experiences-delete-cancel" id="deleteConfirmNo">
+                        <i class="fas fa-times"></i> No
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+
+        setTimeout(() => overlay.classList.add('experiences-delete-overlay-show'), 10);
+
+        const close = () => {
+            overlay.classList.remove('experiences-delete-overlay-show');
+            setTimeout(() => overlay.remove(), 300);
+        };
+
+        document.getElementById('deleteConfirmYes').addEventListener('click', () => {
+            close();
+            deleteExperience(id);
+        });
+
+        document.getElementById('deleteConfirmNo').addEventListener('click', close);
+
+        // Clic en el fondo cierra el diálogo
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) close();
+        });
     }
 
     // =============================================================
@@ -399,40 +650,37 @@ onReady(() => {
     BACKEND — Todo lo que se debe trabajar esta abajo
     ================================================================ */
 
-// -------------------------------------------------------------
-// SUBMIT — Publicar experiencia nueva
-// Recolecta los campos del formulario y los empaqueta en un
-// objeto listo para enviarse al backend.
-// -------------------------------------------------------------
-
 function submitExperience() {
 
     const payload = {
-        major:   window.selectedMajor?.key   ?? null,   // clave corta: 'software', 'gestion', etc.
-        name:    document.getElementById('expName').value.trim(),
-        lastname:document.getElementById('expLastname').value.trim(),
-        user:    document.getElementById('expUser').value.trim(),
-        comment: document.getElementById('expComment').value.trim(),
-        rating:  window.experiencesModal?.currentRating ?? 0,
+        major:    window.selectedMajor?.key ?? null,   // clave corta: 'software', 'gestion', etc.
+        name:     document.getElementById('expName').value.trim(),
+        lastname: document.getElementById('expLastname').value.trim(),
+        comment:  document.getElementById('expComment').value.trim(),
+        rating:   window.experiencesModal?.currentRating ?? 0,
     };
-
-    console.log('📦 Payload listo para el backend:', payload);
-
-    // TODO: reemplazar con la llamada real al backend
-    // fetch('/api/experiences', {
-    //     method:  'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body:    JSON.stringify(payload),
-    // });
 }
 
 // -------------------------------------------------------------
-// Carrera activa seleccionada por el usuario.
-// Se actualiza cada vez que se abre el modal de una carrera.
-//
-//   window.selectedMajor = {
-//       title: "Técnico Superior en Desarrollo de Software",
-//       id:    "major-0-técnico-superior-en-desarrollo-de-software",
-//       key:   "software"
-//   }
+// UPDATE — Guardar cambios de la experiencia propia
 // -------------------------------------------------------------
+
+function updateExperience(id, rating) {
+
+    const payload = {
+        id,
+        name:     document.getElementById('myExpName').value.trim(),
+        lastname: document.getElementById('myExpLastname').value.trim(),
+        comment:  document.getElementById('myExpComment').value.trim(),
+        rating,
+    };
+}
+
+// -------------------------------------------------------------
+// DELETE — Borrar la experiencia propia
+// -------------------------------------------------------------
+
+function deleteExperience(id) {
+
+    const payload = { id };
+}

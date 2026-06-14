@@ -223,13 +223,21 @@
 
             <div class="experiences-modal-body">
 
-                <!-- FORMULARIO COLAPSABLE -->
-                <button class="experiences-form-toggle" id="formToggle">
-                    <i class="fas fa-chevron-down"></i>
-                    <span>Compartir tu Experiencia</span>
-                </button>
+                <!-- SECCIÓN 50/50: BOTONES COMPARTIR / MI EXPERIENCIA -->
+                <div class="experiences-dual-panel">
+                    <button class="experiences-form-toggle" id="formToggle">
+                        <i class="fas fa-chevron-down"></i>
+                        <span>Compartir tu Experiencia</span>
+                    </button>
 
-                <div class="experiences-form-section" id="formSection" style="display: none;">
+                    <button class="experiences-form-toggle" id="myExperienceToggle">
+                        <i class="fas fa-chevron-down"></i>
+                        <span>Mi Experiencia</span>
+                    </button>
+                </div>
+
+                <!-- CONTENIDO: COMPARTIR EXPERIENCIA -->
+                <div class="experiences-form-section" id="formSection" style="display: none; border-bottom: 2px solid var(--content-border);">
                     <form class="experiences-form" id="experiencesForm">
                         <div class="experiences-form-row">
                             <div class="experiences-form-group">
@@ -240,11 +248,6 @@
                                 <label for="expLastname">Apellido <span class="required">*</span></label>
                                 <input type="text" id="expLastname" name="lastname" placeholder="Ej: Pérez" required>
                             </div>
-                        </div>
-
-                        <div class="experiences-form-group">
-                            <label for="expUser">Usuario <span class="required">*</span></label>
-                            <input type="text" id="expUser" name="user" placeholder="Ej: juanperez" required>
                         </div>
 
                         <div class="experiences-form-group">
@@ -276,15 +279,18 @@
                     </form>
                 </div>
 
+                <!-- CONTENIDO: MI EXPERIENCIA -->
+                <div class="my-experience-panel" id="myExperiencePanel" style="display: none; border-bottom: 2px solid var(--content-border);">
+                    <!-- El contenido se inyecta dinámicamente desde JS -->
+                </div>
+
                 <!-- LISTA DE EXPERIENCIAS -->
                 <div class="experiences-list-section">
                     <div class="experiences-list-header">
-                        <div>
-                            <h3>
-                                <i class="fas fa-star"></i>
-                                Experiencias de Estudiantes
-                            </h3>
-                        </div>
+                        <h3>
+                            <i class="fas fa-star"></i>
+                            Experiencias de Estudiantes
+                        </h3>
                         <div class="experiences-average-rating">
                             <div class="experiences-average-stars" id="averageStars"></div>
                             <span class="experiences-average-text" id="averageText">--</span>

@@ -95,6 +95,17 @@
     transform: rotate(90deg);
 }
 
+@media (min-width: 1025px) {
+    .experiences-modal-header {
+        padding: 12px 21px;
+    }
+
+    .experiences-modal-content {
+        width: 60%;
+        max-width: 60%;
+    }
+}
+
 /* BODY DEL MODAL */
 .experiences-modal-body {
     display: flex;
@@ -132,7 +143,7 @@
     padding: 13px 21px;
     background: var(--content-bg-light);
     border: none;
-    border-bottom: 2px solid var(--content-accent-border);
+    border-bottom: none;
     color: var(--content-text);
     cursor: pointer;
     font-size: 0.88rem;
@@ -145,9 +156,10 @@
     box-sizing: border-box;
 }
 
-.experiences-form-toggle:hover {
-    background: var(--content-bg);
-    color: var(--content-accent-border);
+.experiences-form-toggle:hover,
+.experiences-form-toggle.active {
+    background: var(--content-accent-border);
+    color: var(--content-button-text);
 }
 
 .experiences-form-toggle i {
@@ -264,7 +276,7 @@
     display: flex;
     gap: 0.4rem;
     align-items: center;
-    margin: 0.5rem 0;
+    margin: 0.1rem 0;
     flex-wrap: wrap;
 }
 
@@ -342,7 +354,8 @@
 
 /* SECCIÓN DE EXPERIENCIAS */
 .experiences-list-section {
-    padding: 17px 21px;
+    padding: 9px 21px 17px;
+    border-top: 1px solid var(--content-border);
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -354,7 +367,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--content-border);
     flex-wrap: wrap;
@@ -627,7 +640,8 @@
         min-height: 48px;
     }
 
-    .experiences-form-section {
+    .experiences-form-section,
+    .my-experience-panel {
         padding: 15px 18px;
     }
 
@@ -655,7 +669,8 @@
         min-height: 46px;
     }
 
-    .experiences-form-section {
+    .experiences-form-section,
+    .my-experience-panel {
         padding: 12px 17px;
     }
 
@@ -720,7 +735,8 @@
         min-height: 44px;
     }
 
-    .experiences-form-section {
+    .experiences-form-section,
+    .my-experience-panel {
         padding: 10px 12px;
     }
 
@@ -862,5 +878,259 @@
 
     .experiences-alert-content p {
         word-break: break-word;
+    }
+}
+/* ================================================================
+    SECCIÓN 50/50 — BOTONES ACCORDION
+   ================================================================ */
+
+/* Contenedor que divide la zona de los botones toggle en dos mitades */
+.experiences-dual-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+/* Botones toggle dentro del panel dual */
+.experiences-dual-panel .experiences-form-toggle {
+    border-bottom: none;
+    border-right: none;
+    border-radius: 0;
+    padding: 11px 14px;
+    min-height: 44px;
+    font-size: 0.82rem;
+    flex: 1;
+}
+
+#myExperienceToggle {
+    border-left: 1px solid var(--content-border);
+}
+
+/* ================================================================
+    CARD DE MI EXPERIENCIA
+   ================================================================ */
+
+/* Contenedor de "Mi experiencia" (comportamiento igual al form) */
+.my-experience-panel {
+    padding: 14px 18px;
+    background: var(--content-bg-light);
+    flex-shrink: 0;
+    animation: slideDown 0.3s ease;
+    transition: var(--transition);
+}
+
+/* Placeholder cuando no hay experiencia propia */
+.my-experience-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px 8px;
+    color: var(--content-text-light);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.my-experience-empty i {
+    font-size: 1.6rem;
+    opacity: 0.4;
+}
+
+.my-experience-empty p {
+    font-size: 0.72rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Card de la experiencia propia */
+.my-experience-card {
+    background: var(--content-bg);
+    border-radius: 6px;
+    border-left: 3px solid var(--content-accent-border);
+    box-shadow: 0 2px 8px var(--content-shadow);
+    animation: slideInLeft 0.3s ease;
+    transition: var(--transition);
+}
+
+.my-experience-view {
+    padding: 10px 12px;
+}
+
+/* Header de la vista: muestra nombre y calificación */
+.my-experience-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Botones Editar / Borrar al pie de la card */
+.my-experience-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.my-exp-btn {
+    padding: 6px 10px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+    min-height: 34px;
+}
+
+.my-exp-btn-edit {
+    background: var(--content-accent-border);
+    color: var(--content-button-text);
+}
+
+.my-exp-btn-edit:hover {
+    background: transparent;
+    color: var(--content-accent-border);
+    border-color: var(--content-accent-border);
+    transform: translateY(-1px);
+}
+
+.my-exp-btn-delete {
+    background: var(--content-border);
+    color: var(--content-text);
+}
+
+.my-exp-btn-delete:hover {
+    background: var(--content-danger);
+    color: #ffffff;
+    border-color: var(--content-danger);
+    transform: translateY(-1px);
+}
+
+/* Formulario de edición dentro de la card propia */
+.my-experience-edit {
+    padding: 10px 12px;
+    border-top: 1px solid var(--content-border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    animation: slideDown 0.2s ease;
+}
+
+/* ================================================================
+    ALERTA DE CONFIRMACIÓN — Borrar experiencia
+   ================================================================ */
+
+.experiences-delete-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.experiences-delete-overlay.experiences-delete-overlay-show {
+    opacity: 1;
+}
+
+.experiences-delete-dialog {
+    background: var(--content-bg);
+    border-radius: 12px;
+    padding: 28px 32px;
+    box-shadow: 0 20px 60px var(--content-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: 320px;
+    width: 90%;
+    transform: scale(0.85);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 2px solid var(--content-border);
+}
+
+.experiences-delete-overlay.experiences-delete-overlay-show .experiences-delete-dialog {
+    transform: scale(1);
+}
+
+.experiences-delete-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 107, 107, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.experiences-delete-icon i {
+    font-size: 1.4rem;
+    color: var(--content-danger);
+}
+
+.experiences-delete-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--content-text);
+    margin: 0;
+    text-align: center;
+}
+
+.experiences-delete-subtitle {
+    font-size: 0.78rem;
+    color: var(--content-text-light);
+    margin: 0;
+    text-align: center;
+}
+
+.experiences-delete-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.experiences-delete-confirm {
+    background: var(--content-danger) !important;
+}
+
+.experiences-delete-confirm:hover {
+    background: transparent !important;
+    color: var(--content-danger) !important;
+    border-color: var(--content-danger) !important;
+}
+
+/* ================================================================
+    RESPONSIVE — DUAL PANEL
+   ================================================================ */
+
+@media (max-width: 480px) {
+
+    /* En móvil apilamos los botones verticalmente */
+    .experiences-dual-panel {
+        grid-template-columns: 1fr;
+    }
+
+    #myExperienceToggle {
+        border-left: none !important;
+        border-top: 1px solid var(--content-border);
+    }
+
+    .my-experience-actions {
+        grid-template-columns: 1fr 1fr;
     }
 }

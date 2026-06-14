@@ -1,0 +1,20 @@
+<datalist id="socialNetworksList">
+    <option value="facebook">Facebook</option>
+    <option value="instagram">Instagram</option>
+    <option value="threads">Threads</option>
+    <option value="whatsapp">WhatsApp</option>
+    <option value="messenger">Messenger</option>
+
+    <option value="youtube">YouTube</option>
+
+    <option value="twitter">Twitter / X</option>
+    <option value="linkedin">LinkedIn</option>
+    <option value="github">GitHub</option>
+
+    <option value="tiktok">TikTok</option>
+
+    <option value="email">Correo Electrónico</option>
+    <option value="website">Sitio Web</option>
+</datalist>
+
+LISTA DE LAS OPCIONES QUE TIENEN UN ICONO EN social_networks.js
