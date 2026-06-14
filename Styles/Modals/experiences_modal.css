@@ -1118,17 +1118,7 @@
     RESPONSIVE — DUAL PANEL
    ================================================================ */
 
-@media (max-width: 1024px) {
-
-    /* En móvil apilamos los botones verticalmente */
-    .experiences-dual-panel {
-        grid-template-columns: 1fr;
-    }
-
-    #myExperienceToggle {
-        border-left: none !important;
-        border-top: 1px solid var(--content-border);
-    }
+@media (max-width: 480px) {
 
     .my-experience-actions {
         grid-template-columns: 1fr 1fr;
