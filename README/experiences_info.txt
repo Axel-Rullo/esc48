@@ -1,0 +1,188 @@
+# ¿Cómo funcionan las experiencias?
+
+---
+
+## Flujo general
+
+Se detecta el login.
+
+Si hay un login existente (por ejemplo, en el aula virtual), se muestra la sección del formulario
+y la experiencia propia. Si no hay login, ambas secciones se ocultan.
+
+Para traer los datos de afuera, al pulsar uno de los botones de experiencias en majors se guarda
+una carrera en una variable dependiendo el botón que se pulse (`software`, `gestion`, `inicial` y `primaria`).
+Con esa variable ya se sabe qué experiencias traer. La variable está marcada en la sección del Backend
+en `experiences_modal.js`, al final del archivo, en la primera función.
+
+---
+
+## Función — Compartir tu experiencia
+
+En el formulario se guardan los datos; el backend hace el resto.
+
+Cosas a considerar:
+- Por estudiante debe haber una única experiencia. Una vez que se publica, no dejar que el estudiante publique otra.
+- El nombre y apellido se tienen que unificar (se mandan separados, el backend los une).
+
+---
+
+## Función — Editar / Borrar
+
+Al tener una experiencia publicada (se muestra si detecta un login), se utilizan las funciones
+ya preparadas que guardan los datos necesarios en la sección del Backend.
+
+---
+
+## Funcionalidades extras
+
+- Límite de experiencias que se traen de golpe, para que no colapse nada.
+  Por ejemplo, una función que traiga las experiencias a medida que el scroll baja por debajo del 80%.
+
+---
+
+## Conclusión
+
+Fuera de la sección del Backend, solo hay que tratar de conseguir el usuario y, si es posible,
+la carrera a la que pertenece el estudiante, para no dejarlo publicar en una carrera ajena.
+Lo demás ya está preparado en la sección del Backend.
+
+---
+
+## Mapa de cambios — ¿Qué tocar cuando el backend trae datos de otro lado?
+
+Cuando el backend deje de usar `window.ExperiencesData` (el JSON local) y pase a traer los datos
+de una API o aula virtual, estos son los únicos puntos del archivo a modificar:
+
+---
+
+### 1. `loadExperiencesFromData()` — El punto de entrada de todos los datos
+
+```
+experiences_modal.js → línea ~263
+```
+
+Aquí se lee `window.ExperiencesData`. Cuando el backend esté listo, esta función
+se reemplaza (o se complementa) con una llamada fetch/axios a la API.
+
+**La estructura que espera recibir es la del JSON**
+
+**Qué hace internamente con `const entry`:**
+
+```js
+Object.keys(data.experiences).forEach(majorId => {
+    const entry = data.experiences[majorId];
+    //    ^^^^^
+    //    entry = el objeto de UNA carrera, por ejemplo data.experiences["software"]
+    //    Tiene: entry.averageRating, entry.totalReviews, entry.reviews[]
+    //
+    //    Si el backend manda el array de reviews directamente (sin envoltura),
+    //    el código lo acepta igual gracias al Array.isArray(entry).
+
+    const rawReviews = Array.isArray(entry) ? entry : entry.reviews ?? [];
+    const reviews    = rawReviews.map(({ id, ...rest }) => rest);
+    //                             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    //                             Descarta el id de cada review.
+    //                             Solo myExperience.id se conserva.
+
+    this.experiences.set(majorId, Array.isArray(entry)
+        ? { averageRating: null, totalReviews: reviews.length, reviews }
+        : { averageRating: entry.averageRating ?? null,
+            totalReviews:  entry.totalReviews  ?? reviews.length,
+            reviews }
+    );
+});
+```
+
+---
+
+### 2. `submitExperience()` — Publicar experiencia nueva
+
+```
+experiences_modal.js → sección Backend, función 1
+```
+
+El `payload` ya está armado. Solo hace falta agregar la llamada al endpoint:
+
+```js
+function submitExperience() {
+    const payload = {
+        major:    window.selectedMajor?.key ?? null,  // 'software' | 'gestion' | 'inicial' | 'primaria'
+        name:     document.getElementById('expName').value.trim(),
+        lastname: document.getElementById('expLastname').value.trim(),
+        comment:  document.getElementById('expComment').value.trim(),
+        rating:   window.experiencesModal?.currentRating ?? 0,
+    };
+    // → POST /api/experiences   con payload
+}
+```
+
+---
+
+### 3. `updateExperience(id, rating)` — Editar experiencia propia
+
+```
+experiences_modal.js → sección Backend, función 2
+```
+
+```js
+function updateExperience(id, rating) {
+    const payload = {
+        id,       // viene de myExperience.id — el único id que viaja
+        name:     document.getElementById('myExpName').value.trim(),
+        lastname: document.getElementById('myExpLastname').value.trim(),
+        comment:  document.getElementById('myExpComment').value.trim(),
+        rating,
+    };
+    // → PUT /api/experiences/:id   con payload
+}
+```
+
+---
+
+### 4. `deleteExperience(id)` — Borrar experiencia propia
+
+```
+experiences_modal.js → sección Backend, función 3
+```
+
+```js
+function deleteExperience(id) {
+    const payload = { id };
+    // → DELETE /api/experiences/:id
+}
+```
+
+---
+
+### 5. Inicialización — Disparar la carga de datos
+
+```
+experiences_modal.js → línea ~612, bloque onReady()
+```
+
+Hoy escucha el evento `experiencesDataLoaded` o lee `window.ExperiencesData` directamente.
+Cuando la API esté lista, este bloque es donde se dispara el fetch inicial y,
+al resolverse, se llama a `loadExperiencesFromData()` pasándole la respuesta.
+
+```js
+onReady(() => {
+    window.experiencesModal = new ExperiencesModal();
+
+    // Hoy:
+    if (window.ExperiencesData) {
+        window.experiencesModal.loadExperiencesFromData();
+    } else {
+        window.addEventListener('experiencesDataLoaded', () => {
+            window.experiencesModal.loadExperiencesFromData();
+        }, { once: true });
+    }
+
+    // Mañana (ejemplo con fetch):
+    // fetch('/api/experiences')
+    //     .then(r => r.json())
+    //     .then(data => {
+    //         window.ExperiencesData = data;
+    //         window.experiencesModal.loadExperiencesFromData();
+    //     });
+});
+```

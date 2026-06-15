@@ -258,7 +258,6 @@ class ExperiencesModal extends BaseModal {
 
     // =============================================================
     // CARGAR EXPERIENCIAS DESDE window.ExperiencesData
-    // Normaliza la estructura del JSON al Map interno.
     // =============================================================
 
     loadExperiencesFromData() {
@@ -280,12 +279,16 @@ class ExperiencesModal extends BaseModal {
                 const entry = data.experiences[majorId];
 
                 // La clave del JSON ya es corta (software, gestion, etc.)
-                // Se guarda tal cual para que el backend la reciba igual
+                // Se guarda tal cual para que el backend la reciba igual.
+                // El id de cada review se descarta: solo myExperience necesita id.
+                const rawReviews = Array.isArray(entry) ? entry : entry.reviews ?? [];
+                const reviews    = rawReviews.map(({ id, ...rest }) => rest);
+
                 this.experiences.set(majorId, Array.isArray(entry)
-                    ? { averageRating: null, totalReviews: entry.length, reviews: entry }
+                    ? { averageRating: null, totalReviews: reviews.length, reviews }
                     : { averageRating: entry.averageRating ?? null,
-                        totalReviews:  entry.totalReviews  ?? entry.reviews?.length ?? 0,
-                        reviews:       entry.reviews       ?? [] }
+                        totalReviews:  entry.totalReviews  ?? reviews.length,
+                        reviews }
                 );
             });
 
