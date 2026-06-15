@@ -61,7 +61,7 @@
         Ademas del link para el boton "-> Mas info"
    
     EXPERIENCIAS:
-        experiences_modal.txt
+        experiences_info.txt
 
 /* ================================================================
     UBICACIÓN

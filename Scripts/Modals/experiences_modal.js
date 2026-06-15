@@ -275,8 +275,8 @@ class ExperiencesModal extends BaseModal {
                 console.log('✓ Experiencia propia cargada', this.myExperience);
             }
 
-            Object.keys(data.experiences).forEach(majorId => {
-                const entry = data.experiences[majorId];
+            Object.keys(data.experiences).forEach(major => {
+                const entry = data.experiences[major];
 
                 // La clave del JSON ya es corta (software, gestion, etc.)
                 // Se guarda tal cual para que el backend la reciba igual.
@@ -284,7 +284,7 @@ class ExperiencesModal extends BaseModal {
                 const rawReviews = Array.isArray(entry) ? entry : entry.reviews ?? [];
                 const reviews    = rawReviews.map(({ id, ...rest }) => rest);
 
-                this.experiences.set(majorId, Array.isArray(entry)
+                this.experiences.set(major, Array.isArray(entry)
                     ? { averageRating: null, totalReviews: reviews.length, reviews }
                     : { averageRating: entry.averageRating ?? null,
                         totalReviews:  entry.totalReviews  ?? reviews.length,

@@ -17,7 +17,6 @@ const SOCIAL_NETWORKS = {
     // ── PROFESIONAL / ACADÉMICO ───────────────────────────────────
     twitter:    { label: "Twitter / X",        icon: "fab fa-x-twitter",           color: "#000000" },
     linkedin:   { label: "LinkedIn",           icon: "fab fa-linkedin-in",         color: "#0a66c2" },
-    github:     { label: "GitHub",             icon: "fab fa-github",              color: "#24292e" },
 
     // ── CONTENIDO / DIFUSIÓN ─────────────────────────────────────
     tiktok:     { label: "TikTok",             icon: "fab fa-tiktok",              color: "#010101" },
