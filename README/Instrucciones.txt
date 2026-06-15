@@ -27,12 +27,12 @@
 
     MENUS:
         Aqui van los menus desplegables de datos agrupados por secciones 
-        (Carreras, Datos de estudiantes, etc.).
+        (Carreras, Datos de estudiantes, etc.). -> Menus Desplegables
 
         IMPORTANTE: "Datos Institucionales", esta programado para
         que muestre los campos: Contacto, Telefonos, Ubicación y Redes; luego el resto 
         (lo que viene del Json). Esto con el fin de tener una segunda forma de llegar a estos 
-        (originalmente se encuentran en el footer o justo por encima), ya que incluso mucho gente 
+        (originalmente se encuentran en el footer o por encima de este), ya que incluso mucha gente 
         estaba acostumbrada a buscarlos ahí. Por lo tanto:
         Datos Institucionales debe ser un menu que no se pueda eliminar, pero si modificar sus campos.
 
@@ -40,7 +40,7 @@
     CARRUSEL DE NOTICIAS
    ================================================================ */
 
-    Aqui se muestran las noticias en tres tipos: normales, destacadas y la primicia.
+    Aqui se muestran las noticias en tres tipos: normales (Type NULL), destacadas y la primicia.
     La primicia siempre es una sola y se muestra antes que las demas.
     Las destacadas se muestran en segundo lugar, y luego, las normales.
     Es necesario contar con un sistema con el cual poder elegir el orden (1,2,3)
@@ -48,7 +48,7 @@
 
     Debe contar con una opcion de noticias temporales, es decir, que quien publica
     elija si la noticia es temporal o no. Por ejemplo, ingresantes 1er año (la publicacion),
-    debe mostrarse solo entre las fechas de inscripcion.
+    debe mostrarse solo hasta la fecha en que finalize las inscripciones.
 
     La primicia como los destacados no son obligatorios.
 
@@ -57,33 +57,27 @@
    ================================================================ */
 
     TARJETAS:
-        Estan echas dinamicamente con el fin de que se pueda modificar: Imagen, Titulo, Descripción.
+        Estan echas dinamicamente con el fin de que se pueda modificar: Imagen, Titulo y Descripción.
         Ademas del link para el boton "-> Mas info"
    
     EXPERIENCIAS:
-        La idea es traer una lista con las experiencias publicadas,
-        las mismas tendran que estar ordenadas de la fecha mas reciente a la mas antigua.
-
-        Ademas, se tendra que contar con un sistema de reconocimiento de login, si es posible
-        con el aula virtual, esto con el fin de que solo lo usen estudiantes del instituto.
-
-        Obviamente no olvidemos el sistema para publicar las mismas.
+        experiences_modal.txt
 
 /* ================================================================
     UBICACIÓN
    ================================================================ */
 
-        No se toca, es completamente estático y directo (un boton con un link a google maps).
+        No se toca, es completamente estático y directo (un boton con un link a la tarjeta de google maps).
 
 /* ================================================================
     FOOTER
    ================================================================ */
 
     REDES:
-        En si traer una lista de las mismas, incluyendo icono y color
+        En si traer una lista de las mismas.
 
     TELEFONOS:
-        Se trae una lista de los mismos con el nombre referente
+        Se trae una lista de los mismos.
 
     CONTACTO:
         Aqui solo falta el codigo para que el formulario se envie.

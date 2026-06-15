@@ -285,15 +285,3 @@ COMUNICACIÓN BACKEND (FUTURA):
    • Styles/   debe estar en la raíz del frontend
    • Themes/   debe estar en la raíz del frontend
    • Images/   debe estar en la raíz del frontend
-
-================================================================================
-                         PRÓXIMAS IMPLEMENTACIONES
-================================================================================
-
-  • Guardar nuevas experiencias en base de datos
-  • Autenticación de usuarios para publicar experiencias
-  • Infinite scroll en experiencias:
-    Cargar un límite inicial y detectar cuando el usuario llega al 80%
-    del scroll para cargar más automáticamente (sin botón "Ver más")
-
-================================================================================

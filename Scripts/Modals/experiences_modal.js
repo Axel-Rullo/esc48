@@ -621,7 +621,7 @@ onReady(() => {
 });
 
 /* ===============================================================
-    BACKEND — Todo lo que se debe trabajar esta abajo
+    BACKEND — Casi todo lo que se debe trabajar esta abajo
     ================================================================ */
 
 // -------------------------------------------------------------
@@ -631,7 +631,7 @@ onReady(() => {
 function submitExperience() {
 
     const payload = {
-        major:    window.selectedMajor?.key ?? null,   // clave corta: 'software', 'gestion', 'primaria' y 'inicial'.
+        major:    window.selectedMajor?.key ?? null,   // carrera: 'software', 'gestion', 'primaria' y 'inicial'.
         name:     document.getElementById('expName').value.trim(),
         lastname: document.getElementById('expLastname').value.trim(),
         comment:  document.getElementById('expComment').value.trim(),
