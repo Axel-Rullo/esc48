@@ -359,7 +359,7 @@
 
 /* SECCIÓN DE EXPERIENCIAS */
 .experiences-list-section {
-    padding: 17px 21px 17px;
+    padding: 10px 21px 17px;
     border-top: 1px solid var(--content-border);
     flex: 1;
     display: flex;
@@ -375,7 +375,7 @@
     margin-bottom: 8px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--content-border);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 10px;
     transition: var(--transition);
 }
@@ -388,7 +388,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    flex-shrink: 0;
+    flex: 1;
+    min-width: 0;
     transition: var(--transition);
 }
 
@@ -651,7 +652,7 @@
     }
 
     .experiences-list-section {
-        padding: 15px 18px;
+        padding: 8px 18px 15px;
     }
 }
 
@@ -680,7 +681,7 @@
     }
 
     .experiences-list-section {
-        padding: 12px 17px;
+        padding: 8px 17px 12px;
     }
 
     .experiences-form-buttons {
@@ -746,11 +747,11 @@
     }
 
     .experiences-list-section {
-        padding: 10px 12px;
+        padding: 6px 12px 10px;
     }
 
     .experiences-list-header {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         padding-bottom: 6px;
     }
 
@@ -759,7 +760,7 @@
     }
 
     .experiences-average-rating {
-        width: 100%;
+        flex-shrink: 0;
         padding: 0.35rem 0.6rem;
     }
 
