@@ -14,7 +14,8 @@ class ContactModal extends BaseModal {
         this.closeBtn    = document.getElementById('closeModal');
         this.submitBtn   = this.contactForm?.querySelector('button[type="submit"]');
 
-        this.isSubmitting = false;
+        this.isSubmitting  = false;
+        this._alertPending = false;
 
         this.init();
     }
@@ -52,6 +53,21 @@ class ContactModal extends BaseModal {
     }
 
     // =============================================================
+    // CERRAR
+    // =============================================================
+
+    close() {
+        this.modal.classList.remove('active');
+        this.overlay?.classList.remove('active');
+
+        if (this._alertPending) {
+            return;
+        }
+
+        document.body.classList.remove('modal-open');
+    }
+
+    // =============================================================
     // SUBMIT
     // =============================================================
 
@@ -74,23 +90,44 @@ class ContactModal extends BaseModal {
         console.log('✓ Formulario enviado:', formData);
 
         // Simulación de envío — reemplazar con fetch() cuando haya backend
-        setTimeout(() => {
+        setTimeout(async () => {
 
-            this.setLoadingState('success');
+            try {
+                this.setLoadingState('success');
 
-            setTimeout(() => {
-                this.contactForm.reset();
+                setTimeout(() => {
+                    this.contactForm.reset();
+                    this.setLoadingState('idle');
+                    this.isSubmitting  = false;
+                    this._alertPending = true;
+                    this.close();
+
+                    window.customAlert?.show(
+                        '¡Gracias por tu mensaje!',
+                        'Nos pondremos en contacto pronto.',
+                        'success',
+                        3000
+                    );
+
+                    // Restaurar scroll cuando la alerta termina (misma duración: 3000 ms)
+                    setTimeout(() => {
+                        this._alertPending = false;
+                        document.body.classList.remove('modal-open');
+                    }, 3000);
+                }, 1200);
+
+            } catch {
+
                 this.setLoadingState('idle');
                 this.isSubmitting = false;
-                this.close();
 
                 window.customAlert?.show(
-                    '¡Gracias por tu mensaje!',
-                    'Nos pondremos en contacto pronto.',
-                    'success',
+                    'Error al enviar',
+                    'No se pudo enviar el mensaje. Intentá de nuevo.',
+                    'error',
                     3000
                 );
-            }, 1200);
+            }
 
         }, 800);
     }

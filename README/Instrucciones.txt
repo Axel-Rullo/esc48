@@ -81,3 +81,5 @@
 
     CONTACTO:
         Aqui solo falta el codigo para que el formulario se envie.
+        Actualmente se muestra una simulación, si se quiere, trabajen encima,
+        sobre todo por el orden de los sucesos

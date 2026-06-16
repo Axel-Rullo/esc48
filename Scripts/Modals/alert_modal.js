@@ -1,8 +1,5 @@
 /* =========================================================================
-    GESTOR DE ALERTA — Simple y directo
-    =========================================================================
-    AlertModal NO extiende BaseModal porque su comportamiento es distinto:
-    no bloquea el scroll, no usa overlay y se cierra solo con un timeout.
+    GESTOR DE ALERTA
     ========================================================================= */
 
 class AlertModal {
@@ -18,9 +15,7 @@ class AlertModal {
         // Iconos por tipo de alerta
         this.icons = {
             success : '✓',
-            error   : '✕',
-            warning : '!',
-            info    : 'ℹ'
+            error   : '✕'
         };
     }
 
@@ -28,24 +23,27 @@ class AlertModal {
         Muestra la alerta
         @param {string} title    - Título de la alerta
         @param {string} message  - Mensaje descriptivo
-        @param {string} type     - 'success' | 'error' | 'warning' | 'info'
+        @param {string} type     - 'success' | 'error'
         @param {number} duration - Duración en ms (default: 3000)
     ----------------------------------------------------------------- */
     show(title, message, type = 'success', duration = 3000) {
 
         if (!this.alertElement) return;
 
+        // Normalizar: solo se aceptan 'success' y 'error'
+        const safeType = type === 'error' ? 'error' : 'success';
+
         // Actualizar contenido
         this.titleElement.textContent   = title;
         this.messageElement.textContent = message;
 
-        // Resetear clases de tipo anteriores y aplicar la nueva
-        this.alertElement.classList.remove('success', 'error', 'warning', 'info');
-        this.alertElement.classList.add(type);
+        // Resetear clase anterior y aplicar la nueva
+        this.alertElement.classList.remove('success', 'error');
+        this.alertElement.classList.add(safeType);
 
-        // Icono según tipo (con fallback a 'success')
+        // Icono según tipo
         if (this.iconElement) {
-            this.iconElement.textContent = this.icons[type] ?? this.icons.success;
+            this.iconElement.textContent = this.icons[safeType];
         }
 
         // Mostrar y programar el cierre automático
