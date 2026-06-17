@@ -269,7 +269,7 @@
 .mobile-menu-header {
     display: flex;
     justify-content: flex-end;
-    padding: calc(var(--spacing-md) * 0.85);
+    padding: calc(var(--spacing-md) * 0.5);
     border-bottom: 3px solid var(--header-nav-accent);
     background: var(--header-nav-bg);
 
@@ -386,10 +386,6 @@
 /* ================================================================
     LEFT MENU MOBILE
    ================================================================ */
-.mobile-left-menu {
-    margin-top: var(--spacing-lg);
-    padding-top: calc(var(--spacing-md) * 0.85);
-}
 
 .mobile-left-menu .menu-item {
     border-bottom: 1px solid var(--menu-divider);
@@ -449,10 +445,6 @@
 
 /* ================================================================
     RESPONSIVE
-   ================================================================ */
-
-/* ================================================================
-    MEDIA QUERIES 1024px
    ================================================================ */
 
 @media (max-width: 1024px) {
