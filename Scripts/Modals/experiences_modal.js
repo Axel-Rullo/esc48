@@ -397,7 +397,7 @@ class ExperiencesModal extends BaseModal {
                         </div>
                     </div>
                     <p class="experience-card-text">${this.escapeHTML(mine.comment)}</p>
-                    <div class="experience-card-meta">📅 ${mine.date}</div>
+                    <div class="experience-card-meta">\u{1F4C5} ${mine.date}</div>
                     <div class="my-experience-actions">
                         <button class="my-exp-btn my-exp-btn-edit" id="myExpEditBtn">
                             <i class="fas fa-pen"></i> Editar
@@ -407,20 +407,22 @@ class ExperiencesModal extends BaseModal {
                         </button>
                     </div>
                 </div>
+            </div>
 
-                <div class="my-experience-edit" id="myExperienceEdit" style="display:none;">
+            <div class="my-experience-edit" id="myExperienceEdit" style="display:none;">
+                <form class="experiences-form" id="myExperienceForm">
                     <div class="experiences-form-row">
                         <div class="experiences-form-group">
-                            <label>Nombre <span class="required">*</span></label>
+                            <label for="myExpName">Nombre <span class="required">*</span></label>
                             <input type="text" id="myExpName" value="${this.escapeHTML(firstName)}" maxlength="40" required>
                         </div>
                         <div class="experiences-form-group">
-                            <label>Apellido <span class="required">*</span></label>
+                            <label for="myExpLastname">Apellido <span class="required">*</span></label>
                             <input type="text" id="myExpLastname" value="${this.escapeHTML(lastName)}" maxlength="40" required>
                         </div>
                     </div>
                     <div class="experiences-form-group">
-                        <label>Tu experiencia <span class="required">*</span></label>
+                        <label for="myExpComment">Tu Experiencia <span class="required">*</span></label>
                         <textarea id="myExpComment" rows="3" maxlength="500">${this.escapeHTML(mine.comment)}</textarea>
                     </div>
                     <div class="experiences-form-group">
@@ -430,14 +432,14 @@ class ExperiencesModal extends BaseModal {
                         </div>
                     </div>
                     <div class="experiences-form-buttons">
-                        <button class="experiences-btn-submit" id="myExpSaveBtn">
-                            <i class="fas fa-check"></i> Aplicar
-                        </button>
-                        <button class="experiences-btn-cancel" id="myExpCancelBtn">
+                        <button type="button" class="experiences-btn-cancel" id="myExpCancelBtn">
                             <i class="fas fa-times"></i> Cancelar
                         </button>
+                        <button type="button" class="experiences-btn-submit" id="myExpSaveBtn">
+                            <i class="fas fa-check"></i> Aplicar
+                        </button>
                     </div>
-                </div>
+                </form>
             </div>
         `;
 
@@ -482,17 +484,19 @@ class ExperiencesModal extends BaseModal {
             stars.querySelectorAll('.experiences-star').forEach(s => s.classList.remove('experiences-star-hover'));
         });
 
-        // Botón Editar → muestra el formulario de edición
+        const card   = document.getElementById('myExperienceCard');
+
+        // Botón Editar → oculta la card completa y muestra el formulario
         document.getElementById('myExpEditBtn')?.addEventListener('click', () => {
-            view.style.display = 'none';
+            card.style.display = 'none';
             edit.style.display = 'block';
             this.isEditing = true;
         });
 
-        // Botón Cancelar → vuelve a la vista
+        // Botón Cancelar → oculta el editor y restaura la card
         document.getElementById('myExpCancelBtn')?.addEventListener('click', () => {
             edit.style.display = 'none';
-            view.style.display = 'block';
+            card.style.display = '';
             this.isEditing = false;
             // Restaurar estrellas al valor original
             this.editRating = mine.rating || 0;

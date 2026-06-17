@@ -154,11 +154,14 @@ class HeroCarousel {
         });
 
         // Abrir modal al hacer click en "Saber Más" (delegación de eventos)
+        // Usa this.currentIndex como fuente de verdad para evitar race condition
+        // con el autoplay: si el intervalo avanza el slide justo antes del click,
+        // data-index apuntaría al slide anterior. currentIndex siempre es el activo.
         this.heroCarousel.addEventListener('click', (e) => {
             const btn = e.target.closest('.hero-link-button');
             if (!btn) return;
-            const idx = parseInt(btn.dataset.index, 10);
-            this.openModal(idx);
+            this.stopAutoPlay(); // detener antes de leer currentIndex
+            this.openModal(this.currentIndex);
         });
 
         // Registrar cierre por overlay, Escape y backdrop via BaseModal

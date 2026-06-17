@@ -315,6 +315,10 @@
 /* ================================================================
     NAV MOBILE
    ================================================================ */
+.mobile-nav {
+    border-bottom: 3px solid var(--header-nav-accent);
+}
+
 .mobile-nav ul {
     list-style: none;
     display: flex;
@@ -384,7 +388,6 @@
    ================================================================ */
 .mobile-left-menu {
     margin-top: var(--spacing-lg);
-    border-top: 3px solid var(--header-nav-accent);
     padding-top: calc(var(--spacing-md) * 0.85);
 }
 

@@ -647,7 +647,7 @@
     }
 
     .experiences-form-section,
-    .my-experience-panel {
+    .my-experience-edit {
         padding: 15px 18px;
     }
 
@@ -676,7 +676,7 @@
     }
 
     .experiences-form-section,
-    .my-experience-panel {
+    .my-experience-edit {
         padding: 12px 17px;
     }
 
@@ -742,7 +742,7 @@
     }
 
     .experiences-form-section,
-    .my-experience-panel {
+    .my-experience-edit {
         padding: 10px 12px;
     }
 
@@ -919,7 +919,7 @@
 
 /* Contenedor de "Mi experiencia" (comportamiento igual al form) */
 .my-experience-panel {
-    padding: 14px 18px;
+    padding: 0;
     background: var(--content-bg-light);
     flex-shrink: 0;
     animation: slideDown 0.3s ease;
@@ -1021,23 +1021,17 @@
     transform: translateY(-1px);
 }
 
-/* Formulario de edición dentro de la card propia */
+/* Formulario de edición — idéntico a .experiences-form-section */
 .my-experience-edit {
     padding: 14px 18px;
     background: var(--content-bg-light);
-    border-top: 2px solid var(--content-border);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    animation: slideDown 0.2s ease;
+    border-bottom: 2px solid var(--content-border);
+    flex-shrink: 0;
+    animation: slideDown 0.3s ease;
     transition: var(--transition);
 }
 
-/* Los grupos a partir del segundo necesitan margen superior
-   para separarse igual que en el form de publicar */
-.my-experience-edit > .experiences-form-group {
-    margin-top: 4px;
-}
+
 
 /* ================================================================
     ALERTA DE CONFIRMACIÓN — Borrar experiencia
