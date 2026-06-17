@@ -189,28 +189,3 @@ onReady(() => {
     //     });
 });
 ```
-
-### 9. `openModal()` — Orquesta las dos consultas antes de renderizar
-
-```
-experiences_modal.js → clase ExperiencesModal, método openModal
-```
-
-Cuando se abre el modal, se lanzan en paralelo `fetchExperiencesByMajor` y
-`fetchMyExperience`. Solo cuando las dos resuelven se llama a `loadExperiences()`
-para pintar la pantalla. Esto evita renders parciales y deja el código listo para
-cuando las llamadas sean asíncronas de verdad.
-
-```js
-Promise.all([
-    fetchExperiencesByMajor(majorKey),
-    fetchMyExperience(),
-]).then(([experiences, myExperience]) => {
-    if (experiences) this.experiences.set(majorKey, experiences);
-    this.myExperience = myExperience ?? null;
-    this.loadExperiences();
-});
-```
-
-Este bloque **no hay que tocarlo** cuando llegue el backend. Solo cambia el
-interior de las dos funciones de fetch.
