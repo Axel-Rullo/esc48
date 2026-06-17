@@ -312,21 +312,21 @@
     align-items: center;
     justify-content: center;
     gap: 7px;
-    background: var(--hero-btn-bg);
-    color: var(--hero-btn-text);
+    background: var(--hero-modal-btn-bg);
+    color: var(--hero-modal-btn-text);
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
     font-size: 0.85rem;
-    border: 2px solid var(--hero-btn-border);
+    border: 2px solid var(--hero-modal-btn-border);
     transition: all 0.3s ease;
     width: 50%;
 }
 
 .hero-news-modal__link:hover {
     background: transparent;
-    color: var(--hero-btn-hover-text);
+    color: var(--hero-modal-btn-hover-text);
     transform: translateX(3px);
 }
 

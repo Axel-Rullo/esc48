@@ -12,7 +12,7 @@ y la experiencia propia. Si no hay login, ambas secciones se ocultan.
 Para traer los datos de afuera, al pulsar uno de los botones de experiencias en majors se guarda
 una carrera en una variable dependiendo el botón que se pulse (`software`, `gestion`, `inicial` y `primaria`).
 Con esa variable ya se sabe qué experiencias traer. La variable está marcada en la sección del Backend
-en `experiences_modal.js`, al final del archivo, en la primera función.
+en `experiences_modal.js`, al final del archivo.
 
 ---
 
@@ -28,7 +28,7 @@ Cosas a considerar:
 
 ## Función — Editar / Borrar
 
-Al tener una experiencia publicada (se muestra si detecta un login), se utilizan las funciones
+Al tener una experiencia publicada (se muestra si se detecta un login), se utilizan las funciones
 ya preparadas que guardan los datos necesarios en la sección del Backend.
 
 ---
@@ -50,8 +50,8 @@ Lo demás ya está preparado en la sección del Backend.
 
 ## Mapa de cambios — ¿Qué tocar cuando el backend trae datos de otro lado?
 
-Cuando el backend deje de usar `window.ExperiencesData` (el JSON local) y pase a traer los datos
-de una API o aula virtual, estos son los únicos puntos del archivo a modificar:
+Cuando el backend deje de usar el JSON local y pase a traer los datos
+de una API, estos son los únicos puntos del archivo a modificar:
 
 ---
 
@@ -189,3 +189,28 @@ onReady(() => {
     //     });
 });
 ```
+
+### 9. `openModal()` — Orquesta las dos consultas antes de renderizar
+
+```
+experiences_modal.js → clase ExperiencesModal, método openModal
+```
+
+Cuando se abre el modal, se lanzan en paralelo `fetchExperiencesByMajor` y
+`fetchMyExperience`. Solo cuando las dos resuelven se llama a `loadExperiences()`
+para pintar la pantalla. Esto evita renders parciales y deja el código listo para
+cuando las llamadas sean asíncronas de verdad.
+
+```js
+Promise.all([
+    fetchExperiencesByMajor(majorKey),
+    fetchMyExperience(),
+]).then(([experiences, myExperience]) => {
+    if (experiences) this.experiences.set(majorKey, experiences);
+    this.myExperience = myExperience ?? null;
+    this.loadExperiences();
+});
+```
+
+Este bloque **no hay que tocarlo** cuando llegue el backend. Solo cambia el
+interior de las dos funciones de fetch.

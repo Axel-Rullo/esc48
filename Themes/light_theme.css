@@ -79,6 +79,11 @@
     --hero-btn-text: #2a2a40;
     --hero-btn-border: #fbbf24;
     --hero-btn-hover-text: #fbbf24;
+    /* Botón "Ir al material" del MODAL hero — igual al botón "Más Info" de majors */
+    --hero-modal-btn-bg: #1f2937;
+    --hero-modal-btn-text: #ffffff;
+    --hero-modal-btn-border: #1f2937;
+    --hero-modal-btn-hover-text: #1f2937;
     --hero-indicator-active: #ffffff;
     --hero-indicator-active-glow: rgba(255, 184, 71, 0.5);
     --hero-indicator-active-glow-strong: rgba(255, 184, 71, 0.8);

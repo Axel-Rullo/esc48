@@ -79,6 +79,11 @@
     --hero-btn-text: #2a2a40;
     --hero-btn-border: #fbbf24;
     --hero-btn-hover-text: #fbbf24;
+    /* Botón "Ir al material" del MODAL hero — en dark igual al carrusel */
+    --hero-modal-btn-bg: #fbbf24;
+    --hero-modal-btn-text: #2a2a40;
+    --hero-modal-btn-border: #fbbf24;
+    --hero-modal-btn-hover-text: #fbbf24;
     --hero-indicator-active: #ffffff;
     --hero-indicator-active-glow: rgba(255, 184, 71, 0.5);
     --hero-indicator-active-glow-strong: rgba(255, 184, 71, 0.8);

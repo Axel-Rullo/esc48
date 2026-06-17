@@ -1023,12 +1023,20 @@
 
 /* Formulario de edición dentro de la card propia */
 .my-experience-edit {
-    padding: 10px 12px;
-    border-top: 1px solid var(--content-border);
+    padding: 14px 18px;
+    background: var(--content-bg-light);
+    border-top: 2px solid var(--content-border);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     animation: slideDown 0.2s ease;
+    transition: var(--transition);
+}
+
+/* Los grupos a partir del segundo necesitan margen superior
+   para separarse igual que en el form de publicar */
+.my-experience-edit > .experiences-form-group {
+    margin-top: 4px;
 }
 
 /* ================================================================

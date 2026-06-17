@@ -165,7 +165,16 @@ class ExperiencesModal extends BaseModal {
 
         document.getElementById('experiencesForm').reset();
         this.updateFormStars(0);
-        this.loadExperiences();
+
+        // Pedir al backend los datos de esta carrera antes de renderizar
+        Promise.all([
+            fetchExperiencesByMajor(majorKey),
+            fetchMyExperience(),
+        ]).then(([experiences, myExperience]) => {
+            if (experiences) this.experiences.set(majorKey, experiences);
+            this.myExperience = myExperience ?? null;
+            this.loadExperiences();
+        });
 
         this.open();
         this.adjustModalHeight();
@@ -197,7 +206,7 @@ class ExperiencesModal extends BaseModal {
     }
 
     // =============================================================
-    // ESTRELLAS — GENERAR HTML (interactivas, para el formulario)
+    // ESTRELLAS
     // =============================================================
 
     generateStarHTML(rating) {
@@ -242,7 +251,7 @@ class ExperiencesModal extends BaseModal {
     }
 
     // =============================================================
-    // ESTRELLAS — ACTUALIZAR FORMULARIO (al hacer clic)
+    // ESTRELLAS — ACTUALIZAR FORMULARIO
     // =============================================================
 
     updateFormStars(rating) {
@@ -257,7 +266,7 @@ class ExperiencesModal extends BaseModal {
     }
 
     // =============================================================
-    // CARGAR EXPERIENCIAS DESDE window.ExperiencesData
+    // CARGAR EXPERIENCIAS
     // =============================================================
 
     loadExperiencesFromData() {
@@ -277,10 +286,6 @@ class ExperiencesModal extends BaseModal {
 
             Object.keys(data.experiences).forEach(major => {
                 const entry = data.experiences[major];
-
-                // La clave del JSON ya es corta (software, gestion, etc.)
-                // Se guarda tal cual para que el backend la reciba igual.
-                // El id de cada review se descarta: solo myExperience necesita id.
                 const rawReviews = Array.isArray(entry) ? entry : entry.reviews ?? [];
                 const reviews    = rawReviews.map(({ id, ...rest }) => rest);
 
@@ -323,7 +328,7 @@ class ExperiencesModal extends BaseModal {
             averageText.textContent = 'Sin calificaciones';
         }
 
-        // Renderizar la experiencia propia (si la hay y es de esta carrera)
+        // Renderizar la experiencia propia
         this.renderMyExperience();
 
         // Lista de reseñas
@@ -415,20 +420,20 @@ class ExperiencesModal extends BaseModal {
                         </div>
                     </div>
                     <div class="experiences-form-group">
-                        <label>Descripción <span class="required">*</span></label>
+                        <label>Tu experiencia <span class="required">*</span></label>
                         <textarea id="myExpComment" rows="3" maxlength="500">${this.escapeHTML(mine.comment)}</textarea>
                     </div>
                     <div class="experiences-form-group">
-                        <label>Calificación <span class="required">*</span></label>
+                        <label>Tu Calificación <span class="required">*</span></label>
                         <div class="experiences-star-rating" id="myExpStarRating">
                             ${this.generateStarHTML(mine.rating || 0)}
                         </div>
                     </div>
-                    <div class="my-experience-actions">
-                        <button class="my-exp-btn my-exp-btn-edit" id="myExpSaveBtn">
+                    <div class="experiences-form-buttons">
+                        <button class="experiences-btn-submit" id="myExpSaveBtn">
                             <i class="fas fa-check"></i> Aplicar
                         </button>
-                        <button class="my-exp-btn my-exp-btn-delete" id="myExpCancelBtn">
+                        <button class="experiences-btn-cancel" id="myExpCancelBtn">
                             <i class="fas fa-times"></i> Cancelar
                         </button>
                     </div>
@@ -442,7 +447,6 @@ class ExperiencesModal extends BaseModal {
 
     // =============================================================
     // LISTENERS DE LA EXPERIENCIA PROPIA
-    // Se registran cada vez que renderMyExperience() vuelve a pintar.
     // =============================================================
 
     attachMyExperienceListeners(mine) {
@@ -624,17 +628,39 @@ onReady(() => {
 });
 
 /* ===============================================================
-    BACKEND — Casi todo lo que se debe trabajar esta abajo
+    BACKEND
     ================================================================ */
 
+// majorKey trae la carrera especifica que se desea consultar
+// Lo mas recomendable sería guardar la consulta en "this.experiences" y 
+// "this.myExperience" para no tener que tocar la renderización
+
 // -------------------------------------------------------------
-// SUBMIT — Guardar la experiencia propia
+// Traer lista de experiencias por carrera
+// -------------------------------------------------------------
+
+function fetchExperiencesByMajor(majorKey) {
+    const local = window.experiencesModal.experiences.get(majorKey) ?? null;
+    return Promise.resolve(local);
+}
+
+// -------------------------------------------------------------
+// Traer la experiencia propia del usuario autenticado
+// -------------------------------------------------------------
+
+function fetchMyExperience() {
+    const mine = window.experiencesModal.myExperience;
+    return Promise.resolve(mine ?? null);
+}
+
+// -------------------------------------------------------------
+// SUBMIT — Publicar una experiencia nueva
 // -------------------------------------------------------------
 
 function submitExperience() {
 
     const payload = {
-        major:    window.selectedMajor?.key ?? null,   // carrera: 'software', 'gestion', 'primaria' y 'inicial'.
+        major:    window.selectedMajor?.key ?? null,   // carrera: 'software', 'gestion', 'primaria', 'inicial'
         name:     document.getElementById('expName').value.trim(),
         lastname: document.getElementById('expLastname').value.trim(),
         comment:  document.getElementById('expComment').value.trim(),
