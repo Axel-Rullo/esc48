@@ -73,6 +73,7 @@ body.modal-open {
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    position: relative;
 }
 
 /* ===============================
@@ -107,7 +108,7 @@ body.modal-open {
     height: 36px;
     background-color: transparent;
     color: var(--content-accent-border);
-    font-size: 1.4rem;
+    font-size: 1.15rem;
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -128,7 +129,7 @@ body.modal-open {
     DROPDOWN DE EMAILS
    =============================== */
 .email-dropdown-wrap {
-    position: relative;
+    position: static;
 }
 
 .email-dropdown {
@@ -258,6 +259,8 @@ body.modal-open {
 .modal-body {
     overflow-y: auto;
     overscroll-behavior: contain;
+    flex: 1;
+    min-height: 0;
 }
 
 /* ===============================
@@ -469,7 +472,7 @@ body.modal-open {
 @media (max-width: 768px) {
 
     .modal-content {
-        max-width: 95%;
+        max-width: 100%;
         max-height: 85vh;
     }
 
@@ -495,6 +498,11 @@ body.modal-open {
 
     .modal-header {
         padding: 0.8rem;
+        position: relative;
+    }
+
+    .modal-header-actions {
+        position: static;
     }
 
     .modal-header h2 {
@@ -519,6 +527,27 @@ body.modal-open {
 
     .required {
         font-size: 0.75rem;
+    }
+
+    /* Dropdown: centrado respecto al modal */
+    .email-dropdown {
+        top: calc(100% + 8px);
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 420px;
+        max-width: calc(100vw - 2rem);
+    }
+}
+
+@media (max-width: 600px) {
+    .modal {
+        padding: 1rem;
+    }
+
+    /* Ocupa todo el ancho del modal con margen lateral */
+    .email-dropdown {
+        width: calc(100vw - 2rem);
     }
 }
 
@@ -546,18 +575,13 @@ body.modal-open {
     .modal-close {
         width: 44px;
         height: 44px;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
 
     .modal-icon-btn {
         width: 44px;
         height: 44px;
-        font-size: 1.4rem;
-    }
-
-    .email-dropdown {
-        width: calc(100vw - 2rem);
-        right: -52px;
+        font-size: 1.6rem;
     }
 
     .email-dropdown-title {
