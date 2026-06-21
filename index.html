@@ -191,25 +191,6 @@
         </div>
     </footer>
 
-    <!-- MODAL HERO CAROUSEL -->
-    <div id="heroNewsModal" class="hero-news-modal">
-        <div class="hero-news-modal__box">
-            <div class="hero-news-modal__header">
-                <span id="heroModalBadge" class="hero-modal-badge"></span>
-                <button id="closeHeroModal" class="hero-news-modal__close" aria-label="Cerrar">&times;</button>
-            </div>
-            <div class="hero-news-modal__body">
-                <h2 id="heroModalTitle" class="hero-news-modal__title"></h2>
-                <p  id="heroModalDesc"  class="hero-news-modal__desc"></p>
-            </div>
-            <div class="hero-news-modal__footer">
-                <a id="heroModalLink" class="hero-news-modal__link" href="#" target="_blank" hidden>
-                    Ir al material adjunto <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
     <!-- MODAL EXPERIENCIAS -->
     <div class="experiences-modal" id="experiencesModal">
         <div class="experiences-modal-content">
@@ -316,7 +297,27 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Formulario de Contacto</h2>
-                <button id="closeModal" class="modal-close">&times;</button>
+
+                <div class="modal-header-actions">
+
+                    <!-- BOTÓN EMAILS -->
+                    <div class="email-dropdown-wrap">
+                        <button id="emailDropdownBtn"
+                                class="modal-icon-btn"
+                                aria-label="Ver emails de contacto"
+                                title="Emails de contacto">
+                            &#9993;
+                        </button>
+                        <div id="emailDropdown" class="email-dropdown" hidden>
+                            <p class="email-dropdown-title">Contacto directo</p>
+                            <ul id="emailDropdownList" class="email-dropdown-list"></ul>
+                        </div>
+                    </div>
+
+                    <!-- BOTÓN CERRAR -->
+                    <button id="closeModal" class="modal-close">&times;</button>
+
+                </div>
             </div>
             <div class="modal-body">
                 <form id="contactForm" class="contact-form">

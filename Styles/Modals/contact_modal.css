@@ -63,7 +63,40 @@ body.modal-open {
     font-size: 1.2rem;
     margin: 0;
     flex: 1;
-    text-align: center;
+    text-align: left;
+}
+
+/* ===============================
+    HEADER — ACCIONES (email + cerrar)
+   =============================== */
+.modal-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* ===============================
+    BOTÓN ÍCONO GENÉRICO
+   =============================== */
+.modal-icon-btn {
+    width: 36px;
+    height: 36px;
+    background-color: transparent;
+    color: var(--content-accent-border);
+    font-size: 1.1rem;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.modal-icon-btn:hover {
+    background: var(--content-accent-border);
+    color: var(--content-bg);
 }
 
 /* ===============================
@@ -89,6 +122,119 @@ body.modal-open {
     background: var(--content-accent-border);
     color: var(--content-bg);
     transform: rotate(90deg);
+}
+
+/* ===============================
+    DROPDOWN DE EMAILS
+   =============================== */
+.email-dropdown-wrap {
+    position: relative;
+}
+
+.email-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--content-bg-card);
+    border: 1px solid var(--content-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px var(--content-shadow);
+    width: 290px;
+    z-index: 3000;
+    overflow: hidden;
+}
+
+.email-dropdown-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--content-text-light);
+    padding: 0.6rem 0.85rem 0.4rem;
+    border-bottom: 1px solid var(--content-border);
+    margin: 0;
+}
+
+.email-dropdown-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.email-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0.85rem;
+    border-bottom: 1px solid var(--content-border);
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.email-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.email-dropdown-item:hover {
+    background: var(--content-bg-light);
+}
+
+.email-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.email-item-label {
+    font-size: 0.68rem;
+    color: var(--content-text-light);
+    font-weight: 700;
+    display: block;
+    line-height: 1.2;
+}
+
+.email-item-address {
+    font-size: 0.75rem;
+    color: var(--content-text);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.email-item-actions {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.email-action-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--content-border);
+    background: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--content-text-light);
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.email-action-btn:hover {
+    background: var(--content-accent-border);
+    color: var(--content-bg);
+    border-color: var(--content-accent-border);
+}
+
+.email-action-btn.copied {
+    background: var(--modal-success-bg) !important;
+    color: #fff !important;
+    border-color: var(--modal-success-bg) !important;
 }
 
 /* ===============================
@@ -386,6 +532,17 @@ body.modal-open {
         width: 30px;
         height: 30px;
         font-size: 1.2rem;
+    }
+
+    .modal-icon-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .email-dropdown {
+        width: 260px;
+        right: -36px;
     }
 
     .contact-form {

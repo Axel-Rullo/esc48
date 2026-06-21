@@ -264,30 +264,22 @@
         "type": "professional",
         "title": "Profesorado en Educación Primaria",
         "description": "Preparación docente para educación primaria con enfoque en metodologías activas. Forma educadores comprometidos con la calidad educativa.",
-        "imageUrl": "Images/Majors/primaria.gif",
+        "imageUrl": "Images/Majors/primaria.jpg",
         "link": "#"
         }
     ],
     "socials": [
         {
         "network": "facebook",
-        "link": "#"
+        "link": "https://www.facebook.com/IES48Totoras"
         },
         {
         "network": "instagram",
-        "link": "#"
-        },
-        {
-        "network": "youtube",
-        "link": "#"
-        },
-        {
-        "network": "whatsapp",
-        "link": "#"
-        },
-        {
-        "network": "twitter",
-        "link": "#"
+        "link": "https://www.instagram.com/ies48totoras"
         }
+    ],
+    "emails": [
+    { "label": "Secretaría",                  "address": "fotocopiadora.ies48@gmail.com"      },
+    { "label": "Fotocopiadora",        "address": "secretariasup48@gmail.com"      }
     ]
 }

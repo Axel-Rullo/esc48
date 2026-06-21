@@ -50,6 +50,13 @@ class ContactModal extends BaseModal {
                 this.contactForm.requestSubmit();
             }
         });
+
+        // Dropdown de emails — espera a que AppData esté listo (igual que inicio.js)
+        DataLoader.waitForAppData().then((data) => {
+            if (data.emails?.length) {
+                this.initEmailDropdown(data.emails);
+            }
+        });
     }
 
     // =============================================================
@@ -65,6 +72,63 @@ class ContactModal extends BaseModal {
         }
 
         document.body.classList.remove('modal-open');
+    }
+
+    // =============================================================
+    // DROPDOWN DE EMAILS
+    // =============================================================
+
+    initEmailDropdown(emails) {
+        const btn      = document.getElementById('emailDropdownBtn');
+        const dropdown = document.getElementById('emailDropdown');
+        const list     = document.getElementById('emailDropdownList');
+
+        if (!btn || !dropdown || !list) return;
+
+        // Toast "Copiado" estilo Google — se crea una sola vez
+        const toast = document.createElement('div');
+        toast.className = 'email-copy-toast';
+        toast.textContent = 'Copiado en el portapapeles';
+        document.body.appendChild(toast);
+
+        // Renderizar items desde AppData
+        emails.forEach(({ label, address }) => {
+            const li = document.createElement('li');
+            li.className = 'email-dropdown-item';
+            li.innerHTML = `
+                <div class="email-item-info">
+                    <span class="email-item-label">${label}</span>
+                    <span class="email-item-address">${address}</span>
+                </div>
+                <button class="email-action-btn"
+                        title="Copiar email"
+                        aria-label="Copiar ${address}">&#128203;</button>`;
+
+            // Copiar al portapapeles + mostrar toast
+            li.querySelector('button').addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigator.clipboard?.writeText(address).then(() => {
+                    toast.classList.add('visible');
+                    setTimeout(() => toast.classList.remove('visible'), 2000);
+                });
+            });
+
+            list.appendChild(li);
+        });
+
+        // Toggle abrir / cerrar
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.hidden = !dropdown.hidden;
+        });
+
+        // Cerrar al hacer clic fuera
+        document.addEventListener('click', () => {
+            dropdown.hidden = true;
+        });
+
+        // Evitar que un clic interno lo cierre
+        dropdown.addEventListener('click', (e) => e.stopPropagation());
     }
 
     // =============================================================
