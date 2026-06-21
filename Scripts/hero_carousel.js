@@ -17,20 +17,8 @@ class HeroCarousel {
         this.items      = [];
         this.indicators = [];
 
-        // Array ordenado — fuente de verdad para openModal
+        // Array ordenado — fuente de verdad
         this.sortedNews = [];
-
-        // Elementos del modal (fijos en el DOM)
-        this.modalBadge = document.getElementById('heroModalBadge');
-        this.modalTitle = document.getElementById('heroModalTitle');
-        this.modalDesc  = document.getElementById('heroModalDesc');
-        this.modalLink  = document.getElementById('heroModalLink');
-
-        // BaseModal maneja open/close, overlay, scroll y Escape
-        this.baseModal  = new BaseModal(
-            document.getElementById('heroNewsModal'),
-            document.getElementById('overlay')
-        );
 
         // Swipe táctil
         this.touchStartX      = 0;
@@ -82,17 +70,19 @@ class HeroCarousel {
             const heroItem = document.createElement('div');
             heroItem.className = `hero-item${index === 0 ? ' active' : ''}${item.type ? ` ${item.type}` : ''}`;
             heroItem.style.backgroundImage = `url('${item.imageUrl}')`;
+            const hasLink = item.link && item.link !== '#' && item.link !== '';
             heroItem.innerHTML = `
                 <div class="hero-content">
                     <span class="hero-title">${item.title}</span>
                     <div class="hero-text">
                         <p class="hero-description">${item.description}</p>
                     </div>
+                    ${hasLink ? `
                     <div class="hero-actions">
-                        <button class="hero-link-button" data-index="${index}">
-                            Ampliar <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
+                        <a class="hero-link-button" href="${item.link}" target="_blank" rel="noopener noreferrer">
+                            Saber más <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>` : ''}
                 </div>
             `;
             this.heroCarousel.appendChild(heroItem);
@@ -151,26 +141,6 @@ class HeroCarousel {
                 this.previousSlide();
                 this.restartAutoPlay();
             }
-        });
-
-        // Abrir modal al hacer click en "Saber Más" (delegación de eventos)
-        // Usa this.currentIndex como fuente de verdad para evitar race condition
-        // con el autoplay: si el intervalo avanza el slide justo antes del click,
-        // data-index apuntaría al slide anterior. currentIndex siempre es el activo.
-        this.heroCarousel.addEventListener('click', (e) => {
-            const btn = e.target.closest('.hero-link-button');
-            if (!btn) return;
-            this.stopAutoPlay(); // detener antes de leer currentIndex
-            this.openModal(this.currentIndex);
-        });
-
-        // Registrar cierre por overlay, Escape y backdrop via BaseModal
-        this.baseModal.registerCloseListeners();
-
-        // Al cerrar el modal también reanudar el autoplay
-        document.getElementById('closeHeroModal')?.addEventListener('click', () => {
-            this.baseModal.close();
-            this.startAutoPlay();
         });
 
     }
@@ -232,37 +202,6 @@ class HeroCarousel {
 
     markAsVisited(link) {
         localStorage.setItem(this._storageKey(link), 'true');
-    }
-
-    // =============================================================
-    // MODAL — TÍTULO Y DESCRIPCIÓN COMPLETAS
-    // =============================================================
-
-    openModal(index) {
-        const item = this.sortedNews[index];
-        if (!item || !this.baseModal.modal) return;
-
-        // Badge
-        const badgeLabels = { primicia: '🌟 Primicia', destacado: '⭐ Destacado' };
-        this.modalBadge.textContent = badgeLabels[item.type] || 'Noticia';
-        this.modalBadge.className   = `hero-modal-badge ${item.type || ''}`;
-
-        // Contenido completo (sin recorte)
-        this.modalTitle.textContent = item.title;
-        this.modalDesc.textContent  = item.description;
-
-        // Botón "Ir a la nota" solo si el JSON tiene link real
-        const hasLink = item.link && item.link !== '#' && item.link !== '';
-        this.modalLink.href = hasLink ? item.link : '#';
-        this.modalLink.toggleAttribute('hidden', !hasLink);
-
-        this.baseModal.open();
-        this.stopAutoPlay();
-    }
-
-    closeModal() {
-        this.baseModal.close();
-        this.startAutoPlay();
     }
 
     // =============================================================

@@ -10,16 +10,16 @@
         },
         {
         "label": "Ingresantes 1ro",
-        "link": "./PDFs/Apuntes-Curso-Desarrollo-IA-Clase-1.pdf"
+        "link": "#"
         },
         {
         "label": "Calendario Anual",
-        "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2025/12/2026.pdf",
+        "link": "./PDFs/2026.pdf",
         "target": "_blank"
         },
         {
         "label": "Convocatoria Anual",
-        "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/02/CONVOCATORIA-A-CONCURSO-EDI_EAI_IES48.pdf",
+        "link": "./PDFs/CONVOCATORIA-A-CONCURSO-EDI_EAI_IES48.pdf",
         "target": "_blank"
         }
     ],
@@ -55,6 +55,10 @@
             "id": "menu-software",
             "items": [
                 {
+                "label": "Horario",
+                "link": "./PDFs/HORARIO-2026-TSDS.pdf"
+                },
+                {
                 "label": "Diseño Curricular",
                 "link": "#"
                 },
@@ -72,6 +76,10 @@
             "label": "Técnico Superior en Gestión de las Organizaciones",
             "id": "menu-gestion",
             "items": [
+                {
+                "label": "Horario",
+                "link": "./PDFs/HORARIO-2026-TSGO.pdf"
+                },
                 {
                 "label": "Diseño Curricular",
                 "link": "#"
@@ -91,6 +99,10 @@
             "id": "menu-inicial",
             "items": [
                 {
+                "label": "Horario",
+                "link": "./PDFs/HORARIO-2026-Inicial.pdf"
+                },
+                {
                 "label": "Diseño Curricular",
                 "link": "#"
                 },
@@ -109,6 +121,10 @@
             "id": "menu-primaria",
             "items": [
                 {
+                "label": "Horario",
+                "link": "./PDFs/HORARIO-2026-Primaria.pdf"
+                },
+                {
                 "label": "Diseño Curricular",
                 "link": "#"
                 },
@@ -125,44 +141,24 @@
         ]
         },
         {
-        "label": "Horarios",
-        "id": "menu-horarios",
-        "items": [
-            {
-            "label": "Técnico Superior en Desarrollo de Software",
-            "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIO-2026-TSDS.pdf",
-            "target": "_blank"
-            },
-            {
-            "label": "Técnico Superior en Gestión de las Organizaciones",
-            "link": "HORARIO-2026-TSDS.pdf",
-            "target": "_blank"
-            },
-            {
-            "label": "Profesorado de Educación Inicial",
-            "link": "#"
-            },
-            {
-            "label": "Profesorado de Educación Primaria",
-            "link": "#"
-            }
-        ]
-        },
-        {
         "label": "Información para Estudiantes",
         "id": "menu-estudiantes",
         "items": [
             {
-            "label": "Requisitos de Ingreso",
+            "label": "Guía TPs",
+            "link": "./PDFs/GUIA-PARA-ELABORACION-DE-TRABAJOS-PRACTICOS.pdf"
+            },
+            {
+            "label": "Planilla para el uso transparente de la IA",
+            "link": "./PDFs/PLANILLA-DE-USO-TRANSPARENTE-DE-IA.-IES-N°48-1.pdf"
+            },
+            {
+            "label": "Reglamentos (necesita items dentro)",
             "link": "#"
             },
             {
-            "label": "Proceso de Inscripción",
-            "link": "#"
-            },
-            {
-            "label": "Becas y Ayudas",
-            "link": "#"
+            "label": "Trámites (necesita items dentro)",
+            "link": "./PDFs/mesa de examen especial.pdf"
             }
         ]
         },
@@ -171,16 +167,8 @@
         "id": "menu-egresados",
         "items": [
             {
-            "label": "Bolsa de Trabajo",
-            "link": "#"
-            },
-            {
-            "label": "Eventos de Egresados",
-            "link": "#"
-            },
-            {
-            "label": "Red de Contactos",
-            "link": "#"
+            "label": "Adscripciones",
+            "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2025/04/REGLAMENTO-ADSCRIPCION.pdf"
             }
         ]
         },
@@ -208,7 +196,7 @@
         "items": [
             {
             "label": "Historia",
-            "link": "#"
+            "link": "./PDFs/Historia_Escuela_San_Martin.pdf"
             }
         ]
         }
@@ -216,36 +204,36 @@
     "heroNews": [
         {
         "title": "Inscripciones primer año 2026",
-        "imageUrl": "Images/News_School/noticia_2.png",
-        "description": "En esta sección encontrarás toda la información necesaria para comenzar tu trayectoria académica en nuestra institución. Aquí podrás conocer los requisitos de inscripción, la documentación obligatoria, los plazos de presentación y los pasos a seguir para completar el proceso correctamente. Además, se detallan las condiciones de ingreso para cada carrera, los criterios de admisión vigentes y las modalidades disponibles para los nuevos estudiantes. También encontrarás orientación sobre la entrega de certificados, validación de estudios previos y trámites administrativos relacionados con tu incorporación. Nuestro objetivo es brindarte una guía clara y completa para que puedas realizar tu inscripción de manera sencilla y sin inconvenientes. Te recomendamos leer atentamente cada apartado antes de iniciar el trámite, ya que algunos requisitos pueden variar según la carrera elegida. Ante cualquier duda, podrás consultar los canales de contacto institucional disponibles para recibir asesoramiento personalizado. Comienza hoy mismo tu camino hacia una formación de calidad y descubre todas las oportunidades académicas que tenemos para ofrecerte.",
+        "imageUrl": "Images/News_School/noticia_1.png",
+        "description": "En esta sección encontrarás toda la información necesaria para comenzar tu trayectoria académica en nuestra institución. Aquí podrás conocer los requisitos de inscripción, la documentación obligatoria, los plazos de presentación y los pasos a seguir para completar el proceso correctamente. Además, se detallan las condiciones de ingreso para cada carrera, los criterios de admisión vigentes y las modalidades disponibles para los nuevos estudiantes. También encontrarás orientación sobre la entrega de certificados, validación de estudios previos y trámites administrativos relacionados con tu incorporación. Nuestro objetivo es brindarte una guía clara y completa para que puedas realizar tu inscripción de manera sencilla y sin inconvenientes. Te recomendamos leer atentamente cada apartado antes de iniciar el trámite, ya que algunos requisitos pueden variar según la carrera elegida. Ante cualquier duda, podrás consultar los canales de contacto institucional disponibles para recibir asesoramiento personalizado. Comienza hoy mismo tu camino hacia una formación de calidad y descubre todas las oportunidades académicas que tenemos para ofrecerte. En esta sección encontrarás toda la información necesaria para comenzar tu trayectoria académica en nuestra institución. Aquí podrás conocer los requisitos de inscripción, la documentación obligatoria, los plazos de presentación y los pasos a seguir para completar el proceso correctamente. Además, se detallan las condiciones de ingreso para cada carrera, los criterios de admisión vigentes y las modalidades disponibles para los nuevos estudiantes. También encontrarás orientación sobre la entrega de certificados, validación de estudios previos y trámites administrativos relacionados con tu incorporación. Nuestro objetivo es brindarte una guía clara y completa para que puedas realizar tu inscripción de manera sencilla y sin inconvenientes. Te recomendamos leer atentamente cada apartado antes de iniciar el trámite, ya que algunos requisitos pueden variar según la carrera elegida. Ante cualquier duda, podrás consultar los canales de contacto institucional disponibles para recibir asesoramiento personalizado. Comienza hoy mismo tu camino hacia una formación de calidad y descubre todas las oportunidades académicas que tenemos para ofrecerte.",
         "link": "./PDFs/Apuntes-Curso-Desarrollo-IA-Clase-1.pdf",
         "type": "primicia"
         },
         {
-        "title": "Ceremonia de Egresados 2025",
-        "imageUrl": "Images/News_School/noticia_3.jpg",
-        "description": "Celebración de nuestros egresados 2025. Revive los momentos más destacados de la ceremonia.",
-        "link": "#",
+        "title": "Viaje a La Virginia",
+        "imageUrl": "Images/News_School/noticia_2.webp",
+        "description": "Junto a los alumnos de Gestión Y Software de 3er año realizaremos un viaje de excursión a \"La Virginia\" y al \"Pueblo Técnologico\".\nSi sos alumno de la tecnicatura recordá abonar el viaje antes del 26/06.",
+        "link": "",
         "type": "destacado"
         },
         {
-        "title": "Becas Progresar",
-        "imageUrl": "Images/News_School/noticia_5.png",
-        "description": "Accede a becas para estudiantes de nivel superior. Consulta requisitos y realiza tu solicitud en línea.",
+        "title": "Inscripciones a mesas especiales",
+        "imageUrl": "Images/News_School/noticia_3.png",
+        "description": "Ya estan disponibles las inscripciones a las mesas de examenes de julio.\nLas inscripciones estaran abiertas desde el 16/06 hasta el 26/06.",
         "link": "#",
         "type": "destacado"
         },
         {
         "title": "Convocatoria abierta (EDI)",
-        "imageUrl": "Images/News_School/noticia_1.webp",
+        "imageUrl": "Images/News_School/noticia_4.jpeg",
         "description": "Se abre la convocatoria para nuevos ingresantes en \"Educación Ambiental Integral\". Las inscripciones estaran abiertas entre el 1 y 31 de marzo. ¡No te pierdas esta oportunidad!",
         "link": "#",
         "type": null
         },
         {
-        "title": "Nuevos laboratorios inaugurados",
-        "imageUrl": "Images/News_School/noticia_4.jpg",
-        "description": "Contamos con equipamiento de última tecnología para nuestras carreras. Visita nuestras nuevas instalaciones.",
+        "title": "Charla del tiempo de no libertad",
+        "imageUrl": "Images/News_School/noticia_5.png",
+        "description": "Miercoles 03/06 a las 19:30 hrs\nTematica: Armas y Soberanía. Los sueños por la identidad",
         "link": "#",
         "type": null
         }
