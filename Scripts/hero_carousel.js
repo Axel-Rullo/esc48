@@ -71,11 +71,12 @@ class HeroCarousel {
             heroItem.className = `hero-item${index === 0 ? ' active' : ''}${item.type ? ` ${item.type}` : ''}`;
             heroItem.style.backgroundImage = `url('${item.imageUrl}')`;
             const hasLink = item.link && item.link !== '#' && item.link !== '';
+            const descHtml = (item.description || '').replace(/\n/g, '<br>');
             heroItem.innerHTML = `
                 <div class="hero-content">
                     <span class="hero-title">${item.title}</span>
                     <div class="hero-text">
-                        <p class="hero-description">${item.description}</p>
+                        <p class="hero-description">${descHtml}</p>
                     </div>
                     ${hasLink ? `
                     <div class="hero-actions">
