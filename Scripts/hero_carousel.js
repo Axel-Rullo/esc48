@@ -71,12 +71,11 @@ class HeroCarousel {
             heroItem.className = `hero-item${index === 0 ? ' active' : ''}${item.type ? ` ${item.type}` : ''}`;
             heroItem.style.backgroundImage = `url('${item.imageUrl}')`;
             const hasLink = item.link && item.link !== '#' && item.link !== '';
-            const descHtml = (item.description || '').replace(/\n/g, '<br>');
             heroItem.innerHTML = `
                 <div class="hero-content">
                     <span class="hero-title">${item.title}</span>
                     <div class="hero-text">
-                        <p class="hero-description">${descHtml}</p>
+                        <p class="hero-description">${item.description || ''}</p>
                     </div>
                     ${hasLink ? `
                     <div class="hero-actions">
@@ -110,6 +109,31 @@ class HeroCarousel {
             if (this.wasVisited(item.link)) {
                 this.indicators[index]?.setAttribute('data-visited', 'true');
             }
+        });
+
+        // Aplicar padding-bottom al hero-content para que nunca tape los indicadores
+        this._adjustContentPadding();
+        window.addEventListener('resize', () => this._adjustContentPadding());
+    }
+
+    // =============================================================
+    // AJUSTAR PADDING DINÁMICO SOBRE LOS INDICADORES
+    // =============================================================
+
+    _adjustContentPadding() {
+        const indicatorsEl = this.heroIndicators;
+        if (!indicatorsEl) return;
+
+        // Altura del bloque de indicadores + su distancia al fondo
+        const indicatorRect = indicatorsEl.getBoundingClientRect();
+        const sectionRect   = this.heroCarousel.closest('.hero-news-section')?.getBoundingClientRect();
+        if (!sectionRect) return;
+
+        // Espacio desde el fondo de la sección hasta la parte superior de los indicadores
+        const spaceNeeded = (sectionRect.bottom - indicatorRect.top) + 12; // 12px de margen extra
+
+        document.querySelectorAll('.hero-content').forEach(el => {
+            el.style.paddingBottom = `${spaceNeeded}px`;
         });
     }
 
