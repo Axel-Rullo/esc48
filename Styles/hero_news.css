@@ -67,7 +67,8 @@
     display: flex;
     flex-direction: column;
     gap: calc(var(--spacing-md) * 0.85);
-    max-height: 100%;
+    max-height: calc(100% - 48px); /* Deja espacio para los indicadores */
+    overflow: hidden;              /* Evita que el contenido desborde sobre los puntitos */
 }
 
 /* Zona scrolleable — solo la descripción */
@@ -290,7 +291,7 @@
     .hero-description { font-size: 0.88rem; line-height: 1.45; -webkit-line-clamp: 8; line-clamp: 8; }
     .hero-link-button { padding: 8px 17px; font-size: 0.76rem; }
 
-    .hero-content    { padding: calc(var(--spacing-lg) * 0.85); max-width: 100%; gap: calc(var(--spacing-sm) * 0.85); }
+    .hero-content    { padding: calc(var(--spacing-lg) * 0.85); max-width: 100%; gap: calc(var(--spacing-sm) * 0.85); max-height: calc(100% - 42px); }
     .hero-indicators { bottom: calc(var(--spacing-lg) * 0.85); gap: 8px; }
 
     .hero-indicator        { width: 8px; height: 8px; }
@@ -316,7 +317,7 @@
     .hero-link-button { padding: 7px 14px; font-size: 0.68rem; gap: 5px; }
     .hero-link-button i { font-size: 0.68rem; }
 
-    .hero-content    { padding: calc(var(--spacing-md) * 0.85); max-width: 100%; gap: calc(var(--spacing-sm) * 0.85); }
+    .hero-content    { padding: calc(var(--spacing-md) * 0.85); max-width: 100%; gap: calc(var(--spacing-sm) * 0.85); max-height: calc(100% - 38px); }
     .hero-indicators { bottom: calc(var(--spacing-md) * 0.85); gap: 7px; }
 
     .hero-indicator        { width: 7px; height: 7px; }
@@ -345,7 +346,7 @@
     .hero-link-button { padding: 6px 12px; font-size: 0.62rem; gap: 4px; }
     .hero-link-button i { font-size: 0.62rem; }
 
-    .hero-content    { padding: calc(var(--spacing-md) * 0.7); max-width: 100%; gap: calc(var(--spacing-sm) * 0.7); }
+    .hero-content    { padding: calc(var(--spacing-md) * 0.7); max-width: 100%; gap: calc(var(--spacing-sm) * 0.7); max-height: calc(100% - 34px); }
     .hero-indicators { bottom: calc(var(--spacing-md) * 0.7); gap: 6px; }
 
     .hero-indicator        { width: 6px; height: 6px; }
