@@ -113,6 +113,14 @@
     margin-bottom: 17px;
 }
 
+/* Límite de 3 líneas en la tarjeta */
+.major-card-description--clamped {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 /* ================================================================
     BOTONES DE TARJETA
    ================================================================ */
@@ -152,7 +160,6 @@
     background: var(--content-accent-border);
     color: white;
     border-color: var(--content-accent-border);
-    text-decoration: none;
 }
 
 .major-card-button:hover {
@@ -190,8 +197,6 @@
     box-sizing: border-box;
     animation: milestoneFade 0.8s ease;
 }
-
-
 
 .milestone-icon {
     font-size: 1.65rem;

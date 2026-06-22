@@ -1,0 +1,234 @@
+/* ================================================================
+    MAJOR INFO MODAL
+    ================================================================ */
+
+.major-info-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.major-info-modal.active {
+    display: flex;
+}
+
+/* ================================================================
+    CONTENEDOR INTERNO — el que scrollea completo
+   ================================================================ */
+
+.major-info-modal__inner {
+    background: var(--content-bg-light);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 660px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    border: 2px solid var(--content-border);
+    animation: majorInfoSlideIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================================================================
+    HEADER — sticky: queda fijo arriba al scrollear
+   ================================================================ */
+
+.major-info-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    border-bottom: 2px solid var(--content-border);
+    background: var(--content-bg);
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+/* ================================================================
+    ÁREA SCROLLEABLE — imagen + cuerpo
+   ================================================================ */
+
+.major-info-modal__scroll {
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+.major-info-modal__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--content-text);
+    line-height: 1.3;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.major-info-modal__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--content-accent-border);
+    font-size: 1.15rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.major-info-modal__close:hover {
+    background: var(--content-accent-border);
+    color: var(--content-bg);
+    transform: rotate(90deg);
+}
+
+/* ================================================================
+    IMAGEN — parte del flujo scrolleable
+   ================================================================ */
+
+.major-info-modal__image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* ================================================================
+    CUERPO
+   ================================================================ */
+
+.major-info-modal__body {
+    padding: 26px 26px 30px;
+}
+
+/* Secciones de contenido */
+.major-info-modal__section {
+    margin-bottom: 24px;
+}
+
+.major-info-modal__section:last-child {
+    margin-bottom: 0;
+}
+
+.major-info-modal__section-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--content-accent-border);
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    margin: 0 0 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--content-border);
+}
+
+.major-info-modal__text {
+    font-size: 0.88rem;
+    color: var(--content-text-light);
+    line-height: 1.65;
+    margin: 0;
+    white-space: pre-line;
+}
+
+/* Lista plan de estudio / salidas laborales */
+.major-info-modal__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.major-info-modal__list li {
+    font-size: 0.86rem;
+    color: var(--content-text-light);
+    line-height: 1.5;
+    padding-left: 16px;
+    position: relative;
+}
+
+.major-info-modal__list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--content-accent-border);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.3;
+}
+
+/* ================================================================
+    ANIMACIÓN
+   ================================================================ */
+
+@keyframes majorInfoSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ================================================================
+    RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 768px) {
+    .major-info-modal {
+        padding: 12px;
+        align-items: flex-end;
+    }
+
+    .major-info-modal__inner {
+        max-height: 92vh;
+        border-radius: 12px 12px 6px 6px;
+    }
+
+    .major-info-modal__image  { height: 180px; }
+
+    .major-info-modal__header { padding: 14px 16px; }
+
+    .major-info-modal__title  { font-size: 0.88rem; }
+
+    .major-info-modal__body   { padding: 20px 16px 24px; }
+}
+
+@media (max-width: 480px) {
+    .major-info-modal {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .major-info-modal__inner {
+        max-height: 94vh;
+        border-radius: 10px 10px 0 0;
+        max-width: 100%;
+    }
+
+    .major-info-modal__image  { height: 160px; }
+
+    .major-info-modal__title  { font-size: 0.82rem; }
+
+    .major-info-modal__body   { padding: 16px 14px 20px; }
+
+    .major-info-modal__text   { font-size: 0.84rem; }
+
+    .major-info-modal__list li { font-size: 0.82rem; }
+}

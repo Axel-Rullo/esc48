@@ -120,7 +120,7 @@ class MajorsRenderer {
             majors.filter(m => m.type === 'professional')
         );
 
-        this.attachExperienceDelegation();
+        this.attachDelegation();
     }
 
     // =============================================================
@@ -136,19 +136,28 @@ class MajorsRenderer {
             return;
         }
 
-        container.innerHTML = majors.map((major, index) => {
+        const allMajors = window.AppData.majors;
+
+        container.innerHTML = majors.map((major) => {
+
+            // Índice real en el array original (no en el filtrado)
+            const originalIndex = allMajors.indexOf(major);
 
             // ID único por carrera para vincular con el modal de experiencias
-            const majorId = `major-${index}-${major.title.replace(/\s+/g, '-').toLowerCase()}`;
+            const majorId = `major-${originalIndex}-${major.title.replace(/\s+/g, '-').toLowerCase()}`;
 
             return `
-                <div class="major-card">
+                <div class="major-card" data-major-index="${originalIndex}">
                     <img src="${major.imageUrl}" alt="${major.title}" class="major-card-image">
                     <div class="major-card-content">
                         <h3 class="major-card-title">${major.title}</h3>
-                        <p class="major-card-description">${major.description}</p>
+                        <p class="major-card-description major-card-description--clamped">${major.description}</p>
                         <div class="major-card-buttons">
-                            <a href="${major.link}" class="major-card-button">Más Info</a>
+                            <button
+                                class="major-card-button"
+                                data-major-index="${originalIndex}">
+                                Más Info
+                            </button>
                             <button
                                 class="major-card-experiences-btn"
                                 data-major-id="${majorId}"
@@ -163,28 +172,44 @@ class MajorsRenderer {
     }
 
     // =============================================================
-    // EVENT DELEGATION — Botones de experiencias
+    // EVENT DELEGATION — Botones de tarjeta
     // =============================================================
 
-    attachExperienceDelegation() {
+    attachDelegation() {
 
         const section = document.querySelector('.majors-section');
         if (!section) return;
 
         section.addEventListener('click', (e) => {
 
-            const btn = e.target.closest('.major-card-experiences-btn');
-            if (!btn) return;
+            // -- Botón Experiencias --
+            const expBtn = e.target.closest('.major-card-experiences-btn');
+            if (expBtn) {
+                e.preventDefault();
+                if (window.experiencesModal) {
+                    window.experiencesModal.openModal(
+                        expBtn.dataset.majorTitle,
+                        expBtn.dataset.majorId
+                    );
+                } else {
+                    console.error('El modal de experiencias no está cargado');
+                }
+                return;
+            }
 
-            e.preventDefault();
+            // -- Botón Más Info --
+            const infoBtn = e.target.closest('.major-card-button');
+            if (infoBtn) {
+                e.preventDefault();
 
-            if (window.experiencesModal) {
-                window.experiencesModal.openModal(
-                    btn.dataset.majorTitle,
-                    btn.dataset.majorId
-                );
-            } else {
-                console.error('El modal de experiencias no está cargado');
+                const index = Number(infoBtn.dataset.majorIndex);
+                const major = window.AppData.majors[index];
+
+                if (!major) return;
+
+                if (window.majorInfoModal) {
+                    window.majorInfoModal.openModal(major);
+                }
             }
         });
     }

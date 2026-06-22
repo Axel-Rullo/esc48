@@ -242,14 +242,50 @@
         {
         "type": "technical",
         "title": "Técnico Superior en Desarrollo de Software",
-        "description": "Formación en desarrollo de aplicaciones, programación web y sistemas. Aprende las tecnologías más demandadas del mercado laboral actual.",
+        "description": "La Tecnicatura Superior en Desarrollo de Software te prepara para diseñar, construir y mantener aplicaciones en distintos entornos: web, móvil y de escritorio.\n\nCon un enfoque práctico y orientado al mercado laboral, combinás fundamentos sólidos de programación con tecnologías actuales, trabajo en equipo y metodologías ágiles.\n\nAl egresar estás en condiciones de integrarte de forma inmediata a equipos de desarrollo o de emprender tus propios proyectos tecnológicos.",
+        "studyPlan": [
+            "Algoritmos y Estructuras de Datos",
+            "Programación Orientada a Objetos",
+            "Desarrollo Web Frontend (HTML, CSS, JavaScript)",
+            "Desarrollo Web Backend (Node.js / Python)",
+            "Bases de Datos relacionales y no relacionales",
+            "Ingeniería de Software y Metodologías Ágiles",
+            "Sistemas Operativos y Redes",
+            "Seguridad Informática",
+            "Práctica Profesionalizante"
+        ],
+        "jobOutlets": [
+            "Desarrollador web fullstack o especializado en frontend / backend",
+            "Analista programador en empresas de software",
+            "Desarrollador de aplicaciones móviles",
+            "Técnico en soporte y mantenimiento de sistemas",
+            "Freelancer en proyectos digitales",
+            "Emprendedor tecnológico"
+        ],
         "imageUrl": "Images/Majors/software.jfif",
         "link": "#"
-        },
+    },
         {
         "type": "technical",
         "title": "Técnico Superior en Gestión de las Organizaciones",
         "description": "Especialización en administración, recursos humanos y gestión empresarial. Preparate para liderar equipos y proyectos en diferentes áreas organizacionales.",
+        "studyPlan": [
+            "Administración General",
+            "Contabilidad y Finanzas",
+            "Recursos Humanos",
+            "Marketing y Comercialización",
+            "Derecho Laboral y Comercial",
+            "Gestión de Proyectos",
+            "Economía y Estadística",
+            "Práctica Profesionalizante"
+        ],
+        "jobOutlets": [
+            "Asistente administrativo en empresas y organizaciones",
+            "Analista en gestión de recursos humanos",
+            "Coordinador de proyectos organizacionales",
+            "Asesor contable y financiero para PyMEs",
+            "Emprendedor en gestión empresarial"
+        ],
         "imageUrl": "Images/Majors/gestion.jpg",
         "link": "#"
         },
@@ -257,6 +293,23 @@
         "type": "professional",
         "title": "Profesorado en Educación Inicial",
         "description": "Formación integral para la enseñanza en nivel inicial. Desarrolla competencias pedagógicas y emocionales para educar a los más pequeños.",
+        "studyPlan": [
+            "Pedagogía y Didáctica General",
+            "Psicología del Desarrollo Infantil",
+            "Didáctica de la Matemática (Nivel Inicial)",
+            "Didáctica de la Lengua y la Literatura",
+            "Educación Artística y Expresiva",
+            "Educación Física y Corporeidad",
+            "Práctica Docente I, II, III y IV",
+            "Problemáticas Socioculturales de la Infancia"
+        ],
+        "jobOutlets": [
+            "Docente de sala en jardines de infantes públicos y privados",
+            "Coordinador/a pedagógico en instituciones de nivel inicial",
+            "Diseñador/a de proyectos educativos para primera infancia",
+            "Facilitador/a en espacios de educación no formal",
+            "Asesor/a pedagógico en editoriales y medios educativos"
+        ],
         "imageUrl": "Images/Majors/inicial.jpg",
         "link": "#"
         },
@@ -264,6 +317,23 @@
         "type": "professional",
         "title": "Profesorado en Educación Primaria",
         "description": "Preparación docente para educación primaria con enfoque en metodologías activas. Forma educadores comprometidos con la calidad educativa.",
+        "studyPlan": [
+            "Pedagogía y Didáctica General",
+            "Didáctica de la Matemática (Nivel Primario)",
+            "Didáctica de las Ciencias Naturales",
+            "Didáctica de las Ciencias Sociales",
+            "Didáctica de la Lengua y la Literatura",
+            "Tecnologías Educativas",
+            "Práctica Docente I, II, III y IV",
+            "Sujetos de la Educación Primaria"
+        ],
+        "jobOutlets": [
+            "Docente de grado en escuelas primarias públicas y privadas",
+            "Tutor/a y apoyo escolar en instituciones educativas",
+            "Coordinador/a de proyectos pedagógicos institucionales",
+            "Facilitador/a de talleres educativos en centros comunitarios",
+            "Asesor/a en contenidos educativos y capacitación docente"
+        ],
         "imageUrl": "Images/Majors/primaria.jpg",
         "link": "#"
         }
