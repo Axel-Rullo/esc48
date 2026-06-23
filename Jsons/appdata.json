@@ -2,11 +2,7 @@
     "nav": [
         {
         "label": "Aula Virtual",
-        "link": "https://esc48-sfe.infd.edu.ar/aula/"
-        },
-        {
-        "label": "Biblioteca Virtual",
-        "link": "https://esc48-sfe.infd.edu.ar/sitio/biblioteca-virtual/"
+        "link": "https://esc48-sfe.infd.edu.ar/aula"
         },
         {
         "label": "Ingresantes 1ro",
@@ -14,13 +10,7 @@
         },
         {
         "label": "Calendario Anual",
-        "link": "./PDFs/2026.pdf",
-        "target": "_blank"
-        },
-        {
-        "label": "Convocatoria Anual",
-        "link": "./PDFs/CONVOCATORIA-A-CONCURSO-EDI_EAI_IES48.pdf",
-        "target": "_blank"
+        "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2025/12/2026.pdf"
         }
     ],
     "phones": [
@@ -56,11 +46,11 @@
             "items": [
                 {
                 "label": "Horario",
-                "link": "./PDFs/HORARIO-2026-TSDS.pdf"
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIO-2026-TSDS.pdf"
                 },
                 {
                 "label": "Diseño Curricular",
-                "link": "#"
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2024/04/tecnicos-Desarrollo_de_Software-1.pdf"
                 },
                 {
                 "label": "Plan de Estudio",
@@ -78,7 +68,7 @@
             "items": [
                 {
                 "label": "Horario",
-                "link": "./PDFs/HORARIO-2026-TSGO.pdf"
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIO-2026-TSGO.pdf"
                 },
                 {
                 "label": "Diseño Curricular",
@@ -100,7 +90,7 @@
             "items": [
                 {
                 "label": "Horario",
-                "link": "./PDFs/HORARIO-2026-Inicial.pdf"
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIOS-2026-Inicial.pdf"
                 },
                 {
                 "label": "Diseño Curricular",
@@ -122,7 +112,7 @@
             "items": [
                 {
                 "label": "Horario",
-                "link": "./PDFs/HORARIO-2026-Primaria.pdf"
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIOS-2026-Primaria.pdf"
                 },
                 {
                 "label": "Diseño Curricular",
@@ -146,19 +136,71 @@
         "items": [
             {
             "label": "Guía TPs",
-            "link": "./PDFs/GUIA-PARA-ELABORACION-DE-TRABAJOS-PRACTICOS.pdf"
+            "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2023/03/GUIA-PARA-ELABORACION-DE-TRABAJOS-PRACTICOS.pdf"
             },
             {
             "label": "Planilla para el uso transparente de la IA",
-            "link": "./PDFs/PLANILLA-DE-USO-TRANSPARENTE-DE-IA.-IES-N°48-1.pdf"
+            "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/06/PLANILLA-DE-USO-TRANSPARENTE-DE-IA.-IES-N%C2%B048-1.pdf"
             },
             {
-            "label": "Reglamentos (necesita items dentro)",
-            "link": "#"
+            "label": "Trámites",
+            "id": "tramites",
+            "items": [
+                {
+                "label": "Homologaciones",
+                "link": "#"
+                },
+                {
+                "label": "Mesas de Exámenes",
+                "link": "#"
+                },
+                {
+                "label": "Estudiante Visitante",
+                "link": "#"
+                }
+            ]
             },
             {
-            "label": "Trámites (necesita items dentro)",
-            "link": "./PDFs/mesa de examen especial.pdf"
+            "label": "Reglamentos",
+            "id": "reglamentos",
+            "items": [
+                {
+                "label": "Reglamento Orgánico de Institutos Superiores",
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2021/05/decreto798-ROIS.pdf"
+                },
+                {
+                "label": "Centro de Estudiantes",
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2021/05/centro-de-estudiantes.pdf"
+                },
+                {
+                "label": "Diseño Curricular - Profesorado de Educación Inicial",
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2020/05/529-09-Inicial.pdf"
+                },
+                {
+                "label": "Diseño Curricular - Profesorado de Educación Primaria",
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2020/05/528-09-Primario.pdf"
+                },
+                {
+                "label": "Res. 2120/16 - Desarrollo de Software",
+                "link": "#"
+                },
+                {
+                "label": "Res. 378/16 - Técnico en Gestión de las Organizaciones",
+                "link": "./PDFs/T_cnico_Gesti_n_organizaciones.pdf"
+                },
+                {
+                "label": "Reglamento Académico Marco",
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/informacion-para-alumnos/upload/020.pdf"
+                },
+                {
+                "label": "Prácticas Docentes",
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2018/10/021-1.pdf"
+                },
+                {
+                "label": "Prácticas Profesionalizantes",
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2018/10/Dec-1559-7-1-Pr%C3%A1c-Profesionalizantes.pdf"
+                }
+            ]
             }
         ]
         },
@@ -168,7 +210,21 @@
         "items": [
             {
             "label": "Adscripciones",
-            "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2025/04/REGLAMENTO-ADSCRIPCION.pdf"
+            "id": "adscripciones",
+            "items": [
+                {
+                "label": "Reglamento de Adscripciones",
+                "link": "./PDFs/REGLAMENTO-ADSCRIPCION.pdf"
+                },
+                {
+                "label": "Solicitud para Adscripciones",
+                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2024/04/Solicitud-para-Adscripciones-1.pdf"
+                },
+                {
+                "label": "Reglamento Académico Marco (RAM)",
+                "link": "./PDFs/REGLAMENTO-ADSCRIPCION-AMPLIADO.pdf"
+                }
+            ]
             }
         ]
         },
@@ -177,16 +233,14 @@
         "id": "menu-docentes",
         "items": [
             {
-            "label": "Recursos Pedagógicos",
-            "link": "#"
-            },
-            {
-            "label": "Plataformas Educativas",
-            "link": "#"
-            },
-            {
-            "label": "Capacitaciones",
-            "link": "#"
+            "label": "Licencias",
+            "id": "Licencias",
+            "items": [
+                {
+                "label": "Licencias Médicas",
+                "link": "#"
+                }
+            ]
             }
         ]
         },

@@ -14,6 +14,9 @@
     background: rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
+    overflow: hidden;
+    overscroll-behavior: contain;
+    touch-action: none;
 }
 
 .major-info-modal.active {
@@ -29,7 +32,8 @@
     border-radius: 12px;
     width: 100%;
     max-width: 660px;
-    max-height: 90vh;
+    max-height: 92vh;
+    max-height: 92dvh;
     overflow: hidden;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
     border: 2px solid var(--content-border);
@@ -59,8 +63,27 @@
 
 .major-info-modal__scroll {
     overflow-y: auto;
+    overflow-x: hidden;
     flex: 1;
     min-height: 0;
+    overscroll-behavior: contain;
+}
+
+.major-info-modal__scroll::-webkit-scrollbar {
+    width: 7px;
+}
+
+.major-info-modal__scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.major-info-modal__scroll::-webkit-scrollbar-thumb {
+    background: var(--content-accent-border);
+    border-radius: 8px;
+}
+
+.major-info-modal__scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--content-accent);
 }
 
 .major-info-modal__title {
@@ -198,6 +221,7 @@
 
     .major-info-modal__inner {
         max-height: 92vh;
+        max-height: 92dvh;
         border-radius: 12px 12px 6px 6px;
     }
 
@@ -218,8 +242,10 @@
 
     .major-info-modal__inner {
         max-height: 94vh;
+        max-height: 94dvh;
         border-radius: 10px 10px 0 0;
         max-width: 100%;
+        width: 100%;
     }
 
     .major-info-modal__image  { height: 160px; }
