@@ -143,6 +143,10 @@
             "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/06/PLANILLA-DE-USO-TRANSPARENTE-DE-IA.-IES-N%C2%B048-1.pdf"
             },
             {
+            "label": "Inscripciones a mesas",
+            "link": "https://esc48-sfe.infd.edu.ar/aula/encuestas.cgi?id_curso=312"
+            },
+            {
             "label": "Trámites",
             "id": "tramites",
             "items": [
@@ -403,7 +407,7 @@
         }
     ],
     "emails": [
-    { "label": "Secretaría",                  "address": "fotocopiadora.ies48@gmail.com"      },
-    { "label": "Fotocopiadora",        "address": "secretariasup48@gmail.com"      }
+    { "label": "Secretaría", "address": "secretariasup48@gmail.com" },
+    { "label": "Fotocopiadora", "address": "fotocopiadora.ies48@gmail.com" }
     ]
 }
