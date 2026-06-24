@@ -22,13 +22,13 @@ class MajorInfoModal extends BaseModal {
     // =================================================================
 
     _cacheElements() {
-        this._titleEl   = this.modal.querySelector('.major-info-modal__title');
-        this._imageEl   = this.modal.querySelector('.major-info-modal__image');
-        this._descEl    = this.modal.querySelector('.major-info-modal__desc');
-        this._planEl    = this.modal.querySelector('.major-info-modal__curriculum');
-        this._jobsEl    = this.modal.querySelector('.major-info-modal__careers');
+        this._titleEl    = this.modal.querySelector('.major-info-modal__title');
+        this._imageEl    = this.modal.querySelector('.major-info-modal__image');
+        this._descEl     = this.modal.querySelector('.major-info-modal__desc');
+        this._planEl     = this.modal.querySelector('.major-info-modal__curriculum');
+        this._jobsEl     = this.modal.querySelector('.major-info-modal__careers');
 
-        // Secciones padres para ocultar cuando no hay datos
+        // Secciones padre para ocultar cuando no hay datos
         this._planSection = this._planEl?.closest('.major-info-modal__section');
         this._jobsSection = this._jobsEl?.closest('.major-info-modal__section');
     }
@@ -40,6 +40,55 @@ class MajorInfoModal extends BaseModal {
     _attachInternalClose() {
         const closeBtn = this.modal.querySelector('.major-info-modal__close');
         if (closeBtn) closeBtn.addEventListener('click', () => this.close());
+    }
+
+    // =================================================================
+    // PARSEAR CAMPO — convierte string con \n en HTML
+    //
+    //   Si el texto tiene líneas que empiezan con "- " se renderizan
+    //   como <li> dentro de una <ul>. El resto se renderiza como <p>.
+    //   Las líneas vacías separan bloques.
+    //
+    // =================================================================
+
+    _parseField(text) {
+        if (!text) return '';
+
+        const lines  = text.split('\n');
+        let   html   = '';
+        let   buffer = [];
+        let   inList = false;
+
+        const flushBuffer = () => {
+            if (!buffer.length) return;
+            if (inList) {
+                html += `<ul class="major-info-modal__list">${buffer.map(l => `<li>${l}</li>`).join('')}</ul>`;
+            } else {
+                html += `<p class="major-info-modal__text">${buffer.join('<br>')}</p>`;
+            }
+            buffer = [];
+            inList = false;
+        };
+
+        for (const raw of lines) {
+            const line = raw.trimEnd();
+
+            if (line.trim() === '') {
+                flushBuffer();
+                continue;
+            }
+
+            const isBullet = line.startsWith('- ');
+
+            // Cambio de modo (texto → lista o lista → texto): vaciar buffer
+            if (buffer.length && isBullet !== inList) flushBuffer();
+
+            inList = isBullet;
+            buffer.push(isBullet ? line.slice(2) : line);
+        }
+
+        flushBuffer();
+        return html;
     }
 
     // =================================================================
@@ -60,38 +109,36 @@ class MajorInfoModal extends BaseModal {
             this._imageEl.alt = major.title ?? '';
         }
 
-        // -- Descripción extendida (respeta \\n como saltos de línea) --
+        // -- Descripción (texto libre con \n y soporte de listas con "- ") --
         if (this._descEl) {
-            this._descEl.textContent = major.description ?? '';
+            this._descEl.innerHTML = this._parseField(major.description ?? '');
         }
 
-        // -- Plan de estudio (array de strings) --
+        // -- Plan de estudio --
         if (this._planEl) {
-            const items = Array.isArray(major.studyPlan) ? major.studyPlan : [];
-            this._planEl.innerHTML = items
-                .map(item => `<li>${item}</li>`)
-                .join('');
-
-            // Ocultar sección si no hay items
+            const content = this._parseField(
+                Array.isArray(major.studyPlan)
+                    ? major.studyPlan.join('\n')
+                    : (major.studyPlan ?? '')
+            );
+            this._planEl.innerHTML = content;
             if (this._planSection) {
-                this._planSection.style.display = items.length ? '' : 'none';
+                this._planSection.style.display = content ? '' : 'none';
             }
         }
 
-        // -- Salidas laborales (array de strings) --
+        // -- Salidas laborales --
         if (this._jobsEl) {
-            const items = Array.isArray(major.jobOutlets) ? major.jobOutlets : [];
-            this._jobsEl.innerHTML = items
-                .map(item => `<li>${item}</li>`)
-                .join('');
-
-            // Ocultar sección si no hay items
+            const content = this._parseField(
+                Array.isArray(major.jobOutlets)
+                    ? major.jobOutlets.join('\n')
+                    : (major.jobOutlets ?? '')
+            );
+            this._jobsEl.innerHTML = content;
             if (this._jobsSection) {
-                this._jobsSection.style.display = items.length ? '' : 'none';
+                this._jobsSection.style.display = content ? '' : 'none';
             }
         }
-
-
 
         // Scroll al tope antes de abrir
         this.modal.querySelector('.major-info-modal__scroll')?.scrollTo(0, 0);
@@ -101,8 +148,6 @@ class MajorInfoModal extends BaseModal {
 
     // =================================================================
     // VERIFICAR SI LA CARRERA TIENE DATOS EXTENDIDOS
-    //   Siempre devuelve true: al menos la descripción se muestra
-    //   @param {object} major - Objeto de la carrera
     // =================================================================
 
     hasContent(major) {

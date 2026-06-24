@@ -5,15 +5,15 @@
 .major-info-modal {
     display: none;
     position: fixed;
-    inset: 0;
     z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.55);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
+    animation: fadeIn 0.3s ease;
     overflow: hidden;
     overscroll-behavior: contain;
     touch-action: none;
@@ -21,75 +21,48 @@
 
 .major-info-modal.active {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ================================================================
-    CONTENEDOR INTERNO — el que scrollea completo
+    CONTENEDOR INTERNO
    ================================================================ */
 
 .major-info-modal__inner {
-    background: var(--content-bg-light);
-    border-radius: 12px;
-    width: 100%;
+    background: var(--content-bg);
+    border-radius: 10px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    width: 92%;
     max-width: 660px;
     max-height: 92vh;
     max-height: 92dvh;
-    overflow: hidden;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-    border: 2px solid var(--content-border);
-    animation: majorInfoSlideIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
     display: flex;
     flex-direction: column;
+    animation: majorInfoSlideIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    border: 2px solid var(--content-border);
+    overflow: hidden;
 }
 
 /* ================================================================
-    HEADER — sticky: queda fijo arriba al scrollear
+    HEADER
    ================================================================ */
 
 .major-info-modal__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 22px;
-    border-bottom: 2px solid var(--content-border);
-    background: var(--content-bg);
+    padding: 21px;
+    background: linear-gradient(135deg, var(--content-accent-border), var(--content-accent));
+    border-radius: 10px 10px 0 0;
     gap: 14px;
     flex-shrink: 0;
 }
 
-/* ================================================================
-    ÁREA SCROLLEABLE — imagen + cuerpo
-   ================================================================ */
-
-.major-info-modal__scroll {
-    overflow-y: auto;
-    overflow-x: hidden;
-    flex: 1;
-    min-height: 0;
-    overscroll-behavior: contain;
-}
-
-.major-info-modal__scroll::-webkit-scrollbar {
-    width: 7px;
-}
-
-.major-info-modal__scroll::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.major-info-modal__scroll::-webkit-scrollbar-thumb {
-    background: var(--content-accent-border);
-    border-radius: 8px;
-}
-
-.major-info-modal__scroll::-webkit-scrollbar-thumb:hover {
-    background: var(--content-accent);
-}
-
 .major-info-modal__title {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 700;
-    color: var(--content-text);
+    color: var(--content-button-text);
     line-height: 1.3;
     margin: 0;
     text-transform: uppercase;
@@ -100,26 +73,43 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     border: none;
-    background: transparent;
-    color: var(--content-accent-border);
-    font-size: 1.15rem;
+    background: var(--modal-close-btn-bg);
+    color: var(--content-button-text);
+    font-size: 1.7rem;
     cursor: pointer;
     flex-shrink: 0;
     transition: all 0.3s ease;
 }
 
 .major-info-modal__close:hover {
-    background: var(--content-accent-border);
-    color: var(--content-bg);
+    background: var(--modal-close-btn-hover-bg);
     transform: rotate(90deg);
 }
 
 /* ================================================================
-    IMAGEN — parte del flujo scrolleable
+    ÁREA SCROLLEABLE
+   ================================================================ */
+
+.major-info-modal__scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    min-height: 0;
+    overscroll-behavior: contain;
+    background: var(--content-bg);
+}
+
+.major-info-modal__scroll::-webkit-scrollbar       { width: 7px; }
+.major-info-modal__scroll::-webkit-scrollbar-track { background: transparent; }
+.major-info-modal__scroll::-webkit-scrollbar-thumb { background: var(--content-accent-border); border-radius: 8px; }
+.major-info-modal__scroll::-webkit-scrollbar-thumb:hover { background: var(--content-accent); }
+
+/* ================================================================
+    IMAGEN
    ================================================================ */
 
 .major-info-modal__image {
@@ -138,7 +128,7 @@
     padding: 26px 26px 30px;
 }
 
-/* Secciones de contenido */
+/* Secciones */
 .major-info-modal__section {
     margin-bottom: 24px;
 }
@@ -158,6 +148,7 @@
     border-bottom: 1px solid var(--content-border);
 }
 
+/* Texto libre — respeta \n como saltos */
 .major-info-modal__text {
     font-size: 0.88rem;
     color: var(--content-text-light);
@@ -166,7 +157,7 @@
     white-space: pre-line;
 }
 
-/* Lista plan de estudio / salidas laborales */
+/* Lista de items */
 .major-info-modal__list {
     list-style: none;
     padding: 0;
@@ -195,66 +186,55 @@
 }
 
 /* ================================================================
-    ANIMACIÓN
+    ANIMACIONES
    ================================================================ */
 
 @keyframes majorInfoSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.97);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 /* ================================================================
     RESPONSIVE
    ================================================================ */
 
-@media (max-width: 768px) {
-    .major-info-modal {
-        padding: 12px;
-        align-items: flex-end;
+@media (min-width: 1025px) {
+    .major-info-modal__header {
+        padding: 12px 21px;
     }
 
     .major-info-modal__inner {
-        max-height: 92vh;
-        max-height: 92dvh;
-        border-radius: 12px 12px 6px 6px;
+        width: 60%;
+        max-width: 660px;
     }
+}
 
-    .major-info-modal__image  { height: 180px; }
-
-    .major-info-modal__header { padding: 14px 16px; }
-
-    .major-info-modal__title  { font-size: 0.88rem; }
-
-    .major-info-modal__body   { padding: 20px 16px 24px; }
+@media (max-width: 768px) {
+    .major-info-modal__inner   { max-height: 92vh; max-height: 92dvh; }
+    .major-info-modal__image   { height: 180px; }
+    .major-info-modal__body    { padding: 20px 16px 24px; }
+    .major-info-modal__title   { font-size: 0.88rem; }
 }
 
 @media (max-width: 480px) {
-    .major-info-modal {
-        padding: 0;
-        align-items: flex-end;
-    }
-
-    .major-info-modal__inner {
-        max-height: 94vh;
-        max-height: 94dvh;
-        border-radius: 10px 10px 0 0;
-        max-width: 100%;
-        width: 100%;
-    }
-
-    .major-info-modal__image  { height: 160px; }
-
-    .major-info-modal__title  { font-size: 0.82rem; }
-
-    .major-info-modal__body   { padding: 16px 14px 20px; }
-
-    .major-info-modal__text   { font-size: 0.84rem; }
-
+    .major-info-modal__inner   { max-height: 92vh; max-height: 92dvh; border-radius: 10px 10px 0 0; max-width: 100%; width: 100%; }
+    .major-info-modal__image   { height: 160px; }
+    .major-info-modal__body    { padding: 16px 14px 20px; }
+    .major-info-modal__title   { font-size: 0.82rem; }
+    .major-info-modal__text    { font-size: 0.84rem; }
     .major-info-modal__list li { font-size: 0.82rem; }
+}
+
+@media (max-width: 380px) {
+    .major-info-modal__inner   { border-radius: 8px 8px 0 0; }
+    .major-info-modal__image   { height: 140px; }
+    .major-info-modal__body    { padding: 14px 12px 18px; }
+    .major-info-modal__title   { font-size: 0.76rem; }
+    .major-info-modal__text    { font-size: 0.8rem; }
+    .major-info-modal__list li { font-size: 0.78rem; }
 }

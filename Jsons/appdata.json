@@ -297,104 +297,42 @@
         }
     ],
     "majors": [
-        {
+    {
         "type": "technical",
         "title": "Técnico Superior en Desarrollo de Software",
-        "description": "La Tecnicatura Superior en Desarrollo de Software te prepara para diseñar, construir y mantener aplicaciones en distintos entornos: web, móvil y de escritorio.\n\nCon un enfoque práctico y orientado al mercado laboral, combinás fundamentos sólidos de programación con tecnologías actuales, trabajo en equipo y metodologías ágiles.\n\nAl egresar estás en condiciones de integrarte de forma inmediata a equipos de desarrollo o de emprender tus propios proyectos tecnológicos.",
-        "studyPlan": [
-            "Algoritmos y Estructuras de Datos",
-            "Programación Orientada a Objetos",
-            "Desarrollo Web Frontend (HTML, CSS, JavaScript)",
-            "Desarrollo Web Backend (Node.js / Python)",
-            "Bases de Datos relacionales y no relacionales",
-            "Ingeniería de Software y Metodologías Ágiles",
-            "Sistemas Operativos y Redes",
-            "Seguridad Informática",
-            "Práctica Profesionalizante"
-        ],
-        "jobOutlets": [
-            "Desarrollador web fullstack o especializado en frontend / backend",
-            "Analista programador en empresas de software",
-            "Desarrollador de aplicaciones móviles",
-            "Técnico en soporte y mantenimiento de sistemas",
-            "Freelancer en proyectos digitales",
-            "Emprendedor tecnológico"
-        ],
         "imageUrl": "Images/Majors/software.jfif",
-        "link": "#"
+        "link": "#",
+        "description": "La Tecnicatura Superior en Desarrollo de Software te prepara para diseñar, construir y mantener aplicaciones en distintos entornos: web, móvil y de escritorio.\n\nCon un enfoque práctico y orientado al mercado laboral, combinás fundamentos sólidos de programación con tecnologías actuales, trabajo en equipo y metodologías ágiles.\n\nNo hace falta saber programar para entrar. Se empieza desde los fundamentos y se va avanzando de forma progresiva.",
+        "studyPlan": "- Algoritmos y Estructuras de Datos\nAprendés a pensar como un programador: cómo ordenar información, buscarla rápido y resolver problemas paso a paso. Es la base de todo lo demás.\n\n- Programación Orientada a Objetos\nUna forma de organizar el código que usan casi todos los lenguajes modernos. Con esto podés construir programas más grandes sin que se vuelvan un caos.\n\n- Desarrollo Web Frontend (HTML, CSS, JavaScript)\nTodo lo que el usuario ve en pantalla: páginas, botones, formularios, animaciones. Si alguna vez te preguntaste cómo están hechas las webs que usás todos los días, acá lo aprendés.\n\n- Desarrollo Web Backend (Node.js / Python)\nLo que pasa detrás de escena: el servidor que guarda tus datos y hace funcionar la aplicación.\n\n- Bases de Datos relacionales y no relacionales\nCómo guardar, organizar y recuperar información de forma eficiente. Se usan en absolutamente todos los sistemas.\n\n- Ingeniería de Software y Metodologías Ágiles\nAprendés a trabajar en equipo en proyectos reales. Es lo que usan empresas como Mercado Libre o Globant.\n\n- Sistemas Operativos y Redes\nEntendés cómo funciona Linux, internet y la comunicación entre computadoras.\n\n- Seguridad Informática\nCómo proteger aplicaciones y datos de ataques. Ningún sistema se puede lanzar sin pensar en seguridad.\n\n- Práctica Profesionalizante\nEl último tramo: trabajás en un proyecto real como parte de un equipo. Muchos estudiantes consiguen trabajo durante esta etapa.",
+        "jobOutlets": "- Desarrollador web (frontend, backend o fullstack)\nCreás sitios y aplicaciones web. Es una de las salidas más demandadas hoy en Argentina y en el mundo.\n\n- Analista programador\nTrabajás dentro de una empresa desarrollando y manteniendo sus sistemas. Empresas de cualquier rubro necesitan este perfil.\n\n- Desarrollador de apps móviles\nCreás apps para Android o iOS. Desde juegos hasta aplicaciones de delivery o turnos médicos.\n\n- Freelancer\nTrabajás de forma independiente para distintos clientes, desde tu casa, muchas veces cobrando en dólares.\n\n- Emprendedor tecnológico\nCreás tu propio producto o startup con las herramientas que te da la carrera."
     },
-        {
+    {
         "type": "technical",
         "title": "Técnico Superior en Gestión de las Organizaciones",
-        "description": "Especialización en administración, recursos humanos y gestión empresarial. Preparate para liderar equipos y proyectos en diferentes áreas organizacionales.",
-        "studyPlan": [
-            "Administración General",
-            "Contabilidad y Finanzas",
-            "Recursos Humanos",
-            "Marketing y Comercialización",
-            "Derecho Laboral y Comercial",
-            "Gestión de Proyectos",
-            "Economía y Estadística",
-            "Práctica Profesionalizante"
-        ],
-        "jobOutlets": [
-            "Asistente administrativo en empresas y organizaciones",
-            "Analista en gestión de recursos humanos",
-            "Coordinador de proyectos organizacionales",
-            "Asesor contable y financiero para PyMEs",
-            "Emprendedor en gestión empresarial"
-        ],
         "imageUrl": "Images/Majors/gestion.jpg",
-        "link": "#"
-        },
-        {
+        "link": "#",
+        "description": "La carrera te prepara para entender cómo funciona una empresa o institución por dentro: cómo se administra, cómo se maneja el dinero, cómo se lidera un equipo y cómo se toman decisiones estratégicas.\n\nIdeal si te interesa el mundo de los negocios, la administración o querés trabajar en cualquier tipo de organización.",
+        "studyPlan": "- Administración General\nLa base de todo: cómo se planifica, organiza, dirige y controla una empresa. Aprendés los principios que usan los gerentes para tomar decisiones.\n\n- Contabilidad y Finanzas\nCómo registrar y analizar el dinero que entra y sale. Entendés balances, presupuestos y costos. Indispensable para cualquier rol de gestión.\n\n- Recursos Humanos\nCómo seleccionar, capacitar y retener personas. Aprendés a manejar conflictos y crear un buen clima de trabajo.\n\n- Marketing y Comercialización\nCómo posicionar un producto en el mercado y diseñar estrategias de venta. Incluye marketing digital y redes sociales.\n\n- Derecho Laboral y Comercial\nLas leyes que regulan el trabajo y los contratos. Fundamental para evitar problemas legales.\n\n- Gestión de Proyectos\nCómo planificar y ejecutar un proyecto de principio a fin: tiempos, recursos y resultados.\n\n- Economía y Estadística\nEntendés el contexto económico en el que opera una empresa y aprendés a interpretar datos.\n\n- Práctica Profesionalizante\nAplicás todo lo aprendido en una organización real. Muchos estudiantes realizan esta etapa en empresas locales o municipios.",
+        "jobOutlets": "- Asistente administrativo\nGestionás documentación, coordinás tareas y apoyás la operación diaria de una empresa. Es una de las salidas más accesibles al terminar.\n\n- Analista de recursos humanos\nSeleccionás personal, gestionás liquidaciones y trabajás en el bienestar de los empleados.\n\n- Coordinador de proyectos\nLiderás equipos para cumplir objetivos en tiempo y forma. Requiere organización y capacidad de resolución.\n\n- Asesor contable para PyMEs\nAyudás a pequeñas y medianas empresas a llevar sus cuentas y tomar decisiones financieras. Podés trabajar de forma independiente.\n\n- Emprendedor\nCon los conocimientos de la carrera podés lanzar tu propio negocio sabiendo cómo administrarlo y hacerlo crecer."
+    },
+    {
         "type": "professional",
         "title": "Profesorado en Educación Inicial",
-        "description": "Formación integral para la enseñanza en nivel inicial. Desarrolla competencias pedagógicas y emocionales para educar a los más pequeños.",
-        "studyPlan": [
-            "Pedagogía y Didáctica General",
-            "Psicología del Desarrollo Infantil",
-            "Didáctica de la Matemática (Nivel Inicial)",
-            "Didáctica de la Lengua y la Literatura",
-            "Educación Artística y Expresiva",
-            "Educación Física y Corporeidad",
-            "Práctica Docente I, II, III y IV",
-            "Problemáticas Socioculturales de la Infancia"
-        ],
-        "jobOutlets": [
-            "Docente de sala en jardines de infantes públicos y privados",
-            "Coordinador/a pedagógico en instituciones de nivel inicial",
-            "Diseñador/a de proyectos educativos para primera infancia",
-            "Facilitador/a en espacios de educación no formal",
-            "Asesor/a pedagógico en editoriales y medios educativos"
-        ],
         "imageUrl": "Images/Majors/inicial.jpg",
-        "link": "#"
-        },
-        {
+        "link": "#",
+        "description": "La carrera te forma para trabajar con niños de 45 días a 5 años, la etapa más importante del desarrollo humano. Aprendés a crear ambientes de aprendizaje, acompañar el crecimiento emocional y cognitivo de los más pequeños y diseñar propuestas pedagógicas que respeten los tiempos de cada niño.\n\nNo alcanza con querer a los chicos: esta carrera te da las herramientas concretas para enseñar bien.",
+        "studyPlan": "- Pedagogía y Didáctica General\nLas teorías que explican cómo aprenden las personas y cómo enseñar de forma efectiva. Es el marco teórico que da sentido a todo lo que hacés en el aula.\n\n- Psicología del Desarrollo Infantil\nEntendés cómo se desarrolla un niño desde que nace: cómo piensa, cómo siente, cómo se relaciona. Esencial para saber qué esperar en cada etapa.\n\n- Didáctica de la Matemática (Nivel Inicial)\nCómo enseñar nociones matemáticas a través del juego y la exploración. No es darles ejercicios: es crear situaciones donde el niño descubra por sí mismo.\n\n- Didáctica de la Lengua y la Literatura\nCómo acercar a los niños al lenguaje y los cuentos desde muy pequeños. Incluye la importancia de la lectura en voz alta.\n\n- Educación Artística y Expresiva\nEl arte, la música y el teatro como herramientas de aprendizaje. Los niños aprenden más cuando se expresan libremente.\n\n- Educación Física y Corporeidad\nCómo acompañar el desarrollo motor en la primera infancia. Es el vínculo del niño con su propio cuerpo.\n\n- Práctica Docente I, II, III y IV\nDesde el primer año empezás a ir a jardines reales, primero a observar y después a dar clases.\n\n- Problemáticas Socioculturales de la Infancia\nAnalizás el contexto social en el que viven los niños: pobreza, diversidad familiar, tecnología. Aprendés a leer la realidad para intervenir con sensibilidad.",
+        "jobOutlets": "- Docente de sala en jardín de infantes\nDar clases en sala de 2, 3, 4 o 5 años. Es el rol más directo. Podés acceder a cargos públicos mediante concurso.\n\n- Coordinadora pedagógica\nAcompañás y orientás al equipo docente de una institución. Un camino posible con experiencia.\n\n- Diseñadora de proyectos educativos\nCreás propuestas pedagógicas para instituciones, municipios u ONGs que trabajan con primera infancia.\n\n- Educación no formal\nTalleres en centros comunitarios, ludotecas o programas sociales. Una alternativa fuera del jardín tradicional.\n\n- Asesoría en editoriales educativas\nAlgunas empresas de materiales didácticos buscan docentes con formación específica para diseñar contenidos para niños."
+    },
+    {
         "type": "professional",
         "title": "Profesorado en Educación Primaria",
-        "description": "Preparación docente para educación primaria con enfoque en metodologías activas. Forma educadores comprometidos con la calidad educativa.",
-        "studyPlan": [
-            "Pedagogía y Didáctica General",
-            "Didáctica de la Matemática (Nivel Primario)",
-            "Didáctica de las Ciencias Naturales",
-            "Didáctica de las Ciencias Sociales",
-            "Didáctica de la Lengua y la Literatura",
-            "Tecnologías Educativas",
-            "Práctica Docente I, II, III y IV",
-            "Sujetos de la Educación Primaria"
-        ],
-        "jobOutlets": [
-            "Docente de grado en escuelas primarias públicas y privadas",
-            "Tutor/a y apoyo escolar en instituciones educativas",
-            "Coordinador/a de proyectos pedagógicos institucionales",
-            "Facilitador/a de talleres educativos en centros comunitarios",
-            "Asesor/a en contenidos educativos y capacitación docente"
-        ],
         "imageUrl": "Images/Majors/primaria.jpg",
-        "link": "#"
-        }
+        "link": "#",
+        "description": "La carrera te forma para enseñar en escuelas primarias, acompañando a niños de 6 a 12 años en una etapa clave de su desarrollo. Aprendés a planificar clases, enseñar todas las materias del nivel y generar un vínculo educativo que marque positivamente a tus alumnos.\n\nSer maestro/a de primaria implica mucho más que explicar contenidos: aprendés a leer un grupo y a construir un aula donde todos puedan avanzar.",
+        "studyPlan": "- Pedagogía y Didáctica General\nLas bases teóricas de la educación: para qué enseñamos, cómo aprenden los niños y qué estrategias funcionan mejor.\n\n- Didáctica de la Matemática (Nivel Primario)\nCómo enseñar matemática sin que sea solo memorizar. Diseñás situaciones problemáticas reales que hagan pensar a los chicos.\n\n- Didáctica de las Ciencias Naturales\nCómo despertar la curiosidad científica. Experimentos, preguntas e hipótesis adaptados a cada grado.\n\n- Didáctica de las Ciencias Sociales\nCómo enseñar historia, geografía y ciudadanía conectando el pasado con el presente y la realidad del alumno.\n\n- Didáctica de la Lengua y la Literatura\nLeer y escribir son la base de todo aprendizaje. Estrategias para enseñar comprensión lectora y amor por la literatura.\n\n- Tecnologías Educativas\nCómo integrar la tecnología al aula de forma pedagógica, no por usarla sino para que el aprendizaje sea más rico.\n\n- Práctica Docente I, II, III y IV\nDesde los primeros años vas a escuelas reales. Observás, planificás y finalmente dás clases solo.\n\n- Sujetos de la Educación Primaria\nEstudiás en profundidad a los niños de esta etapa: cómo piensan, qué les preocupa, cómo se relacionan.",
+        "jobOutlets": "- Maestro/a de grado\nDar clases en escuelas primarias públicas o privadas. Podés acceder al sistema público mediante listas de méritos y luego por concurso.\n\n- Apoyo escolar y tutoría\nAcompañar a alumnos con dificultades de aprendizaje, dentro de la escuela o de forma particular.\n\n- Coordinador/a de proyectos institucionales\nLiderar proyectos especiales dentro de una escuela: lectura, convivencia, integración.\n\n- Facilitador/a en centros comunitarios\nTalleres en barrios o programas sociales. Una forma de llegar a quienes más necesitan educación de calidad.\n\n- Capacitación docente\nCon experiencia, podés formar a otros docentes en instituciones de formación, municipios o sindicatos educativos."
+    }
     ],
     "socials": [
         {
