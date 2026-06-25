@@ -3,11 +3,11 @@
    ================================================================ */
 
     En cuanto a los campos necesarios para el inicio de la web, ir al appdata.json.
-    Hay que traerlos como estan en este (el nombre de las variables).
-    
-    Las experiencias de las carreras tienen su propio json aparte.
+    Hay que traerlos como estan en este (el nombre de las variables y la estructura).
 
     Los mismos se cargan desde "data-loader.js", de ahi van a donde tienen que ir.
+    Hay que modificar lo de appdata.json para que llame y traiga de otro lado como tal
+    la llamada y ejecucion ya es automatica (de la funcion)
 
     Las Imagenes estan en Images, para mover al menos lo del major al backend.
 
@@ -57,11 +57,11 @@
    ================================================================ */
 
     TARJETAS:
-        Estan echas dinamicamente con el fin de que se pueda modificar: Imagen, Titulo y Descripción.
-        Ademas del link para el boton "-> Mas info"
+        Estan echas dinamicamente con el fin de que se pueda modificar: Imagen, Titulo, Descripción,
+        Plan de estudio y Salidas laborales.
    
     EXPERIENCIAS:
-        experiences_info.txt
+        Ir a experiences_info.txt
 
 /* ================================================================
     UBICACIÓN
@@ -82,4 +82,4 @@
     CONTACTO:
         Aqui solo falta el codigo para que el formulario se envie.
         Actualmente se muestra una simulación, si se quiere, trabajen encima,
-        sobre todo por el orden de los sucesos
+        sobre todo por el orden de los sucesos.

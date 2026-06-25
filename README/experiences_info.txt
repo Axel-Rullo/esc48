@@ -4,13 +4,13 @@
 
 ## Flujo general
 
-Se detecta el login.
+Se detecta el login + carrera del usuario.
 
 Si hay un login existente (por ejemplo, en el aula virtual), se muestra la sección del formulario
 y la experiencia propia. Si no hay login, ambas secciones se ocultan.
 
 Para traer los datos de afuera, al pulsar uno de los botones de experiencias en majors se guarda
-una carrera en una variable dependiendo el botón que se pulse (`software`, `gestion`, `inicial` y `primaria`).
+una carrera (El titulo de majors) en una variable dependiendo el botón que se pulse (`software`, `gestion`, `inicial` y `primaria`).
 Con esa variable ya se sabe qué experiencias traer. La variable está marcada en la sección del Backend
 en `experiences_modal.js`, al final del archivo.
 
@@ -23,12 +23,14 @@ En el formulario se guardan los datos; el backend hace el resto.
 Cosas a considerar:
 - Por estudiante debe haber una única experiencia. Una vez que se publica, no dejar que el estudiante publique otra.
 - El nombre y apellido se tienen que unificar (se mandan separados, el backend los une).
+- Si el estudiante borra su experiencia la idea correcta es usar un borrado logico, y por tanto, si luego vuelve a
+intentar publicar, le tiene que dejar (Insert si id_usuario no aparece y si borradoexperience = 0).
 
 ---
 
 ## Función — Editar / Borrar
 
-Al tener una experiencia publicada (se muestra si se detecta un login), se utilizan las funciones
+Al tener una experiencia publicada, se utilizan las funciones
 ya preparadas que guardan los datos necesarios en la sección del Backend.
 
 ---
@@ -43,17 +45,17 @@ ya preparadas que guardan los datos necesarios en la sección del Backend.
 ## Conclusión
 
 Fuera de la sección del Backend, solo hay que tratar de conseguir el usuario y, si es posible,
-la carrera a la que pertenece el estudiante, para no dejarlo publicar en una carrera ajena.
+la carrera a la que pertenece el mismo, para no dejarlo publicar en una carrera ajena.
 Lo demás ya está preparado en la sección del Backend.
 
 ---
 
 ## Mapa de cambios — ¿Qué tocar cuando el backend trae datos de otro lado?
 
-Cuando el backend esté listo, el único cambio es reemplazar el `experiences_modal.js` actual
-por el archivo `experiences_modal_backend.txt` que ya está preparado.
+Cuando el backend esté listo, el único cambio es reemplazar el contenido de `experiences_modal.js` actual
+por el contenido del archivo `experiences_modal_backend.js` que ya está preparado.
 
-Ese archivo ya tiene los fetch apuntando a la API y no depende del JSON local para nada.
+Ese archivo ya tiene los datos necesarios y no depende del JSON local para nada.
 
 ---
 

@@ -77,8 +77,7 @@ class DynamicRenderer {
 
     /**
      * Crea un item del nav.
-     * Solo abre en pestaña nueva si el JSON lo indica con "target"
-     * o si el link es un PDF.
+     * Siempre abre en pestaña nueva. Si el JSON define "target", lo respeta.
      */
     static createNavItem(item) {
 
@@ -89,12 +88,8 @@ class DynamicRenderer {
         a.href        = item.link || '#';
         a.textContent = item.label;
 
-        const isPDF = item.link?.toLowerCase().endsWith('.pdf');
-
-        if (isPDF || item.target) {
-            a.target = item.target || '_blank';
-            a.rel    = 'noopener noreferrer';
-        }
+        a.target = item.target || '_blank';
+        a.rel    = 'noopener noreferrer';
 
         li.appendChild(a);
         return li;
@@ -245,8 +240,8 @@ class DynamicRenderer {
 
     /**
      * Crea link o botón de acción en el menú.
-     * Solo abre en pestaña nueva si el JSON lo indica con "target"
-     * o si el link es un PDF.
+     * Siempre abre en pestaña nueva. Si el JSON define "target", lo respeta.
+     * Los items con "action" ejecutan su función directamente (no son links).
      */
     static createMenuLink(item) {
 
@@ -271,12 +266,8 @@ class DynamicRenderer {
         a.textContent = item.label;
         a.href        = item.link || '#';
 
-        const isPDF = item.link?.toLowerCase().endsWith('.pdf');
-
-        if (isPDF || item.target) {
-            a.target = item.target || '_blank';
-            a.rel    = 'noopener noreferrer';
-        }
+        a.target = item.target || '_blank';
+        a.rel    = 'noopener noreferrer';
 
         li.appendChild(a);
         return li;
