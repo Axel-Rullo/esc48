@@ -50,142 +50,27 @@ Lo demás ya está preparado en la sección del Backend.
 
 ## Mapa de cambios — ¿Qué tocar cuando el backend trae datos de otro lado?
 
-Cuando el backend deje de usar el JSON local y pase a traer los datos
-de una API, estos son los únicos puntos del archivo a modificar:
+Cuando el backend esté listo, el único cambio es reemplazar el `experiences_modal.js` actual
+por el archivo `experiences_modal_backend.txt` que ya está preparado.
+
+Ese archivo ya tiene los fetch apuntando a la API y no depende del JSON local para nada.
 
 ---
 
-### 1. `loadExperiencesFromData()` — El punto de entrada de todos los datos
+### data-loader.js
 
-```
-experiences_modal.js → línea ~263
-```
-
-Aquí se lee `window.ExperiencesData`. Cuando el backend esté listo, esta función
-se reemplaza (o se complementa) con una llamada fetch/axios a la API.
-
-**La estructura que espera recibir es la del JSON**
-
-**Qué hace internamente con `const entry`:**
+Sacar la llamada a `loadExperiencesData()` dentro de `loadAllData()` ya que el JSON de experiencias
+no se va a usar más:
 
 ```js
-Object.keys(data.experiences).forEach(major => {
-    const entry = data.experiences[major];
-    //    ^^^^^
-    //    entry = el objeto de UNA carrera, por ejemplo data.experiences["software"]
-    //    Tiene: entry.averageRating, entry.totalReviews, entry.reviews[]
-    //
-    //    "major" es la clave del objeto (no un ID numérico), toma los valores:
-    //    'software', 'gestion', 'inicial', 'primaria' — una por vuelta del forEach.
-    //
-    //    Si el backend manda el array de reviews directamente (sin envoltura),
-    //    el código lo acepta igual gracias al Array.isArray(entry).
-
-    const rawReviews = Array.isArray(entry) ? entry : entry.reviews ?? [];
-    const reviews    = rawReviews.map(({ id, ...rest }) => rest);
-    //                             ^^^^^^^^^^^^^^^^^^^^^^^^^^
-    //                             Descarta el id de cada review.
-    //                             Solo myExperience.id se conserva.
-
-    this.experiences.set(major, Array.isArray(entry)
-        ? { averageRating: null, totalReviews: reviews.length, reviews }
-        : { averageRating: entry.averageRating ?? null,
-            totalReviews:  entry.totalReviews  ?? reviews.length,
-            reviews }
-    );
-});
-```
-
----
-
-### 2. `submitExperience()` — Publicar experiencia nueva
-
-```
-experiences_modal.js → sección Backend, función 1
-```
-
-El `payload` ya está armado. Solo hace falta agregar la llamada al endpoint:
-
-```js
-function submitExperience() {
-    const payload = {
-        major:    window.selectedMajor?.key ?? null,  // 'software' | 'gestion' | 'inicial' | 'primaria'
-        name:     document.getElementById('expName').value.trim(),
-        lastname: document.getElementById('expLastname').value.trim(),
-        comment:  document.getElementById('expComment').value.trim(),
-        rating:   window.experiencesModal?.currentRating ?? 0,
-    };
-    // → POST /api/experiences   con payload
+// Antes
+static async loadAllData() {
+    await Promise.all([
+        DataLoader.loadAppData(),
+        DataLoader.loadExperiencesData()   // ← sacar esta línea
+    ]);
 }
 ```
 
----
-
-### 3. `updateExperience(id, rating)` — Editar experiencia propia
-
-```
-experiences_modal.js → sección Backend, función 2
-```
-
-```js
-function updateExperience(id, rating) {
-    const payload = {
-        id,       // viene de myExperience.id — el único id que viaja
-        name:     document.getElementById('myExpName').value.trim(),
-        lastname: document.getElementById('myExpLastname').value.trim(),
-        comment:  document.getElementById('myExpComment').value.trim(),
-        rating,
-    };
-    // → PUT /api/experiences/:id   con payload
-}
-```
-
----
-
-### 4. `deleteExperience(id)` — Borrar experiencia propia
-
-```
-experiences_modal.js → sección Backend, función 3
-```
-
-```js
-function deleteExperience(id) {
-    const payload = { id };
-    // → DELETE /api/experiences/:id
-}
-```
-
----
-
-### 5. Inicialización — Disparar la carga de datos
-
-```
-experiences_modal.js → línea ~612, bloque onReady()
-```
-
-Hoy escucha el evento `experiencesDataLoaded` o lee `window.ExperiencesData` directamente.
-Cuando la API esté lista, este bloque es donde se dispara el fetch inicial y,
-al resolverse, se llama a `loadExperiencesFromData()` pasándole la respuesta.
-
-```js
-onReady(() => {
-    window.experiencesModal = new ExperiencesModal();
-
-    // Hoy:
-    if (window.ExperiencesData) {
-        window.experiencesModal.loadExperiencesFromData();
-    } else {
-        window.addEventListener('experiencesDataLoaded', () => {
-            window.experiencesModal.loadExperiencesFromData();
-        }, { once: true });
-    }
-
-    // Mañana (ejemplo con fetch):
-    // fetch('/api/experiences')
-    //     .then(r => r.json())
-    //     .then(data => {
-    //         window.ExperiencesData = data;
-    //         window.experiencesModal.loadExperiencesFromData();
-    //     });
-});
-```
+También se pueden sacar `loadExperiencesData() (la funcion que esta leyendo el json)`, `getExperiencesData()` y `waitForExperiencesData()`
+del archivo si se quiere dejar todo limpio, pero no es obligatorio.
