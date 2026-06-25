@@ -104,7 +104,7 @@ class ExperiencesModal extends BaseModal {
         document.addEventListener('keydown', (e) => {
 
             const isDesktop     = window.innerWidth > 1024;
-            const isFormVisible = formSection.style.display !== 'none';
+            const isFormVisible = this.formSection.style.display !== 'none';
 
             if (!isDesktop || !this.isOpen() || !isFormVisible) return;
 
@@ -166,15 +166,9 @@ class ExperiencesModal extends BaseModal {
         document.getElementById('experiencesForm').reset();
         this.updateFormStars(0);
 
-        // Pedir al backend los datos de esta carrera antes de renderizar
-        Promise.all([
-            fetchExperiencesByMajor(majorKey),
-            fetchMyExperience(),
-        ]).then(([experiences, myExperience]) => {
-            if (experiences) this.experiences.set(majorKey, experiences);
-            this.myExperience = myExperience ?? null;
-            this.loadExperiences();
-        });
+        // Cargar desde el JSON local (ya procesado por loadExperiencesFromData)
+        this.myExperience = window.ExperiencesData?.myExperience ?? null;
+        this.loadExperiences();
 
         this.open();
         this.adjustModalHeight();
