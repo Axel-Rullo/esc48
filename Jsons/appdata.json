@@ -260,41 +260,41 @@
         }
     ],
     "heroNews": [
-        {
+    {
         "title": "Inscripciones primer año 2026",
         "imageUrl": "Images/News_School/inscripciones_primer_año.png",
-        "description": "Información y requisitos para realizar tu inscripción y comenzar tus estudios.",
+        "description": "Conocé los requisitos y el proceso para inscribirte y comenzar tus estudios en el instituto. Las inscripciones están abiertas, no te quedes afuera.",
         "link": "./PDFs/Apuntes-Curso-Desarrollo-IA-Clase-1.pdf",
         "type": "primicia"
-        },
-        {
+    },
+    {
         "title": "Viaje a La Virginia",
         "imageUrl": "Images/News_School/noticia_2.webp",
-        "description": "Junto a los alumnos de Gestión Y Software de 3er año realizaremos un viaje de excursión a \"La Virginia\" y al \"Pueblo Técnologico\".\nSi sos alumno de la tecnicatura recordá abonar el viaje antes del 26/06.",
+        "description": "Alumnos de Gestión y Software de 3er año realizarán una excursión a La Virginia y al Pueblo Tecnológico. Si sos de la tecnicatura, recordá abonar antes del 26/06.",
         "link": "",
         "type": "destacado"
-        },
-        {
-        "title": "Inscripciones a mesas de examenes",
+    },
+    {
+        "title": "Inscripciones a mesas de exámenes",
         "imageUrl": "Images/News_School/inscripciones_mesas_examenes.png",
-        "description": "Ya estan disponibles las inscripciones a las mesas de examenes de julio.\nLas inscripciones estaran abiertas desde el 16/06 hasta el 26/06.",
+        "description": "Ya están disponibles las inscripciones a las mesas de julio. El período de inscripción va del 16/06 al 26/06. Ingresá al sistema y reservá tu lugar.",
         "link": "#",
         "type": "destacado"
-        },
-        {
-        "title": "Convocatoria abierta (EDI)",
-        "imageUrl": "Images/News_School/noticia_4.jpeg",
-        "description": "Se abre la convocatoria para nuevos ingresantes en \"Educación Ambiental Integral\". Las inscripciones estarán abiertas entre el 1 y el 31 de marzo. Durante este período podrás completar el formulario de admisión, presentar la documentación requerida y consultar los requisitos de ingreso. La carrera está orientada a quienes desean formarse en el cuidado y gestión sostenible del medio ambiente. ¡No te pierdas esta oportunidad única de sumarte a nuestra comunidad educativa y dar el primer paso!",
-        "link": "./PDFs/CONVOCATORIA-A-CONCURSO-EDI_EAI_IES48.pdf",
-        "type": null
-        },
-        {
+    },
+    {
+    "title": "Convocatoria abierta (EDI)",
+    "imageUrl": "Images/News_School/noticia_4.jpeg",
+    "description": "Se abre la convocatoria para nuevos ingresantes en Educación Ambiental Integral. Inscripciones del 1 al 31 de marzo. Podés completar el formulario, presentar la documentación y consultar los requisitos. La carrera está orientada a quienes desean formarse en el cuidado y gestión sostenible del ambiente.",
+    "link": "./PDFs/CONVOCATORIA-A-CONCURSO-EDI_EAI_IES48.pdf",
+    "type": null
+    },
+    {
         "title": "Charla del tiempo de no libertad",
         "imageUrl": "Images/News_School/noticia_5.png",
-        "description": "Miercoles 03/06 a las 19:30 hrs\nTematica: Armas y Soberanía. Los sueños por la identidad",
+        "description": "Miércoles 03/06 a las 19:30 hs. Temática: Armas y Soberanía. Los sueños por la identidad. Entrada libre y gratuita, abierta a toda la comunidad.",
         "link": "#",
         "type": null
-        }
+    }
     ],
     "majors": [
     {
