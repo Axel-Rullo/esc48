@@ -83,9 +83,10 @@
     display: none;
 }
 
-/* Propiedades base compartidas entre badges destacado y primicia */
+/* Propiedades base compartidas entre badges destacado, primicia y noticia */
 .hero-item.destacado::after,
-.hero-item.primicia::after {
+.hero-item.primicia::after,
+.hero-item.noticia::after {
     position: absolute;
     top: calc(var(--spacing-xl) * 0.85);
     right: calc(var(--spacing-xl) * 0.85);
@@ -113,6 +114,13 @@
     content: '🌟 PRIMICIA';
     background: linear-gradient(135deg, var(--hero-badge-primicia) 0%, var(--hero-badge-primicia-dark) 100%);
     box-shadow: 0 4px 12px var(--hero-badge-primicia-glow);
+}
+
+/* Badge para publicaciones sin tipo — Noticia */
+.hero-item.noticia::after {
+    content: '📰 NOTICIA';
+    background: linear-gradient(135deg, var(--hero-badge-noticia, rgba(30, 120, 200, 0.85)) 0%, var(--hero-badge-noticia-dark, rgba(15, 80, 150, 0.95)) 100%);
+    box-shadow: 0 4px 12px var(--hero-badge-noticia-glow, rgba(30, 120, 200, 0.45));
 }
 
 /* Límite de 1 línea en el carrusel */

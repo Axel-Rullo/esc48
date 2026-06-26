@@ -1,17 +1,17 @@
 {
     "myExperience": {
         "id": 3,
-        "name": "Ana Rodríguez",
-        "email": "ana.rodriguez@example.com",
+        "name": "Axel Rullo",
+        "email": "axelrullo17@example.com",
         "comment": "Desafiante pero muy gratificante. Recomendada al 100%. Te prepara para el mundo laboral actual con tecnologías vigentes. La comunidad de estudiantes es muy sólida.",
         "date": "10/11/2024",
-        "rating": 4,
+        "rating": 5,
         "major": "software"
     },
     "experiences": {
         "software": {
-            "averageRating": 4.6,
-            "totalReviews": 5,
+            "averageRating": 4.87,
+            "totalReviews": 15,
             "reviews": [
                 {
                     "name": "María García",
@@ -40,12 +40,89 @@
                     "comment": "La carrera me abrió muchas puertas. Aprendí desarrollo web, bases de datos y metodologías ágiles. Los proyectos integradores son muy completos y te preparan para la vida profesional.",
                     "date": "05/11/2024",
                     "rating": 4
+                },
+                {
+                    "name": "Sebastián Torres",
+                    "email": "sebastian.torres@example.com",
+                    "comment": "Una de las mejores decisiones de mi vida. El enfoque en tecnologías modernas como cloud e inteligencia artificial es un diferencial enorme frente a otras instituciones.",
+                    "date": "02/11/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Florencia Ruiz",
+                    "email": "florencia.ruiz@example.com",
+                    "comment": "Los docentes son profesionales activos en la industria, lo que se nota mucho en la calidad de las clases. Las prácticas son muy exigentes pero justamente eso te forma bien.",
+                    "date": "29/10/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Ignacio Herrera",
+                    "email": "ignacio.herrera@example.com",
+                    "comment": "Carrera muy completa. Desde primer año ya estás programando proyectos reales. El trabajo en equipo y las metodologías ágiles son ejes fundamentales que te preparan para la industria.",
+                    "date": "25/10/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Natalia Suárez",
+                    "email": "natalia.suarez@example.com",
+                    "comment": "Superó todas mis expectativas. La variedad de lenguajes y paradigmas que se aprenden es amplia. Me siento muy bien preparada para afrontar cualquier desafío tecnológico.",
+                    "date": "21/10/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Emilio Sosa",
+                    "email": "emilio.sosa@example.com",
+                    "comment": "Excelente. El plan de estudios combina muy bien la teoría con la práctica. Las hackathons y competencias internas son un plus que te motiva a seguir aprendiendo.",
+                    "date": "18/10/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Valeria Bravo",
+                    "email": "valeria.bravo@example.com",
+                    "comment": "Muy buena carrera aunque la carga horaria es bastante alta. A veces siento que algunos contenidos podrían estar mejor organizados, pero en general el nivel académico es muy elevado.",
+                    "date": "15/10/2024",
+                    "rating": 4
+                },
+                {
+                    "name": "Joaquín Leiva",
+                    "email": "joaquin.leiva@example.com",
+                    "comment": "Carrera de muy alto nivel. Los proyectos finales son realmente desafiantes y te ponen a trabajar como si fuera un entorno laboral real. Conseguí mi primer empleo antes de recibirme.",
+                    "date": "12/10/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Micaela Paredes",
+                    "email": "micaela.paredes@example.com",
+                    "comment": "Totalmente recomendada. Se nota que el plan de estudios fue diseñado por profesionales que conocen el mercado. El acompañamiento docente es constante durante toda la carrera.",
+                    "date": "08/10/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Tomás Aguilar",
+                    "email": "tomas.aguilar@example.com",
+                    "comment": "Buena carrera en general, pero me gustaría que haya más materias optativas para especializarse más temprano en áreas como seguridad o ciencia de datos. Aún así, muy recomendada.",
+                    "date": "04/10/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Renata Molina",
+                    "email": "renata.molina@example.com",
+                    "comment": "Muy sólida académicamente. Mi única crítica es que algunos profesores podrían mejorar su didáctica porque el contenido es excelente pero a veces se explica de forma confusa.",
+                    "date": "01/10/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Bruno Castillo",
+                    "email": "bruno.castillo@example.com",
+                    "comment": "Excelente formación técnica y también en habilidades blandas. Los proyectos grupales enseñan a trabajar bajo presión y con plazos reales. Sin dudas la mejor inversión que hice.",
+                    "date": "28/09/2024",
+                    "rating": 5
                 }
             ]
         },
         "gestion": {
-            "averageRating": 4.6,
-            "totalReviews": 5,
+            "averageRating": 3.67,
+            "totalReviews": 15,
             "reviews": [
                 {
                     "name": "Juan Martínez",
@@ -57,7 +134,7 @@
                 {
                     "name": "Lucía Peralta",
                     "email": "lucia.peralta@example.com",
-                    "comment": "Carrera muy completa. Aprendí gestión empresarial, contabilidad y liderazgo organizacional. La carga horaria es intensa pero necesaria para dominar la profesión. Muy recomendada.",
+                    "comment": "Carrera completa en contenidos, aunque la carga horaria es muy intensa para quienes trabajan. Muchas materias se podrían dictar en modalidad virtual para dar más flexibilidad.",
                     "date": "05/11/2024",
                     "rating": 4
                 },
@@ -71,7 +148,7 @@
                 {
                     "name": "Valentina Pérez",
                     "email": "valentina.perez@example.com",
-                    "comment": "Carrera desafiante pero con muy buen retorno. El estudio de gestión estratégica y recursos humanos es completo. Los docentes conocen bien el ámbito profesional actual.",
+                    "comment": "Carrera con buen nivel. El estudio de gestión estratégica es completo. Sin embargo, siento que faltan más casos prácticos con empresas reales para complementar la teoría.",
                     "date": "28/10/2024",
                     "rating": 4
                 },
@@ -80,13 +157,83 @@
                     "email": "matias.romero@example.com",
                     "comment": "Muy buena experiencia. La carrera combina teoría con práctica de manera equilibrada. Las pasantías en empresas locales me permitieron aplicar lo aprendido desde el primer año.",
                     "date": "25/10/2024",
+                    "rating": 4
+                },
+                {
+                    "name": "Gabriela Ríos",
+                    "email": "gabriela.rios@example.com",
+                    "comment": "El plan de estudios tiene áreas muy interesantes pero otros módulos se sienten desactualizados. El enfoque en gestión digital y transformación empresarial podría ser mucho mayor.",
+                    "date": "22/10/2024",
+                    "rating": 3
+                },
+                {
+                    "name": "Ezequiel Vargas",
+                    "email": "ezequiel.vargas@example.com",
+                    "comment": "Esperaba más. Algunas materias están mal organizadas y los docentes no siempre están disponibles para consultas fuera del horario de clase. La burocracia administrativa es un problema.",
+                    "date": "18/10/2024",
+                    "rating": 3
+                },
+                {
+                    "name": "Marina Blanco",
+                    "email": "marina.blanco@example.com",
+                    "comment": "Carrera aceptable. Me brindó conocimientos básicos de gestión pero sentí que le falta profundidad en finanzas y análisis de datos, que son fundamentales en el mercado actual.",
+                    "date": "15/10/2024",
+                    "rating": 4
+                },
+                {
+                    "name": "Ramiro Ojeda",
+                    "email": "ramiro.ojeda@example.com",
+                    "comment": "Muy buena formación en liderazgo y gestión de equipos. Los docentes traen experiencia real del sector empresarial. Las simulaciones de casos de negocio son muy útiles.",
+                    "date": "11/10/2024",
                     "rating": 5
+                },
+                {
+                    "name": "Celeste Medina",
+                    "email": "celeste.medina@example.com",
+                    "comment": "Carrera con potencial pero que necesita actualizarse. El contenido sobre transformación digital es casi nulo y hoy en día es indispensable para cualquier gestor empresarial.",
+                    "date": "07/10/2024",
+                    "rating": 3
+                },
+                {
+                    "name": "Álvaro Fuentes",
+                    "email": "alvaro.fuentes@example.com",
+                    "comment": "Servicio al alumno muy deficiente. Las consultas administrativas tardan semanas en resolverse. El contenido académico es bueno pero la gestión institucional deja mucho que desear.",
+                    "date": "04/10/2024",
+                    "rating": 3
+                },
+                {
+                    "name": "Daniela Espinoza",
+                    "email": "daniela.espinoza@example.com",
+                    "comment": "Muy buen cuerpo docente y excelente enfoque en gestión de proyectos. Sin embargo, las aulas podrían estar mejor equipadas y la biblioteca necesita actualizar sus recursos digitales.",
+                    "date": "01/10/2024",
+                    "rating": 4
+                },
+                {
+                    "name": "Nicolás Ibáñez",
+                    "email": "nicolas.ibanez@example.com",
+                    "comment": "Carrera regular. Hay materias muy buenas pero otras parecen relleno. Esperaba una mayor vinculación con el sector empresarial local. La salida laboral no es tan inmediata como prometen.",
+                    "date": "27/09/2024",
+                    "rating": 3
+                },
+                {
+                    "name": "Paola Núñez",
+                    "email": "paola.nunez@example.com",
+                    "comment": "Decepcionante en algunos aspectos. La cantidad de materias teóricas sin aplicación práctica es excesiva. Necesita más convenios con empresas para que los alumnos puedan hacer pasantías reales.",
+                    "date": "23/09/2024",
+                    "rating": 3
+                },
+                {
+                    "name": "Hernán Quiroga",
+                    "email": "hernan.quiroga@example.com",
+                    "comment": "No la recomendaría por ahora. El plan de estudios no está actualizado con las demandas actuales del mercado. Algunos profesores claramente no ejercen la profesión hace años.",
+                    "date": "20/09/2024",
+                    "rating": 2
                 }
             ]
         },
         "inicial": {
-            "averageRating": 4.6,
-            "totalReviews": 5,
+            "averageRating": 4.27,
+            "totalReviews": 15,
             "reviews": [
                 {
                     "name": "Fernando Silva",
@@ -107,14 +254,14 @@
                     "email": "pablo.rodriguez@example.com",
                     "comment": "Una carrera con mucha vocación. Los docentes transmiten pasión por la enseñanza. Las prácticas en instituciones educativas son muy enriquecedoras y formativas.",
                     "date": "15/10/2024",
-                    "rating": 4
+                    "rating": 5
                 },
                 {
                     "name": "Sofía Gómez",
                     "email": "sofia.gomez@example.com",
                     "comment": "Muy buena formación en pedagogía y psicología del desarrollo. Los trabajos prácticos son desafiantes pero enseñan mucho. La carrera prepara bien para la práctica docente.",
                     "date": "12/10/2024",
-                    "rating": 5
+                    "rating": 4
                 },
                 {
                     "name": "Agustina Méndez",
@@ -122,47 +269,187 @@
                     "comment": "Me encantó la carrera. El enfoque en la creatividad y el juego como herramienta pedagógica es excelente. Los profesores son muy cercanos y siempre dispuestos a ayudar.",
                     "date": "08/10/2024",
                     "rating": 4
+                },
+                {
+                    "name": "Rocío Delgado",
+                    "email": "rocio.delgado@example.com",
+                    "comment": "Muy buena experiencia. La formación en estimulación temprana y desarrollo cognitivo infantil es muy completa. Las salidas didácticas a jardines reales enriquecen mucho el aprendizaje.",
+                    "date": "04/10/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Esteban Mora",
+                    "email": "esteban.mora@example.com",
+                    "comment": "Buena carrera con docentes comprometidos. Sin embargo, me parece que le falta mayor actualización en el uso de tecnologías educativas digitales para el nivel inicial.",
+                    "date": "01/10/2024",
+                    "rating": 4
+                },
+                {
+                    "name": "Laura Ponce",
+                    "email": "laura.ponce@example.com",
+                    "comment": "Carrera vocacional con mucha riqueza pedagógica. Los seminarios de psicología infantil son excelentes. Lo que mejoraría es la cantidad de horas de práctica real en sala.",
+                    "date": "27/09/2024",
+                    "rating": 4
+                },
+                {
+                    "name": "Marcela Reyes",
+                    "email": "marcela.reyes@example.com",
+                    "comment": "Formación muy completa y con mucho sentido humano. Las profesoras son referentes en el área y eso se nota. Me siento muy preparada para trabajar en jardines de infantes.",
+                    "date": "23/09/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Gonzalo Vera",
+                    "email": "gonzalo.vera@example.com",
+                    "comment": "Carrera que requiere mucha dedicación emocional y académica. Algunos módulos me resultaron repetitivos y creo que el tiempo podría aprovecharse mejor con más prácticas institucionales.",
+                    "date": "18/09/2024",
+                    "rating": 4
+                },
+                {
+                    "name": "Jimena Arias",
+                    "email": "jimena.arias@example.com",
+                    "comment": "Muy buena propuesta curricular. Los talleres de expresión artística, música y movimiento son diferenciales importantes para la formación docente en nivel inicial.",
+                    "date": "14/09/2024",
+                    "rating": 4
+                },
+                {
+                    "name": "Leandro Cabrera",
+                    "email": "leandro.cabrera@example.com",
+                    "comment": "En general buena carrera pero con demasiada carga teórica en los primeros años. Sentí que recién en tercer año empezamos a tener prácticas reales significativas con niños.",
+                    "date": "10/09/2024",
+                    "rating": 3
+                },
+                {
+                    "name": "Antonela Salas",
+                    "email": "antonela.salas@example.com",
+                    "comment": "Carrera que te forma con mucha calidez humana. Los docentes entienden la importancia del rol y lo transmiten en cada clase. Altamente recomendada para quienes tienen vocación.",
+                    "date": "06/09/2024",
+                    "rating": 5
+                },
+                {
+                    "name": "Marcos Figueroa",
+                    "email": "marcos.figueroa@example.com",
+                    "comment": "Expectativas parcialmente cumplidas. La formación pedagógica es buena pero la infraestructura del establecimiento no es adecuada. Las aulas de práctica necesitan mejor equipamiento.",
+                    "date": "02/09/2024",
+                    "rating": 4
+                },
+                {
+                    "name": "Beatriz Campos",
+                    "email": "beatriz.campos@example.com",
+                    "comment": "La carrera tiene cosas muy buenas pero también aspectos por mejorar. La coordinación entre materias no siempre es clara y algunos contenidos se repiten sin profundizar más.",
+                    "date": "28/08/2024",
+                    "rating": 3
                 }
             ]
         },
         "primaria": {
-            "averageRating": 1.8,
-            "totalReviews": 5,
+            "averageRating": 2.47,
+            "totalReviews": 15,
             "reviews": [
                 {
                     "name": "Andrés Vega",
                     "email": "andres.vega@example.com",
-                    "comment": "Carrera muy completa que forma docentes preparados. Aprendí didáctica, planificación y evaluación educativa. Los docentes traen experiencia directa del aula.",
+                    "comment": "Carrera con algo de potencial, pero el plan de estudios está muy desactualizado. Muchos contenidos no se corresponden con la realidad actual de las aulas en escuelas primarias.",
                     "date": "10/10/2024",
-                    "rating": 2
+                    "rating": 4
                 },
                 {
                     "name": "Martina López",
                     "email": "martina.lopez@example.com",
-                    "comment": "Muy buena preparación para trabajar en escuelas primarias. El énfasis en metodologías activas es muy útil. Las prácticas en escuelas me dieron mucha confianza.",
+                    "comment": "Preparación básica para trabajar en escuelas primarias. El énfasis en metodologías activas está bien pero la profundidad teórica es insuficiente. Esperaba más rigor académico.",
                     "date": "08/10/2024",
                     "rating": 3
                 },
                 {
                     "name": "Ricardo Hernández",
                     "email": "ricardo.hernandez@example.com",
-                    "comment": "Carrera con mucho compromiso social. Los profesores entienden la realidad educativa actual. Me preparó para trabajar con diversidad de estudiantes y contextos escolares.",
+                    "comment": "Carrera con buenas intenciones pero pobre ejecución. Los profesores tienen poca disponibilidad fuera del horario de clase y la coordinación académica es muy deficiente.",
                     "date": "05/10/2024",
                     "rating": 2
                 },
                 {
                     "name": "Isabel Castro",
                     "email": "isabel.castro@example.com",
-                    "comment": "Excelente formación en didáctica y gestión del aula. El plan de estudios es actualizado y los proyectos interdisciplinarios preparan bien para el ámbito educativo.",
+                    "comment": "No la recomendaría. El plan de estudios parece diseñado hace décadas. No se abordan temas actuales como educación inclusiva digital, diversidad o nuevas metodologías de evaluación.",
                     "date": "02/10/2024",
                     "rating": 1
                 },
                 {
                     "name": "Tomás Acosta",
                     "email": "tomas.acosta@example.com",
-                    "comment": "La carrera superó mis expectativas. Las prácticas docentes desde segundo año son un gran acierto. Me siento muy preparado para ejercer la docencia en primaria.",
+                    "comment": "Muy decepcionante. Las prácticas docentes se incorporan tarde y con muy poca supervisión. Al egresar me sentí poco preparado para gestionar un aula real de primaria.",
                     "date": "28/09/2024",
-                    "rating": 1
+                    "rating": 3
+                },
+                {
+                    "name": "Graciela Pinto",
+                    "email": "graciela.pinto@example.com",
+                    "comment": "Carrera con muchos problemas organizativos. Los horarios cambian constantemente, hay materias sin titular docente durante meses y la atención al alumno es prácticamente nula.",
+                    "date": "25/09/2024",
+                    "rating": 2
+                },
+                {
+                    "name": "Federico Leal",
+                    "email": "federico.leal@example.com",
+                    "comment": "Aceptable en algunos módulos pero muy floja en general. Faltan docentes especializados en didáctica de la lengua y matemática, que son ejes centrales de la docencia primaria.",
+                    "date": "22/09/2024",
+                    "rating": 3
+                },
+                {
+                    "name": "Lorena Giménez",
+                    "email": "lorena.gimenez@example.com",
+                    "comment": "Pésima experiencia administrativa. Perdí materias por problemas en la inscripción que nadie resolvió a tiempo. El contenido académico es básico y la atención al alumno es deplorable.",
+                    "date": "18/09/2024",
+                    "rating": 2
+                },
+                {
+                    "name": "Cristian Maldonado",
+                    "email": "cristian.maldonado@example.com",
+                    "comment": "Buena predisposición de algunos docentes pero la institución no los acompaña. La falta de recursos didácticos modernos hace que las clases sean monótonas y poco motivadoras.",
+                    "date": "14/09/2024",
+                    "rating": 4
+                },
+                {
+                    "name": "Yanina Correa",
+                    "email": "yanina.correa@example.com",
+                    "comment": "Carrera que no cumplió mis expectativas. El abordaje de la educación especial e inclusiva es superficial. Para trabajar en escuelas reales se necesita mucho más que lo que dan.",
+                    "date": "10/09/2024",
+                    "rating": 2
+                },
+                {
+                    "name": "Rodrigo Mena",
+                    "email": "rodrigo.mena@example.com",
+                    "comment": "Muy regular. Algunos profesores son excelentes pero son la excepción. En general el nivel académico es bajo y los espacios de prácticas supervisadas son escasos e improvisados.",
+                    "date": "06/09/2024",
+                    "rating": 2
+                },
+                {
+                    "name": "Claudia Benítez",
+                    "email": "claudia.benitez@example.com",
+                    "comment": "Le falta mucho para estar al nivel que se necesita. No hay trabajo articulado entre materias, los proyectos finales no tienen acompañamiento real y la infraestructura es muy precaria.",
+                    "date": "02/09/2024",
+                    "rating": 2
+                },
+                {
+                    "name": "Alejandro Rojas",
+                    "email": "alejandro.rojas@example.com",
+                    "comment": "Mala experiencia en términos generales. El plan académico es antiguo, las instalaciones están en mal estado y hay un ambiente institucional que no favorece el aprendizaje.",
+                    "date": "29/08/2024",
+                    "rating": 2
+                },
+                {
+                    "name": "Silvia Morales",
+                    "email": "silvia.morales@example.com",
+                    "comment": "Pésima organización curricular. Materias clave como didáctica de las ciencias naturales están mal planificadas y a veces directamente sin docente. Una lástima porque el área es importante.",
+                    "date": "25/08/2024",
+                    "rating": 2
+                },
+                {
+                    "name": "Gustavo Díaz",
+                    "email": "gustavo.diaz@example.com",
+                    "comment": "Carrera que necesita una reforma urgente. Sin convenios con escuelas locales, sin tecnología educativa actualizada y con docentes que repiten lo mismo año tras año. No la recomiendo.",
+                    "date": "21/08/2024",
+                    "rating": 3
                 }
             ]
         }

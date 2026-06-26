@@ -58,8 +58,13 @@ class HeroCarousel {
             return;
         }
 
-        // Ya vienen ordenadas del JSON
-        this.sortedNews = [...raw];
+        // Ordenar: primicia → destacado → sin tipo (noticia)
+        const typeOrder = { primicia: 0, destacado: 1 };
+        this.sortedNews = [...raw].sort((a, b) => {
+            const pa = typeOrder[a.type] ?? 2;
+            const pb = typeOrder[b.type] ?? 2;
+            return pa - pb;
+        });
 
         this.heroCarousel.innerHTML   = '';
         this.heroIndicators.innerHTML = '';
@@ -67,8 +72,9 @@ class HeroCarousel {
         this.sortedNews.forEach((item, index) => {
 
             // ITEM
+            const typeClass = item.type || 'noticia';
             const heroItem = document.createElement('div');
-            heroItem.className = `hero-item${index === 0 ? ' active' : ''}${item.type ? ` ${item.type}` : ''}`;
+            heroItem.className = `hero-item${index === 0 ? ' active' : ''} ${typeClass}`;
             heroItem.style.backgroundImage = `url('${item.imageUrl}')`;
             const hasLink = item.link && item.link !== '#' && item.link !== '';
             heroItem.innerHTML = `
@@ -89,7 +95,7 @@ class HeroCarousel {
 
             // INDICADOR
             const indicator = document.createElement('button');
-            indicator.className = `hero-indicator${index === 0 ? ' active' : ''}${item.type ? ` ${item.type}` : ''}`;
+            indicator.className = `hero-indicator${index === 0 ? ' active' : ''} ${typeClass}`;
             indicator.setAttribute('data-index', index);
             indicator.addEventListener('click', () => this.goToSlide(index));
             this.heroIndicators.appendChild(indicator);
