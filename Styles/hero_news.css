@@ -310,7 +310,8 @@
 
     /* Badges con margen mínimo del borde en tablet/mobile */
     .hero-item.destacado::after,
-    .hero-item.primicia::after {
+    .hero-item.primicia::after,
+    .hero-item.noticia::after {
         top: 12px;
         right: 12px;
         font-size: 0.7rem;
@@ -339,7 +340,8 @@
 
     /* Badges con margen mínimo del borde en mobile */
     .hero-item.destacado::after,
-    .hero-item.primicia::after {
+    .hero-item.primicia::after,
+    .hero-item.noticia::after {
         top: 10px;
         right: 10px;
         font-size: 0.7rem;
@@ -368,7 +370,8 @@
 
     /* Badges con margen mínimo del borde en pantallas muy pequeñas */
     .hero-item.destacado::after,
-    .hero-item.primicia::after {
+    .hero-item.primicia::after,
+    .hero-item.noticia::after {
         top: 8px;
         right: 8px;
         font-size: 0.7rem;
