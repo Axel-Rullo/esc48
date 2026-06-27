@@ -1,5 +1,5 @@
 /* ================================================================
-    SWIPE HINT — Hero Carousel
+   SWIPE HINT — Hero Carousel
    ================================================================ */
 
 class SwipeHint {
@@ -91,10 +91,15 @@ class SwipeHint {
 
         const text = document.createElement('p');
         text.className   = 'swipe-hint-text';
-        text.textContent = 'Deslizá para pasar';
+        text.textContent = 'Deslizá para navegar';
+
+        const sub = document.createElement('p');
+        sub.className   = 'swipe-hint-subtext';
+        sub.textContent = '(Tocar para cerrar)';
 
         this.overlay.appendChild(icon);
         this.overlay.appendChild(text);
+        this.overlay.appendChild(sub);
     }
 
     // =============================================================
@@ -108,45 +113,45 @@ class SwipeHint {
         // SVG flecha izquierda
         const arrowLeft = `
             <svg class="swipe-hint-key-icon" viewBox="0 0 24 24" fill="none"
-                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect x="1" y="1" width="22" height="22" rx="4" ry="4"
-                      stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
+                        stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
                 <polyline points="14,7 9,12 14,17"
-                          stroke="#fff" stroke-width="2"
-                          stroke-linecap="round" stroke-linejoin="round"/>
+                        stroke="#fff" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
             </svg>`;
 
         // SVG flecha derecha
         const arrowRight = `
             <svg class="swipe-hint-key-icon" viewBox="0 0 24 24" fill="none"
-                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect x="1" y="1" width="22" height="22" rx="4" ry="4"
-                      stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
+                        stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
                 <polyline points="10,7 15,12 10,17"
-                          stroke="#fff" stroke-width="2"
-                          stroke-linecap="round" stroke-linejoin="round"/>
+                        stroke="#fff" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
             </svg>`;
 
         // Tecla A
         const keyA = `
             <svg class="swipe-hint-key-icon" viewBox="0 0 24 24" fill="none"
-                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect x="1" y="1" width="22" height="22" rx="4" ry="4"
-                      stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
+                        stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
                 <text x="12" y="17" text-anchor="middle"
-                      font-family="system-ui, sans-serif" font-size="13"
-                      font-weight="600" fill="#fff">A</text>
+                    font-family="system-ui, sans-serif" font-size="13"
+                    font-weight="600" fill="#fff">A</text>
             </svg>`;
 
         // Tecla D
         const keyD = `
             <svg class="swipe-hint-key-icon" viewBox="0 0 24 24" fill="none"
-                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect x="1" y="1" width="22" height="22" rx="4" ry="4"
-                      stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
+                        stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
                 <text x="12" y="17" text-anchor="middle"
-                      font-family="system-ui, sans-serif" font-size="13"
-                      font-weight="600" fill="#fff">D</text>
+                        font-family="system-ui, sans-serif" font-size="13"
+                        font-weight="600" fill="#fff">D</text>
             </svg>`;
 
         // Fila de teclas
@@ -170,8 +175,13 @@ class SwipeHint {
         text.className   = 'swipe-hint-text';
         text.textContent = 'Usá las teclas para navegar';
 
+        const close = document.createElement('p');
+        close.className   = 'swipe-hint-subtext';
+        close.textContent = '(Click para cerrar)';
+
         this.overlay.appendChild(keysRow);
         this.overlay.appendChild(text);
+        this.overlay.appendChild(close);
     }
 
     // =============================================================
@@ -248,7 +258,7 @@ class SwipeHint {
 }
 
 /* ================================================================
-    INICIALIZAR
+   INICIALIZAR
    ================================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {

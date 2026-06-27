@@ -70,7 +70,7 @@
 
 .experiences-modal-header h2 i {
     font-size: 1.25rem;
-    color: #ffffff !important;
+    color: var(--content-button-text) !important;
 }
 
 .experiences-modal-close {
@@ -252,15 +252,15 @@
     border: 2px solid var(--content-border);
     border-radius: 5px;
     font-size: 0.78rem;
-    background: #ffffff;
-    color: #111111;
+    background: var(--exp-input-bg);
+    color: var(--exp-input-text);
     font-family: inherit;
     transition: var(--transition);
 }
 
 .experiences-form-group input::placeholder,
 .experiences-form-group textarea::placeholder {
-    color: #555555;
+    color: var(--exp-input-placeholder);
     opacity: 0.7;
 }
 
@@ -289,8 +289,8 @@
     position: relative;
     font-size: 1.5rem;
     cursor: pointer;
-    color: #ffffff;
-    -webkit-text-stroke: 1.5px #555555;
+    color: var(--exp-star-empty);
+    -webkit-text-stroke: 1.5px var(--exp-star-stroke);
     transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -300,7 +300,7 @@
     color: var(--star-gold);
     -webkit-text-stroke: 0px;
     transform: scale(1.15);
-    text-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
+    text-shadow: 0 0 10px var(--exp-star-glow);
 }
 
 /* BOTONES DEL FORMULARIO */
@@ -396,7 +396,7 @@
 .experiences-list-header h3 i {
     color: var(--star-gold) !important;
     font-size: 0.85rem;
-    text-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+    text-shadow: 0 0 8px var(--exp-star-glow-lg);
 }
 
 /* PROMEDIO DE RATINGS */
@@ -478,7 +478,7 @@
 
 /* TARJETA DE EXPERIENCIA */
 .experience-card {
-    background: var(--content-bg);
+    background: var(--exp-card-bg);
     padding: 10px 12px;
     border-radius: 6px;
     border-left: 3px solid var(--content-accent-border);
@@ -549,8 +549,8 @@
     display: inline-flex;
     position: relative;
     font-size: 0.9rem;
-    color: #ffffff;
-    -webkit-text-stroke: 1.2px #555555;
+    color: var(--exp-star-empty);
+    -webkit-text-stroke: 1.2px var(--exp-star-stroke);
     margin-right: 0.1rem;
     transition: all 0.2s ease;
 }
@@ -558,7 +558,7 @@
 .experiences-star-display.experiences-star-full {
     color: var(--star-gold);
     -webkit-text-stroke: 0px;
-    text-shadow: 0 0 8px rgba(245, 158, 11, 0.45);
+    text-shadow: 0 0 8px var(--exp-star-glow);
 }
 
 .experiences-star-display.experiences-star-partial {
@@ -569,8 +569,8 @@
 }
 
 .experiences-star-display.experiences-star-partial .star-bg {
-    color: #ffffff;
-    -webkit-text-stroke: 1.2px #555555;
+    color: var(--exp-star-empty);
+    -webkit-text-stroke: 1.2px var(--exp-star-stroke);
 }
 
 .experiences-star-display.experiences-star-partial .star-fg {
@@ -583,7 +583,7 @@
     align-items: center;
     color: var(--star-gold);
     -webkit-text-stroke: 0px;
-    text-shadow: 0 0 8px rgba(245, 158, 11, 0.45);
+    text-shadow: 0 0 8px var(--exp-star-glow);
     white-space: nowrap;
 }
 
@@ -717,7 +717,7 @@
 
     .experiences-modal-header h2 i {
         font-size: 1rem;
-        color: #ffffff !important;
+        color: var(--content-button-text) !important;
     }
 
     .experiences-modal-close {
@@ -943,7 +943,7 @@
 
 /* Card de la experiencia propia */
 .my-experience-card {
-    background: var(--content-bg);
+    background: var(--exp-card-bg);
     border-radius: 6px;
     border-left: 3px solid var(--content-accent-border);
     box-shadow: 0 2px 8px var(--content-shadow);
@@ -1007,7 +1007,7 @@
 
 .my-exp-btn-delete:hover {
     background: var(--content-danger);
-    color: #ffffff;
+    color: var(--content-button-text);
     border-color: var(--content-danger);
     transform: translateY(-1px);
 }
@@ -1031,7 +1031,7 @@
 .experiences-delete-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
+    background: var(--exp-delete-overlay-bg);
     z-index: 2000;
     display: flex;
     align-items: center;
@@ -1068,7 +1068,7 @@
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: rgba(255, 107, 107, 0.15);
+    background: var(--exp-delete-icon-bg);
     display: flex;
     align-items: center;
     justify-content: center;

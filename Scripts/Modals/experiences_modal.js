@@ -100,24 +100,32 @@ class ExperiencesModal extends BaseModal {
             submitExperience();
         });
 
-        // Enter en desktop envía el formulario; Shift+Enter = salto de línea en textarea
+        // Enter en desktop envía/guarda; Shift+Enter = salto de línea en textarea
         document.addEventListener('keydown', (e) => {
 
-            const isDesktop     = window.innerWidth > 1024;
-            const isFormVisible = this.formSection.style.display !== 'none';
+            const isDesktop = window.innerWidth > 1024;
+            if (!isDesktop || !this.isOpen() || e.key !== 'Enter') return;
 
-            if (!isDesktop || !this.isOpen() || !isFormVisible) return;
+            // — Formulario de EDICIÓN (Mi Experiencia) —
+            if (this.isEditing) {
+                const editField    = document.getElementById('myExpComment');
+                const isInTextarea = e.target === editField;
+                if (isInTextarea && e.shiftKey) return;      // Shift+Enter → salto de línea
+                e.preventDefault();
+                document.getElementById('myExpSaveBtn')?.click();
+                return;
+            }
+
+            // — Formulario de PUBLICAR —
+            const isFormVisible = this.formSection.style.display !== 'none';
+            if (!isFormVisible) return;
 
             const expCommentField = document.getElementById('expComment');
             const isInTextarea    = e.target === expCommentField;
 
-            if (isInTextarea && e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                document.getElementById('experiencesForm').requestSubmit();
-            } else if (!isInTextarea && e.key === 'Enter') {
-                e.preventDefault();
-                document.getElementById('experiencesForm').requestSubmit();
-            }
+            if (isInTextarea && e.shiftKey) return;          // Shift+Enter → salto de línea
+            e.preventDefault();
+            document.getElementById('experiencesForm').requestSubmit();
         });
 
         // Clic en estrellas del formulario (event delegation)
@@ -416,7 +424,10 @@ class ExperiencesModal extends BaseModal {
                         </div>
                     </div>
                     <div class="experiences-form-group">
-                        <label for="myExpComment">Tu Experiencia <span class="required">*</span></label>
+                        <div class="experiences-textarea-header">
+                            <label for="myExpComment">Tu Experiencia <span class="required">*</span></label>
+                            <span class="experiences-textarea-tip">Shift + Enter = "Salto de línea"  |  Enter = "Aplicar"</span>
+                        </div>
                         <textarea id="myExpComment" rows="3" maxlength="500">${this.escapeHTML(mine.comment)}</textarea>
                     </div>
                     <div class="experiences-form-group">

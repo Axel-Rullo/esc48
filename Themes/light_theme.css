@@ -67,6 +67,13 @@
     --modal-close-btn-bg: rgba(255, 255, 255, 0.2);
     --modal-close-btn-hover-bg: rgba(255, 255, 255, 0.3);
     --modal-alert-shadow: rgba(0, 0, 0, 0.3);
+    --msh-bg: #f9fafb;
+    --msh-border: #d1d5db;
+    --msh-label-text: #111827;
+    --msh-kbd-bg: #e5e7eb;
+    --msh-kbd-border: #9ca3af;
+    --msh-kbd-text: #374151;
+    --msh-item-text: #4b5563;
     --form-block-bg: #eef0f7;
     --form-input-bg: #ffffff;
     --form-input-text: #111827;
@@ -148,4 +155,18 @@
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
+    
+    /* ===============================
+        SECCION 2.6: EXPERIENCES MODAL
+       =============================== */
+    --exp-card-bg: #f0f2f8;
+    --exp-star-empty: #ffffff;
+    --exp-star-stroke: #888888;
+    --exp-star-glow: rgba(245, 158, 11, 0.45);
+    --exp-star-glow-lg: rgba(245, 158, 11, 0.5);
+    --exp-input-bg: #ffffff;
+    --exp-input-text: #111111;
+    --exp-input-placeholder: #555555;
+    --exp-delete-icon-bg: rgba(255, 107, 107, 0.15);
+    --exp-delete-overlay-bg: rgba(0, 0, 0, 0.55);
 }

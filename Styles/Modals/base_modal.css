@@ -1,0 +1,74 @@
+/* =========================================================================
+    MODAL SHORTCUTS HINT
+    Panel lateral izquierdo que muestra los atajos para cerrar el modal.
+    Solo visible en desktop (pointer: fine = mouse/trackpad, nunca touch).
+    ========================================================================= */
+
+#modalShortcutsHint {
+    /* Posición: arriba a la izquierda */
+    position: fixed;
+    left: 16px;
+    top: 16px;
+    z-index: 3100;
+
+    /* Caja — usa variables del sistema de temas */
+    background: var(--msh-bg);
+    border: 0.5px solid var(--msh-border);
+    border-radius: 8px;
+    padding: 10px 14px;
+
+    /* Contenido apilado */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 130px;
+
+    /* Oculto por defecto — aparece vía .active */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+}
+
+/* Solo mostrar en dispositivos con mouse (descartar móvil/tablet táctil) */
+@media (pointer: fine) {
+    #modalShortcutsHint.active {
+        opacity: 1;
+    }
+}
+
+/* ----- Etiqueta superior "Cerrar con" ----- */
+.msh-label {
+    font-size: 11px;
+    color: var(--msh-label-text);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-weight: 500;
+    margin: 0 0 2px;
+}
+
+/* ----- Fila de atajo: [kbd] + texto ----- */
+.msh-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.msh-item kbd {
+    background: var(--msh-kbd-bg);
+    border: 0.5px solid var(--msh-kbd-border);
+    border-bottom-width: 2px;       /* Efecto de tecla física */
+    border-radius: 4px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-family: monospace;
+    color: var(--msh-kbd-text);
+    line-height: 1.4;
+    min-width: 30px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.msh-item span {
+    font-size: 13px;
+    color: var(--msh-item-text);
+}

@@ -66,6 +66,7 @@ class ContactModal extends BaseModal {
     close() {
         this.modal.classList.remove('active');
         this.overlay?.classList.remove('active');
+        BaseModal._hideHint();
 
         if (this._alertPending) {
             return;
@@ -142,6 +143,7 @@ class ContactModal extends BaseModal {
 
         this.isSubmitting = true;
         this.setLoadingState('loading');
+        BaseModal._hideHint();
 
         const formData = {
             nombre   : document.getElementById('nombre')?.value.trim(),
