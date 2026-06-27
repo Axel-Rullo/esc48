@@ -1,0 +1,138 @@
+/* ================================================================
+    SWIPE HINT OVERLAY
+   ================================================================ */
+
+/* ── Overlay base ── */
+.swipe-hint-overlay {
+    position:         absolute;
+    inset:            0;                  /* cubre todo el carousel */
+    z-index:          50;
+    display:          flex;
+    flex-direction:   column;
+    align-items:      center;
+    justify-content:  center;
+    gap:              18px;
+    background:       rgba(0, 0, 0, 0.45);
+    backdrop-filter:  blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+
+    /* cursor pointer: indica que el clic cierra el overlay */
+    cursor:           pointer;
+
+    /* Transición de salida */
+    opacity:          1;
+    transition:       opacity 0.5s ease;
+}
+
+/* Cuando se está ocultando */
+.swipe-hint-overlay.hiding {
+    opacity:          0;
+    pointer-events:   none;
+}
+
+/* Completamente oculto */
+.swipe-hint-overlay.hidden {
+    display:          none;
+}
+
+/* ── Ícono PNG ── */
+.swipe-hint-icon {
+    width:            90px;
+    height:           90px;
+
+    /* Invierte el negro a blanco para verse sobre el overlay oscuro */
+    filter:           invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+
+    /* Se desplaza suavemente izquierda ↔ derecha, arranca desde el centro */
+    animation:        swipe-rock 2.8s linear infinite !important;
+    animation-delay:  -1.4s !important;
+
+    /* Evita que el img sea arrastrable accidentalmente */
+    user-select:      none;
+    -webkit-user-drag: none;
+    pointer-events:   none;
+}
+
+/* ── Texto ── */
+.swipe-hint-text {
+    color:            #ffffff;
+    font-size:        0.95rem;
+    font-weight:      500;
+    letter-spacing:   0.08em;
+    text-transform:   uppercase;
+    text-align:       center;
+    text-shadow:      0 1px 6px rgba(0,0,0,0.6);
+    user-select:      none;
+    pointer-events:   none;
+
+    /* Pulso sutil sincronizado con el ícono */
+    animation:        swipe-pulse 2s ease-in-out infinite;
+}
+
+/* ── Animaciones ── */
+
+@keyframes swipe-rock {
+    0%   { transform: translateX( 28px); animation-timing-function: ease-in-out; }
+    50%  { transform: translateX(-28px); animation-timing-function: ease-in-out; }
+    100% { transform: translateX( 28px); }
+}
+
+@keyframes swipe-pulse {
+    0%   { opacity: 0.65; }
+    50%  { opacity: 1;    }
+    100% { opacity: 0.65; }
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 1024px) {
+    .swipe-hint-icon {
+        width:  82px;
+        height: 82px;
+    }
+    .swipe-hint-text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .swipe-hint-overlay {
+        gap: 14px;
+    }
+    .swipe-hint-icon {
+        width:  72px;
+        height: 72px;
+    }
+    .swipe-hint-text {
+        font-size:      0.85rem;
+        letter-spacing: 0.06em;
+    }
+}
+
+@media (max-width: 480px) {
+    .swipe-hint-overlay {
+        gap: 12px;
+    }
+    .swipe-hint-icon {
+        width:  60px;
+        height: 60px;
+    }
+    .swipe-hint-text {
+        font-size:      0.78rem;
+        letter-spacing: 0.05em;
+    }
+}
+
+@media (max-width: 380px) {
+    .swipe-hint-overlay {
+        gap: 10px;
+    }
+    .swipe-hint-icon {
+        width:  50px;
+        height: 50px;
+    }
+    .swipe-hint-text {
+        font-size:      0.72rem;
+        letter-spacing: 0.04em;
+    }
+}
