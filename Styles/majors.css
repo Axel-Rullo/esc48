@@ -171,14 +171,14 @@
 
 /* Botón "Experiencias" */
 .major-card-experiences-btn {
-    background: #6b7280;
+    background: #6c6f74;
     color: white;
-    border-color: #6b7280;
+    border: 2px solid #6b7280;
 }
 
 .major-card-experiences-btn:hover {
-    background: #1f1f32;
-    border-color: #1f1f32;
+    background: transparent;
+    border: 2px solid #6c6f74;
     transform: translateX(-3px);
     box-shadow: 0 7px 17px rgba(0, 0, 0, 0.3);
 }

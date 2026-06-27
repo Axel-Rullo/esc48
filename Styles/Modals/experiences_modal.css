@@ -352,7 +352,7 @@
 }
 
 .experiences-btn-cancel:hover {
-    background: var(--content-text-light);
+    border: 2px solid var(--content-text-light);
     color: var(--content-button-text);
     transform: translateY(-2px);
 }
@@ -561,9 +561,6 @@
     text-shadow: 0 0 8px rgba(245, 158, 11, 0.45);
 }
 
-/* Estrella parcial: dos íconos superpuestos dentro del mismo span.
-   .star-bg  = estrella vacía (base gris)
-   .star-fg  = estrella dorada recortada al % exacto con clip-path  */
 .experiences-star-display.experiences-star-partial {
     position: relative;
     display: inline-flex;
@@ -623,7 +620,7 @@
 }
 
 /* ================================================================
-    RESPONSIVE - LAPTOP / TABLET LANDSCAPE
+    RESPONSIVES
    ================================================================ */
 @media (max-width: 1024px) {
     .experiences-modal-content {
@@ -656,9 +653,6 @@
     }
 }
 
-/* ================================================================
-   RESPONSIVE - TABLET (768px)
-   ================================================================ */
 @media (max-width: 768px) {
     .experiences-modal-content {
         width: 95%;
@@ -705,9 +699,6 @@
     }
 }
 
-/* ================================================================
-   RESPONSIVE - MÓVIL (480px)
-   ================================================================ */
 @media (max-width: 480px) {
     .experiences-modal-content {
         width: 98%;

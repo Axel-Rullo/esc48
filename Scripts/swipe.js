@@ -1,21 +1,12 @@
 /* ================================================================
-   SWIPE HINT — Hero Carousel
-   - Se muestra siempre al abrir la página.
-   - Dura 10 segundos o hasta que el usuario interactúe.
-   - Clic/tap → cierra el overlay.
-   - Swipe horizontal → cierra Y pasa de slide.
-   - Teclas flecha → cierra y navega.
+    SWIPE HINT — Hero Carousel
    ================================================================ */
 
 class SwipeHint {
 
-    /* ------------------------------------------------------------
-       Ruta del ícono PNG
-       ------------------------------------------------------------ */
-    static ICON_SRC = './Images/Swipe/swipe.png';
-
-    /* Distancia mínima en px para considerar un swipe válido */
+    static ICON_SRC  = './Images/Swipe/swipe.png';
     static MIN_SWIPE = 40;
+    static BREAKPOINT = 1024;
 
     // =============================================================
 
@@ -31,7 +22,6 @@ class SwipeHint {
     // =============================================================
 
     init() {
-
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => this._waitForCarousel());
         } else {
@@ -41,7 +31,6 @@ class SwipeHint {
 
     _waitForCarousel() {
         const carousel = document.getElementById('heroCarousel');
-
         if (carousel) {
             this._inject(carousel);
         } else {
@@ -53,6 +42,14 @@ class SwipeHint {
     }
 
     // =============================================================
+    // DETECTAR MODO
+    // =============================================================
+
+    _isMobile() {
+        return window.innerWidth <= SwipeHint.BREAKPOINT;
+    }
+
+    // =============================================================
     // INYECTAR OVERLAY
     // =============================================================
 
@@ -61,31 +58,120 @@ class SwipeHint {
         const section = carousel.closest('.hero-news-section') || carousel.parentElement;
         if (section) section.style.position = 'relative';
 
-        // Crear overlay
+        // Overlay
         this.overlay = document.createElement('div');
         this.overlay.className = 'swipe-hint-overlay';
         this.overlay.setAttribute('role', 'status');
+
+        if (this._isMobile()) {
+            this._buildMobile();
+        } else {
+            this._buildDesktop();
+        }
+
+        section.appendChild(this.overlay);
+
+        // Auto-descartar a los 10 segundos
+        this._autoHideTimer = setTimeout(() => this.dismiss(), 100000);
+
+        this._bindEvents();
+    }
+
+    // =============================================================
+    // CONTENIDO MOBILE — ícono dedo + "Deslizá para pasar"
+    // =============================================================
+
+    _buildMobile() {
         this.overlay.setAttribute('aria-label', 'Deslizá para navegar entre noticias');
 
-        // Ícono
         const icon = document.createElement('img');
         icon.className = 'swipe-hint-icon';
         icon.src       = SwipeHint.ICON_SRC;
         icon.alt       = '';
 
-        // Texto
         const text = document.createElement('p');
         text.className   = 'swipe-hint-text';
         text.textContent = 'Deslizá para pasar';
 
         this.overlay.appendChild(icon);
         this.overlay.appendChild(text);
-        section.appendChild(this.overlay);
+    }
 
-        // Auto-descartar a los 10 segundos
-        this._autoHideTimer = setTimeout(() => this.dismiss(), 20000);
+    // =============================================================
+    // CONTENIDO DESKTOP — teclas flecha + A / D
+    // =============================================================
 
-        this._bindEvents();
+    _buildDesktop() {
+        this.overlay.setAttribute('aria-label', 'Usá las teclas para navegar entre noticias');
+        this.overlay.classList.add('swipe-hint-overlay--desktop');
+
+        // SVG flecha izquierda
+        const arrowLeft = `
+            <svg class="swipe-hint-key-icon" viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="1" y="1" width="22" height="22" rx="4" ry="4"
+                      stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
+                <polyline points="14,7 9,12 14,17"
+                          stroke="#fff" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>`;
+
+        // SVG flecha derecha
+        const arrowRight = `
+            <svg class="swipe-hint-key-icon" viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="1" y="1" width="22" height="22" rx="4" ry="4"
+                      stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
+                <polyline points="10,7 15,12 10,17"
+                          stroke="#fff" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>`;
+
+        // Tecla A
+        const keyA = `
+            <svg class="swipe-hint-key-icon" viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="1" y="1" width="22" height="22" rx="4" ry="4"
+                      stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
+                <text x="12" y="17" text-anchor="middle"
+                      font-family="system-ui, sans-serif" font-size="13"
+                      font-weight="600" fill="#fff">A</text>
+            </svg>`;
+
+        // Tecla D
+        const keyD = `
+            <svg class="swipe-hint-key-icon" viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="1" y="1" width="22" height="22" rx="4" ry="4"
+                      stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.08)"/>
+                <text x="12" y="17" text-anchor="middle"
+                      font-family="system-ui, sans-serif" font-size="13"
+                      font-weight="600" fill="#fff">D</text>
+            </svg>`;
+
+        // Fila de teclas
+        const keysRow = document.createElement('div');
+        keysRow.className   = 'swipe-hint-keys-row';
+        keysRow.innerHTML   = `
+            ${arrowLeft}
+            <span class="swipe-hint-keys-sep">/</span>
+            ${keyA}
+            <span class="swipe-hint-keys-label">Anterior</span>
+
+            <span class="swipe-hint-keys-divider"></span>
+
+            <span class="swipe-hint-keys-label">Siguiente</span>
+            ${keyD}
+            <span class="swipe-hint-keys-sep">/</span>
+            ${arrowRight}
+        `;
+
+        const text = document.createElement('p');
+        text.className   = 'swipe-hint-text';
+        text.textContent = 'Usá las teclas para navegar';
+
+        this.overlay.appendChild(keysRow);
+        this.overlay.appendChild(text);
     }
 
     // =============================================================
@@ -94,64 +180,53 @@ class SwipeHint {
 
     _bindEvents() {
 
-        // ── TOUCH: registrar inicio ──────────────────────────────
+        // ── TOUCH inicio (solo mobile) ───────────────────────────
         this.overlay.addEventListener('touchstart', (e) => {
-            // Guardar posición inicial
             this._touchStartX = e.changedTouches[0].clientX;
             this._touchStartY = e.changedTouches[0].clientY;
-
-            // NO llamar stopPropagation aquí: queremos que touchstart
-            // llegue al heroCarousel para que detenga su autoplay.
         }, { passive: true });
 
-        // ── TOUCH: evaluar swipe al soltar ──────────────────────
+        // ── TOUCH fin: swipe horizontal → dismiss + navegar ─────
         this.overlay.addEventListener('touchend', (e) => {
             const dx = e.changedTouches[0].clientX - this._touchStartX;
             const dy = e.changedTouches[0].clientY - this._touchStartY;
 
-            // Solo swipe horizontal (dx mayor que dy)
             const isHorizontal = Math.abs(dx) > Math.abs(dy);
             const isSwipe      = Math.abs(dx) >= SwipeHint.MIN_SWIPE;
 
             if (isHorizontal && isSwipe) {
-                // Descartar el overlay
+                // Evitar que el carousel reciba el mismo touchend
+                e.stopPropagation();
                 this.dismiss();
-
-                // Pasar al slide correspondiente usando la instancia
-                // global del carousel (window.heroCarousel)
                 const hc = window.heroCarousel;
                 if (hc) {
-                    if (dx < 0) {
-                        hc.nextSlide();
-                    } else {
-                        hc.previousSlide();
-                    }
+                    dx < 0 ? hc.nextSlide() : hc.previousSlide();
                     hc.restartAutoPlay();
                 }
-
             }
-            // Si NO fue swipe (fue un tap), no hacemos nada →
-            // el overlay sigue visible y bloquea el tap al carousel.
-        }, { passive: true });
+        }, { passive: false });
 
-        // ── CLICK / TAP sin arrastrar: descartar overlay ────────
-        this.overlay.addEventListener('click', () => {
-            this.dismiss();
-        });
+        // ── CLICK / TAP → cerrar ─────────────────────────────────
+        this.overlay.addEventListener('click', () => this.dismiss());
 
-        // ── TECLADO: flechas descartan y navegan ────────────────
+        // ── TECLADO: flechas / A / D → cerrar y navegar ─────────
+        // useCapture: true + stopImmediatePropagation evita que el
+        // carousel reciba el mismo evento y navegue por duplicado.
         this._keyHandler = (e) => {
-            if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') {
+            const key = e.key;
+            if (key === 'ArrowRight' || key.toLowerCase() === 'd') {
+                e.stopImmediatePropagation();
                 this.dismiss();
                 window.heroCarousel?.nextSlide();
                 window.heroCarousel?.restartAutoPlay();
-            } else if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') {
+            } else if (key === 'ArrowLeft' || key.toLowerCase() === 'a') {
+                e.stopImmediatePropagation();
                 this.dismiss();
                 window.heroCarousel?.previousSlide();
                 window.heroCarousel?.restartAutoPlay();
             }
         };
-        document.addEventListener('keydown', this._keyHandler);
+        document.addEventListener('keydown', this._keyHandler, true);
     }
 
     // =============================================================
@@ -162,9 +237,8 @@ class SwipeHint {
         if (!this.overlay || this.overlay.classList.contains('hiding')) return;
 
         clearTimeout(this._autoHideTimer);
-        document.removeEventListener('keydown', this._keyHandler);
+        document.removeEventListener('keydown', this._keyHandler, true);
 
-        // Animación de salida → luego ocultar del DOM
         this.overlay.classList.add('hiding');
         this.overlay.addEventListener('transitionend', () => {
             this.overlay.classList.add('hidden');
