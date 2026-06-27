@@ -15,24 +15,8 @@
     ],
     "phones": [
         {
-        "label": "Dirección",
-        "number": "+54 (3482) 123-4567"
-        },
-        {
-        "label": "Secretaría Académica",
-        "number": "+54 (3482) 123-4568"
-        },
-        {
-        "label": "Secretaría Administrativa",
-        "number": "+54 (3482) 123-4569"
-        },
-        {
-        "label": "Biblioteca",
-        "number": "+54 (3482) 123-4570"
-        },
-        {
-        "label": "Informática",
-        "number": "+54 (3482) 123-4571"
+        "label": "Secretaría",
+        "number": "+5493476624963"
         }
     ],
     "sidebar": [
@@ -264,7 +248,7 @@
         "title": "Inscripciones primer año 2026",
         "imageUrl": "Images/News_School/inscripciones_primer_año.png",
         "description": "Conocé los requisitos y el proceso para inscribirte y comenzar tus estudios en el instituto. Las inscripciones están abiertas, no te quedes afuera.",
-        "link": "./PDFs/Apuntes-Curso-Desarrollo-IA-Clase-1.pdf",
+        "link": "",
         "type": "primicia"
     },
     {
@@ -278,21 +262,35 @@
         "title": "Inscripciones a mesas de exámenes",
         "imageUrl": "Images/News_School/inscripciones_mesas_examenes.png",
         "description": "Ya están disponibles las inscripciones a las mesas de julio. El período de inscripción va del 16/06 al 26/06. Ingresá al sistema y reservá tu lugar.",
-        "link": "#",
+        "link": "",
         "type": "destacado"
     },
     {
-    "title": "Convocatoria abierta (EDI)",
-    "imageUrl": "Images/News_School/noticia_4.jpeg",
-    "description": "Se abre la convocatoria para nuevos ingresantes en Educación Ambiental Integral. Inscripciones del 1 al 31 de marzo. Podés completar el formulario, presentar la documentación y consultar los requisitos. La carrera está orientada a quienes desean formarse en el cuidado y gestión sostenible del ambiente.",
-    "link": "./PDFs/CONVOCATORIA-A-CONCURSO-EDI_EAI_IES48.pdf",
+    "title": "Expo Carreras",
+    "imageUrl": "Images/News_School/expo-carreras.png",
+    "description": "Este 25/06, junto a estudiantes de los profesorados y tecnicaturas, difundimos nuestras propuestas académicas.",
+    "link": "https://www.instagram.com/p/DZ_Q88WDeds/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
     "type": null
     },
     {
         "title": "Charla del tiempo de no libertad",
         "imageUrl": "Images/News_School/noticia_5.png",
-        "description": "Miércoles 03/06 a las 19:30 hs. Temática: Armas y Soberanía. Los sueños por la identidad. Entrada libre y gratuita, abierta a toda la comunidad.",
-        "link": "#",
+        "description": "Miércoles 03/06 a las 19:30 hs. Temática: Armas y Soberanía. Los sueños por la identidad. Expones veteranos de malvinas y profe de historia local.",
+        "link": "https://www.instagram.com/p/DY2GA4VxLWl/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
+        "type": null
+    },
+    {
+        "title": "Dia de la bandera",
+        "imageUrl": "Images/News_School/Bandera.jpeg",
+        "description": "Dia de la bandera.",
+        "link": "https://www.instagram.com/reel/DZxRrceERmR/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
+        "type": null
+    },
+    {
+        "title": "Ceremonia de egresados 2026",
+        "imageUrl": "Images/News_School/ceremonia_egresados.jpg",
+        "description": "Este 25 de noviembre te invitamos a espectar la entrega de diplomas.",
+        "link": "",
         "type": null
     }
     ],
