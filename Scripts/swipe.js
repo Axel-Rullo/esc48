@@ -4,9 +4,10 @@
 
 class SwipeHint {
 
-    static ICON_SRC  = './Images/Swipe/swipe.png';
-    static MIN_SWIPE = 40;
+    static ICON_SRC   = './Images/Swipe/swipe.png';
+    static MIN_SWIPE  = 40;
     static BREAKPOINT = 1024;
+    static STORAGE_KEY = 'swipeHintDismissed';
 
     // =============================================================
 
@@ -54,6 +55,9 @@ class SwipeHint {
     // =============================================================
 
     _inject(carousel) {
+
+        // Ya fue visto → no mostrar
+        if (localStorage.getItem(SwipeHint.STORAGE_KEY)) return;
 
         const section = carousel.closest('.hero-news-section') || carousel.parentElement;
         if (section) section.style.position = 'relative';
@@ -243,12 +247,19 @@ class SwipeHint {
     dismiss() {
         if (!this.overlay || this.overlay.classList.contains('hiding')) return;
 
+        localStorage.setItem(SwipeHint.STORAGE_KEY, '1');
         document.removeEventListener('keydown', this._keyHandler, true);
 
         this.overlay.classList.add('hiding');
         this.overlay.addEventListener('transitionend', () => {
             this.overlay.classList.add('hidden');
         }, { once: true });
+    }
+
+    // Borra el flag del localStorage y recarga (útil para debug)
+    static reset() {
+        localStorage.removeItem(SwipeHint.STORAGE_KEY);
+        location.reload();
     }
 
 }

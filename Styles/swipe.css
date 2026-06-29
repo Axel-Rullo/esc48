@@ -14,17 +14,14 @@
     align-items:      center;
     justify-content:  center;
     gap:              18px;
-    background:       rgba(0, 0, 0, 0.45);
+    background:       var(--swipe-overlay-bg);
+    color:            var(--swipe-text-color);
     backdrop-filter:  blur(2px);
     -webkit-backdrop-filter: blur(2px);
     cursor:           pointer;
     opacity:          1;
     transition:       opacity 0.5s ease;
-    touch-action:     pan-y;
-
-    /* Forzar colores oscuros siempre, independientemente del tema */
-    color:            #ffffff;
-    color-scheme:     dark;
+    touch-action:     pan-y; /* Permite scroll vertical pero no horizontal */
 }
 
 .swipe-hint-overlay.hiding {
@@ -43,7 +40,7 @@
 .swipe-hint-icon {
     width:            90px;
     height:           90px;
-    filter:           invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+    filter:           invert(1) drop-shadow(0 2px 8px var(--swipe-icon-shadow));
     animation:        swipe-rock 2.8s linear infinite;
     animation-delay:  -1.4s;
     user-select:      none;
@@ -89,7 +86,7 @@
 
 /* "/" separador entre flecha y letra */
 .swipe-hint-keys-sep {
-    color:            rgba(255,255,255,0.5);
+    color:            var(--swipe-sep-color);
     font-size:        1rem;
     line-height:      1;
     user-select:      none;
@@ -97,7 +94,7 @@
 
 /* "Anterior" / "Siguiente" */
 .swipe-hint-keys-label {
-    color:            rgba(255,255,255,0.85);
+    color:            var(--swipe-label-color);
     font-size:        0.78rem;
     font-weight:      500;
     letter-spacing:   0.06em;
@@ -110,7 +107,7 @@
     display:          block;
     width:            1px;
     height:           36px;
-    background:       rgba(255,255,255,0.25);
+    background:       var(--swipe-divider-color);
     margin:           0 6px;
     flex-shrink:      0;
 }
@@ -120,16 +117,27 @@
    ================================================================ */
 
 .swipe-hint-text {
-    color:            #ffffff;
+    color:            var(--swipe-text-color);
     font-size:        0.95rem;
     font-weight:      500;
     letter-spacing:   0.08em;
     text-transform:   uppercase;
     text-align:       center;
-    text-shadow:      0 1px 6px rgba(0,0,0,0.6);
+    text-shadow:      0 1px 6px var(--swipe-text-shadow);
     user-select:      none;
     pointer-events:   none;
     animation:        swipe-pulse 2s ease-in-out infinite;
+}
+
+.swipe-hint-subtext {
+    color:            var(--swipe-sep-color);
+    font-size:        0.75rem;
+    font-weight:      400;
+    letter-spacing:   0.05em;
+    text-align:       center;
+    text-shadow:      0 1px 6px var(--swipe-text-shadow);
+    user-select:      none;
+    pointer-events:   none;
 }
 
 @keyframes swipe-pulse {
@@ -141,34 +149,29 @@
     RESPONSIVE MOBILE
    ================================================================ */
 
-/* Tablet — hasta 1024px */
 @media (max-width: 1024px) {
     .swipe-hint-icon  { width: 82px; height: 82px; }
     .swipe-hint-text  { font-size: 0.9rem; }
 }
 
-/* Tablet chica — hasta 768px */
 @media (max-width: 768px) {
     .swipe-hint-overlay { gap: 14px; }
     .swipe-hint-icon    { width: 72px; height: 72px; }
     .swipe-hint-text    { font-size: 0.85rem; letter-spacing: 0.06em; }
 }
 
-/* Móvil — hasta 480px */
 @media (max-width: 480px) {
     .swipe-hint-overlay { gap: 12px; }
     .swipe-hint-icon    { width: 60px; height: 60px; }
     .swipe-hint-text    { font-size: 0.78rem; letter-spacing: 0.05em; }
 }
 
-/* Móvil pequeño — hasta 380px */
 @media (max-width: 380px) {
     .swipe-hint-overlay { gap: 10px; }
     .swipe-hint-icon    { width: 50px; height: 50px; }
     .swipe-hint-text    { font-size: 0.72rem; letter-spacing: 0.04em; }
 }
 
-/* ── Respeta preferencia de movimiento reducido ── */
 @media (prefers-reduced-motion: reduce) {
     .swipe-hint-icon,
     .swipe-hint-text,

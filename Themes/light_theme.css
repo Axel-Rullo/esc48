@@ -177,4 +177,15 @@
     --exp-input-placeholder: #555555;
     --exp-delete-icon-bg: rgba(255, 107, 107, 0.15);
     --exp-delete-overlay-bg: rgba(0, 0, 0, 0.55);
+
+    /* ===============================
+        SECCION 2.7: SWIPE HINT OVERLAY
+       =============================== */
+    --swipe-overlay-bg:        rgba(0, 0, 0, 0.45);
+    --swipe-text-color:        #ffffff;
+    --swipe-icon-shadow:       rgba(0, 0, 0, 0.4);
+    --swipe-sep-color:         rgba(255, 255, 255, 0.5);
+    --swipe-label-color:       rgba(255, 255, 255, 0.85);
+    --swipe-divider-color:     rgba(255, 255, 255, 0.25);
+    --swipe-text-shadow:       rgba(0, 0, 0, 0.6);
 }

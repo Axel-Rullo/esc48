@@ -14,6 +14,21 @@ class DropdownMenu {
 
     init() {
         this.attachEventListeners();
+        this.watchMobileMenu();
+    }
+
+    // Observa el mobile-menu para bloquear/desbloquear scroll al abrir/cerrar
+    watchMobileMenu() {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        if (!mobileMenu) return;
+
+        new MutationObserver(() => {
+            if (mobileMenu.classList.contains('active')) {
+                document.body.classList.add('modal-open');
+            } else {
+                document.body.classList.remove('modal-open');
+            }
+        }).observe(mobileMenu, { attributeFilter: ['class'] });
     }
 
     attachEventListeners() {
@@ -41,16 +56,6 @@ class DropdownMenu {
 
             const dentroDeMenu = e.target.closest('.menu-list') || e.target.closest('.nav');
             if (dentroDeMenu) return;
-
-            // Clic fuera del left-menu y del botón toggle → cerrar el menú lateral
-            const dentroDeLeftMenu = e.target.closest('.left-menu');
-            const esBtnToggle      = e.target.closest('.sidebar-toggle-btn');
-            if (!dentroDeLeftMenu && !esBtnToggle) {
-                const leftMenu = document.querySelector('.left-menu');
-                if (leftMenu?.classList.contains('expanded')) {
-                    leftMenu.classList.remove('expanded');
-                }
-            }
 
             // Clic fuera del mobile-menu y del botón hamburguesa → cerrar el menú mobile
             const dentroDelMobileMenu = e.target.closest('.mobile-menu');
