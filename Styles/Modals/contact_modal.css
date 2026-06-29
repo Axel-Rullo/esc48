@@ -136,7 +136,7 @@ body.modal-open {
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
-    background: var(--content-bg-card);
+    background: var(--email-dropdown-bg);
     border: 1px solid var(--content-border);
     border-radius: 14px;
     box-shadow: 0 8px 24px var(--content-shadow);
@@ -168,13 +168,10 @@ body.modal-open {
     align-items: center;
     justify-content: space-between;
     padding: 0.95rem 1.35rem;
-    border-bottom: 1px solid var(--content-border);
+    border-bottom: 1px solid var(--email-dropdown-item-border);
     gap: 1rem;
     transition: var(--transition);
-}
-
-.email-dropdown-item:nth-child(even) {
-    background: var(--email-dropdown-item-alt-bg);
+    background: var(--email-dropdown-item-bg);
 }
 
 .email-dropdown-item:last-child {
@@ -212,8 +209,8 @@ body.modal-open {
 .email-action-btn {
     width: 42px;
     height: 42px;
-    border: 1px solid var(--content-border);
-    background: transparent;
+    border: 1px solid var(--email-action-btn-border);
+    background: var(--email-action-btn-bg);
     border-radius: 9px;
     cursor: pointer;
     display: flex;

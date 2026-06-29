@@ -79,8 +79,13 @@
     --form-input-text: #111827;
     --content-toggle-active-text: #ffffff;
 
-    --email-dropdown-title-bg: #e8ebf5;
-    --email-dropdown-item-alt-bg: #f0f2fa;
+    --email-dropdown-bg: #f0f2fa;
+    --email-dropdown-title-bg: #d4d8eb;
+    --email-dropdown-item-bg: #ffffff;
+    --email-dropdown-item-alt-bg: #e8ebf5;
+    --email-dropdown-item-border: #d1d5e8;
+    --email-action-btn-bg: #e8ebf5;
+    --email-action-btn-border: #c4c8dc;
 
     /* ===============================
         SECCION 2.5: HERO CARRUSEL
