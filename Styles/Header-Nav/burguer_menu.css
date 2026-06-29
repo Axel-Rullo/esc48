@@ -270,7 +270,7 @@
     display: flex;
     justify-content: flex-end;
     padding: calc(var(--spacing-md) * 0.5);
-    border-bottom: 3px solid var(--header-nav-accent);
+    border-bottom: 5px solid var(--header-nav-accent);
     background: var(--header-nav-bg);
 
     flex-shrink: 0;

@@ -124,7 +124,7 @@
     .header {
         padding: 0.13rem 1.7rem;
         gap: 0.425rem;
-        border-bottom: 5px solid var(--color-accent-border);
+        border-bottom: 5px solid var(--header-nav-accent);
     }
 
     .header-actions {

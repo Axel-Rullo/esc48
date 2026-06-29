@@ -154,6 +154,7 @@ body.modal-open {
     padding: 1rem 1.35rem 0.65rem;
     border-bottom: 1px solid var(--content-border);
     margin: 0;
+    background: var(--email-dropdown-title-bg);
 }
 
 .email-dropdown-list {
@@ -170,6 +171,10 @@ body.modal-open {
     border-bottom: 1px solid var(--content-border);
     gap: 1rem;
     transition: var(--transition);
+}
+
+.email-dropdown-item:nth-child(even) {
+    background: var(--email-dropdown-item-alt-bg);
 }
 
 .email-dropdown-item:last-child {

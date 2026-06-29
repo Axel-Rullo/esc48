@@ -19,7 +19,7 @@
     margin: 0 auto;
     padding: 1.275rem 1.7rem;
 
-    border-top: 4px solid var(--footer-gold);
+    border-top: 5px solid var(--footer-gold);
 }
 
 .footer-section {
@@ -325,7 +325,7 @@
         gap: 1.275rem;
         padding: 1.275rem 0.85rem;
 
-        border-top: 2px solid var(--footer-gold);
+        border-top: 5px solid var(--footer-gold);
     }
 
     .footer-section {
