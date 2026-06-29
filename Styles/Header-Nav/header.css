@@ -110,7 +110,7 @@
 
 .hamburger span {
     width: 17px;
-    height: 2.2px;
+    height: 2px;
     background: var(--header-nav-text);
     border-radius: 10px;
     display: block;
@@ -208,12 +208,12 @@
         display: flex !important;
         width: 38px;
         height: 38px;
-        gap: 2px;
+        gap: 3px;
     }
 
     .hamburger span {
         width: 14px;
-        height: 1.8px;
+        height: 2px;
     }
 }
 
@@ -247,11 +247,11 @@
     .hamburger {
         width: 36px;
         height: 36px;
-        gap: 2px;
+        gap: 3px;
     }
 
     .hamburger span {
         width: 12px;
-        height: 1.5px;
+        height: 2px;
     }
 }
