@@ -43,12 +43,24 @@ class DropdownMenu {
             if (dentroDeMenu) return;
 
             // Clic fuera del left-menu y del botón toggle → cerrar el menú lateral
-            const dentroDeLeftMenu   = e.target.closest('.left-menu');
-            const esBtnToggle        = e.target.closest('.sidebar-toggle-btn');
+            const dentroDeLeftMenu = e.target.closest('.left-menu');
+            const esBtnToggle      = e.target.closest('.sidebar-toggle-btn');
             if (!dentroDeLeftMenu && !esBtnToggle) {
                 const leftMenu = document.querySelector('.left-menu');
                 if (leftMenu?.classList.contains('expanded')) {
                     leftMenu.classList.remove('expanded');
+                }
+            }
+
+            // Clic fuera del mobile-menu y del botón hamburguesa → cerrar el menú mobile
+            const dentroDelMobileMenu = e.target.closest('.mobile-menu');
+            const esHamburguesa       = e.target.closest('.hamburger');
+            if (!dentroDelMobileMenu && !esHamburguesa) {
+                const mobileMenu = document.querySelector('.mobile-menu');
+                if (mobileMenu?.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                    if (typeof DynamicRenderer !== 'undefined') DynamicRenderer.closeMobileMenu();
                 }
             }
 
