@@ -269,7 +269,7 @@
 .mobile-menu-header {
     display: flex;
     justify-content: flex-end;
-    padding: 0.3rem calc(var(--spacing-md) * 0.5);
+    padding: 0.13rem 1.7rem;
     border-bottom: 5px solid var(--header-nav-accent);
     background: var(--header-nav-bg);
 
@@ -284,10 +284,13 @@
     font-weight: bold;
     cursor: pointer;
     transition: var(--transition);
-    padding: 5px;
+    padding: 0;
+    width: 41px;
+    height: 41px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .close-menu:hover {
@@ -606,5 +609,31 @@
     /* CONTENIDO */
     .content-1 {
         display: block;
+    }
+}
+
+/* ================================================================
+    MOBILE-MENU-HEADER — sigue exactamente al .header en cada breakpoint
+   ================================================================ */
+
+@media (max-width: 768px) {
+    .mobile-menu-header {
+        padding: 0.08rem 1.5rem;
+    }
+
+    .close-menu {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-menu-header {
+        padding: 0.07rem 0.85rem;
+    }
+
+    .close-menu {
+        width: 36px;
+        height: 36px;
     }
 }

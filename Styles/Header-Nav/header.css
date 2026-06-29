@@ -90,7 +90,9 @@
     height: 42px;
 
     border-radius: 50%;
-    border: 2px solid var(--header-nav-bg);
+    border: none;
+    padding: 4px;
+    box-sizing: border-box;
 
     background: transparent;
     cursor: pointer;

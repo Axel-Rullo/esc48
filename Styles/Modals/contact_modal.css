@@ -154,7 +154,11 @@ body.modal-open {
     padding: 1rem 1.35rem 0.65rem;
     border-bottom: 1px solid var(--content-border);
     margin: 0;
-    background: var(--email-dropdown-title-bg);
+    background: linear-gradient(
+        135deg,
+        var(--content-bg-light),
+        var(--content-bg-card)
+    );
 }
 
 .email-dropdown-list {
