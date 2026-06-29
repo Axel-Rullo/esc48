@@ -91,11 +91,12 @@
 
     border-radius: 50%;
     border: none;
-    padding: 4px;
+    padding: 0;
     box-sizing: border-box;
 
     background: transparent;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 
     align-items: center;
     justify-content: center;
@@ -103,14 +104,20 @@
     transition: var(--transition);
 }
 
-.hamburger:hover {
+.hamburger:hover,
+.hamburger:focus,
+.hamburger:active {
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 3px 10px var(--header-nav-shadow);
+    border-radius: 50%;
+    outline: none;
 }
 
 .hamburger span {
     width: 17px;
     height: 2px;
+    min-height: 2px;
+    flex-shrink: 0;
     background: var(--header-nav-text);
     border-radius: 10px;
     display: block;
