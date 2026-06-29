@@ -18,6 +18,7 @@
     height: 100%;
     position: relative;
     display: flex;
+    touch-action: pan-y; /* Previene que el navegador se trabe evaluando gestos de scroll horizontal */
 }
 
 .hero-item {
@@ -123,11 +124,11 @@
     box-shadow: 0 4px 12px var(--hero-badge-noticia-glow, rgba(30, 120, 200, 0.45));
 }
 
-/* Límite de 1 línea en el carrusel */
+/* Límite de 2 líneas en el carrusel */
 .hero-title {
     font-size: 2.1rem;
     font-weight: bold;
-    line-height: 1.15;
+    line-height: 1.2;          /* era 1.15 — un poco más de aire entre líneas */
     color: #ffffff;
     text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.6);
     display: -webkit-box;
@@ -135,6 +136,7 @@
     -webkit-line-clamp: 2;
     line-clamp: 2;
     overflow: hidden;
+    padding-bottom: 2px;       /* evita que se corten los descendentes (g, p, y...) */
 }
 
 .hero-description {
@@ -233,8 +235,8 @@
     box-shadow: 0 0 20px var(--hero-badge-destacado-dot-glow);
 }
 
-/* Indicador destacado - PUNTITO DE NOTIFICACIÓN */
-.hero-indicator.destacado:not([data-visited="true"])::before {
+/* Indicador destacado - PUNTITO DE NOTIFICACIÓN (todos los tipos) */
+.hero-indicator:not([data-visited="true"])::before {
     content: '';
     position: absolute;
     top: -8px;
@@ -242,10 +244,22 @@
     transform: translateX(-50%);
     width: 6px;
     height: 6px;
-    background: var(--hero-badge-destacado);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 50%;
-    box-shadow: 0 0 8px var(--hero-badge-destacado-dot-glow);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
     animation: starGlow 1.5s ease-in-out infinite;
+}
+
+/* Destacado mantiene su puntito dorado */
+.hero-indicator.destacado:not([data-visited="true"])::before {
+    background: var(--hero-badge-destacado);
+    box-shadow: 0 0 8px var(--hero-badge-destacado-dot-glow);
+}
+
+/* Primicia con puntito rojo */
+.hero-indicator.primicia:not([data-visited="true"])::before {
+    background: var(--hero-badge-primicia);
+    box-shadow: 0 0 8px var(--hero-badge-primicia-glow);
 }
 
 /* Animaciones */
@@ -255,8 +269,8 @@
 }
 
 @keyframes starGlow {
-    0%, 100% { opacity: 1;   box-shadow: 0 0 8px  var(--hero-badge-destacado-dot-glow); }
-    50%       { opacity: 0.7; box-shadow: 0 0 12px var(--hero-badge-destacado-dot-glow-strong); }
+    0%, 100% { opacity: 1;   }
+    50%       { opacity: 0.6; }
 }
 
 @keyframes activePulse {
@@ -277,9 +291,21 @@
 }
 
 .hero-progress-bar {
-    width: 0%;
+    width: 100%;
     height: 100%;
     background: var(--nav-bg);
+    transform-origin: left;
+    transform: scaleX(0);
+    will-change: transform;
+}
+
+@keyframes progress-fill {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+.hero-progress-bar.animating {
+    animation: progress-fill linear forwards;
 }
 
 /* ================================================================

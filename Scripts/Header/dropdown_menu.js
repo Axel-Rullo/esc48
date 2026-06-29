@@ -61,11 +61,11 @@ class DropdownMenu {
     // Cierra los submenús hermanos del submenú que se está abriendo
     closeOtherSubmenus(currentSubmenu) {
 
-        currentSubmenu.parentElement
+        currentSubmenu.closest('ul')
             ?.querySelectorAll('.menu-submenu')
             .forEach(submenu => {
 
-                if (submenu === currentSubmenu) return;
+                if (submenu === currentSubmenu || submenu.contains(currentSubmenu)) return;
 
                 submenu.classList.remove(this.submenuClass);
 

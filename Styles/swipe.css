@@ -20,6 +20,7 @@
     cursor:           pointer;
     opacity:          1;
     transition:       opacity 0.5s ease;
+    touch-action:     pan-y; /* Permite scroll vertical pero no horizontal */
 }
 
 .swipe-hint-overlay.hiding {

@@ -102,14 +102,18 @@ class ThemeModule {
     }
 
     applyDark() {
-        this.lightTheme.disabled = true;
+        this.lightTheme.disabled = false;
         this.darkTheme.disabled  = false;
+        document.documentElement.setAttribute('data-theme', 'dark');
+        
         this.icon.classList.replace('fa-sun', 'fa-moon');
     }
 
     applyLight() {
         this.lightTheme.disabled = false;
-        this.darkTheme.disabled  = true;
+        this.darkTheme.disabled  = false;
+        document.documentElement.setAttribute('data-theme', 'light');
+        
         this.icon.classList.replace('fa-moon', 'fa-sun');
     }
 
@@ -142,7 +146,7 @@ class MobileMenuModule {
         this.nav          = document.querySelector('.nav');
         this.leftMenu     = document.querySelector('.left-menu');
         this.navOriginal  = document.getElementById('nav-original');
-        this.leftOriginal = document.querySelector('.left-menu').parentElement;
+        this.leftOriginal = document.querySelector('.left-menu')?.parentElement;
         this.mobileNav    = document.querySelector('.mobile-nav');
         this.mobileLeft   = document.querySelector('.mobile-left-menu');
 

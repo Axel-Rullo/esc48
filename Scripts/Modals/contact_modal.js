@@ -195,7 +195,7 @@ class ContactModal extends BaseModal {
                 );
             }
 
-        }, 800);
+        }, 1800); // 1.8s (carga) + 1.2s (éxito) + 3.0s (alerta) = ~6 segundos en total
     }
 
     // =============================================================

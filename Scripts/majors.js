@@ -108,7 +108,10 @@ class MajorsRenderer {
 
     renderAll() {
 
-        const majors = window.AppData.majors;
+        const majors = window.AppData.majors.map((m, index) => {
+            m.originalIndex = index;
+            return m;
+        });
 
         this.renderMajorsToContainer(
             'technicalMajors',
@@ -136,12 +139,10 @@ class MajorsRenderer {
             return;
         }
 
-        const allMajors = window.AppData.majors;
-
         container.innerHTML = majors.map((major) => {
 
-            // Índice real en el array original (no en el filtrado)
-            const originalIndex = allMajors.indexOf(major);
+            // Índice real en el array original
+            const originalIndex = major.originalIndex;
 
             // ID único por carrera para vincular con el modal de experiencias
             const majorId = `major-${originalIndex}-${major.title.replace(/\s+/g, '-').toLowerCase()}`;

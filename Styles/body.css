@@ -37,6 +37,14 @@ body {
         border-color 0.4s ease; /* Animación suave de bordes */
 }
 
+/* Fuerza una transición global fluida al cambiar el tema (aplicada via JS) */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease !important;
+}
+
 .background {
     min-height: auto; /* Altura automática */
     padding: 0; /* Sin espacio interno */

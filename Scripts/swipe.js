@@ -71,9 +71,6 @@ class SwipeHint {
 
         section.appendChild(this.overlay);
 
-        // Auto-descartar a los 10 segundos
-        this._autoHideTimer = setTimeout(() => this.dismiss(), 100000);
-
         this._bindEvents();
     }
 
@@ -246,7 +243,6 @@ class SwipeHint {
     dismiss() {
         if (!this.overlay || this.overlay.classList.contains('hiding')) return;
 
-        clearTimeout(this._autoHideTimer);
         document.removeEventListener('keydown', this._keyHandler, true);
 
         this.overlay.classList.add('hiding');
@@ -258,7 +254,7 @@ class SwipeHint {
 }
 
 /* ================================================================
-   INICIALIZAR
+    INICIALIZAR
    ================================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
