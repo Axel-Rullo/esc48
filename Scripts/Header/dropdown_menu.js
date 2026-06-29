@@ -42,6 +42,16 @@ class DropdownMenu {
             const dentroDeMenu = e.target.closest('.menu-list') || e.target.closest('.nav');
             if (dentroDeMenu) return;
 
+            // Clic fuera del left-menu y del botón toggle → cerrar el menú lateral
+            const dentroDeLeftMenu   = e.target.closest('.left-menu');
+            const esBtnToggle        = e.target.closest('.sidebar-toggle-btn');
+            if (!dentroDeLeftMenu && !esBtnToggle) {
+                const leftMenu = document.querySelector('.left-menu');
+                if (leftMenu?.classList.contains('expanded')) {
+                    leftMenu.classList.remove('expanded');
+                }
+            }
+
             // Clic en un modal o en los botones de contacto → cerrar todo
             const esAccionModal =
                 e.target.closest('.modal') ||

@@ -53,7 +53,7 @@ body.modal-open {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--content-border);
+    border-bottom: 4px solid var(--content-accent-border);
     flex-shrink: 0;
     gap: 0.5rem;
 }
@@ -152,7 +152,7 @@ body.modal-open {
     text-transform: uppercase;
     color: var(--content-text-light);
     padding: 1rem 1.35rem 0.65rem;
-    border-bottom: 1px solid var(--content-border);
+    border-bottom: 4px solid var(--content-accent-border);
     margin: 0;
     background: linear-gradient(
         135deg,
