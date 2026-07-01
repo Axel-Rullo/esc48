@@ -8,7 +8,7 @@ class BaseModal {
     static _openCount = 0;
 
     // Tiempo mínimo (ms) entre un open()/close() y el siguiente.
-    static TOGGLE_LOCK_MS = 300;
+    static TOGGLE_LOCK_MS = 1000;
 
     // Tope (ms) para liberar el scroll después de cerrar, por si el modal
     // no tiene ninguna transición CSS definida y el evento 'transitionend'
