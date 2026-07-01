@@ -313,7 +313,7 @@
     padding: calc(var(--spacing-md) * 0.85);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: 0;
     flex: 1;
     background: var(--header-nav-bg);
 
@@ -326,6 +326,10 @@
    ================================================================ */
 .mobile-nav {
     border-bottom: 3px solid var(--header-nav-accent);
+}
+
+.mobile-left-menu {
+    margin-top: calc(var(--spacing-md) * 0.85);
 }
 
 .mobile-nav ul {
@@ -619,7 +623,7 @@
 }
 
 /* ================================================================
-    MOBILE-MENU-HEADER — sigue exactamente al .header en cada breakpoint
+    MOBILE-MENU-HEADER
    ================================================================ */
 
 @media (max-width: 768px) {

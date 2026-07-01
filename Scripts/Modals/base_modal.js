@@ -71,7 +71,7 @@ class BaseModal {
     close() {
         this.modal.classList.remove('active');
         this.overlay?.classList.remove('active');
-        const anyOpen = document.querySelector('.modal-open ~ * .active, [class*="modal"].active');
+        const anyOpen = document.querySelector('.modal.active, #phoneModal.active');
         if (!anyOpen) {
             document.body.classList.remove('modal-open');
         }
