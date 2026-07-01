@@ -329,7 +329,7 @@
 }
 
 .mobile-left-menu {
-    margin-top: calc(var(--spacing-md) * 0.85);
+    margin-top: var(--spacing-md);
 }
 
 .mobile-nav ul {
@@ -504,13 +504,12 @@
         min-height: 0;
     }
 
-    /* LEFT MENU ADAPTADO MOBILE */
     .mobile-left-menu .left-menu {
         width: 100%;
         background: transparent !important;
         border: none !important;
         padding: 0 !important;
-        margin: var(--spacing-lg) 0 0 0 !important;
+        margin: 0 !important;
     }
 
     .mobile-left-menu .menu-list {
