@@ -79,13 +79,6 @@ class ExperiencesModal extends BaseModal {
             this.formToggle.classList.remove('active');
         });
 
-        // Bloquear scroll externo en mobile cuando el modal está abierto
-        document.addEventListener('touchmove', (e) => {
-            if (!this.isOpen()) return;
-            const modalBody = this.modal.querySelector('.experiences-modal-body');
-            if (!modalBody.contains(e.target)) e.preventDefault();
-        }, { passive: false });
-
         // Ajustar altura en resize
         window.addEventListener('resize', () => this.adjustModalHeight());
         this.adjustModalHeight();

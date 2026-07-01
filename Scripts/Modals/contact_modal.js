@@ -43,7 +43,7 @@ class ContactModal extends BaseModal {
         // Submit del formulario
         this.contactForm.addEventListener('submit', (e) => this.handleSubmit(e));
 
-        // Enter en desktop envía (Shift+Enter = salto de línea)
+        // Enter = "Enviar" - Shift + Enter = "Salto de línea")
         document.getElementById('asunto')?.addEventListener('keydown', (e) => {
             if (window.innerWidth > 1024 && e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -51,7 +51,7 @@ class ContactModal extends BaseModal {
             }
         });
 
-        // Dropdown de emails — espera a que AppData esté listo (igual que inicio.js)
+        // lista de emails
         DataLoader.waitForAppData().then((data) => {
             if (data.emails?.length) {
                 this.initEmailDropdown(data.emails);
@@ -64,15 +64,25 @@ class ContactModal extends BaseModal {
     // =============================================================
 
     close() {
+        // Mismo seguro anti-spam que BaseModal
+        if (!this.isOpen() || this._toggling) return;
+        this._toggling = true;
+
         this.modal.classList.remove('active');
         this.overlay?.classList.remove('active');
-        BaseModal._hideHint();
 
-        if (this._alertPending) {
-            return;
-        }
+        // Espera a que termine la animación de cierre antes habilitar el scroll
+        this._afterCloseAnimation(() => {
+            BaseModal._hideHint();
+            this._toggling = false;
 
-        document.body.classList.remove('modal-open');
+            if (this._alertPending) {
+                // El scroll se mantiene bloqueado hasta terminar la animación
+                return;
+            }
+
+            BaseModal._unlockScroll();
+        });
     }
 
     // =============================================================
@@ -86,7 +96,7 @@ class ContactModal extends BaseModal {
 
         if (!btn || !dropdown || !list) return;
 
-        // Toast "Copiado" estilo Google — se crea una sola vez
+        // Boton para copiar Email
         const toast = document.createElement('div');
         toast.className = 'email-copy-toast';
         toast.textContent = 'Copiado en el portapapeles';
@@ -105,7 +115,7 @@ class ContactModal extends BaseModal {
                         title="Copiar email"
                         aria-label="Copiar ${address}">&#128203;</button>`;
 
-            // Copiar al portapapeles + mostrar toast
+            // Copiar al portapapeles + mostrar alerta
             li.querySelector('button').addEventListener('click', (e) => {
                 e.stopPropagation();
                 navigator.clipboard?.writeText(address).then(() => {
@@ -175,10 +185,10 @@ class ContactModal extends BaseModal {
                         3000
                     );
 
-                    // Restaurar scroll cuando la alerta termina (misma duración: 3000 ms)
+                    // Restaurar scroll cuando la alerta termina
                     setTimeout(() => {
                         this._alertPending = false;
-                        document.body.classList.remove('modal-open');
+                        BaseModal._unlockScroll();
                     }, 3000);
                 }, 1200);
 
@@ -195,7 +205,7 @@ class ContactModal extends BaseModal {
                 );
             }
 
-        }, 1800); // 1.8s (carga) + 1.2s (éxito) + 3.0s (alerta) = ~6 segundos en total
+        }, 1800); // 1.8s (enviando) + 1.2s (éxito) + 3.0s (alerta) = 6 segundos en total
     }
 
     // =============================================================
