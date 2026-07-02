@@ -7,13 +7,8 @@ class BaseModal {
     // Contador global de modales abiertos
     static _openCount = 0;
 
-    // Tiempo mínimo (ms) entre un open()/close() y el siguiente.
-    static TOGGLE_LOCK_MS = 1000;
-
-    // Tope (ms) para liberar el scroll después de cerrar, por si el modal
-    // no tiene ninguna transición CSS definida y el evento 'transitionend'
-    // nunca llega.
-    static CLOSE_ANIMATION_FALLBACK_MS = 500;
+    // Tiempo mínimo (ms) entre un open()/close().
+    static TOGGLE_LOCK_MS = 500;
 
     /* -----------------------------------------------------------------
         @param {HTMLElement} modalEl   - Elemento raíz del modal
@@ -23,7 +18,7 @@ class BaseModal {
         this.modal   = modalEl;
         this.overlay = overlayEl;
 
-        this._toggling    = false;  // true mientras el modal está "en tránsito"
+        this._toggling    = false;  // true mientras dura el "cooldown" anti-spam
         this._toggleTimer = null;
 
         BaseModal._ensureHint();    // Crea el panel una sola vez para todos los modales
@@ -69,7 +64,7 @@ class BaseModal {
     }
 
     // =================================================================
-    // CONTADOR DE MODALES ABIERTOS (bloqueo de scroll)
+    // CONTADOR DE MODALES ABIERTOS
     // =================================================================
 
     // Suma un modal al contador global y bloquea el scroll del body.
@@ -90,7 +85,7 @@ class BaseModal {
     // SEGURO ANTI-SPAM
     // =================================================================
 
-    // Bloquea nuevos toggles (open/close)
+    // Bloquea nuevos toggles (open/close).
     _lockToggle() {
         this._toggling = true;
         clearTimeout(this._toggleTimer);
@@ -99,34 +94,12 @@ class BaseModal {
         }, BaseModal.TOGGLE_LOCK_MS);
     }
 
-    // evita liberar el scroll mientras el modal todavía se está viendo.
-    _afterCloseAnimation(callback) {
-        let done = false;
-
-        const finish = () => {
-            if (done) return;
-            done = true;
-            this.modal.removeEventListener('transitionend', onTransitionEnd);
-            callback();
-        };
-
-        // Ignoramos transiciones que "burbujean" desde elementos hijos
-        // (ej: un botón interno con su propia transición de color)
-        const onTransitionEnd = (e) => {
-            if (e.target === this.modal) finish();
-        };
-
-        this.modal.addEventListener('transitionend', onTransitionEnd);
-        setTimeout(finish, BaseModal.CLOSE_ANIMATION_FALLBACK_MS);
-    }
-
     // =================================================================
     // OPEN / CLOSE / IS OPEN
     // =================================================================
 
     // Agrega 'active' al modal + overlay y bloquea el scroll
     open() {
-        // Ya está abierto, o se acaba de togglear hace instantes: ignorar
         if (this.isOpen() || this._toggling) return;
         this._lockToggle();
 
@@ -137,20 +110,16 @@ class BaseModal {
         BaseModal._showHint();
     }
 
-    // Quita 'active' (arranca la animación de cierre) y al terminar restaura el scroll
+    // Quita 'active' y restaura el scroll solo si no hay otros modales abiertos
     close() {
-        // Ya está cerrado, o se acaba de togglear hace instantes: ignorar
         if (!this.isOpen() || this._toggling) return;
-        this._toggling = true; // se libera recién cuando termine la animación
+        this._lockToggle();
 
         this.modal.classList.remove('active');
         this.overlay?.classList.remove('active');
 
-        this._afterCloseAnimation(() => {
-            BaseModal._unlockScroll();
-            BaseModal._hideHint();
-            this._toggling = false;
-        });
+        BaseModal._unlockScroll();
+        BaseModal._hideHint();
     }
 
     // Devuelve true si el modal está visible
@@ -164,7 +133,7 @@ class BaseModal {
 
     registerCloseListeners() {
 
-        // Cierre por click fuera: solo en desktop
+        // Cierre por click fuera: solo en desktop (pointer = mouse/trackpad, no touch)
         const isDesktop = () => window.matchMedia('(pointer: fine)').matches;
 
         // 1. Backdrop
@@ -184,7 +153,7 @@ class BaseModal {
             if (e.key === 'Escape' && this.isOpen()) this.close();
         });
 
-        // 4. Scroll táctil en mobile bloqueado hasta terminar de cerrar el modal.
+        // 4. Scroll táctil en mobile
         document.addEventListener('touchmove', (e) => {
             if (!this.isOpen()) return;
             if (!this.modal.contains(e.target)) e.preventDefault();

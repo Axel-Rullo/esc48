@@ -66,23 +66,18 @@ class ContactModal extends BaseModal {
     close() {
         // Mismo seguro anti-spam que BaseModal
         if (!this.isOpen() || this._toggling) return;
-        this._toggling = true;
+        this._lockToggle();
 
         this.modal.classList.remove('active');
         this.overlay?.classList.remove('active');
+        BaseModal._hideHint();
 
-        // Espera a que termine la animación de cierre antes habilitar el scroll
-        this._afterCloseAnimation(() => {
-            BaseModal._hideHint();
-            this._toggling = false;
+        if (this._alertPending) {
+            // El scroll se mantiene bloqueado hasta terminar la animación
+            return;
+        }
 
-            if (this._alertPending) {
-                // El scroll se mantiene bloqueado hasta terminar la animación
-                return;
-            }
-
-            BaseModal._unlockScroll();
-        });
+        BaseModal._unlockScroll();
     }
 
     // =============================================================
