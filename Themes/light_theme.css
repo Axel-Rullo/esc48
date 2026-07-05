@@ -1,4 +1,4 @@
-[data-theme="light"], :root {
+[data-theme="dark"] {
     /* ===============================
         SECCION 1: HEADER / NAV / BURGER
        =============================== */
@@ -27,65 +27,67 @@
     /* ===============================
         SECCION 1.5: NAV / BURGER
        =============================== */
-    --nav-bg: #2a2a40;
-    --nav-text: #ffffff;
-    --nav-text-hover: #fbbf24;
-    --nav-accent: #fbbf24;
+    --nav-bg: #ffffff;
+    --nav-text: #111827;
+    --nav-text-hover: #2563eb;
+    --nav-accent: #2563eb;
 
-    --nav-border: #3a3a55;
-    --nav-shadow: rgba(0,0,0,0.4);
+    --nav-border: #e5e7eb;
+    --nav-shadow: rgba(0,0,0,0.08);
 
-    --nav-submenu-bg: #1f1f32;
-    --nav-submenu-text: #c7c9ff;
-    --nav-submenu-hover-bg: #3a3a55;
+    --nav-submenu-bg: #ffffff;
+    --nav-submenu-text: #4b5563;
+    --nav-submenu-hover-bg: #f3f4f6;
 
     /* ===============================
         SECCION 2: CONTENIDO
        =============================== */
     --star-gold: #f59e0b;
-    --content-bg: #ffffff;
-    --content-bg-card: #f9fafb;
-    --content-bg-light: #cbcfe2;
-    --content-text: #111827;
-    --content-text-light: #4b5563;
-    --content-text-input: #111827;
+    --content-bg: #393941;
+    --content-bg-card: #2a2a40;
+    --content-bg-light: #3a3a55;
+    --content-text: #ffffff;
+    --content-text-light: #c7c9ff;
+    --content-text-input: #ffffff;
     --content-button-text: #ffffff;
-    --content-input-bg: #ffffff;
-    --content-border: #e5e7eb;
-    --content-shadow: rgba(0, 0, 0, 0.08);
-    --content-accent: #2563eb;
-    --content-accent-border: #1f2937;
-    --content-secondary: #3b82f6;
-    --content-shadow-accent: rgba(31, 41, 55, 0.2);
+    --content-input-bg: #1f1f32;
+    --content-border: #3a3a55;
+    --content-shadow: rgba(0, 0, 0, 0.4);
+    --content-accent: #7c7cff;
+    --content-accent-border: #fbbf24;
+    --content-secondary: #5b5bd6;
+    --content-shadow-accent: rgba(251, 191, 36, 0.3);
+    --milestone-accent: #fbbf24;
+    --milestone-accent-glow: rgba(251, 191, 36, 0.3);
     --content-danger: #ff6b6b;
     --content-danger-hover: #ff5252;
     --modal-overlay-bg: rgba(0, 0, 0, 0.6);
-    --modal-spinner-track: rgba(0, 0, 0, 0.15);
-    --modal-spinner-color: #1f2937;
+    --modal-spinner-track: rgba(255, 255, 255, 0.3);
+    --modal-spinner-color: #ffffff;
     --modal-success-bg: #22c55e;
     --modal-success-shadow: rgba(34, 197, 94, 0.4);
     --modal-close-btn-bg: rgba(255, 255, 255, 0.2);
     --modal-close-btn-hover-bg: rgba(255, 255, 255, 0.3);
     --modal-alert-shadow: rgba(0, 0, 0, 0.3);
-    --msh-bg: #f9fafb;
-    --msh-border: #d1d5db;
-    --msh-label-text: #111827;
-    --msh-kbd-bg: #e5e7eb;
-    --msh-kbd-border: #9ca3af;
-    --msh-kbd-text: #374151;
-    --msh-item-text: #4b5563;
-    --form-block-bg: #d4d8eb;
+    --msh-bg: #2a2a40;
+    --msh-border: #4a4a66;
+    --msh-label-text: #ffffff;
+    --msh-kbd-bg: #fbbf24;
+    --msh-kbd-border: #d4a11e;
+    --msh-kbd-text: #1f1f32;
+    --msh-item-text: #c7c9ff;
+    --form-block-bg: #1e1e30;
     --form-input-bg: #ffffff;
     --form-input-text: #111827;
-    --content-toggle-active-text: #ffffff;
+    --content-toggle-active-text: #1f1f32;
 
-    --email-dropdown-bg: #f0f2fa;
-    --email-dropdown-title-bg: #d4d8eb;
-    --email-dropdown-item-bg: #ffffff;
-    --email-dropdown-item-alt-bg: #e8ebf5;
-    --email-dropdown-item-border: #d1d5e8;
-    --email-action-btn-bg: #e8ebf5;
-    --email-action-btn-border: #c4c8dc;
+    --email-dropdown-bg: #1e1e30;
+    --email-dropdown-title-bg: #22223a;
+    --email-dropdown-item-bg: #2a2a40;
+    --email-dropdown-item-alt-bg: #242438;
+    --email-dropdown-item-border: rgba(255, 255, 255, 0.07);
+    --email-action-btn-bg: #1f1f32;
+    --email-action-btn-border: #3a3a55;
 
     /* ===============================
         SECCION 2.5: HERO CARRUSEL
@@ -94,11 +96,11 @@
     --hero-btn-text: #2a2a40;
     --hero-btn-border: #fbbf24;
     --hero-btn-hover-text: #fbbf24;
-    /* Botón "Ir al material" del MODAL hero — igual al botón "Más Info" de majors */
-    --hero-modal-btn-bg: #1f2937;
-    --hero-modal-btn-text: #ffffff;
-    --hero-modal-btn-border: #1f2937;
-    --hero-modal-btn-hover-text: #1f2937;
+    /* Botón "Ir al material" del MODAL hero — en dark igual al carrusel */
+    --hero-modal-btn-bg: #fbbf24;
+    --hero-modal-btn-text: #2a2a40;
+    --hero-modal-btn-border: #fbbf24;
+    --hero-modal-btn-hover-text: #fbbf24;
     --hero-indicator-active: #ffffff;
     --hero-indicator-active-glow: rgba(255, 184, 71, 0.5);
     --hero-indicator-active-glow-strong: rgba(255, 184, 71, 0.8);
@@ -113,7 +115,7 @@
     --hero-badge-primicia-glow-strong: rgba(230, 57, 70, 0.4);
 
     /* ===============================
-        SECCION 3: FOOTER (Oscuro permanente)
+        SECCION 3: FOOTER
        =============================== */
     --footer-bg: #2a2a40;
     --footer-bg-dark: #1f1f32;
@@ -132,25 +134,25 @@
     /* ===============================
         VARIABLES LEGACY (compatibilidad)
        =============================== */
-    --color-primary: #e0e7ff;
-    --color-primary-dark: #c7d2fe;
-    --color-primary-light: #f0f4ff;
-    --color-divider-accent: #111827;
-    --color-accent-border: #1f2937;
-    --color-secondary: #3b82f6;
-    --color-accent: #2563eb;
-    --color-text: #111827;
-    --color-text-light: #4b5563;
-    --color-input-bg: #ffffff;
-    --color-input-text: #111827;
-    --color-bg: #ffffff;
-    --color-bg-card: #f9fafb;
-    --color-border: #e5e7eb;
-    --color-shadow: rgba(0, 0, 0, 0.08);
-    --color-divider-mobile: #d1d5db;
-    --color-shadow-accent: rgba(31, 41, 55, 0.2);
-    --color-gold: #111827;
-    --color-scrollbar: #9ca3af;
+    --color-primary: #2a2a40;
+    --color-primary-dark: #1f1f32;
+    --color-primary-light: #3a3a55;
+    --color-divider-accent: #fbbf24;
+    --color-accent-border: #fbbf24;
+    --color-secondary: #5b5bd6;
+    --color-accent: #7c7cff;
+    --color-text: #ffffff;
+    --color-text-light: #c7c9ff;
+    --color-input-bg: #1f1f32;
+    --color-input-text: #ffffff;
+    --color-bg: #393941;
+    --color-bg-card: #2a2a40;
+    --color-border: #3a3a55;
+    --color-shadow: rgba(0, 0, 0, 0.4);
+    --color-divider-mobile: #4a4a66;
+    --color-shadow-accent: rgba(251, 191, 36, 0.3);
+    --color-gold: #fbbf24;
+    --color-scrollbar: #fbbf24;
     --color-header-bg: #2a2a40;
     --color-header-text: #ffffff;
     --color-header-accent: #fbbf24;
@@ -163,11 +165,11 @@
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
-    
+
     /* ===============================
         SECCION 2.6: EXPERIENCES MODAL
        =============================== */
-    --exp-card-bg: #f0f2f8;
+    --exp-card-bg: #32324a;
     --exp-star-empty: #ffffff;
     --exp-star-stroke: #888888;
     --exp-star-glow: rgba(245, 158, 11, 0.45);

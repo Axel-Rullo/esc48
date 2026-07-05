@@ -9,7 +9,6 @@
 
 function calcYears() {
 
-    // Fecha de fundación: 1 de enero de 1985 (mes 0 = enero, 0-indexed)
     const founded = new Date(1985, 0, 1);
     const today   = new Date();
 
@@ -26,26 +25,17 @@ function calcYears() {
 
 function renderMilestoneBadge() {
 
-    const el = document.getElementById('yearsCounter');
-    if (el) el.textContent = calcYears();
+    const yearsEl = document.getElementById('yearsCounter');
+    if (yearsEl) yearsEl.textContent = calcYears();
+
+    const target = document.getElementById('milestoneWord');
+    if (!target) return;
 
     const words = ['técnicos', 'docentes'];
     const speed = { type: 60, erase: 40, pause: 1800, gap: 400 };
     let wordIdx  = 0;
     let charIdx  = 0;
     let erasing  = false;
-
-    // Reemplazar el contenido estático del .milestone-text por la estructura dinámica
-    const text = document.querySelector('.milestone-text');
-    if (!text) return;
-
-    text.innerHTML =
-        `<strong id="yearsCounter">${calcYears()}</strong>` +
-        ` años capacitando ` +
-        `<span id="milestoneWord" class="milestone-word"></span>`;
-
-    const target = document.getElementById('milestoneWord');
-    if (!target) return;
 
     function tick() {
         const word = words[wordIdx];

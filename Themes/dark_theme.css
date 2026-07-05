@@ -57,6 +57,8 @@
     --content-accent-border: #fbbf24;
     --content-secondary: #5b5bd6;
     --content-shadow-accent: rgba(251, 191, 36, 0.3);
+    --milestone-accent: #fbbf24;
+    --milestone-accent-glow: rgba(251, 191, 36, 0.3);
     --content-danger: #ff6b6b;
     --content-danger-hover: #ff5252;
     --modal-overlay-bg: rgba(0, 0, 0, 0.6);

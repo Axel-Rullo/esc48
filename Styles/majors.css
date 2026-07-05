@@ -117,6 +117,7 @@
 .major-card-description--clamped {
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -200,9 +201,9 @@
 
 .milestone-icon {
     font-size: 1.65rem;
-    color: var(--content-accent-border);
+    color: var(--milestone-accent);
     flex-shrink: 0;
-    filter: drop-shadow(0 0 10px var(--content-shadow-accent));
+    filter: drop-shadow(0 0 10px var(--milestone-accent-glow));
     animation: milestoneFloat 3s ease-in-out infinite;
 }
 
@@ -225,15 +226,8 @@
 .milestone-text strong {
     font-size: 1.24rem;
     font-weight: 800;
-    color: var(--content-accent-border);
-    text-shadow: 0 0 14px var(--content-shadow-accent);
-}
-
-/* Tema claro — sobreescribe colores del badge */
-[data-theme="light"] .milestone-icon,
-[data-theme="light"] .milestone-text strong {
-    color: #6b7280;
-    text-shadow: 0 0 10px rgba(107, 114, 128, 0.18);
+    color: var(--milestone-accent);
+    text-shadow: 0 0 14px var(--milestone-accent-glow);
 }
 
 /* ================================================================
@@ -266,25 +260,16 @@
    ================================================================ */
 
 .milestone-word {
-    color: var(--content-accent-border);
+    color: var(--milestone-accent);
     font-weight: 800;
-    text-shadow: 0 0 14px var(--content-shadow-accent);
+    text-shadow: 0 0 14px var(--milestone-accent-glow);
 }
 
 .milestone-word::after {
     content: '|';
-    color: var(--content-accent-border);
+    color: var(--milestone-accent);
     font-weight: 400;
     animation: blink 0.7s step-end infinite;
-}
-
-[data-theme="light"] .milestone-word {
-    color: #6b7280;
-    text-shadow: 0 0 10px rgba(107, 114, 128, 0.18);
-}
-
-[data-theme="light"] .milestone-word::after {
-    color: #6b7280;
 }
 
 @keyframes blink {
