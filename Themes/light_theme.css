@@ -96,7 +96,6 @@
     --hero-btn-text: #2a2a40;
     --hero-btn-border: #fbbf24;
     --hero-btn-hover-text: #fbbf24;
-    /* Botón "Ir al material" del MODAL hero — igual al botón "Más Info" de majors */
     --hero-modal-btn-bg: #1f2937;
     --hero-modal-btn-text: #ffffff;
     --hero-modal-btn-border: #1f2937;
@@ -113,9 +112,16 @@
     --hero-badge-primicia-dark: #d62828;
     --hero-badge-primicia-glow: rgba(230, 57, 70, 0.3);
     --hero-badge-primicia-glow-strong: rgba(230, 57, 70, 0.4);
+    --hero-badge-noticia: rgba(30, 120, 200, 0.85);
+    --hero-badge-noticia-dark: rgba(15, 80, 150, 0.95);
+    --hero-badge-noticia-glow: rgba(30, 120, 200, 0.45);
+
+    --hero-progress-track: rgba(255, 255, 255, 0.2);
+    --hero-progress-fill: var(--hero-badge-destacado);
+    --hero-progress-fill-glow: var(--hero-badge-destacado-glow);
 
     /* ===============================
-        SECCION 3: FOOTER (Oscuro permanente)
+        SECCION 3: FOOTER
        =============================== */
     --footer-bg: #2a2a40;
     --footer-bg-dark: #1f1f32;
@@ -132,7 +138,7 @@
     --footer-divider-mobile: #4a4a66;
 
     /* ===============================
-        VARIABLES LEGACY (compatibilidad)
+        VARIABLES LEGACY
        =============================== */
     --color-primary: #e0e7ff;
     --color-primary-dark: #c7d2fe;

@@ -120,8 +120,8 @@
 /* Badge para publicaciones sin tipo — Noticia */
 .hero-item.noticia::after {
     content: '📰 NOTICIA';
-    background: linear-gradient(135deg, var(--hero-badge-noticia, rgba(30, 120, 200, 0.85)) 0%, var(--hero-badge-noticia-dark, rgba(15, 80, 150, 0.95)) 100%);
-    box-shadow: 0 4px 12px var(--hero-badge-noticia-glow, rgba(30, 120, 200, 0.45));
+    background: linear-gradient(135deg, var(--hero-badge-noticia) 0%, var(--hero-badge-noticia-dark) 100%);
+    box-shadow: 0 4px 12px var(--hero-badge-noticia-glow);
 }
 
 /* Límite de 2 líneas en el carrusel */
@@ -285,7 +285,7 @@
     left: 0;
     width: 100%;
     height: 5px;
-    background: var(--nav-submenu-text);
+    background: var(--hero-progress-track);
     overflow: hidden;
     z-index: 35;
 }
@@ -293,7 +293,8 @@
 .hero-progress-bar {
     width: 100%;
     height: 100%;
-    background: var(--nav-bg);
+    background: var(--hero-progress-fill);
+    box-shadow: 0 0 6px var(--hero-progress-fill-glow);
     transform-origin: left;
     transform: scaleX(0);
     will-change: transform;
