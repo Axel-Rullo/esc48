@@ -52,6 +52,7 @@
 
     La primicia como los destacados no son obligatorios.
 
+    El titulo de cada noticia debe tener un limite de 35 caracteres.
     La descripción de cada noticia debe tener un limite de 300 caracteres.
 
 /* ================================================================
