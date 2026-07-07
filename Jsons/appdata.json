@@ -266,11 +266,11 @@
         "type": "destacado"
     },
     {
-    "title": "Expo Carreras",
-    "imageUrl": "Images/News_School/expo-carreras.png",
-    "description": "Este 25/06, junto a estudiantes de los profesorados y tecnicaturas, difundimos nuestras propuestas académicas.",
-    "link": "https://www.instagram.com/p/DZ_Q88WDeds/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
-    "type": null
+        "title": "Expo Carreras",
+        "imageUrl": "Images/News_School/expo-carreras.png",
+        "description": "Este 25/06, junto a estudiantes de los profesorados y tecnicaturas, difundimos nuestras propuestas académicas en un stand pensado para acercar la oferta educativa del instituto a toda la comunidad.",
+        "link": "https://www.instagram.com/p/DZ_Q88WDeds/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
+        "type": null
     },
     {
         "title": "Charla del tiempo de no libertad",
@@ -282,14 +282,14 @@
     {
         "title": "Dia de la bandera",
         "imageUrl": "Images/News_School/Bandera.jpeg",
-        "description": "Dia de la bandera.",
+        "description": "El instituto conmemoró el Día de la Bandera con un acto especial, recordando el legado de Manuel Belgrano y el valor de nuestros símbolos patrios en la formación de la comunidad educativa.",
         "link": "https://www.instagram.com/reel/DZxRrceERmR/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
         "type": null
     },
     {
         "title": "Ceremonia de egresados 2026",
         "imageUrl": "Images/News_School/ceremonia_egresados.jpg",
-        "description": "Este 25 de noviembre te invitamos a espectar la entrega de diplomas.",
+        "description": "Este 25 de noviembre te invitamos a presenciar la entrega de diplomas a los egresados 2026, un momento especial para celebrar junto a sus familias y toda la comunidad educativa.",
         "link": "",
         "type": null
     }
