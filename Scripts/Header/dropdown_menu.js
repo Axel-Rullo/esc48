@@ -26,6 +26,9 @@ class DropdownMenu {
             if (mobileMenu.classList.contains('active')) {
                 document.body.classList.add('modal-open');
             } else {
+                if (typeof BaseModal !== 'undefined' && BaseModal._openCount > 0) {
+                    return; // No remover si hay modales abiertos
+                }
                 document.body.classList.remove('modal-open');
             }
         }).observe(mobileMenu, { attributeFilter: ['class'] });

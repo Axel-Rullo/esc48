@@ -8,7 +8,7 @@ class BaseModal {
     static _openCount = 0;
 
     // Tiempo mínimo (ms) entre un open()/close().
-    static TOGGLE_LOCK_MS = 500;
+    static TOGGLE_LOCK_MS = 100;
 
     /* -----------------------------------------------------------------
         @param {HTMLElement} modalEl   - Elemento raíz del modal
@@ -61,6 +61,10 @@ class BaseModal {
         if (BaseModal._openCount === 0) {
             document.getElementById('modalShortcutsHint')?.classList.remove('active');
         }
+    }
+
+    static _forceHideHint() {
+        document.getElementById('modalShortcutsHint')?.classList.remove('active');
     }
 
     // =================================================================
@@ -155,8 +159,13 @@ class BaseModal {
 
         // 4. Scroll táctil en mobile
         document.addEventListener('touchmove', (e) => {
-            if (!this.isOpen()) return;
-            if (!this.modal.contains(e.target)) e.preventDefault();
+            if (this.isOpen()) {
+                if (!this.modal.contains(e.target)) e.preventDefault();
+            } else if (document.body.classList.contains('modal-open')) {
+                if (!e.target.closest('.modal.active') && !e.target.closest('#customAlert')) {
+                    e.preventDefault();
+                }
+            }
         }, { passive: false });
     }
 }

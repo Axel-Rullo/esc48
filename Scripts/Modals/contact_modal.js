@@ -70,7 +70,7 @@ class ContactModal extends BaseModal {
 
         this.modal.classList.remove('active');
         this.overlay?.classList.remove('active');
-        BaseModal._hideHint();
+        BaseModal._forceHideHint();
 
         if (this._alertPending) {
             // El scroll se mantiene bloqueado hasta terminar la animación
@@ -148,7 +148,7 @@ class ContactModal extends BaseModal {
 
         this.isSubmitting = true;
         this.setLoadingState('loading');
-        BaseModal._hideHint();
+        BaseModal._forceHideHint();
 
         const formData = {
             nombre   : document.getElementById('nombre')?.value.trim(),
