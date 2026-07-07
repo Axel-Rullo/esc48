@@ -8,7 +8,7 @@ class BaseModal {
     static _openCount = 0;
 
     // Tiempo mínimo (ms) entre un open()/close().
-    static TOGGLE_LOCK_MS = 100;
+    static TOGGLE_LOCK_MS = 50;
 
     /* -----------------------------------------------------------------
         @param {HTMLElement} modalEl   - Elemento raíz del modal
