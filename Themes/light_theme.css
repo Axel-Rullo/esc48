@@ -69,6 +69,7 @@
     --modal-close-btn-bg: rgba(255, 255, 255, 0.2);
     --modal-close-btn-hover-bg: rgba(255, 255, 255, 0.3);
     --modal-alert-shadow: rgba(0, 0, 0, 0.3);
+    --modal-shadow-lg: rgba(0, 0, 0, 0.45);
     --msh-bg: #f9fafb;
     --msh-border: #d1d5db;
     --msh-label-text: #111827;

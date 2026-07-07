@@ -10,7 +10,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.55);
+    background-color: var(--modal-overlay-bg);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     animation: fadeIn 0.3s ease;
@@ -32,7 +32,7 @@
 .major-info-modal__inner {
     background: var(--content-bg);
     border-radius: 10px;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 24px 60px var(--modal-shadow-lg);
     width: 92%;
     max-width: 660px;
     max-height: 92vh;
@@ -148,9 +148,8 @@
     border-bottom: 1px solid var(--content-border);
 }
 
-/* Texto libre — respeta \n como saltos */
 .major-info-modal__text {
-    font-size: 0.88rem;
+    font-size: 15px;
     color: var(--content-text-light);
     line-height: 1.65;
     margin: 0;
@@ -168,7 +167,7 @@
 }
 
 .major-info-modal__list li {
-    font-size: 0.86rem;
+    font-size: 15px;
     color: var(--content-text-light);
     line-height: 1.5;
     padding-left: 16px;
@@ -214,6 +213,12 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .major-info-modal__title {
+        text-wrap: balance;
+    }
+}
+
 @media (max-width: 768px) {
     .major-info-modal__inner   { max-height: 92vh; max-height: 92dvh; }
     .major-info-modal__image   { height: 180px; }
@@ -226,8 +231,8 @@
     .major-info-modal__image   { height: 160px; }
     .major-info-modal__body    { padding: 16px 14px 20px; }
     .major-info-modal__title   { font-size: 0.82rem; }
-    .major-info-modal__text    { font-size: 0.84rem; }
-    .major-info-modal__list li { font-size: 0.82rem; }
+    .major-info-modal__text    { font-size: 13px; }
+    .major-info-modal__list li { font-size: 13px; }
 }
 
 @media (max-width: 380px) {
@@ -235,6 +240,6 @@
     .major-info-modal__image   { height: 140px; }
     .major-info-modal__body    { padding: 14px 12px 18px; }
     .major-info-modal__title   { font-size: 0.76rem; }
-    .major-info-modal__text    { font-size: 0.8rem; }
-    .major-info-modal__list li { font-size: 0.78rem; }
+    .major-info-modal__text    { font-size: 12px; }
+    .major-info-modal__list li { font-size: 12px; }
 }

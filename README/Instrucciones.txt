@@ -52,6 +52,8 @@
 
     La primicia como los destacados no son obligatorios.
 
+    La descripción de cada noticia debe tener un limite de 300 caracteres.
+
 /* ================================================================
     CARRERAS
    ================================================================ */

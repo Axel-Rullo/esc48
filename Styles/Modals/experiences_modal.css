@@ -106,6 +106,12 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .experiences-modal-header h2 {
+        text-wrap: balance;
+    }
+}
+
 /* BODY DEL MODAL */
 .experiences-modal-body {
     display: flex;
@@ -527,7 +533,7 @@
 
 .experience-card-text {
     color: var(--content-text-light);
-    font-size: 0.75rem;
+    font-size: 15px;
     line-height: 1.5;
     margin: 6px 0;
     transition: var(--transition);
@@ -689,7 +695,6 @@
         min-width: 100px;
     }
 
-    /* Apilar nombre y apellido en tablets */
     .experiences-form-row {
         grid-template-columns: 1fr;
     }
@@ -790,7 +795,7 @@
     }
 
     .experience-card-text {
-        font-size: 0.7rem;
+        font-size: 13px;
     }
 
     .experience-card-meta {
@@ -804,6 +809,12 @@
 
     .experiences-star {
         font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .experience-card-text {
+        font-size: 12px;
     }
 }
 
@@ -1021,8 +1032,6 @@
     animation: slideDown 0.3s ease;
     transition: var(--transition);
 }
-
-
 
 /* ================================================================
     ALERTA DE CONFIRMACIÓN — Borrar experiencia
