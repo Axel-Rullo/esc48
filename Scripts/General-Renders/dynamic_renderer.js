@@ -78,14 +78,29 @@ class DynamicRenderer {
     /**
      * Crea un item del nav.
      * Siempre abre en pestaña nueva. Si el JSON define "target", lo respeta.
+     * Si el item no tiene "link", se muestra como botón inerte (sin target ni acción).
      */
     static createNavItem(item) {
 
         const li = document.createElement('li');
-        const a  = document.createElement('a');
+
+        // SIN LINK: no hay a dónde navegar, queda como botón sin acción
+        if (!item.link) {
+
+            const button       = document.createElement('button');
+            button.className   = 'nav-link nav-link-disabled';
+            button.type        = 'button';
+            button.textContent = item.label;
+
+            li.appendChild(button);
+            return li;
+
+        }
+
+        const a = document.createElement('a');
 
         a.className   = 'nav-link';
-        a.href        = item.link || '#';
+        a.href        = item.link;
         a.textContent = item.label;
 
         a.target = item.target || '_blank';
@@ -242,6 +257,7 @@ class DynamicRenderer {
      * Crea link o botón de acción en el menú.
      * Siempre abre en pestaña nueva. Si el JSON define "target", lo respeta.
      * Los items con "action" ejecutan su función directamente (no son links).
+     * Los items sin "link" (y sin "action") se muestran como botón inerte, sin target.
      */
     static createMenuLink(item) {
 
@@ -261,10 +277,22 @@ class DynamicRenderer {
 
         }
 
+        // SIN LINK NI ACCIÓN: botón inerte, sin target
+        if (!item.link) {
+
+            const button       = document.createElement('button');
+            button.className   = 'menu-link submenu-link submenu-link-disabled';
+            button.type        = 'button';
+            button.textContent = item.label;
+            li.appendChild(button);
+            return li;
+
+        }
+
         const a       = document.createElement('a');
         a.className   = 'menu-link submenu-link';
         a.textContent = item.label;
-        a.href        = item.link || '#';
+        a.href        = item.link;
 
         a.target = item.target || '_blank';
         a.rel    = 'noopener noreferrer';
