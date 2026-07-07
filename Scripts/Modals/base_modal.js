@@ -161,7 +161,7 @@ class BaseModal {
         document.addEventListener('touchmove', (e) => {
             if (this.isOpen()) {
                 if (!this.modal.contains(e.target)) e.preventDefault();
-            } else if (document.body.classList.contains('modal-open')) {
+            } else if (BaseModal._openCount > 0) {
                 if (!e.target.closest('.modal.active') && !e.target.closest('#customAlert')) {
                     e.preventDefault();
                 }
