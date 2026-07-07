@@ -6,9 +6,15 @@ class BaseModal {
 
     // Contador global de modales abiertos
     static _openCount = 0;
+    
+    // Lista de todas las instancias de BaseModal
+    static _instances = [];
+    
+    // Flag para asegurar que el evento touchmove se registra una sola vez
+    static _hasGlobalTouchmove = false;
 
     // Tiempo mínimo (ms) entre un open()/close().
-    static TOGGLE_LOCK_MS = 50;
+    static TOGGLE_LOCK_MS = 100;
 
     /* -----------------------------------------------------------------
         @param {HTMLElement} modalEl   - Elemento raíz del modal
@@ -21,6 +27,7 @@ class BaseModal {
         this._toggling    = false;  // true mientras dura el "cooldown" anti-spam
         this._toggleTimer = null;
 
+        BaseModal._instances.push(this);
         BaseModal._ensureHint();    // Crea el panel una sola vez para todos los modales
     }
 
@@ -157,15 +164,24 @@ class BaseModal {
             if (e.key === 'Escape' && this.isOpen()) this.close();
         });
 
-        // 4. Scroll táctil en mobile
-        document.addEventListener('touchmove', (e) => {
-            if (this.isOpen()) {
-                if (!this.modal.contains(e.target)) e.preventDefault();
-            } else if (BaseModal._openCount > 0) {
-                if (!e.target.closest('.modal.active') && !e.target.closest('#customAlert')) {
+        // 4. Scroll táctil en mobile (un solo listener global para todos los modales)
+        if (!BaseModal._hasGlobalTouchmove) {
+            BaseModal._hasGlobalTouchmove = true;
+            document.addEventListener('touchmove', (e) => {
+                if (BaseModal._openCount > 0) {
+                    let insideOpenModal = false;
+                    for (const m of BaseModal._instances) {
+                        if (m.isOpen() && m.modal.contains(e.target)) {
+                            insideOpenModal = true;
+                            break;
+                        }
+                    }
+                    if (insideOpenModal) return;
+                    if (e.target.closest('#customAlert')) return;
+                    
                     e.preventDefault();
                 }
-            }
-        }, { passive: false });
+            }, { passive: false });
+        }
     }
 }
