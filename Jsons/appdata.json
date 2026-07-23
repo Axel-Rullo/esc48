@@ -19,229 +19,67 @@
         "number": "+5493476624963"
         }
     ],
-    "sidebar": [
-        {
-        "label": "Carreras",
-        "id": "menu-carreras",
-        "items": [
-            {
-            "label": "Técnico Superior en Desarrollo de Software",
-            "id": "menu-software",
-            "items": [
-                {
-                "label": "Horario",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIO-2026-TSDS.pdf"
-                },
-                {
-                "label": "Diseño Curricular",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2024/04/tecnicos-Desarrollo_de_Software-1.pdf"
-                },
-                {
-                "label": "Plan de Estudio",
-                "link": ""
-                },
-                {
-                "label": "Correlatividades",
-                "link": ""
-                }
-            ]
-            },
-            {
-            "label": "Técnico Superior en Gestión de las Organizaciones",
-            "id": "menu-gestion",
-            "items": [
-                {
-                "label": "Horario",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIO-2026-TSGO.pdf"
-                },
-                {
-                "label": "Diseño Curricular",
-                "link": ""
-                },
-                {
-                "label": "Plan de Estudio",
-                "link": ""
-                },
-                {
-                "label": "Correlatividades",
-                "link": ""
-                }
-            ]
-            },
-            {
-            "label": "Profesorado de Educación Inicial",
-            "id": "menu-inicial",
-            "items": [
-                {
-                "label": "Horario",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIOS-2026-Inicial.pdf"
-                },
-                {
-                "label": "Diseño Curricular",
-                "link": ""
-                },
-                {
-                "label": "Plan de Estudio",
-                "link": ""
-                },
-                {
-                "label": "Correlatividades",
-                "link": ""
-                }
-            ]
-            },
-            {
-            "label": "Profesorado de Educación Primaria",
-            "id": "menu-primaria",
-            "items": [
-                {
-                "label": "Horario",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIOS-2026-Primaria.pdf"
-                },
-                {
-                "label": "Diseño Curricular",
-                "link": ""
-                },
-                {
-                "label": "Plan de Estudio",
-                "link": ""
-                },
-                {
-                "label": "Correlatividades",
-                "link": ""
-                }
-            ]
-            }
-        ]
-        },
-        {
-        "label": "Información para Estudiantes",
-        "id": "menu-estudiantes",
-        "items": [
-            {
-            "label": "Guía TPs",
-            "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2023/03/GUIA-PARA-ELABORACION-DE-TRABAJOS-PRACTICOS.pdf"
-            },
-            {
-            "label": "Planilla para el uso transparente de la IA",
-            "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/06/PLANILLA-DE-USO-TRANSPARENTE-DE-IA.-IES-N%C2%B048-1.pdf"
-            },
-            {
-            "label": "Inscripciones a mesas",
-            "link": "https://esc48-sfe.infd.edu.ar/aula/encuestas.cgi?id_curso=312"
-            },
-            {
-            "label": "Trámites",
-            "id": "tramites",
-            "items": [
-                {
-                "label": "Homologaciones",
-                "link": ""
-                },
-                {
-                "label": "Mesas de Exámenes",
-                "link": ""
-                },
-                {
-                "label": "Estudiante Visitante",
-                "link": ""
-                }
-            ]
-            },
-            {
-            "label": "Reglamentos",
-            "id": "reglamentos",
-            "items": [
-                {
-                "label": "Reglamento Orgánico de Institutos Superiores",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2021/05/decreto798-ROIS.pdf"
-                },
-                {
-                "label": "Centro de Estudiantes",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2021/05/centro-de-estudiantes.pdf"
-                },
-                {
-                "label": "Diseño Curricular - Profesorado de Educación Inicial",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2020/05/529-09-Inicial.pdf"
-                },
-                {
-                "label": "Diseño Curricular - Profesorado de Educación Primaria",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2020/05/528-09-Primario.pdf"
-                },
-                {
-                "label": "Res. 2120/16 - Desarrollo de Software",
-                "link": ""
-                },
-                {
-                "label": "Res. 378/16 - Técnico en Gestión de las Organizaciones",
-                "link": "./PDFs/T_cnico_Gesti_n_organizaciones.pdf"
-                },
-                {
-                "label": "Reglamento Académico Marco",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/informacion-para-alumnos/upload/020.pdf"
-                },
-                {
-                "label": "Prácticas Docentes",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2018/10/021-1.pdf"
-                },
-                {
-                "label": "Prácticas Profesionalizantes",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2018/10/Dec-1559-7-1-Pr%C3%A1c-Profesionalizantes.pdf"
-                }
-            ]
-            }
-        ]
-        },
-        {
-        "label": "Información para Egresados",
-        "id": "menu-egresados",
-        "items": [
-            {
-            "label": "Adscripciones",
-            "id": "adscripciones",
-            "items": [
-                {
-                "label": "Reglamento de Adscripciones",
-                "link": "./PDFs/REGLAMENTO-ADSCRIPCION.pdf"
-                },
-                {
-                "label": "Solicitud para Adscripciones",
-                "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2024/04/Solicitud-para-Adscripciones-1.pdf"
-                },
-                {
-                "label": "Reglamento Académico Marco (RAM)",
-                "link": "./PDFs/REGLAMENTO-ADSCRIPCION-AMPLIADO.pdf"
-                }
-            ]
-            }
-        ]
-        },
-        {
-        "label": "Información para Docentes",
-        "id": "menu-docentes",
-        "items": [
-            {
-            "label": "Licencias",
-            "id": "Licencias",
-            "items": [
-                {
-                "label": "Licencias Médicas",
-                "link": ""
-                }
-            ]
-            }
-        ]
-        },
-        {
-        "label": "Datos Institucionales",
-        "id": "menu-datos",
-        "items": [
-            {
-            "label": "Historia",
-            "link": "./PDFs/Historia_Escuela_San_Martin.pdf"
-            }
-        ]
-        }
+    "sidebar":[
+        { "id": 1, "parent_id": null, "label": "Carreras", "link": null, "status": "active" },
+        { "id": 2, "parent_id": null, "label": "Información para Estudiantes", "link": null, "status": "active" },
+        { "id": 3, "parent_id": null, "label": "Información para Egresados", "link": null, "status": "active" },
+        { "id": 4, "parent_id": null, "label": "Información para Docentes", "link": null, "status": "active" },
+        { "id": 5, "parent_id": null, "label": "Datos Institucionales", "link": null, "status": "active" },
+
+        { "id": 6, "parent_id": 1, "label": "Técnico Superior en Desarrollo de Software", "link": null, "status": "active" },
+        { "id": 7, "parent_id": 1, "label": "Técnico Superior en Gestión de las Organizaciones", "link": null, "status": "active" },
+        { "id": 8, "parent_id": 1, "label": "Profesorado de Educación Inicial", "link": null, "status": "active" },
+        { "id": 9, "parent_id": 1, "label": "Profesorado de Educación Primaria", "link": null, "status": "active" },
+
+        { "id": 10, "parent_id": 6, "label": "Horario", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIO-2026-TSDS.pdf", "status": "active" },
+        { "id": 11, "parent_id": 6, "label": "Diseño Curricular", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2024/04/tecnicos-Desarrollo_de_Software-1.pdf", "status": "active" },
+        { "id": 12, "parent_id": 6, "label": "Plan de Estudio", "link": null, "status": "active" },
+        { "id": 13, "parent_id": 6, "label": "Correlatividades", "link": null, "status": "active" },
+
+        { "id": 14, "parent_id": 7, "label": "Horario", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIO-2026-TSGO.pdf", "status": "active" },
+        { "id": 15, "parent_id": 7, "label": "Diseño Curricular", "link": null, "status": "active" },
+        { "id": 16, "parent_id": 7, "label": "Plan de Estudio", "link": null, "status": "active" },
+        { "id": 17, "parent_id": 7, "label": "Correlatividades", "link": null, "status": "active" },
+
+        { "id": 18, "parent_id": 8, "label": "Horario", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIOS-2026-Inicial.pdf", "status": "active" },
+        { "id": 19, "parent_id": 8, "label": "Diseño Curricular", "link": null, "status": "active" },
+        { "id": 20, "parent_id": 8, "label": "Plan de Estudio", "link": null, "status": "active" },
+        { "id": 21, "parent_id": 8, "label": "Correlatividades", "link": null, "status": "active" },
+
+        { "id": 22, "parent_id": 9, "label": "Horario", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/03/HORARIOS-2026-Primaria.pdf", "status": "active" },
+        { "id": 23, "parent_id": 9, "label": "Diseño Curricular", "link": null, "status": "active" },
+        { "id": 24, "parent_id": 9, "label": "Plan de Estudio", "link": null, "status": "active" },
+        { "id": 25, "parent_id": 9, "label": "Correlatividades", "link": null, "status": "active" },
+
+        { "id": 26, "parent_id": 2, "label": "Guía TPs", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2023/03/GUIA-PARA-ELABORACION-DE-TRABAJOS-PRACTICOS.pdf", "status": "active" },
+        { "id": 27, "parent_id": 2, "label": "Planilla para el uso transparente de la IA", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2026/06/PLANILLA-DE-USO-TRANSPARENTE-DE-IA.-IES-N%C2%B048-1.pdf", "status": "active" },
+        { "id": 28, "parent_id": 2, "label": "Inscripciones a mesas", "link": "https://esc48-sfe.infd.edu.ar/aula/encuestas.cgi?id_curso=312", "status": "active" },
+        { "id": 29, "parent_id": 2, "label": "Trámites", "link": null, "status": "active" },
+        { "id": 30, "parent_id": 2, "label": "Reglamentos", "link": null, "status": "active" },
+
+        { "id": 31, "parent_id": 29, "label": "Homologaciones", "link": null, "status": "active" },
+        { "id": 32, "parent_id": 29, "label": "Mesas de Exámenes", "link": null, "status": "active" },
+        { "id": 33, "parent_id": 29, "label": "Estudiante Visitante", "link": null, "status": "active" },
+
+        { "id": 34, "parent_id": 30, "label": "Reglamento Orgánico de Institutos Superiores", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2021/05/decreto798-ROIS.pdf", "status": "active" },
+        { "id": 35, "parent_id": 30, "label": "Centro de Estudiantes", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2021/05/centro-de-estudiantes.pdf", "status": "active" },
+        { "id": 36, "parent_id": 30, "label": "Diseño Curricular - Profesorado de Educación Inicial", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2020/05/529-09-Inicial.pdf", "status": "active" },
+        { "id": 37, "parent_id": 30, "label": "Diseño Curricular - Profesorado de Educación Primaria", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2020/05/528-09-Primario.pdf", "status": "active" },
+        { "id": 38, "parent_id": 30, "label": "Res. 2120/16 - Desarrollo de Software", "link": null, "status": "active" },
+        { "id": 39, "parent_id": 30, "label": "Res. 378/16 - Técnico en Gestión de las Organizaciones", "link": "./PDFs/T_cnico_Gesti_n_organizaciones.pdf", "status": "active" },
+        { "id": 40, "parent_id": 30, "label": "Reglamento Académico Marco", "link": "https://esc48-sfe.infd.edu.ar/sitio/informacion-para-alumnos/upload/020.pdf", "status": "active" },
+        { "id": 41, "parent_id": 30, "label": "Prácticas Docentes", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2018/10/021-1.pdf", "status": "active" },
+        { "id": 42, "parent_id": 30, "label": "Prácticas Profesionalizantes", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2018/10/Dec-1559-7-1-Pr%C3%A1c-Profesionalizantes.pdf", "status": "active" },
+
+        { "id": 43, "parent_id": 3, "label": "Adscripciones", "link": null, "status": "active" },
+        { "id": 44, "parent_id": 43, "label": "Reglamento de Adscripciones", "link": "./PDFs/REGLAMENTO-ADSCRIPCION.pdf", "status": "active" },
+        { "id": 45, "parent_id": 43, "label": "Solicitud para Adscripciones", "link": "https://esc48-sfe.infd.edu.ar/sitio/wp-content/uploads/2024/04/Solicitud-para-Adscripciones-1.pdf", "status": "active" },
+        { "id": 46, "parent_id": 43, "label": "Reglamento Académico Marco (RAM)", "link": "./PDFs/REGLAMENTO-ADSCRIPCION-AMPLIADO.pdf", "status": "active" },
+
+        { "id": 47, "parent_id": 4, "label": "Licencias", "link": null, "status": "active" },
+        { "id": 48, "parent_id": 47, "label": "Licencias Médicas", "link": null, "status": "active" },
+
+        { "id": 49, "parent_id": 5, "label": "Historia", "link": "./PDFs/Historia_Escuela_San_Martin.pdf", "status": "active" }
     ],
     "heroNews": [
     {

@@ -8,10 +8,13 @@
 
 📄 index.html
   └─ Estructura base de la página. Contiene:
-     • Header con logo, título, tema toggle y menú hamburguesa
+     • Header con logo, título, tema toggle, menú hamburguesa
+       y aside "Menús" (sidebar lateral colapsable en desktop)
      • Navegación principal (nav)
      • Secciones: hero carousel (noticias), carreras, mapa y footer
-     • Modales: hero news, contacto, teléfono, alerta personalizada
+     • Modales YA PRESENTES en el HTML (estáticos):
+       experiencias, información de carrera (major info),
+       contacto, teléfono, alerta personalizada
      • Overlay compartido entre modales
      • Carga todos los CSS y Scripts
      • Contenido completamente dinámico (generado por JS)
@@ -26,7 +29,7 @@ CARGA DE DATOS:
   📜 data-loader.js
     └─ Clase: DataLoader
     └─ Función: Cargar JSONs
-       • loadAppData() → Carga appdata.json (noticias, carreras, nav, teléfonos)
+       • loadAppData() → Carga appdata.json (noticias, carreras, nav, teléfonos, etc.)
        • loadExperiencesData() → Carga experiencies.json (experiencias)
        • Guarda datos en window.AppData y window.ExperiencesData
        • Dispara eventos personalizados al terminar:
@@ -63,11 +66,23 @@ MODALES DE INTERACCIÓN:
   📜 experiences_modal.js
     └─ Clase: ExperiencesModal extends BaseModal
     └─ Función: Modal para ver experiencias de cada carrera
-       • Crea el modal en el DOM dinámicamente
+       • El modal (#experiencesModal) YA existe estático en
+         index.html; el JS solo lo llena/controla, no lo crea
        • Lee experiencias desde window.ExperiencesData
        • Agrupa experiencias por carrera (key = major-id)
        • Muestra estrellas de calificación (1-5)
        • Formulario colapsable (listo para backend, guarda en memoria)
+       • Tiene panel "Mi Experiencia" (#myExperiencePanel) inyectado
+         por JS, además del formulario para publicar una nueva
+
+  📜 majors_info_modal.js
+    └─ Clase: MajorInfoModal extends BaseModal (a confirmar)
+    └─ Función: Modal con la info detallada de cada carrera
+       • El modal (#majorInfoModal) YA existe estático en index.html
+       • Muestra: imagen, descripción, plan de estudio y
+         salidas laborales (los mismos campos de Instrucciones.txt
+         para las tarjetas de carreras)
+       • Se abre con su propio botón en la tarjeta (ver majors.js)
 
   📜 contact_modal.js
     └─ Clase: ContactModal extends BaseModal
@@ -101,13 +116,11 @@ CARRUSEL:
     └─ Clase: HeroCarousel
     └─ Función: Carrusel automático de noticias en el hero
        • Autoplay cada 15 segundos con barra de progreso animada
-       • Navegación por indicadores (dots) clickeables
-       • Swipe táctil (izquierda/derecha)
-       • Teclas: ArrowLeft/ArrowRight y A/D
-       • Badges visuales por tipo: 'primicia' y 'destacado'
+       • Navegación por:
+            •Swipe táctil (izquierda/derecha)
+            •Teclas: ArrowLeft/ArrowRight y A/D
+       • Badges visuales por tipo: 'primicia', 'destacado', 'noticia' (null)
        • Indicadores marcan noticias vistas (persiste en localStorage)
-       • Modal interno via BaseModal para ver título y descripción completa
-       • Botón "Ir al material adjunto" solo aparece si el JSON tiene link real
 
 NAVEGACIÓN Y MENÚS:
 ─────────────────────────────────────────────────────────────────────────────
@@ -127,8 +140,17 @@ UTILIDADES:
 
   📜 majors.js
     └─ Función: Interacción con tarjetas de carreras
-       • Listeners para click en tarjetas → abre ExperiencesModal
+       • Cada tarjeta tiene 2 botones, cada uno abre su propio modal:
+         - Botón info de carrera → abre MajorInfoModal
+         - Botón experiencias → abre ExperiencesModal
        • Renderiza el badge de trayectoria con años calculados
+
+  📜 swipe.js
+    └─ Función: (pendiente de documentar — no estaba en el listado
+      original, pero se carga en index.html)
+       • Vinculado al botón de testing "Reset Swipe" (SwipeHint.reset())
+       • Probablemente maneja el hint visual de "deslizá para ver más"
+         en el carrusel / tarjetas en mobile
 
   📜 location_section.js
     └─ Función: Mapa interactivo con Leaflet
@@ -170,12 +192,16 @@ SECCIONES:
 
   🎨 hero_news.css        → Carrusel hero: items, badges, indicadores,
                             barra de progreso y modal de detalle
+  🎨 swipe.css            → Hint visual de "deslizar" (swipe) — faltaba
+                            en el listado original
   🎨 majors.css           → Tarjetas de carreras y badge de trayectoria
   🎨 location_section.css → Sección de mapa y datos de ubicación
 
 MODALES E INTERACCIÓN:
 ─────────────────────────────────────────────────────────────────────────────
 
+  🎨 majors_info_modal.css → Modal de info detallada de cada carrera
+                            (faltaba en el listado original)
   🎨 experiences_modal.css → Modal de experiencias por carrera
   🎨 contact_modal.css     → Modal y formulario de contacto
   🎨 phones_modal.css      → Modal de teléfonos institucionales
@@ -212,76 +238,63 @@ RENDERIZADO:
  11. experiences_modal.js escucha 'experiencesDataLoaded' → agrupa por carrera
 
 INTERACCIÓN:
- 12. Usuario hace click en carrera → majors.js abre ExperiencesModal
- 13. Modal muestra experiencias del JSON para esa carrera
+ 12. Usuario hace click en botón de info → majors.js abre MajorInfoModal
+ 13. Usuario hace click en botón de experiencias → majors.js abre ExperiencesModal
  14. Usuario navega el carrusel → hero_carousel.js actualiza slides y dots
- 15. Usuario abre "Saber Más" → BaseModal muestra detalle de la noticia
- 16. Usuario envía contacto → ContactModal simula envío y muestra AlertModal
+ 16. Usuario envía contacto → ContactModal simula envío y muestra AlertModal (Falta Hacerlo funcional)
 
 COMUNICACIÓN BACKEND (FUTURA):
-  └─ contact_modal.js → Enviará POST /api/contact
-  └─ experiences_modal.js → Enviará POST /api/experiences
-  └─ data-loader.js → Reemplazará fetch de JSON por GET /api/data
+  └─ contact_modal.js → Envía el mensaje
+  └─ experiences_modal.js → Enviará POST
+  └─ data-loader.js → Reemplazará fetch de JSON por GET
 
 ================================================================================
                             ARCHIVOS JSON
 ================================================================================
 
   📊 appdata.json
-     └─ Contiene:
-        • heroNews[]  - Noticias para el carrusel hero (title, description,
-                        imageUrl, type, link)
-        • majors[]    - Carreras con id, nombre, descripción, imagen, tipo
-        • nav[]       - Estructura de navegación (puede ser anidada)
-        • phones[]    - Teléfonos institucionales (label, number)
-        • socials[]   - Redes sociales (nombre, url, ícono FA)
+     └─ Todo menos lo de experiencias
 
   📊 experiencies.json
-     └─ Estructura:
-        • experiences{} - Objeto con keys = major-id
-          └─ Cada key contiene array de experiencias:
-             • id, name, lastname, email, comment, date, rating (1-5)
+     └─ Experiencias
 
 ================================================================================
                           MEDIA QUERIES & RESPONSIVE
 ================================================================================
 
   • Breakpoints usados en todos los CSS:
-    - 1024px → Tablet landscape
-    -  768px → Tablet portrait
-    -  480px → Mobile
-    -  380px → Mobile pequeño
-
-  • burguer_menu.css se activa en pantallas ≤ 1024px
-  • Los modales tienen layout adaptado desde 768px hacia abajo
+    - 1024px
+    -  768px
+    -  480px
+    -  380px
 
 ================================================================================
                             NOTAS IMPORTANTES
 ================================================================================
 
 1. BASE MODAL:
-   • Todos los modales reales extienden BaseModal (excepto AlertModal)
-   • El scroll se bloquea en body Y en html (necesario para todos los browsers)
-   • El overlay es compartido entre modales — solo uno puede estar activo
+   • Todos los modales reales extienden BaseModal, EXCEPTO:
+     - AlertModal (no bloquea scroll ni usa overlay)
+   • El scroll se bloquea en body Y en html al abrir modales y menu hamburguesa
+   • El overlay es compartido entre modales
 
 2. DATOS:
    • Todos los datos vienen de JSONs cargados en memoria (window.AppData)
-   • Sin persistencia en servidor actualmente
-   • El backend puede reemplazar los JSONs con APIs REST sin cambiar los módulos
 
 3. MODAL DE EXPERIENCIAS:
    • Vista de solo lectura desde el JSON
-   • Formulario listo para backend (guarda en memoria por ahora)
    • Estrellas de calificación: solo lectura en vista, interactivas en formulario
 
 4. HERO CAROUSEL:
-   • Las noticias vistas quedan marcadas en localStorage por URL (heroVisited:link)
-   • El modal interno pausa el autoplay y lo reanuda al cerrar
-   • Si una noticia no tiene link real, el botón "Ir al material" se oculta
+   • Las noticias vistas quedan marcadas en localStorage
+   • Si una noticia no tiene link real, el botón se oculta
 
 5. RUTAS Y PATHS:
    • Jsons/    debe estar en la raíz del frontend
    • Scripts/  debe estar en la raíz del frontend
    • Styles/   debe estar en la raíz del frontend
    • Themes/   debe estar en la raíz del frontend
-   • Images/   debe estar en la raíz del frontend
+   • Images/   debe estar en la raíz del fronten
+
+6. ORDEN DE CARGA DE SCRIPTS:
+   Como estan en el index

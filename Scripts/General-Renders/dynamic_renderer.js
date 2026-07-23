@@ -127,9 +127,35 @@ class DynamicRenderer {
 
         menuList.innerHTML = '';
 
-        window.AppData.sidebar.forEach(section => {
+        const sidebarTree = DynamicRenderer.buildMenuTree(window.AppData.sidebar);
+
+        sidebarTree.forEach(section => {
             menuList.appendChild(DynamicRenderer.createMenuDropdown(section));
         });
+
+    }
+
+    /**
+     * Arma el árbol del menú a partir de la lista plana (id, parent_id, status)
+     * que devuelve la tabla `menus`. Filtra los inactivos.
+     */
+    static buildMenuTree(flatItems) {
+
+        const map = new Map();
+
+        flatItems.forEach(item => map.set(item.id, { ...item, items: [] }));
+
+        const tree = [];
+
+        map.forEach(item => {
+            if (item.parent_id && map.has(item.parent_id)) {
+                map.get(item.parent_id).items.push(item);
+            } else {
+                tree.push(item);
+            }
+        });
+
+        return tree;
 
     }
 

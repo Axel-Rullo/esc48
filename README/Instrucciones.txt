@@ -9,7 +9,7 @@
     Hay que modificar lo de appdata.json para que llame y traiga de otro lado como tal
     la llamada y ejecucion ya es automatica (de la funcion)
 
-    Las Imagenes estan en Images, para mover al menos lo del major al backend.
+    Las Imagenes estan en Images, para mover al menos lo del major al backend o manejarse desde ahi.
 
 /* ================================================================
     RENDERIZACIÓN
@@ -32,25 +32,25 @@
         IMPORTANTE: "Datos Institucionales", esta programado para
         que muestre los campos: Contacto, Telefonos, Ubicación y Redes; luego el resto 
         (lo que viene del Json). Esto con el fin de tener una segunda forma de llegar a estos 
-        (originalmente se encuentran en el footer o por encima de este), ya que incluso mucha gente 
+        (originalmente se encuentran en el footer y por encima de este), ya que incluso mucha gente 
         estaba acostumbrada a buscarlos ahí. Por lo tanto:
-        Datos Institucionales debe ser un menu que no se pueda eliminar, pero si modificar sus campos.
+        Datos Institucionales debe ser un menu que no se pueda eliminar, pero si modificar/agregar campos.
 
 /* ================================================================
     CARRUSEL DE NOTICIAS
    ================================================================ */
 
-    Aqui se muestran las noticias en tres tipos: normales (Type NULL), destacadas y la primicia.
+    Aqui se muestran las noticias en tres tipos: Noticia (NULL), destacadas y la primicia.
     La primicia siempre es una sola y se muestra antes que las demas.
     Las destacadas se muestran en segundo lugar, y luego, las normales.
     Es necesario contar con un sistema con el cual poder elegir el orden (1,2,3)
     para que asi, se muestre siempre el orden exacto que se desee y no solo por tipos.
 
-    Debe contar con una opcion de noticias temporales, es decir, que quien publica
+    Estaria bueno contar con una opcion de noticias temporales, es decir, que quien publica
     elija si la noticia es temporal o no. Por ejemplo, ingresantes 1er año (la publicacion),
-    debe mostrarse solo hasta la fecha en que finalize las inscripciones.
+    tendria que mostrarse solo hasta la fecha en que finalize las inscripciones.
 
-    La primicia como los destacados no son obligatorios.
+    La primicia como los destacados no son obligatorios, son opcionales.
 
     El titulo de cada noticia debe tener un limite de 35 caracteres.
     La descripción de cada noticia debe tener un limite de 300 caracteres.
@@ -77,12 +77,11 @@
    ================================================================ */
 
     REDES:
-        En si traer una lista de las mismas.
+        Se trae una lista de las mismas.
 
     TELEFONOS:
         Se trae una lista de los mismos.
 
     CONTACTO:
         Aqui solo falta el codigo para que el formulario se envie.
-        Actualmente se muestra una simulación, si se quiere, trabajen encima,
-        sobre todo por el orden de los sucesos.
+        Actualmente se muestra una simulación con una mini animacion, si se quiere, trabajen encima.

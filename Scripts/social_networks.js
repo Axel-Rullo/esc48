@@ -14,18 +14,18 @@ const SOCIAL_NETWORKS = {
     // ── GOOGLE ───────────────────────────────────────────────────
     youtube:    { label: "YouTube",            icon: "fab fa-youtube",             color: "#ff0000" },
 
-    // ── PROFESIONAL / ACADÉMICO ───────────────────────────────────
+    // ── PROFESIONAL / ACADÉMICO ──────────────────────────────────
     twitter:    { label: "Twitter / X",        icon: "fab fa-x-twitter",           color: "#000000" },
     linkedin:   { label: "LinkedIn",           icon: "fab fa-linkedin-in",         color: "#0a66c2" },
 
     // ── CONTENIDO / DIFUSIÓN ─────────────────────────────────────
     tiktok:     { label: "TikTok",             icon: "fab fa-tiktok",              color: "#010101" },
 
-    // ── CONTACTO INSTITUCIONAL ────────────────────────────────────
+    // ── CONTACTO INSTITUCIONAL ───────────────────────────────────
     email:      { label: "Correo Electrónico", icon: "fas fa-envelope",            color: "#ea4335" },
     website:    { label: "Sitio Web",          icon: "fas fa-globe",               color: "#6366f1" },
 
-    // ── FALLBACK ─────────────────────────────────────────────────
+    // ── FALLBACK (para cuando no hay un icono) ───────────────────
     default:    { label: "Enlace",             icon: "fas fa-link",                color: "#6b7280" }
 };
 
